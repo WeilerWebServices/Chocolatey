@@ -1,0 +1,31 @@
+﻿@model PackageOwnerConfirmationModel
+@{
+    ViewBag.Title = "Confirm Maintainership";
+}
+
+<h1 class="page-heading">Confirm Maintainership</h1>
+
+@if (Model.Success) {
+    <p>
+        You are now a maintainer of the 
+        '<strong><a href="@Url.Package(@Model.PackageId)" title="The @Model.PackageId package">@Model.PackageId</a></strong>' package.
+    </p>
+}
+else {
+    <p class="message error">
+        Could not confirm package maintainership for '@Model.PackageId'.
+    </p>
+    <p>
+        Make sure you clicked on the confirmation URL in the email we sent. 
+        It&#8217;s also possible that the existing maintainer revoked the 
+        request to add you as a maintainer.
+    </p>
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,118 @@
+﻿@model ListPackageVersionViewModel
+@using Markdig
+@{
+    var displayed = Model.DisplayVersion;
+    var style = displayed ? "table-row" : "none";
+    var htmlClass = displayed ? "" : "versionTableRowMore";
+    var divVersionId = "divVersion-" + Model.Package.Version.Replace(".", "-");
+    var maintainer = User != null && Model.Package.Owners.Any(u => u.Username == User.Identity.Name);
+    var moderator = User != null && User.IsModerator() && !maintainer;
+    
+    var MarkdownPipeline = new MarkdownPipelineBuilder()
+                 .UseSoftlineBreakAsHardlineBreak()
+                 .UseAutoLinks()
+                 .UseGridTables()
+                 .UsePipeTables()
+                 .UseAutoIdentifiers()
+                 .UseEmphasisExtras()
+                 .UseNoFollowLinks()
+                 .UseCustomContainers()
+                 .UseBootstrap()
+                 .Build();
+}
+
+@if (Model.Package.Listed || Model.Package.IsOwner(User) || Model.Package.Status == PackageStatusType.Submitted)
+{
+    <tr class="versionTableRow @htmlClass @if (Model.Package.LatestStableVersion){<text>recommended </text>}" style="display: @style">
+        <td class="version" @if (Model.Package.LatestStableVersion){<text>title="Latest Version"</text>}>
+            @if (!Model.Package.IsCurrent(Model.CurrentPackageVersion))
+            {
+                <a href="@Url.Package(Model.Package)">@Model.Package.Title @Model.Package.Version</a>
+            }
+            else
+            {
+                <span>@Model.Package.Title @Model.Package.Version</span>
+            }
+        </td>
+        <td>@Model.Package.DownloadCount</td>
+        <td>@Model.Package.PublishedDate.ToString("D")</td>
+        @if (Model.Package.IsOwner(User))
+        {
+            <td>
+                <a href="@Url.DeletePackage(Model.Package)" class="delete">@(Model.Package.Listed ? "yes" : "no")</a>
+            </td>
+        }
+    
+        @switch (Model.Package.Status)
+        {
+            case PackageStatusType.Submitted:
+            switch (Model.Package.SubmittedStatus)
+            {
+                case PackageSubmittedStatusType.Pending:
+                    <td><span class="badge badge-pill badge-warning">Pending Automated Review</span></td>
+                    break;
+                case PackageSubmittedStatusType.Ready:
+                    <td><span class="badge badge-pill badge-success">Ready</span></td>
+                    break;
+                case PackageSubmittedStatusType.Updated:
+                    <td class="d-flex align-items-center border-top-0">
+                        <span class="badge badge-pill badge-orange mr-1">Updated</span>
+                        @ViewHelpers.OwnersGravatarListPackages(Model.Package.Owners, 24, Url)   
+                    </td>
+                    break;
+                case PackageSubmittedStatusType.Responded:
+                    <td class="d-flex align-items-center border-top-0">
+                    <span class="badge badge-pill badge-purple mr-1">Responded</span>
+                        @ViewHelpers.OwnersGravatarListPackages(Model.Package.Owners, 24, Url)
+                    </td>
+                    break;
+                default:
+                    <td class="d-flex align-items-center border-top-0">
+                        <span class="badge badge-pill badge-danger mr-1">Waiting for Maintainer</span>
+                        @if (!string.IsNullOrWhiteSpace(Model.Package.ReviewerEmailAddress))
+                        {
+                            <a href="@Url.Action(MVC.Users.Profiles(Model.Package.ReviewerUserName))">@ViewHelpers.GravatarImage(Model.Package.ReviewerEmailAddress, Model.Package.ReviewerUserName, 24)</a>
+                        }
+                    </td>
+                    break;
+            }
+            break;
+            case PackageStatusType.Approved:
+                <td><span class="fas fa-check text-success"></span> Approved</td>
+                break;
+            case PackageStatusType.Rejected:
+                <td><span class="fas fa-times text-danger"></span> Rejected</td>
+                break;
+            case PackageStatusType.Exempted:
+                <td><span class="fas fa-ban text-secondary"></span> Exempted</td>
+                break;
+            default:
+                <td><span class="fas fa-question text-secondary"></span> Unknown</td>
+                break;
+        }
+    
+        @if (Model.ModerationRole)
+        {
+            <td>
+                @if (!string.IsNullOrWhiteSpace(Model.Package.ReviewComments))
+                {
+                    <button type="button" data-toggle="collapse" data-target="#@divVersionId" aria-expanded="false" aria-controls="@divVersionId" class="btn btn-sm btn-secondary mr-2 ">Show</button>
+                }
+            </td>
+        }
+    </tr>
+    if (Model.ModerationRole)
+    {
+        <tr id="@divVersionId" class="collapse">
+            <td colspan="6">
+                <div class="mt-3">
+                    <div class="comments-list-container">
+                        <div class="comments-list @if (maintainer) {<text> user-maintainer</text>} else if (moderator) {<text> user-moderator</text>} else {<text> user-unknown</text>}">
+                            @Html.Raw(Markdown.ToHtml(Model.Package.ReviewComments.clean_html() ?? string.Empty, MarkdownPipeline))
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+}

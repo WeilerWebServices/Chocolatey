@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Scripts");
+}
+
+<section>
+    <div class="container py-3 py-lg-5">
+        <h1 class="text-center">Let Us Help You!</h1>
+        <h3 class="text-center pb-4">Choose a category below and we'll get back to you as soon as possible.</h3>
+        <div class="row card-row">
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <a href="#" data-toggle="modal" data-target="#sales-popup">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <span class="fas fa-tachometer-alt display-3 text-primary"></span>
+                                <h3 class="text-center mb-0">Sales</h3>
+                            </div>
+                            <p>I'd like information regarding solutions for my organization.</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="modal fade" id="sales-popup" tabindex="-1" role="dialog" aria-labelledby="salesLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h2 class="modal-title text-center mb-3" id="salesLabel">Please Choose a Category Below</h2>
+                                <div class="row">
+                                    <div class="col-sm-6 mb-4 mb-sm-0">
+                                        <a href="@Url.RouteUrl(RouteName.ContactSales)">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <h3 class="text-center mb-0">For My Organization</h3>
+                                                    </div>
+                                                    <p>Interested in learning more about Chocolatey commercial options for use in my organization.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <a href="@Url.RouteUrl(RouteName.ContactSalesOther)">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <h3 class="text-center mb-0">For Another Organization</h3>
+                                                    </div>
+                                                    <p>Interested in reselling Chocolatey for Business to another organization.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <a href="@Url.RouteUrl(RouteName.ContactTrial)">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <span class="fas fa-pencil-alt display-3 text-primary"></span>
+                                <h3 class="text-center mb-0">Trial</h3>
+                            </div>
+                            <p>I'd like to start a trial of Chocolatey for Business to see if it's right for my organization.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <a href="@Url.RouteUrl(RouteName.ContactPartner)">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <span class="fas fa-handshake display-3 text-primary"></span>
+                                <h3 class="text-center mb-0">Partner</h3>
+                            </div>
+                            <p>I'd like to discuss becoming a partner with Chocolatey.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <a href="@Url.RouteUrl(RouteName.ContactDiscount)">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <span class="fas fa-graduation-cap display-3 text-primary"></span>
+                                <h3 class="text-center mb-0">Student Discount</h3>
+                            </div>
+                            <p>I'm a student and need a discount on Chocolatey to get started.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <a href="@Url.RouteUrl(RouteName.ContactBlocked)">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <span class="fas fa-ban display-3 text-primary"></span>
+                                <h3 class="text-center mb-0">Blocked IP</h3>
+                            </div>
+                            <p>I'm a Chocolatey user, and my IP Address has been blocked.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <a href="@Url.RouteUrl(RouteName.ContactGeneral)">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <span class="fas fa-envelope display-3 text-primary"></span>
+                                <h3 class="text-center mb-0">General</h3>
+                            </div>
+                            <p>I have a general question for the Chocolatey team.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <hr />
+        <div class="row pt-4">
+            <div class="col-md-4">
+                <p class="mb-0 mt-3 mt-lg-0"><strong>HQ Physical Address:</strong></p>
+                <p>3620 SW Fairlawn Rd, Suite #220,<br />Topeka, KS 66614</p>
+                <hr />
+                <p class="mb-0"><strong>Mailing Address:</strong></p>
+                <p>6021 SW 29th St Ste A 302,<br />Topeka, KS 66614</p>
+                <img class="img-fluid mb-3 rounded shadow" src="@Url.Content("~/content/images/chocolateyHeadquarters.jpg")" alt="Chocolatey Software" />
+            </div>
+            <div class="col-md-8">
+                <div class="embed-responsive embed-responsive-16by9 shadow">
+                    <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3100.576826185883!2d-95.74600428386569!3d39.00215334836595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87bee2ba65472b9d%3A0xf151f2c260ed0eb8!2s3620+SW+Fairlawn+Rd+%23220%2C+Topeka%2C+KS+66614!5e0!3m2!1sen!2sus!4v1560177899028!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

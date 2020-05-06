@@ -1,0 +1,649 @@
+﻿==> default: Running provisioner: shell...
+    default: Running: shell/VagrantAction.ps1 as c:\tmp\vagrant-shell.ps1
+==> default: Chocolatey is running on Windows v 6.3.9600.0
+==> default: Attempting to delete file "C:/ProgramData/chocolatey/choco.exe.old".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\choco.exe.old".
+==> default: Command line: "C:\ProgramData\chocolatey\choco.exe" install etcd --version 2.2.2 -fdvy
+==> default: Received arguments: install etcd --version 2.2.2 -fdvy
+==> default: NOTE: Hiding sensitive configuration data! Please double and triple 
+==> default:  check to be sure no sensitive data is shown, especially if copying 
+==> default:  output to a gist for review.
+==> default: Configuration: CommandName='install'|
+==> default: CacheLocation='C:\Users\ADMINI~1\AppData\Local\Temp'|
+==> default: ContainsLegacyPackageInstalls='True'|
+==> default: CommandExecutionTimeoutSeconds='2700'|
+==> default: Sources='https://chocolatey.org/api/v2/'|Debug='True'|Verbose='True'|
+==> default: Force='True'|Noop='False'|HelpRequested='False'|RegularOutput='True'|
+==> default: QuietOutput='False'|PromptForConfirmation='False'|AcceptLicense='True'|
+==> default: AllowUnofficialBuild='False'|Input='etcd'|Version='2.2.2'|
+==> default: AllVersions='False'|SkipPackageInstallProvider='False'|
+==> default: PackageNames='etcd'|Prerelease='False'|ForceX86='False'|
+==> default: OverrideArguments='False'|NotSilent='False'|IgnoreDependencies='False'|
+==> default: AllowMultipleVersions='False'|AllowDowngrade='False'|
+==> default: ForceDependencies='False'|Information.PlatformType='Windows'|
+==> default: Information.PlatformVersion='6.3.9600.0'|
+==> default: Information.PlatformName='Windows Server 2012 R2'|
+==> default: Information.ChocolateyVersion='0.9.9.11'|
+==> default: Information.ChocolateyProductVersion='0.9.9.11'|
+==> default: Information.FullName='choco, Version=0.9.9.11, Culture=neutral, PublicKeyToken=79d02ea9cad655eb'|
+==> default: 
+==> default: Information.Is64Bit='True'|Information.IsInteractive='False'|
+==> default: Information.IsUserAdministrator='True'|
+==> default: Information.IsProcessElevated='True'|Features.AutoUninstaller='True'|
+==> default: Features.CheckSumFiles='True'|Features.FailOnAutoUninstaller='False'|
+==> default: ListCommand.LocalOnly='False'|
+==> default: ListCommand.IncludeRegistryPrograms='False'|
+==> default: UpgradeCommand.FailOnUnfound='False'|
+==> default: UpgradeCommand.FailOnNotInstalled='False'|
+==> default: UpgradeCommand.NotifyOnlyAvailableUpgrades='False'|
+==> default: NewCommand.AutomaticPackage='False'|SourceCommand.Command='unknown'|
+==> default: SourceCommand.Priority='0'|FeatureCommand.Command='unknown'|
+==> default: ConfigCommand.Command='unknown'|PushCommand.TimeoutInSeconds='0'|
+==> default: PinCommand.Command='unknown'|
+==> default: _ Chocolatey:ChocolateyInstallCommand - Normal Run Mode _
+==> default: Installing the following packages:
+==> default: etcd
+==> default: By installing you accept licenses for the packages.
+==> default: [NuGet] Attempting to resolve dependency 'nssm'.
+==> default: [NuGet] Installing 'NSSM 2.24.0'.
+==> default: 
+==> default: [NuGet] Added file 'README.md' to folder 'NSSM'.
+==> default: [NuGet] Added file 'ChocolateyInstall.ps1' to folder 'NSSM\Tools'.
+==> default: [NuGet] Added file 'NSSM.nupkg' to folder 'NSSM'.
+==> default: [NuGet] Successfully installed 'NSSM 2.24.0'.
+==> default: 
+==> default: NSSM v2.24.0 (forced)
+==> default: Contents of 'C:\ProgramData\chocolatey\lib\NSSM\Tools\ChocolateyInstall.ps1':
+==> default: 
+==> default: $packageName = 'nssm'
+==> default: $version = '2.24'
+==> default: $url = "http://nssm.cc/download/nssm-$version.zip"
+==> default: 
+==> default: $toolsPath = (Split-Path -Parent $MyInvocation.MyCommand.Definition)
+==> default: 
+==> default: Install-ChocolateyZipPackage $packageName $url "$toolsPath"
+==> default: 
+==> default: $folderToIgnore = 'win32'
+==> default: 
+==> default: if (Get-ProcessorBits 32) {
+==> default:     $folderToIgnore = 'win64'
+==> default: }
+==> default: 
+==> default: Set-Content -Path ("$toolsPath\nssm-$version\$folderToIgnore\nssm.exe.ignore") -Value $null
+==> default: 
+==> default: Calling command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\NSSM\Tools\ChocolateyInstall.ps1' -installArguments '' -packageParameters ''"']
+==> default:  DEBUG: Posh version is 4.0
+==> default: 
+==> default:  VERBOSE: Exporting function 'Get-BinRoot'.
+==> default:  VERBOSE: Exporting function 'Get-ChecksumValid'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyUnzip'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyWebFile'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariableNames'.
+==> default:  VERBOSE: Exporting function 'Get-FtpFile'.
+==> default:  VERBOSE: Exporting function 'Get-ProcessorBits'.
+==> default:  VERBOSE: Exporting function 'Get-UACEnabled'.
+==> default:  VERBOSE: Exporting function 'Get-VirusCheckValid'.
+==> default:  VERBOSE: Exporting function 'Get-WebFile'.
+==> default:  VERBOSE: Exporting function 'Get-WebHeaders'.
+==> default:  VERBOSE: Exporting function 'Install-BinFile'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyDesktopLink'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyEnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyExplorerMenuItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyFileAssociation'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyInstallPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPath'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPinnedTaskBarItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPowershellCommand'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyShortcut'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyVsixPackage'.
+==> default:  VERBOSE: Exporting function 'Install-Vsix'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Set-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Start-ChocolateyProcessAsAdmin'.
+==> default:  VERBOSE: Exporting function 'Test-ProcessAdminRights'.
+==> default:  VERBOSE: Exporting function 'Uninstall-BinFile'.
+==> default: 
+==> default:  VERBOSE: Exporting function 'Uninstall-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'UnInstall-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Update-SessionEnvironment'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateyFailure'.
+==> default: 
+==> default:  VERBOSE: Exporting function 'Write-ChocolateySuccess'.
+==> default:  VERBOSE: Exporting function 'Write-FileUpdateLog'.
+==> default:  VERBOSE: Exporting alias 'Generate-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Add-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Remove-BinFile'.
+==> default: 
+==> default:  DEBUG: Running 'Install-ChocolateyZipPackage' for nssm with 
+==> default:  url:'http://nssm.cc/download/nssm-2.24.zip', unzipLocation: 
+==> default: 
+==> default:  'C:\ProgramData\chocolatey\lib\NSSM\Tools', url64bit: '', specificFolder: '', 
+==> default:  checksum: '', checksumType: '', checksum64: '', checksumType64: '' 
+==> default:  DEBUG: Running 'Get-ChocolateyWebFile' for nssm with 
+==> default: 
+==> default:  url:'http://nssm.cc/download/nssm-2.24.zip', 
+==> default:  fileFullPath:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\nssm\2.24.0\nssmI
+==> default:  nstall.zip', url64bit:'', checksum: '', checksumType: '', checksum64: '', 
+==> default:  checksumType64: ''
+==> default:  DEBUG: Running 'Get-ProcessorBits'
+==> default:  DEBUG: CPU is 64 bit
+==> default:  DEBUG: Running 'Get-WebHeaders' with 
+==> default:  url:'http://nssm.cc/download/nssm-2.24.zip', userAgent: 'chocolatey command 
+==> default:  line'
+==> default:  DEBUG: Setting the UserAgent to 'chocolatey command line'
+==> default:  DEBUG: Request Headers:
+==> default:  DEBUG:   'Accept':'*/*'
+==> default:  DEBUG:   'User-Agent':'chocolatey command line'
+==> default:  DEBUG: Response Headers:
+==> default: 
+==> default:  DEBUG:   'Accept-Ranges':'bytes'
+==> default:  DEBUG:   'Content-Length':'351793'
+==> default:  DEBUG:   'Content-Type':'application/zip'
+==> default:  DEBUG:   'Date':'Sun, 06 Dec 2015 04:43:55 GMT'
+==> default:  DEBUG:   'ETag':'"55e31-501eea636b280"'
+==> default:  DEBUG:   'Last-Modified':'Sun, 31 Aug 2014 15:36:26 GMT'
+==> default:  DEBUG:   'Server':'Apache/2.4.12 (Fedora) OpenSSL/1.0.1k-fips mod_auth_kerb/5.4
+==> default:   PHP/5.6.10'
+==> default:  Downloading nssm 32 bit
+==> default:    from 'http://nssm.cc/download/nssm-2.24.zip'
+==> default:  DEBUG: Running 'Get-WebFile' for 
+==> default: 
+==> default:  C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\nssm\2.24.0\nssmInstall.zip 
+==> default:  with url:'http://nssm.cc/download/nssm-2.24.zip', userAgent: 'chocolatey 
+==> default:  command line' 
+==> default:  DEBUG: Setting the UserAgent to 'chocolatey command line'
+==> default:  DEBUG: Checking that 
+==> default: 
+==> default:  'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\nssm\2.24.0\nssmInstall.zip' 
+==> default:  is the size we expect it to be.
+==> default:  DEBUG: Verifying package provided checksum of '' for 
+==> default: 
+==> default:  'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\nssm\2.24.0\nssmInstall.zip'.
+==> default:  DEBUG: Running 'Get-ChecksumValid' with 
+==> default:  file:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\nssm\2.24.0\nssmInstall.z
+==> default:  ip', checksum: '', checksumType: ''
+==> default:  DEBUG: Running 'Get-ChocolateyUnzip' with 
+==> default:  fileFullPath:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\nssm\2.24.0\nssmI
+==> default:  nstall.zip'', destination: 'C:\ProgramData\chocolatey\lib\NSSM\Tools', 
+==> default:  specificFolder: '`, packageName: 'nssm'
+==> default:  Extracting C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\nssm\2.24.0\nssmInstall.zip to C:\ProgramData\chocolatey\lib\NSSM\Tools...
+==> default:  DEBUG: 7zip found at 'C:\ProgramData\chocolatey\tools\7za.exe'
+==> default:  DEBUG: wrapping 7za invocation with Write-FileUpdateLog
+==> default: 
+==> default:  DEBUG: Running 'Write-FileUpdateLog' with 
+==> default:  logFilePath:'C:\ProgramData\chocolatey\lib\NSSM\nssmInstall.zip.txt'', 
+==> default:  locationToMonitor:C:\ProgramData\chocolatey\lib\NSSM\Tools, Operation: '
+==> default:      param($7zip, $destination, $fileFullPath, [ref]$exitCodeRef)
+==> default:      $params = "x -aoa -o`"$destination`" -y `"$fileFullPath`""
+==> default:      Write-Debug "Executing command ['$7zip' $params]"
+==> default:      $process = New-Object System.Diagnostics.Process
+==> default:      $process.StartInfo = new-object System.Diagnostics.ProcessStartInfo($7zip, 
+==> default:  $params)
+==> default:      $process.StartInfo.UseShellExecute = $false
+==> default:      $process.StartInfo.WindowStyle = 
+==> default:  [System.Diagnostics.ProcessWindowStyle]::Hidden
+==> default:      $process.Start() | Out-Null
+==> default:      $process.WaitForExit()
+==> default:      $processExitCode = $process.ExitCode
+==> default:      $process.Dispose()
+==> default:      Write-Debug "Command ['$7zip' $params] exited with `'$processExitCode`'."
+==> default:      $exitCodeRef.Value = $processExitCode
+==> default:    '
+==> default:  DEBUG: Tracking current state of 'C:\ProgramData\chocolatey\lib\NSSM\Tools'
+==> default:  DEBUG: Executing command ['C:\ProgramData\chocolatey\tools\7za.exe' x -aoa 
+==> default:  -o"C:\ProgramData\chocolatey\lib\NSSM\Tools" -y 
+==> default:  "C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\nssm\2.24.0\nssmInstall.zip"]
+==> default:  7-Zip (A) 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
+==> default:  Processing archive: C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\nssm\2.24.0\nssmInstall.zip
+==> default:  Extracting  nssm-2.24
+==> default:  Extracting  nssm-2.24\ChangeLog.txt
+==> default:  Extracting  nssm-2.24\README.txt
+==> default:  Extracting  nssm-2.24\src
+==> default:  Extracting  nssm-2.24\src\account.cpp
+==> default:  Extracting  nssm-2.24\src\account.h
+==> default:  Extracting  nssm-2.24\src\console.cpp
+==> default:  Extracting  nssm-2.24\src\console.h
+==> default:  Extracting  nssm-2.24\src\env.cpp
+==> default:  Extracting  nssm-2.24\src\env.h
+==> default:  Extracting  nssm-2.24\src\event.cpp
+==> default:  Extracting  nssm-2.24\src\event.h
+==> default:  Extracting  nssm-2.24\src\gui.cpp
+==> default:  Extracting  nssm-2.24\src\gui.h
+==> default:  Extracting  nssm-2.24\src\imports.cpp
+==> default:  Extracting  nssm-2.24\src\imports.h
+==> default:  Extracting  nssm-2.24\src\io.cpp
+==> default:  Extracting  nssm-2.24\src\io.h
+==> default:  Extracting  nssm-2.24\src\messages.mc
+==> default:  Extracting  nssm-2.24\src\nssm.cpp
+==> default:  Extracting  nssm-2.24\src\nssm.h
+==> default:  Extracting  nssm-2.24\src\nssm.ico
+==> default: 
+==> default: Command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\NSSM\Tools\ChocolateyInstall.ps1' -installArguments '' -packageParameters ''"'] exited with '0'
+==> default: Calling command ['"shutdown" /a']
+==> default:  Extracting  nssm-2.24\src\nssm.rc
+==> default: 
+==> default: Command ['"shutdown" /a'] exited with '1116'
+==> default:  Extracting  nssm-2.24\src\nssm.sln
+==> default:  Extracting  nssm-2.24\src\nssm.vcproj
+==> default:  Extracting  nssm-2.24\src\process.cpp
+==> default:  Extracting  nssm-2.24\src\process.h
+==> default:  Extracting  nssm-2.24\src\registry.cpp
+==> default:  Extracting  nssm-2.24\src\registry.h
+==> default:  Extracting  nssm-2.24\src\resource.h
+==> default:  Extracting  nssm-2.24\src\service.cpp
+==> default:  Extracting  nssm-2.24\src\service.h
+==> default:  Extracting  nssm-2.24\src\settings.cpp
+==> default:  Extracting  nssm-2.24\src\settings.h
+==> default:  Extracting  nssm-2.24\src\version.cmd
+==> default:  Extracting  nssm-2.24\win32
+==> default:  Extracting  nssm-2.24\win32\nssm.exe
+==> default:  Extracting  nssm-2.24\win64
+==> default:  Extracting  nssm-2.24\win64\nssm.exe
+==> default:  Everything is Ok
+==> default:  Folders: 4
+==> default:  Files: 35
+==> default:  Size:       1211662
+==> default:  Compressed: 351793
+==> default: 
+==> default:  DEBUG: Command ['C:\ProgramData\chocolatey\tools\7za.exe' x -aoa 
+==> default:  -o"C:\ProgramData\chocolatey\lib\NSSM\Tools" -y 
+==> default:  "C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\nssm\2.24.0\nssmInstall.zip"] 
+==> default:  exited with '0'.
+==> default:  DEBUG: 7za exit code: 0
+==> default:  C:\ProgramData\chocolatey\lib\NSSM\Tools
+==> default:  DEBUG: Running 'Get-ProcessorBits'
+==> default: Capturing package files in 'C:\ProgramData\chocolatey\lib\NSSM'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\NSSM.nupkg'
+==> default:   with checksum 'E74C4B88319AE37541918B1F20FF74CA'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\nssmInstall.zip.txt'
+==> default:   with checksum '377F3F387EE61D5B70D353428D41B74F'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\README.md'
+==> default:   with checksum '7D5F8222AEA4DB40C10CACA206147C7B'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\ChocolateyInstall.ps1'
+==> default:   with checksum 'A97254EA8117522FC9D987CB135ACFF4'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\ChangeLog.txt'
+==> default:   with checksum '205769831FA302018FB26845D3835962'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\README.txt'
+==> default:   with checksum 'ED2BC805600C380E85FE240E715ABB81'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\account.cpp'
+==> default:   with checksum 'B432CC0EDDB92622E68C16944EF65E98'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\account.h'
+==> default:   with checksum 'C1B1DCFDCE66CB24B458B0F34278C8DB'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\console.cpp'
+==> default:   with checksum '2B504E046DC126E68BFC90056B2C9E60'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\console.h'
+==> default:   with checksum '9E242CCE5F18C22854F7E417171E5E67'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\env.cpp'
+==> default:   with checksum 'F49F53D2A1527B35258B33773D048B9C'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\env.h'
+==> default:   with checksum 'F3C5C5EC2AEAFA00FF4C2FBE5622521C'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\event.cpp'
+==> default:   with checksum '53CA1240B593D6277E58A9D3334B537C'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\event.h'
+==> default:   with checksum 'BD2D50FA5FBBB97285F9984E6CD1E4D4'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\gui.cpp'
+==> default:   with checksum '87A2C4762F8F544056F223315F6F8A90'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\gui.h'
+==> default:   with checksum 'A015F901E2ECE542EC8DA0D62A2DEC91'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\imports.cpp'
+==> default:   with checksum 'B3841F61DF8EAAE6503C4535FFFA2678'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\imports.h'
+==> default:   with checksum 'BEA805FC9BD24E29F911B4C8AF2E1C67'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\io.cpp'
+==> default:   with checksum '4A0F774542B30B8D2F89B16A52F4E180'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\io.h'
+==> default:   with checksum 'D38837B657FD6110F6DFCC464CB5A28A'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\messages.mc'
+==> default:   with checksum '8CE6DC904ADF43A36CC1874B56FE10E5'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\nssm.cpp'
+==> default:   with checksum '4C6D4F21F01D8EA96856B9BE08819006'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\nssm.h'
+==> default:   with checksum '489522C3667DE3BAF5F28A66DD684005'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\nssm.ico'
+==> default:   with checksum '4288408C2D7F43FBD9D920C8319F1956'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\nssm.rc'
+==> default:   with checksum 'FFACD065D645999917FF340D7C7E9EE0'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\nssm.sln'
+==> default:   with checksum 'F779189B1586DFA1D64F9279AD8E23EC'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\nssm.vcproj'
+==> default:   with checksum '6E6FABD941F67804A55F5D9EE21A7E11'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\process.cpp'
+==> default:   with checksum 'E58E6825766F138869E72B66085C0758'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\process.h'
+==> default:   with checksum '7D2B1A9335864BB2C334273FE40CF732'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\registry.cpp'
+==> default:   with checksum '445B79BFC0A559C5CF4C048C54218566'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\registry.h'
+==> default:   with checksum '12766774BADE41953CA460AE72168F1B'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\resource.h'
+==> default:   with checksum 'A06FEE0B96D7CD81E1B0A9CB9E359396'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\service.cpp'
+==> default:   with checksum '95FB7517F1606492A69D3B3DDEC9C01D'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\service.h'
+==> default:   with checksum 'E317D08FBC98329115C47D8095190D83'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\settings.cpp'
+==> default:   with checksum '762C0AC39328C797AECEF896A1319877'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\settings.h'
+==> default:   with checksum '92BFCAF191385245DF8A907C7DD27E3E'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\src\version.cmd'
+==> default:   with checksum '3E67B67B2ECB2D3042DFAA7D216883B1'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\win32\nssm.exe'
+==> default:   with checksum 'D9EC6F3A3B2AC7CD5EEF07BD86E3EFBC'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\win32\nssm.exe.ignore'
+==> default:   with checksum 'D41D8CD98F00B204E9800998ECF8427E'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\win64\nssm.exe'
+==> default:   with checksum 'BECEAE2FDC4F7729A93E94AC2CCD78CC'
+==> default: Calling command ['"C:\ProgramData\chocolatey\tools\shimgen.exe" --path="..\\lib\NSSM\Tools\nssm-2.24\win64\nssm.exe" --output="C:\ProgramData\chocolatey\bin\nssm.exe"  --iconpath="C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\win64\nssm.exe"']
+==> default:  [ShimGen] Microsoft (R) Visual C# Compiler version 4.0.30319.33440
+==> default: 
+==> default:  [ShimGen] for Microsoft (R) .NET Framework 4.5
+==> default:  [ShimGen] Copyright (C) Microsoft Corporation. All rights reserved.
+==> default:  [ShimGen] ShimGen has successfully created 'C:\ProgramData\chocolatey\bin\nssm.exe'
+==> default: Command ['"C:\ProgramData\chocolatey\tools\shimgen.exe" --path="..\\lib\NSSM\Tools\nssm-2.24\win64\nssm.exe" --output="C:\ProgramData\chocolatey\bin\nssm.exe"  --iconpath="C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\win64\nssm.exe"'] exited with '0'
+==> default:  ShimGen has successfully created a shim for nssm.exe
+==> default:   Created: C:\ProgramData\chocolatey\bin\nssm.exe
+==> default:   Targeting: C:\ProgramData\chocolatey\lib\NSSM\Tools\nssm-2.24\win64\nssm.exe
+==> default:   IsGui:False
+==> default: 
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\extensions".
+==> default: Adding 'Hidden' attribute(s) to 'C:\ProgramData\chocolatey\.chocolatey'.
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\.chocolatey\NSSM.2.24.0".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\.chocolatey\NSSM.2.24.0\.files.update"
+==> default: 
+==> default:  to "C:\ProgramData\chocolatey\.chocolatey\NSSM.2.24.0\.files".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\NSSM.2.24.0\.files.update".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\NSSM.2.24.0\.sxs".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\NSSM.2.24.0\.pin".
+==> default:  The install of nssm was successful.
+==> default: [NuGet] Installing 'etcd 2.2.2'.
+==> default: [NuGet] Added file 'chocolateyinstall.ps1' to folder 'etcd\tools'.
+==> default: [NuGet] Added file 'chocolateyuninstall.ps1' to folder 'etcd\tools'.
+==> default: [NuGet] Added file 'etcd.nupkg' to folder 'etcd'.
+==> default: [NuGet] Successfully installed 'etcd 2.2.2'.
+==> default: 
+==> default: etcd v2.2.2 (forced)
+==> default: Contents of 'C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyinstall.ps1':
+==> default: # stop on all errors
+==> default: $ErrorActionPreference = 'Stop';
+==> default: 
+==> default: 
+==> default: $packageName = 'etcd' # arbitrary name for the package, used in messages
+==> default: $url = '' # etcd is 64bit only ... this is intended to fail on 32 bit systems
+==> default: $url64 = "https://github.com/coreos/etcd/releases/download/v$($env:chocolateyPackageVersion)/etcd-v$($env:chocolateyPackageVersion)-windows-amd64.zip"
+==> default: $validExitCodes = @(0) #please insert other valid exit codes here, exit codes for ms http://msdn.microsoft.com/en-us/library/aa368542(VS.85).aspx
+==> default: $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+==> default: $installDir = "C:\ProgramData\etcd"
+==> default: 
+==> default: Install-ChocolateyZipPackage "$packageName" "$url" "$installDir" "$url64"
+==> default: #check OS bitness
+==> default: if (!([Environment]::Is64BitOperatingSystem))
+==> default: {
+==> default: 	Write-Error "etcd requires 64bit operating system"
+==> default: 	exit
+==> default: }
+==> default: #remove the service if it exists
+==> default: if ((Get-Service | Where-Object { $_.Name -eq "etcd" }).length)
+==> default: {
+==> default: 	Get-Service etcd | Stop-Service
+==> default: 	&nssm remove etcd confirm
+==> default: }
+==> default: 
+==> default: Copy-Item "C:\ProgramData\etcd\etcd-v$($env:chocolateyPackageVersion)-windows-amd64\*" C:\ProgramData\etcd -Recurse -Force
+==> default: Remove-Item "C:\ProgramData\etcd\etcd-v$($env:chocolateyPackageVersion)-windows-amd64" -Recurse -Force
+==> default: 
+==> default: #older versions of etcd didn't put EXE on the binary
+==> default: if (Test-Path C:\ProgramData\etcd\etcd) { copy-item C:\ProgramData\etcd\etcd C:\ProgramData\etcd\etcd.exe -force; remove-item C:\ProgramData\etcd\etcd }
+==> default: if (Test-Path C:\ProgramData\etcd\etcdctl) { copy-item C:\ProgramData\etcd\etcdctl C:\ProgramData\etcd\etcdctl.exe -force; remove-item C:\ProgramData\etcd\etcdctl }
+==> default: 
+==> default: Copy-Item C:\ProgramData\etcd\etcdctl.exe $toolsDir -Force
+==> default: &nssm install etcd C:\ProgramData\etcd\etcd.exe "$($env:chocolateyPackageParameters)"
+==> default: &nssm set etcd Start SERVICE_AUTO_START
+==> default: Calling command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyinstall.ps1' -installArguments '' -packageParameters ''"']
+==> default:  DEBUG: Posh version is 4.0
+==> default:  DEBUG: Loading community extensions
+==> default: 
+==> default:  VERBOSE: Exporting function 'Get-BinRoot'.
+==> default:  VERBOSE: Exporting function 'Get-ChecksumValid'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyUnzip'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyWebFile'.
+==> default: 
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariableNames'.
+==> default:  VERBOSE: Exporting function 'Get-FtpFile'.
+==> default:  VERBOSE: Exporting function 'Get-ProcessorBits'.
+==> default:  VERBOSE: Exporting function 'Get-UACEnabled'.
+==> default:  VERBOSE: Exporting function 'Get-VirusCheckValid'.
+==> default:  VERBOSE: Exporting function 'Get-WebFile'.
+==> default:  VERBOSE: Exporting function 'Get-WebHeaders'.
+==> default:  VERBOSE: Exporting function 'Install-BinFile'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyDesktopLink'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyEnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyExplorerMenuItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyFileAssociation'.
+==> default: 
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyInstallPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPath'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPinnedTaskBarItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPowershellCommand'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyShortcut'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyVsixPackage'.
+==> default:  VERBOSE: Exporting function 'Install-Vsix'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Set-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Start-ChocolateyProcessAsAdmin'.
+==> default:  VERBOSE: Exporting function 'Test-ProcessAdminRights'.
+==> default:  VERBOSE: Exporting function 'Uninstall-BinFile'.
+==> default:  VERBOSE: Exporting function 'Uninstall-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'UnInstall-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Update-SessionEnvironment'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateyFailure'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateySuccess'.
+==> default:  VERBOSE: Exporting function 'Write-FileUpdateLog'.
+==> default:  VERBOSE: Exporting alias 'Generate-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Add-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Remove-BinFile'.
+==> default:  DEBUG: Running 'Install-ChocolateyZipPackage' for etcd with url:'', 
+==> default:  unzipLocation: 'C:\ProgramData\etcd', url64bit: 
+==> default:  'https://github.com/coreos/etcd/releases/download/v2.2.2/etcd-v2.2.2-windows-am
+==> default:  d64.zip', specificFolder: '', checksum: '', checksumType: '', checksum64: '', 
+==> default:  checksumType64: '' 
+==> default:  DEBUG: Running 'Get-ChocolateyWebFile' for etcd with url:'', 
+==> default:  fileFullPath:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\etcd\2.2.2\etcdIn
+==> default:  stall.zip', 
+==> default:  url64bit:'https://github.com/coreos/etcd/releases/download/v2.2.2/etcd-v2.2.2-w
+==> default:  indows-amd64.zip', checksum: '', checksumType: '', checksum64: '', 
+==> default:  checksumType64: ''
+==> default:  DEBUG: Running 'Get-ProcessorBits'
+==> default:  DEBUG: CPU is 64 bit
+==> default:  DEBUG: Setting url to 
+==> default:  'https://github.com/coreos/etcd/releases/download/v2.2.2/etcd-v2.2.2-windows-am
+==> default:  d64.zip' and bitPackage to 64
+==> default:  DEBUG: Running 'Get-WebHeaders' with 
+==> default:  url:'https://github.com/coreos/etcd/releases/download/v2.2.2/etcd-v2.2.2-window
+==> default:  s-amd64.zip', userAgent: 'chocolatey command line'
+==> default:  DEBUG: Setting the UserAgent to 'chocolatey command line'
+==> default:  DEBUG: Request Headers:
+==> default:  DEBUG:   'Accept':'*/*'
+==> default:  DEBUG:   'User-Agent':'chocolatey command line'
+==> default:  DEBUG: Response Headers:
+==> default: 
+==> default:  DEBUG:   
+==> default:  'x-amz-id-2':'Hhwd4VoWSUPfyYc3LFPcHJaGbypMlvfhQI9S0UhaxXXF25gfW+XKil3uTdgZNEV6u
+==> default: 
+==> default:  L9YSQdzvCQ='
+==> default:  DEBUG:   'x-amz-request-id':'C7A7E528E4B665AE'
+==> default:  DEBUG:   'Content-Disposition':'attachment; 
+==> default:  filename=etcd-v2.2.2-windows-amd64.zip'
+==> default:  DEBUG:   'Accept-Ranges':'bytes'
+==> default:  DEBUG:   'Content-Length':'7567394'
+==> default:  DEBUG:   'Content-Type':'application/octet-stream'
+==> default:  DEBUG:   'Date':'Sun, 06 Dec 2015 04:44:04 GMT'
+==> default:  DEBUG:   'ETag':'"6c7a2cd61c5d903904be38aa32bead2d"'
+==> default:  DEBUG:   'Last-Modified':'Fri, 20 Nov 2015 02:00:41 GMT'
+==> default:  DEBUG:   'Server':'AmazonS3'
+==> default:  Downloading etcd 64 bit
+==> default:    from 'https://github.com/coreos/etcd/releases/download/v2.2.2/etcd-v2.2.2-windows-amd64.zip'
+==> default:  DEBUG: Running 'Get-WebFile' for 
+==> default:  C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\etcd\2.2.2\etcdInstall.zip with
+==> default:  url:'https://github.com/coreos/etcd/releases/download/v2.2.2/etcd-v2.2.2-window
+==> default:  s-amd64.zip', userAgent: 'chocolatey command line' 
+==> default: 
+==> default:  DEBUG: Setting the UserAgent to 'chocolatey command line'
+==> default:  DEBUG: Checking that 
+==> default: 
+==> default:  'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\etcd\2.2.2\etcdInstall.zip' is
+==> default:   the size we expect it to be.
+==> default:  DEBUG: Verifying package provided checksum of '' for 
+==> default:  'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\etcd\2.2.2\etcdInstall.zip'.
+==> default:  DEBUG: Running 'Get-ChecksumValid' with 
+==> default:  file:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\etcd\2.2.2\etcdInstall.zi
+==> default:  p', checksum: '', checksumType: ''
+==> default:  DEBUG: Running 'Get-ChocolateyUnzip' with 
+==> default:  fileFullPath:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\etcd\2.2.2\etcdIn
+==> default:  stall.zip'', destination: 'C:\ProgramData\etcd', specificFolder: '`, 
+==> default:  packageName: 'etcd'
+==> default:  Extracting C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\etcd\2.2.2\etcdInstall.zip to C:\ProgramData\etcd...
+==> default: 
+==> default:  Mode                LastWriteTime     Length Name                              
+==> default:  ----                -------------     ------ ----                              
+==> default:  d----        12/06/2015     04:44            etcd                              
+==> default:  DEBUG: 7zip found at 'C:\ProgramData\chocolatey\tools\7za.exe'
+==> default: 
+==> default:  DEBUG: wrapping 7za invocation with Write-FileUpdateLog
+==> default:  DEBUG: Running 'Write-FileUpdateLog' with 
+==> default: 
+==> default:  logFilePath:'C:\ProgramData\chocolatey\lib\etcd\etcdInstall.zip.txt'', 
+==> default:  locationToMonitor:C:\ProgramData\etcd, Operation: '
+==> default:      param($7zip, $destination, $fileFullPath, [ref]$exitCodeRef)
+==> default:      $params = "x -aoa -o`"$destination`" -y `"$fileFullPath`""
+==> default:      Write-Debug "Executing command ['$7zip' $params]"
+==> default:      $process = New-Object System.Diagnostics.Process
+==> default:      $process.StartInfo = new-object System.Diagnostics.ProcessStartInfo($7zip, 
+==> default:  $params)
+==> default:      $process.StartInfo.UseShellExecute = $false
+==> default:      $process.StartInfo.WindowStyle = 
+==> default:  [System.Diagnostics.ProcessWindowStyle]::Hidden
+==> default:      $process.Start() | Out-Null
+==> default:      $process.WaitForExit()
+==> default:      $processExitCode = $process.ExitCode
+==> default:      $process.Dispose()
+==> default:      Write-Debug "Command ['$7zip' $params] exited with `'$processExitCode`'."
+==> default:      $exitCodeRef.Value = $processExitCode
+==> default:    '
+==> default:  DEBUG: Tracking current state of 'C:\ProgramData\etcd'
+==> default:  DEBUG: Executing command ['C:\ProgramData\chocolatey\tools\7za.exe' x -aoa 
+==> default:  -o"C:\ProgramData\etcd" -y 
+==> default:  "C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\etcd\2.2.2\etcdInstall.zip"]
+==> default:  7-Zip (A) 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
+==> default: 
+==> default:  Processing archive: C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\etcd\2.2.2\etcdInstall.zip
+==> default:  Extracting  etcd-v2.2.2-windows-amd64
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\04_to_2_snapshot_migration.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\admin_guide.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\api.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\auth_api.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\authentication.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\backward_compatibility.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\benchmarks
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\benchmarks\etcd-2-1-0-alpha-benchmarks.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\benchmarks\etcd-2-2-0-rc-benchmarks.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\benchmarks\etcd-2-2-0-rc-memory-benchmarks.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\benchmarks\etcd-3-demo-benchmarks.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\benchmarks\README.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\branch_management.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\clustering.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\configuration.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\dev
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\dev\release.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\discovery_protocol.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\docker_guide.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\errorcode.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\faq.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\glossary.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\implementation-faq.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\internal-protocol-versioning.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\libraries-and-tools.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\metrics.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\other_apis.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\platforms
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\platforms\freebsd.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\production-ready.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\proxy.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\reporting_bugs.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\rfc
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\rfc\v3api.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\rfc\v3api.proto
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\runtime-configuration.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\runtime-reconf-design.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\security.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\tuning.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\upgrade_2_1.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\Documentation\upgrade_2_2.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\etcd.exe
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\etcdctl.exe
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\README-etcdctl.md
+==> default:  Extracting  etcd-v2.2.2-windows-amd64\README.md
+==> default:  Everything is Ok
+==> default:  Folders: 6
+==> default:  Files: 41
+==> default:  Size:       29014705
+==> default:  Compressed: 7567394
+==> default: 
+==> default:  DEBUG: Command ['C:\ProgramData\chocolatey\tools\7za.exe' x -aoa 
+==> default:  -o"C:\ProgramData\etcd" -y 
+==> default:  "C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\etcd\2.2.2\etcdInstall.zip"] 
+==> default:  exited with '0'.
+==> default:  DEBUG: 7za exit code: 0
+==> default:  C:\ProgramData\etcd
+==> default:  S e r v i c e   " e t c d "   i n s t a l l e d   s u c c e s s f u l l y ! 
+==> default: 
+==> default:   
+==> default:   
+==> default:   S e t   p a r a m e t e r   " S t a r t "   f o r   s e r v i c e   " e t c d " . 
+==> default: 
+==> default:   
+==> default:   
+==> default:   
+==> default: Command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyinstall.ps1' -installArguments '' -packageParameters ''"'] exited with '0'
+==> default: Calling command ['"shutdown" /a']
+==> default: Command ['"shutdown" /a'] exited with '1116'
+==> default: Capturing package files in 'C:\ProgramData\chocolatey\lib\etcd'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\etcd\etcd.nupkg'
+==> default:   with checksum '9E39F7E8E76C450334309B8AA4CDE3E0'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\etcd\etcdInstall.zip.txt'
+==> default:   with checksum '769F3D5FE8D85229F6B1343928041BAF'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyinstall.ps1'
+==> default:   with checksum '55360C3D6388BABB1463F8716292B79E'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyuninstall.ps1'
+==> default:   with checksum '20C74BFD2F7269A8F7A07FB1D390B634'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\etcd\tools\etcdctl.exe'
+==> default: 
+==> default:   with checksum 'D8D9B865400361AA6DC16E028B917567'
+==> default: Calling command ['"C:\ProgramData\chocolatey\tools\shimgen.exe" --path="..\\lib\etcd\tools\etcdctl.exe" --output="C:\ProgramData\chocolatey\bin\etcdctl.exe"  --iconpath="C:\ProgramData\chocolatey\lib\etcd\tools\etcdctl.exe"']
+==> default:  [ShimGen] Could not extract icon from associated program. Using default. Error:
+==> default:  [ShimGen]   Selected Icon is invalid
+==> default: 
+==> default:  [ShimGen] Microsoft (R) Visual C# Compiler version 4.0.30319.33440
+==> default:  [ShimGen] for Microsoft (R) .NET Framework 4.5
+==> default:  [ShimGen] Copyright (C) Microsoft Corporation. All rights reserved.
+==> default:  [ShimGen] ShimGen has successfully created 'C:\ProgramData\chocolatey\bin\etcdctl.exe'
+==> default: Command ['"C:\ProgramData\chocolatey\tools\shimgen.exe" --path="..\\lib\etcd\tools\etcdctl.exe" --output="C:\ProgramData\chocolatey\bin\etcdctl.exe"  --iconpath="C:\ProgramData\chocolatey\lib\etcd\tools\etcdctl.exe"'] exited with '0'
+==> default:  ShimGen has successfully created a shim for etcdctl.exe
+==> default:   Created: C:\ProgramData\chocolatey\bin\etcdctl.exe
+==> default:   Targeting: C:\ProgramData\chocolatey\lib\etcd\tools\etcdctl.exe
+==> default:   IsGui:False
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\.chocolatey\etcd.2.2.2".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\.chocolatey\etcd.2.2.2\.files.update"
+==> default:  to "C:\ProgramData\chocolatey\.chocolatey\etcd.2.2.2\.files".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\etcd.2.2.2\.files.update".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\etcd.2.2.2\.sxs".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\etcd.2.2.2\.pin".
+==> default:  The install of etcd was successful.
+==> default: 
+==> default: Chocolatey installed 2/2 package(s). 0 package(s) failed.
+==> default:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+==> default: Exiting with 0

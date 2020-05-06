@@ -1,0 +1,104 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Package Maintainer Handover";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#package-maintainer-handover">Package Maintainer Handover</a></li>
+}
+
+<h2 id="package-maintainer-handover" class="mb-3">Package Maintainer Handover</h2>
+<div class="callout callout-warning">
+    <strong>NOTE</strong>: This process comes after the <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "package-triage-process" })">Package Triage Process</a>. If you are a <strong>software vendor</strong> wanting to maintain your own software's packages, please see <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "package-triage-process" })#i-want-to-take-overhelp-with-package-maintenance-for-my-software">maintain packages for my software</a>.
+</div>
+<p>When a package maintainer is deemed no longer maintaining a package, a new maintainer or maintainers can assist and/or takeover. This is done through the <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "package-triage-process" })">Package Triage Process</a>.</p>
+<p>Once an admin makes you a maintainer you will need to click on the link in your email to confirm.</p>
+<p>Once that is done you have several steps:</p>
+<ol>
+    <li>
+        Obtain the source for the package. Look at the packageSourceUrl to see if it is filled out or not.<br />
+        <img class="border mb-3" src="@Url.Content("~/content/images/package-source.jpg")" alt="Package source link" />
+    </li>
+    <li>
+        Look for the maintainer's profile to see if they have a GitHub repository for their packages.<br />
+        <img class="border mb-3" src="@Url.Content("~/content/images/profile-chocolatey-repository.jpg")" alt="maintainer profile with github repository link" />
+        <ul>
+            <li>If you don't find it there, attempt to find it on GitHub with some google-fu.</li>
+            <li>If all else fails, download the package from the website (use the Download link on the left side).</li>
+        </ul>
+    </li>
+    <li>Use unzip to unpack the package and remove the files that are only used in packaging.</li>
+    <li>Put that in your GitHub repository for packages.</li>
+    <li>Ensure you have a link to that repository in your Chocolatey profile.</li>
+    <li>Commit the package as is prior to any changes. If you are moving it over from another repository, just copy the current files/folders related to that package into your repository.</li>
+    <li>
+        Now make your changes/fixes/updates. Commit those changes as necessary.
+        <ul>
+            <li>One thing to update is any links to the old repository such as images and/or maintainers.</li>
+            <li>Also add/update <code>&lt;packageSourceUrl /&gt;</code> to point to your repository.</li>
+        </ul>
+    </li>
+    <li>Build the package and test locally.</li>
+    <li>Push the package with the updates/fixes.</li>
+    <li>If brought in from another repository, be sure to send a Pull Request to that repository to have the package removed from there (or at the very least file an issue). Link the new location in that request for others who might be searching.</li>
+</ol>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>If a Chocolatey package is not being maintained, who can take over maintenance of a package?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">Only Chocolatey Software, Inc. Employees</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">Only the original creator of the underlying software for the package</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">Anyone</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>Who has the necessary permissions on the chocolatey.org website to change the maintainer of a Chocolatey package?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">Chocolatey.org moderators, administrators and current package maintainers.</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">Only the original creator of the underlying software for the package</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree">Anyone</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

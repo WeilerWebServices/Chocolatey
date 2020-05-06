@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fileSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <files>
+    <file path="C:\ProgramData\chocolatey\lib\etcd\etcd.nupkg" checksum="9E39F7E8E76C450334309B8AA4CDE3E0" />
+    <file path="C:\ProgramData\chocolatey\lib\etcd\etcdInstall.zip.txt" checksum="769F3D5FE8D85229F6B1343928041BAF" />
+    <file path="C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyinstall.ps1" checksum="55360C3D6388BABB1463F8716292B79E" />
+    <file path="C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyuninstall.ps1" checksum="20C74BFD2F7269A8F7A07FB1D390B634" />
+    <file path="C:\ProgramData\chocolatey\lib\etcd\tools\etcdctl.exe" checksum="D8D9B865400361AA6DC16E028B917567" />
+  </files>
+</fileSnapshot>

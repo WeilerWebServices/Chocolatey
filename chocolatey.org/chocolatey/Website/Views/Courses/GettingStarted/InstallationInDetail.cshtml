@@ -1,0 +1,91 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Installation in Detail";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#install-location">Install Location</a></li>
+    <li><a href="#existing-installs">Existing Installs</a></li>
+    <li><a href="#installed-from">Installed From</a></li>
+}
+
+<h2 id="install-location" class="mb-3">Chocolatey Package Installation Location</h2>
+<p>Chocolatey packages are installed to <code>ChocolateyInstall\lib</code>, but the software could go to various locations, depending on how the package maintainer created the package.</p>
+<p>Some packages are installed under <code>ChocolateyInstall\lib</code>, others - especially packages that are based on Windows installers (.msi files) - install to the default path of the original installer (which is most likely within <code>Program Files</code>).</p>
+<p>
+    There are also packages for which you can set a custom installation path. These packages (like ruby) use the <code>$env:ChocolateyBinRoot</code> environment variable. If this variable does not exist, it will be created as <code>c:\tools</code> e.g. <code>C:\tools\ruby193</code>.
+    To change this behaviour, you can set <code>$env:ChocolateyBinRoot</code> to an existing folder, e.g. <code>C:\somestuff</code>. Packages that use the environment variable, will then be installed in the given subfolder, f. ex. <code>C:\somestuff\ruby193</code>.
+</p>
+
+<h2 id="existing-installs" class="mt-5 mb-3">How Chocolatey Works with Programs, Features, and Existing Installs</h2>
+<p>
+    Many packages use native software installers, so Chocolatey allows the installer itself to handle install/upgrade/uninstall scenarios. This means it can work directly with already installed software just by using <code>choco install</code> to make
+    Chocolatey aware of existing software. You can also use a specially crafted install command (skip powershell) to allow choco to install a package without installing the already installed native software.
+</p>
+
+<h2 id="installed-from" class="mt-5 mb-3">Chocolatey Install From Location</h2>
+<p>By default it installs packages from chocolatey.org (the community feed). But you can change this by adding default sources and/or using the <code>--source</code> switch when running a command.</p>
+<p>
+    When you <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-host-feed" })">host internal packages</a>, those packages can embed software and/or point to internal shares. You are not subject to software distribution rights like the packages on the community feed, so you can
+    <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "create-packages" })">create packages</a> that are more reliable and secure. See <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "getting-started" })#what-are-chocolatey-packages">What are Chocolatey Packages</a> for more details.
+</p>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>What is the name of the folder within the Chocolatey Installation location where packages are extacted to?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">lib</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">bin</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">config</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>What option should be added to the Chocolatey install command to allow for installing a Chocolatey package from a specific location/feed?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne"><code>--source</code></label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo"><code>--cache</code></label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree"><code>--downloadcache</code></label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

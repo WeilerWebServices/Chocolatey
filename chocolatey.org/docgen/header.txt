@@ -1,0 +1,5 @@
+{{AT}}{
+  ViewBag.Title = "{{DocName}}";
+}
+
+<article>

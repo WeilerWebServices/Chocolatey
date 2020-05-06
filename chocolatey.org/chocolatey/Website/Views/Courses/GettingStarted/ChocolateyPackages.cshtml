@@ -1,0 +1,78 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Chocolatey Packages";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#chocolatey-packages">Chocolatey Packages</a></li>
+}
+
+<h2 id="chocolatey-packages" class="mb-3">What is a Chocolatey Package?</h2>
+<p>Chocolatey packages are known as nupkg files, which is a compiled NuSpec or a fancy zip file that knows about package metadata (including dependencies and versioning). These packages are an enhanced NuGet package, they have additional metadata that is specific to Chocolatey. Chocolatey is also compatible with vanilla NuGet packages. A Chocolatey package can contain embedded software and/or automation scripts.</p>
+<p>
+    Chocolatey packages are not just something fancy on top of MSI/Exe installers. Chocolatey definitely supports that avenue and, with the addition of unzipping archives, it is the most widely used aspect of Chocolatey, especially when you see the packages on the community feed (<a href="https://chocolatey.org/packages" class="uri">https://chocolatey.org/packages</a> aka dot org).
+    Chocolatey is about managing packages, and it works best when those packages contain all of the software instead of reaching out to external/internet resources for the software those packages represent. When you look at the community feed, you are seeing one representation of the way you can build packages, mostly driven by <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "legal" })#distributions">distribution rights</a>
+    that govern when packages can redistribute software or not. Those distribution rules do not govern private/internal packages, so the rules are a bit different. Packages internal to organizations are wide open to do quite a bit more. You can do software embedded packages where executables are automatically added to the path (shimmed) and/or PowerShell automation scripts to do pretty much anything, including running native
+    installers that may be embedded or downloaded as part of the automation script (again, one of the most widely seen aspects on dot org).
+</p>
+<p>Packages with everything embedded are much more deterministic and repeatable, things most businesses require. You just won't see that as often on the community feed due to the aforementioned <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "legal" })#distributions">distribution rights</a>.</p>
+<p>The closer the underlying software a package represents is to the package (as in executables and files included in the package), the more Chocolatey behaves like a package manager.</p>
+
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>What is the correct pronunciation of "nupkg", the file extension used for all Chocolatey packages?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">"nupkeg"</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">"noopackage"</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">It is a source of heated debate amongst all involved in Chocolatey :-)</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>When a Chocolatey Package is hosted on the Chocolatey Community Feed, can the native installers be included within the Chocolatey Package?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">No, this is never allowed</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">Yes, assuming that the license for this software allows for redistribution (and total Chocolatey Package size is less than 200 MB)</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

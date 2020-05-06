@@ -1,0 +1,96 @@
+﻿<div class="row">
+    <div class="col-md-10 mx-auto">
+        <p class="mb-0 mt-3 mt-lg-0"><small><strong>HQ Physical Address:</strong></small></p>
+        <p><small>3620 SW Fairlawn Rd, Suite #220,<br />Topeka, KS 66614</small></p>
+        <hr />
+        <p class="mb-0"><small><strong>Mailing Address:</strong></small></p>
+        <p><small>6021 SW 29th St Ste A 302,<br />Topeka, KS 66614</small></p>
+        <img class="img-fluid mb-3" src="@Url.Content("~/content/images/chocolateyHeadquarters.jpg")" alt="Chocolatey Software" />
+        @if (Request.RawUrl == Url.RouteUrl(RouteName.ContactPartner))
+        {
+            <p class="text-center mb-0"><small><strong>Some of Our Partners Include:</strong></small></p>
+        }
+        else
+        {
+            <p class="text-center mb-0"><small><strong>Businesses Trust Chocolatey Software:</strong></small></p>
+        }
+        <div class="row align-items-center trusted-by">
+            @if (Request.RawUrl == Url.RouteUrl(RouteName.ContactPartner))
+            {
+                <div class="col-md-6 my-4 text-center">
+                    <a href="https://puppet.com" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Puppet-Dark.png")" alt="Puppet" data-toggle="tooltip" title="Puppet" /></a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <a href="https://chef.io" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Chef-Dark.png")" alt="Chef Software" data-toggle="tooltip" title="Chef Software" /></a>
+                </div>
+                <div class="col-md-6 my-4 text-center">
+                    <a href="https://www.ansible.com" rel="noreferrer" target="_blank"><img class="img-fluid" width="80" src="@Url.Content("~/content/images/businesses/Ansible-red-sm.png")" alt="Ansible" data-toggle="tooltip" title="Ansible" /></a>
+                </div>
+                <div class="col-md-6 my-4 text-center">
+                    <a href="https://www.saltstack.com" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Saltstack-sm.png")" alt="SaltStack" data-toggle="tooltip" title="SaltStack" /></a>
+                </div>
+                <div class="col-md-6 my-4 text-center">
+                    <a href="https://inedo.com/otter" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Otter-sm.png")" alt="Otter" data-toggle="tooltip" title="Otter" /></a>
+                </div>
+                <div class="col-md-6 my-4 text-center">
+                    <img class="img-fluid" width="80" src="@Url.Content("~/content/images/businesses/Powershell-sm.png")" alt="Microsoft Powershell DSC" data-toggle="tooltip" title="Microsoft Powershell DSC" />
+                </div>
+                <div class="col-md-6 my-4 text-center">
+                    <a href="https://octopus.com" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/OctopusDeploy-Dark-sm.png")" alt="Octopus Deploy" data-toggle="tooltip" title="Octopus Deploy" /></a>
+                </div>
+                <div class="col-md-6 mt-4 mb-md-4 text-center">
+                    <a href="https://www.ivanti.com" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/ivanti-sm.png")" alt="ivanti" data-toggle="tooltip" title="ivanti" /></a>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 my-4 text-center">
+                    <a href="https://puppet.com" rel="noreferrer" title="Puppet, Inc" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Puppet-Dark.png")" alt="Logo for Puppet, Inc" /></a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <a href="https://chef.io" rel="noreferrer" title="Chef Software, Inc" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Chef-Dark.png")" alt="Logo for Chef Software, Inc" /></a>
+                </div>
+                <div class="col-md-6 my-4 text-center">
+                    <a href="https://www.seek.com.au" rel="noreferrer" title="SEEK - Australia's number one jobs site" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/SEEK.png")" alt="Logo for SEEK" /></a>
+                </div>
+                <div class="col-md-6 my-4 text-center">
+                    <a href="https://www.hulu.com" rel="noreferrer" title="Hulu" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Hulu.png")" alt="Logo for Hulu" /></a>
+                </div>
+                <div class="col-md-6 my-4 text-center">
+                    <a href="#" rel="noreferrer" title="Tricore" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Tricore-sm.png")" alt="Logo for Tricore" /></a>
+                </div>
+                <div class="col-md-6 my-4 text-center">
+                    <a href="https://www.yelp.com" rel="noreferrer" title="Yelp" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Yelp-Stroke.png")" alt="Logo for Yelp" /></a>
+                </div>
+                <div class="col-md-6 my-4 text-center">
+                    <a href="https://www.sage.edu/" rel="noreferrer" title="The Sage Colleges" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/TheSageColleges-sm.png")" alt="Logo for The Sage Colleges" /></a>
+                </div>
+                <div class="col-md-6 mt-4 mb-md-4 text-center">
+                    <a href="https://www.swissre.com" rel="noreferrer" title="Swiss Re Group" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/SwissRe.png")" alt="Logo for Swiss Re Group" /></a>
+                </div>
+            }
+        </div>
+        <div id="informationCarousel" class="carousel slide carousel-fade information-carousel d-none d-md-block" data-ride="carousel" data-touch="true" data-interval="8000" style="height: auto;">
+            <div class="carousel-inner" style="height: auto;">
+                <div class="carousel-item active">
+                    <div class="card bg-primary mb-0">
+                        <div class="card-body text-center">
+                            <h3>Resources</h3>
+                            <p>Watch videos, case studies, read documentation, and hear Chocolatey success stories from companies you trust.</p>
+                            <a href="@Url.RouteUrl(RouteName.Resources, new {resourceType = "home"})" class="btn btn-light">View Resources</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card bg-medium-dark mb-0">
+                        <div class="card-body text-center">
+                            <h3>Courses</h3>
+                            <p>Step-by-step guides for all things Chocolatey! Earn badges as you learn through interactive digital courses.</p>
+                            <a href="@Url.RouteUrl(RouteName.Courses)" class="btn btn-light">View Courses</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

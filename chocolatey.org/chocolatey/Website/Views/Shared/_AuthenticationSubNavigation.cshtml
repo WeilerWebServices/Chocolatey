@@ -1,0 +1,59 @@
+﻿@Html.Partial("~/Views/Shared/_Loader.cshtml")
+<nav class="navbar bg-white border-bottom d-flex">
+    <div class="container">
+        <div class="authentication-error mx-auto text-danger">
+            <p class="mb-0">Please enable JavaScript to view this sub navigation.</p>
+        </div>
+        <ul class="mr-0 d-none d-sm-flex">
+            @if (ViewContext.RouteData.Values["Action"].Equals("DisplayPackage"))
+            {
+                <li>
+                    <a href="@Url.RouteUrl(RouteName.ListPackages)">
+                        <span class="fas fa-download" alt="Packages"></span>
+                        <span>Packages</span>
+                    </a>
+                </li>
+            }
+        </ul>
+        <ul class="ux_login ml-sm-0 d-none">
+            <li>
+                <a href="@Url.Action(MVC.Users.Register())">
+                    <span class="fas fa-user-plus" alt="Signup"></span>
+                    <span>Signup</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.LogOn()">
+                    <span class="fas fa-sign-in-alt" alt="Login"></span>
+                    <span>Login</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="ux_logoff ml-sm-0 d-none">
+            <li>
+                <a href="@Url.Action(MVC.Users.Account())">
+                    <span class="fas fa-cogs" alt="Account"></span>
+                    <span>Account</span>
+                </a>
+            </li>
+            <li class="ux_profile">
+                <a href="@Url.Action(MVC.Users.Profiles(User.Identity.Name))">
+                    <span class="fas fa-user-alt" alt="Profile"></span>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                @using (Html.BeginForm("LogOff", "Authentication", FormMethod.Post))
+                {
+                    <fieldset class="form">
+                        @Html.AntiForgeryToken()
+                        <button class="btn btn-link align-items-center p-0 text-decoration-none" type="submit">
+                            <span class="fas fa-sign-out-alt" alt="Log Off"></span>
+                            <span class="font-weight-bold">Log Off</span>
+                        </button>
+                    </fieldset>
+                }
+            </li>
+        </ul>
+    </div>
+</nav>

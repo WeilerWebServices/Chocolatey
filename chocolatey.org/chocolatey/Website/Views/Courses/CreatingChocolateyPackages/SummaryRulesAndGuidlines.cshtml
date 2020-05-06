@@ -1,0 +1,146 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Course Summary, Rules, and Guidlines";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#rules">Rules</a></li>
+    <li><a href="#character-encoding">Character Encoding</a></li>
+    <li><a href="#icon-guidlines">Package Icon Guidlines</a></li>
+}
+
+<h2 id="summary" class="mb-3">Course Summary</h2>
+<div class="callout callout-primary">
+    <strong>Note:</strong> When you host internal packages, those packages can embed software and/or point to internal shares. You are not subject to software distribution rights like the packages on the community feed, so you can create packages that are more reliable and secure.
+</div>
+<p>First you should determine if you are making a self-contained package or (also) using automation scripts. You should also consider creating <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "automatic-packages" })">automatic packages</a> for the best maintainability over time.</p>
+<ol>
+    <li>Run <code>choco new -h</code> to get a feel for what you can pass e.g <code>choco new bob</code> (to create a package named <code>bob</code>)</li>
+    <li>Note all the rules below. This will help you, especially in publishing to the community feed (<a href="https://chocolatey.org" class="uri">https://chocolatey.org</a>)</li>
+</ol>
+<h4>Self-Contained?</h4>
+<p>
+    If you have a self-contained package, you can remove the automation scripts
+    entirely and just include the runtime executables, they will automatically get shimmed,
+    which puts them on the path. Ensure you have the <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "legal" })">legal right to distribute</a>
+    the application though. You should read up on the Shim Generation section
+    below though to familiarize yourself on what to do with GUI applications
+    and/or ignoring shims (also known as batch redirects).
+</p>
+<h4 class="mt-4">Including the Software Installer in the Package</h4>
+<p>Sometimes called embedding the binaries, there are functions in the automation scripts you can call that will use the installers directly from the package instead of downloading first. This makes for the most reliable and deterministic packages, but ensure you have the <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "legal" })">legal right to distribute</a> the software first if publishing to a public location (like the community package repository).</p>
+<h4 class="mt-4">Automation Scripts</h4>
+<p>
+    You have a powerful use of Chocolatey, as you are using PowerShell. So you<br />
+    can do just about anything you need. Choco has some very handy <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-reference" })">built-in functions</a> that you can use, these are sometimes called<br />
+    <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-reference" })">helpers</a>.
+</p>
+
+<h2 id="rules" class="mt-5 mb-3">Rules to be Observed Before Publishing Packages</h2>
+<p>There are a few rules that you have to follow before pushing packages to chocolatey.org:</p>
+<ol>
+    <li><strong>Don't package illegal software.</strong> Packages of software that is illegal in most countries in the world are prohibited to publish on Chocolatey.org. This applies in particular to software that violates the copyright, pirated software and activation cracks. Remember that this also affects software that is especially designed to accomplish software piracy.</li>
+    <li><strong>Do not include software in a package that you don't have the right to distribute.</strong> Please see <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "legal" })#wiki-distributions-aka-chocolatey-packages">Distribution Rights</a> for more information. Any package found not in compliance with this will be removed immediately. Instead you can download binaries from official distribution locations at runtime.</li>
+    <li><strong>Packaging commercial or trial software?</strong> Clearly state this in the package description. Does it require an activation key? Is there a trial period if you don't have a key? How long is this trial period?</li>
+    <li><strong>Only post publicly relevant packages.</strong> You should consider whether this package is useful for others. If that is not the case, it shouldn't be published on Chocolatey.org. Reasons for that can be if the package would require a very customized configuration. You can host your personal packages on <a href="https://www.myget.org/">MyGet</a> and still be able to install them with Chocolatey using the <code>-source</code> parameter.</li>
+    <li><strong>Do not publish junk or malware</strong> packages.</li>
+    <li><strong>Don't package software <em>containing</em> malware.</strong> Packages of software that comes with bundled adware, spyware or other unrelated software that installs even in silent mode, are not allowed. But if you can figure out how to install the desired software without this unrelated software, it is allowed to publish the package. That can be accomplished for example with additional command line switches or by adding specific values to the registry. Examples of packages which make use of this are <a href="https://github.com/stack72/MyChocolateyPackages/tree/master/PDFCreator">PDFCreator</a> and <a href="https://github.com/tonigellida/chocolateyautomaticpackages/tree/master/ccleaner">CCleaner</a>.</li>
+    <li><strong>Don't package software that is already packaged</strong>. Use the search function in the <a href="http://chocolatey.org/packages">Chocolatey.org gallery</a> and look if there is already a package for the desired software. If you would like to improve the already existing package or if you have suggestions, just contact the package maintainer or open a pull request at the maintainer's package repository.</li>
+    <li><strong>Don't include other required software if there's a package of it.</strong> If a package requires other software of which there is already a package, the already existing package should be used as <a href="http://docs.nuget.org/create/nuspec-reference#specifying-dependencies">dependency</a> instead.</li>
+    <li><strong>Split dependencies into multiple packages.</strong> Try to split up packages as much as possible. If for example a program comes with additional modules/installers that are optional, make different packages for them instead of including all the things into one package. This idea is already widely applied for Linux packages, because it leads to a more lightweight system and reduces potential issues and conflicts.</li>
+    <li><strong>Use a simple intuitive lowercase name for the package</strong>. See the <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "create-packages" })#naming-your-package">package naming guidelines</a> for details. (If you are a reviewer/moderator, this is considered a guideline).</li>
+</ol>
+<p>Is your package unqualified for the Chocolatey feed, but you like to be able to install it through Chocolatey? Don't worry, you can always host your package for free on MyGet. See <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "hosting-chocolatey-packages-on-my-get" })">Hosting Chocolatey Packages on MyGet</a>.</p>
+
+<h2 id="character-encoding" class="mt-5 mb-3">Character Encoding</h2>
+<ul>
+    <li><strong>Use the UTF–8 character encoding</strong> for the <code>*.nuspec</code> and <code>*.ps1</code> files. If you don't respect this rule, some characters are not displayed correctly in the <a href="http://chocolatey.org/packages">Gallery on Chocolatey.org</a>, because the Gallery assumes <code>UTF-8</code>.</li>
+    <li><strong>Do not save your <code>*.nuspec</code> files with a Byte Order Mark (BOM)</strong>. A <code>BOM</code> is neither required nor recommended for <code>UTF-8</code>, because it can lead to several issues.</li>
+    <li><strong>PowerShell scripts need to be saved in UTF–8 with <code>BOM</code></strong>. PowerShell is ignoring the standards and needs a <code>BOM</code> in order to recognize scripts as <code>UTF-8</code>. Otherwise it processes non <code>ASCII</code> characters incorrectly.</li>
+    <li>
+        Don't use the default Windows Editor. In addition to its lack of features, it can't even save <code>UTF-8</code> files without <code>BOM</code>. <br /><strong>Alternatives:</strong>
+        <ul>
+            <li><a href="https://chocolatey.org/packages/VisualStudioCode">Visual Studio Code</a></li>
+            <li><a href="http://chocolatey.org/packages/notepadplusplus">Notepad++</a></li>
+            <li><a href="http://chocolatey.org/packages/geany">Geany</a></li>
+        </ul>
+    </li>
+    <li>Use this <strong>XML declaration</strong>: <code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</code>.</li>
+</ul>
+<div class="callout callout-warning">
+    <strong>Note:</strong> There is a lot of confusion in the world of character encodings: For example, <code>ANSI</code> is an incorrect term for the internal Windows character encodings, e.&nbsp; g. <code>Windows-1252</code>. But you should not use this encoding family anyway.
+</div>
+<h2 id="icon-guidlines" class="mt-5 mb-3">Package Icon Guidlines</h2>
+<p>If there is an icon which is suitable for your package, you can specify it in the <code>&lt;iconUrl&gt;</code> tag in the nuspec. But there are a few things you should consider:</p>
+<ul>
+    <li><strong>Avoid hotlinking icons from sites where you don't have control over the file.</strong> If you have a packages repository (recommended), use your own copy of the icon and put it there.</li>
+    <li><strong>Use a static CDN for icon URLs that permits you to serve files hosted in a repository on GitHub.</strong> Some CDN services cache files permanently and it's therefore best to use a specific tag or commit URL, not a branch URL. While we don't make any recommendations about specific services, the more popular ones used by maintainers are <a href="https://github.com/chocolatey/choco/wiki/jsdelivr.com" target="_blank" rel="noreferrer">jsDelivr</a>, <a href="https://github.com/chocolatey/choco/wiki/staticaly.com" target="_blank" rel="noreferrer">Staticaly</a> and <a href="https://github.com/chocolatey/choco/wiki/githack.com" target="_blank" rel="noreferrer">Githack.</a></li>
+    <li><strong>Avoid using GitHub raw links</strong> (<a href="https://raw.githubusercontent.com/" class="uri">https://raw.githubusercontent.com/</a>...). They are not intended to be used as CDN.</li>
+    <li><strong>Use the software's icon if one is available, not the logo.</strong> This blog post explains the difference between logos and icons: <a href="http://blog.designcrowd.com/article/353/differences-between-logos-and-icons" class="uri">http://blog.designcrowd.com/article/353/differences-between-logos-and-icons</a>. If the software of your package doesn't have an icon, but a logo with text and an image, you can extract the image with your favorite image editor and use that as package icon. An example is <a href="https://chocolatey.org/packages/mysql">MySQL's dolphin</a>.</li>
+    <li><strong>Use package icons with at least 128 pixels in width or height</strong> if available. However, avoid very high resolutions, because this would only unnecessarily increase the page load time. If there are only icons with less than 128 pixels available, choose the icon with the highest resolution you can find without upscaling it. Don't use low resolution favicons as package icons.</li>
+    <li>Use icons with transparent background if available.</li>
+    <li>Don't use distorted or blurry icons.</li>
+    <li>The package list in the gallery shows the icons with a maximum of 48 pixels in width/height. Application logos with very detailed graphics that are barely visible at that dimension are not suitable as package icons.</li>
+    <li><strong>PNG is the preferred format</strong> for raster package icons. Avoid ICO, GIF and JPEG graphics.</li>
+    <li>Good sources for package icons are the official desktop icons of the corresponding application you want to make a package of. The icons can be extracted from the app executables using tools like <a href="https://chocolatey.org/packages/becyicongrabber">BeCyIconGrabber</a>. Remember to take the icon with 128 pixels or more and save it as PNG file.</li>
+</ul>
+<p>The icon shown on the Chocolatey.org package page is saved, and served, locally to mitigate against cross scripting attacks and to prevent getting <em>non HTTPS assets</em> errors on the website. Sometimes the page loads faster than the image can be served and the default image gets cached and as a result the new package icon may not be shown until you clear the browser cache for Chocolatey.org and wait 3 hours before reloading the page.</p>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>What is the correct file character encoding to use when creating *.nuspec files for your Chocolatey Packages?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">UTF-16</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">UTF-8 with BOM</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">UTF-8 without BOM</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>Am I allowed to package and distribute illegal software on the Chocolatey Community Repository?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">Yes</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">No</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

@@ -1,0 +1,19 @@
+development:
+  adapter: sqlite3
+  database: db/dev-db.sqlite3
+test:
+  adapter: sqlite3
+  host:
+  encoding:
+  database: ":memory:"
+  pool: 5
+  username:
+  password:
+production:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: puppet_webhooks_dev
+  pool: 5
+  username:
+  password:

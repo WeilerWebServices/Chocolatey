@@ -1,0 +1,125 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Requirements";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#chocolatey-clients">Chocolatey Clients</a></li>
+    <li><a href="#chocolatey-repository-servers">Chocolatey Repository Servers</a></li>
+    <li><a href="#chocolatey-central-management">Chocolatey Central Management</a></li>
+}
+
+<h2 id="chocolatey-clients" class="mb-3">Chocolatey Clients</h2>
+<p>
+    With Chocolatey clients, we ensure that Chocolatey is going to run with low memory footprints because you will have all aspects of things you will need to manage and different space and memory available across all of those clients. Chocolatey has a very wide reach into where it can be installed.
+</p>
+<p>For Chocolatey clients, you will need the following:</p>
+<ul>
+    <li>Windows 7+/Windows 2003+ (Server Core also, but not Windows Nano Server)</li>
+    <li>Windows PowerShell v2+ (not PowerShell Core aka PowerShell 6 yet)</li>
+    <li>.NET Framework 4.x+</li>
+</ul>
+<h4 class="mt-4 mb-3">Chocolatey Components</h4>
+<ul>
+    <li>Chocolatey CLI aka choco (or choco.exe) is a client (not a Windows service) that provides the core of Chocolatey and the installation store for locally installed packages. This is important as Chocolatey manages packages, not Programs and Features directly - Programs and Features is limited only to software that has "installers" and Chocolatey treats all aspects of Windows software as first class citizens (zips, scripts, binaries, installers), thus it needs to track and manage those things separately.</li>
+    <li>Chocolatey GUI is an application that runs when a user runs it (also not a Windows Service).</li>
+    <li>Chocolatey Agent (aka chocolatey-agent) is a Windows service available in Chocolatey for Business. It is used for <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-agent-service" })">Self-Service Installation</a> and Chocolatey Central Management.</li>
+</ul>
+<h4 class="mt-4 mb-3">Space Requirements</h4>
+<ul>
+    <li>Chocolatey CLI has an impact of 15 MB on default install plus the space the installed packages use up.</li>
+    <li>Chocolatey GUI takes up another 50–100 MB of space on default installation.</li>
+    <li>Chocolatey Agent (aka chocolatey-agent) is a Windows service available in Chocolatey for Business - it has an impact of about 10 MB.</li>
+</ul>
+<div class="callout callout-warning">
+    <strong>RECOMMENDATION</strong>: We recommend enough free space for the applications you will install plus another 1 GB for allowing Chocolatey to process that. You will want to turn on Package Reducer (commercial editions)
+    if you have it to really reduce the impact of embedded packages, which bring reliability but also increase footprint (unless you have Package Reducer). If you don't have Package Reducer and you are embedding binaries into nupkgs,
+    you will need 3 times the space of what you are installing unless you explicitly clean up the extracted installers/zips in your automated scripts - then you will need 2x the space when considering the nupkg will still contain embedded binaries
+    (and the nupkg must stick around). Unfortunately, this is going to be a calculation to understand exact space requirements and it really depends on what you will install.
+</div>
+<h4 class="mt-4 mb-3">Memory Requirements</h4>
+<ul>
+    <li>Chocolatey CLI only runs when called. It falls into managed memory thus can work in environments with low amounts of memory provided that they have enough memory available to manage software installations.</li>
+    <li>Chocolatey GUI only runs when the application is open and is also in managed memory. It can work on systems with low amounts of memory.</li>
+    <li>Chocolatey Agent (aka chocolatey-agent) - it is always running but has a very low footprint unless it is processing something.</li>
+</ul>
+<div class="callout callout-warning">
+    <strong>RECOMMENDATION</strong>: At least 2GB of RAM at a bare minimum, but recommend at least 8GB for managing installations.
+</div>
+
+<h2 id="chocolatey-repository-servers" class="mt-5 mb-3">Chocolatey Repository Servers</h2>
+<p>
+    Unforunately it's harder to make recommendations here as it is really dependent on the repository that you choose and what requirements they have. It varies from a Windows deployment to Linux deployed repositories, from Java-based, to .NET-based, to PHP, and Rust-based repositories.
+    The requirements vary wildly, plus you may use those repositories that address multiple types of packages and would need to figure out the space available for that.
+</p>
+<div class="callout callout-warning">
+    <strong>SPACE RECOMMENDATION</strong>: Have enough space for 10x the size of the installers and other software you will store. This will allow for some default growth. We would recommend 100 GB at a minimum.
+</div>
+<p>
+    We've compiled a list of requirements for <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-host-feed" })#commercial-repository-system-requirements">commercial repository options</a>. Chocolatey Simple Server (Chocolatey.Server) can be put on really minimum hardware that
+    could be 1–2GB of RAM, low CPU, and as little as 5 GB of space (number of packages you store will drive this). You will just want the network transfer to be fast.
+</p>
+
+
+<h2 id="chocolatey-central-management" class="mt-5 mb-3">Chocolatey Central Management</h2>
+<p>Requirements coming soon. Just imagine normal recommendations for an ASP.NET IIS deployment, a SQL Server back end, and 1+ Windows Services (depending on scale).</p>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>How much hard drive space does the Chocolatey CLI require in order to be installed?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">15 MB</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">150 MB</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">1.5 GB</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>What is the minimum version of the .Net Framework that is required in order for Chocolatey to work correctly?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">.Net Core</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">.Net Framework 4.5.2</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree">.Net Framework 4</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

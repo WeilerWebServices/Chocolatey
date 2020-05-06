@@ -1,0 +1,196 @@
+﻿@{
+    ViewBag.Tab = "About";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Scripts");
+}
+
+<div id="header" class="bg-medium-dark team-header">
+    <section class="py-3 py-lg-5">
+        <div class="container py-3 py-lg-5 text-center">
+            <h1 class="display-3">Chocolatey Software</h1>
+            <h1><strong>The Sane Way to Manage Software on Windows</strong></h1>
+        </div>
+    </section>
+    <div class="shape-border shape-border-bottom"></div>
+</div>
+<section class="pb-3 pb-lg-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2>Our Values and Approach</h2>
+                <hr class="border-hr" />
+                <p>
+                    Chocolatey is focused on helping our community, customers, and partners with solutions that help fill the gaps that are often ignored.
+                    We offer a simple, pragmatic, and open approach to software management on Windows.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="video-story">
+                            <div class="text-center" data-toggle="modal" data-target="#chocolatey-story"><img class="img-fluid shadow mb-3" src="@Url.Content("~/content/images/videos/03-13.jpg")" alt="What is Chocolatey" title="What is Chocolatey" /></div>
+                            <div class="modal fade" id="chocolatey-story" tabindex="-1" role="dialog" aria-labelledby="What is Chocolatey Video" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body p-0">
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" data-src="https://www.youtube.com/embed/Z8olEnt65bk?autoplay=1" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <q class="h5 text-muted text-italic">The biggest challenge is reducing duplication of effort, so users turn to Chocolatey for simplicity.</q>
+                            <p class="text-center">Rob Reynolds, Founder of Chocolatey Software</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="pt-3 pt-lg-5 bg-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-center">
+                <img class="img-fluid mb-3 mb-lg-0" width="600" src="@Url.Content("~/content/images/ccm-computer-white.jpg")" alt="Chocolatey for Business" title="Chocolatey for Business">
+            </div>
+            <div class="col-lg-6 pb-3 pb-lg-5">
+                <h2>Making It Easy</h2>
+                <hr class="border-hr" />
+                <p>Chocolatey was created by Rob Reynolds in 2011 with the simple goal of offering a universal package manager for Windows. Chocolatey is an open source project that provides developers and admins alike a better way to manage Windows software.</p>
+                <p>With more versions of software to support and endless updates, our goal was to help our customers become efficient and innovative software-driven organizations.</p>
+                <p>Chocolatey Software was established in 2016 as a way to ensure the longevity of our offerings. We launched Chocolatey for Business (C4B) the same year that is Complete Software Management, built on top of our popular open source offering. C4B is focused on three value-added areas - improved security, enhanced productivity features, and enabling more visibility. C4B is also backed with dedicated support, services, and roadmap.</p>
+            </div>
+        </div>
+    </div>
+</section>
+@*<section id="team" class="py-3 py-lg-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h2>Meet the Chocolatey Team</h2>
+                <hr class="border-hr mb-4" />
+                <div class="row card-row card-bio">
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="card h-100 mx-auto text-center">
+                            <div class="card-body position-relative p-0">
+                                <img class="img-fluid" src="@Url.Content("~/content/images/team/rob-sq.jpg")" alt="Rob Reynolds, Founder of Chocolatey" title="Rob Reynolds, Founder of Chocolatey" />
+                            </div>
+                            <div class="card-footer">
+                                <h5 class="mb-0">Rob Reynolds</h5>
+                                <p class="mb-md-0">Founder</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <a href="@Url.RouteUrl(RouteName.BlogArticle, new { articleName = "mukesh-sharma-joins-chocolatey" })">
+                            <div class="card h-100 mx-auto text-center">
+                                <div class="card-body position-relative p-0">
+                                    <img class="img-fluid" src="@Url.Content("~/content/images/team/mukesh-sq.jpg")" alt="Mukesh Sharma, COO of Chocolatey" title="Mukesh Sharma, COO of Chocolatey" />
+                                    <div class="card-overlay">
+                                        <p class="btn btn-light font-weight-bold">View Blog Post</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <h5 class="mb-0">Mukesh Sharma</h5>
+                                    <p class="mb-md-0">Chief Operating Officer</p>
+                                    <p class="btn btn-primary btn-sm font-weight-bold d-md-none text-white">View Blog Post</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <a href="@Url.RouteUrl(RouteName.BlogArticle, new { articleName = "gary-ewan-park-joins-chocolatey" })">
+                            <div class="card h-100 mx-auto text-center">
+                                <div class="card-body position-relative p-0">
+                                    <img class="img-fluid" src="@Url.Content("~/content/images/team/gary-sq.jpg")" alt="Gary Ewan Park, Senior Software Engineer" title="Gary Ewan Park, Senior Software Engineer" />
+                                    <div class="card-overlay">
+                                        <p class="btn btn-light font-weight-bold">View Blog Post</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <h5 class="mb-0">Gary Ewan Park</h5>
+                                    <p class="mb-md-0">Senior Software Engineer</p>
+                                    <p class="btn btn-primary btn-sm font-weight-bold d-md-none text-white">View Blog Post</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <a href="@Url.RouteUrl(RouteName.BlogArticle, new { articleName = "paul-broadwith-joins-chocolatey" })">
+                            <div class="card h-100 mx-auto text-center">
+                                <div class="card-body position-relative p-0">
+                                    <img class="img-fluid" src="@Url.Content("~/content/images/team/paul-sq.jpg")" alt="Paul Broadwith, Senior Technical Engineer" title="Paul Broadwith, Senior Software Engineer" />
+                                    <div class="card-overlay">
+                                        <p class="btn btn-light font-weight-bold">View Blog Post</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <h5 class="mb-0">Paul Broadwith</h5>
+                                    <p class="mb-md-0">Senior Technical Engineer</p>
+                                    <p class="btn btn-primary btn-sm font-weight-bold d-md-none text-white">View Blog Post</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <a href="@Url.RouteUrl(RouteName.BlogArticle, new { articleName = "stephanie-burrows-joins-chocolatey" })">
+                            <div class="card h-100 mx-auto text-center">
+                                <div class="card-body position-relative p-0">
+                                    <img class="img-fluid" src="@Url.Content("~/content/images/team/stephanie-sq.jpg")" alt="Stephanie Burrows, Front-End Web Developer" title="Stephanie Burrows, Front-End Web Developer" />
+                                    <div class="card-overlay">
+                                        <p class="btn btn-light font-weight-bold">View Blog Post</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <h5 class="mb-0">Stephanie Hays</h5>
+                                    <p class="mb-md-0">Front-End Web Developer</p>
+                                    <p class="btn btn-primary btn-sm font-weight-bold d-md-none text-white">View Blog Post</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="card h-100 mx-auto text-center">
+                            <div class="card-body position-relative p-0">
+                                <img class="img-fluid" src="https://via.placeholder.com/350/e9ecef/000/" alt="Stephen V., Customer Support" title="Stephen V., Customer Support" />
+                            </div>
+                            <div class="card-footer">
+                                <h5 class="mb-0">Stephen V.</h5>
+                                <p class="mb-md-0">Customer Support</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="card h-100 mx-auto text-center">
+                            <div class="card-body position-relative p-0">
+                                <img class="img-fluid" src="https://via.placeholder.com/350/e9ecef/000/" alt="Brandi R., HR / Office Manager" title="Brandi R., HR / Office Manager" />
+                            </div>
+                            <div class="card-footer">
+                                <h5 class="mb-0">Brandi R.</h5>
+                                <p class="mb-md-0">HR / Office Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="card h-100 mx-auto text-center">
+                            <div class="card-body position-relative p-0">
+                                <img class="img-fluid" src="https://via.placeholder.com/350/e9ecef/000/" alt="Jessica S., Sales Administration" title="Jessica S., Sales Administration" />
+                            </div>
+                            <div class="card-footer">
+                                <h5 class="mb-0">Jessica S.</h5>
+                                <p class="mb-md-0">Sales Administration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@

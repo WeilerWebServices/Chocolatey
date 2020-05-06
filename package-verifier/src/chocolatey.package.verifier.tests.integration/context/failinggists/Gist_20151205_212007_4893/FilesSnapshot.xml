@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fileSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <files>
+    <file path="C:\ProgramData\chocolatey\lib\MongoDb30\MongoDb30.nupkg" checksum="D277E1E3F21F4FF6A690CB44F5860CC4" />
+    <file path="C:\ProgramData\chocolatey\lib\MongoDb30\tools\chocolateyInstall.ps1" checksum="0975E20D93FDD46BAD2C2F162245665F" />
+  </files>
+</fileSnapshot>

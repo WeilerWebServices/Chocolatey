@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SuppressValidation>false</SuppressValidation>
+    <Name>ChocolateyGui.Install</Name>
+  </PropertyGroup>
+  <PropertyGroup>
+    <CompilerAdditionalOptions>-ext WixNetFxExtension</CompilerAdditionalOptions>
+    <LinkerAdditionalOptions>-ext WixNetFxExtension</LinkerAdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.8</ProductVersion>
+    <ProjectGuid>411c7212-286f-4f26-994a-568e943d0e60</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>ChocolateyGUI</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>..\..\BuildArtifacts\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+    <SuppressIces>ICE38;ICE43;ICE18;ICE61</SuppressIces>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\..\BuildArtifacts\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <SuppressIces>ICE38;ICE43;ICE18;ICE61</SuppressIces>
+  </PropertyGroup>
+  <PropertyGroup>
+  	<_GuiProjectFolder>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)\..\ChocolateyGui'))</_GuiProjectFolder>
+  	<_GuiCliProjectFolder>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)\..\ChocolateyGuiCli'))</_GuiCliProjectFolder>
+  	<_GuiTargetDir>$(_GuiProjectFolder)\..\..\BuildArtifacts\temp\_PublishedApplications\ChocolateyGui</_GuiTargetDir>
+    <_GuiCliTargetDir>$(_GuiCliProjectFolder)\..\..\BuildArtifacts\temp\_PublishedApplications\ChocolateyGuiCli</_GuiCliTargetDir>
+  	<DefineConstants>$(DefineConstants);GuiProjectFolder=$(_GuiProjectFolder);GuiTargetDir=$(_GuiTargetDir);GuiCliProjectFolder=$(_GuiCliProjectFolder);GuiCliTargetDir=$(_GuiCliTargetDir)</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Product.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationContent.Transform.xsl" />
+    <Content Include="Microsoft_VC120_CRT_x86.msm" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--<ProjectReference Include="..\ChocolateyGui\ChocolateyGui.csproj">
+      <Name>ChocolateyGui</Name>
+      <Project>{851fc2f6-afb0-4153-8520-bf68e1bea3cb}</Project>
+      <Private>True</Private>
+    </ProjectReference>-->
+    <HarvestDirectory Include="$(_GuiTargetDir)">
+      <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
+      <SuppressCom>True</SuppressCom>
+      <SuppressRootDirectory>True</SuppressRootDirectory>
+      <SuppressRegistry>True</SuppressRegistry>
+      <ComponentGroupName>ApplicationContent</ComponentGroupName>
+      <PreprocessorVariable>var.GuiTargetDir</PreprocessorVariable>
+      <Transforms>ApplicationContent.Transform.xsl</Transforms>
+      <Link>$(Configuration)</Link>
+    </HarvestDirectory>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+</Project>

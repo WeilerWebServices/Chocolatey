@@ -1,0 +1,10 @@
+﻿@{
+    var noticeText = ("<a href='/covid-19'><u>Here's how we're responding to COVID-19 plus resources to help</u></a>");
+}
+
+<div class="alert bg-danger text-white alert-dismissible fade show mb-0 text-center p-2 notice-text @if (string.IsNullOrEmpty(noticeText)) { <text> d-none</text> }" role="alert" aria-atomic="true" style="display: none;">
+    <p class="mb-0 mr-3 mr-md-0"><strong>@Html.Raw(noticeText)</strong></p>
+    <button type="button" class="close py-0" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>

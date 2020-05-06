@@ -1,0 +1,1922 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1DACF781-5CD0-4123-8BAC-CD385D864BE5}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NuGetGallery</RootNamespace>
+    <AssemblyName>NuGetGallery.Website</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>true</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <CodeAnalysisAdditionalOptions>/assemblyCompareMode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
+    <RunCodeAnalysis Condition=" '$(CodeAnalysis)' == 'true' ">true</RunCodeAnalysis>
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxMin">
+      <HintPath>..\..\packages\AjaxMin.5.14.5506.26202\lib\net40\AjaxMin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AnglicanGeek.MarkdownMailer, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\AnglicanGeek.MarkdownMailer.1.2\lib\net40\AnglicanGeek.MarkdownMailer.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK, Version=1.3.18.0, Culture=neutral, PublicKeyToken=cd2d24cd2bace800, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\AWSSDK.1.3.18.0\lib\AWSSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Cassette">
+      <HintPath>..\..\packages\Cassette.2.4.2\lib\net40-client\Cassette.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Cassette.Aspnet">
+      <HintPath>..\..\packages\Cassette.Aspnet.2.4.2\lib\net40\Cassette.Aspnet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Cassette.MSBuild">
+      <HintPath>..\..\packages\Cassette.MSBuild.2.4.2\lib\net40\Cassette.MSBuild.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Cassette.Views">
+      <HintPath>..\..\packages\Cassette.Views.2.4.2\lib\net40\Cassette.Views.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elmah, Version=1.2.13605.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Contrib.Mvc">
+      <HintPath>..\..\packages\Elmah.Contrib.Mvc.1.0\lib\net40\Elmah.Contrib.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Enyim.Caching">
+      <HintPath>..\..\packages\EnyimMemcached.2.13\lib\net35\Enyim.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Enyim.Caching.Log4NetAdapter, Version=2.13.0.0, Culture=neutral, PublicKeyToken=cec98615db04012e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnyimMemcached-log4net.2.13\lib\net35\Enyim.Caching.Log4NetAdapter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Glav.CacheAdapter, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\CacheAdapter\Glav.CacheAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer">
+      <HintPath>..\..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.5\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Analyzers">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Analyzers.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Core">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.FastVectorHighlighter">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.FastVectorHighlighter.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Highlighter">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Highlighter.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Memory">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Queries">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Queries.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Regex">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Regex.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.SimpleFacetedSearch">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.SimpleFacetedSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Snowball">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Snowball.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.SpellChecker">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.SpellChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="Markdig, Version=0.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Markdig.0.18.0\lib\net40\Markdig.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkdownSharp, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MarkdownSharp.2.0.5\lib\net40\MarkdownSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationServer.Caching.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\ServerAppFabric.Client.1.1.2106\lib\Microsoft.ApplicationServer.Caching.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationServer.Caching.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\ServerAppFabric.Client.1.1.2106\lib\Microsoft.ApplicationServer.Caching.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="Microsoft.Data.Edm">
+      <HintPath>..\..\packages\Microsoft.Data.Edm.5.0.1\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData">
+      <HintPath>..\..\packages\Microsoft.Data.OData.5.0.1\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Aliases>odata</Aliases>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData.Contrib">
+      <HintPath>..\..\packages\Microsoft.Data.OData.Contrib.5.0.1.50822\lib\net40\Microsoft.Data.OData.Contrib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Helpers">
+      <HintPath>..\..\packages\microsoft-web-helpers.1.15\lib\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AnglicanGeek.WindowsAzure.ServiceRuntime.1.6\lib\net35-full\Microsoft.WindowsAzure.ServiceRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WindowsAzure.Storage.1.6\lib\net35-full\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+    </Reference>
+    <Reference Include="MiniProfiler">
+      <HintPath>..\..\packages\MiniProfiler.2.0.0-rc1\lib\net40\MiniProfiler.dll</HintPath>
+    </Reference>
+    <Reference Include="MiniProfiler.EntityFramework">
+      <HintPath>..\..\packages\MiniProfiler.EF.2.0.1-rc1\lib\net40\MiniProfiler.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcHaack.Ajax, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\MvcHaack.Ajax.1.1\lib\net40\MvcHaack.Ajax.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Core, Version=2.8.2.0, Culture=neutral, PublicKeyToken=fd112f53c3ab578c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Nuget-Chocolatey\NuGet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ODataNullPropagationVisitor">
+      <HintPath>..\..\packages\ODataNullPropagationVisitor.0.5.4237.2641\lib\net40\ODataNullPropagationVisitor.dll</HintPath>
+    </Reference>
+    <Reference Include="QueryInterceptor">
+      <HintPath>..\..\packages\QueryInterceptor.0.1.4237.2400\lib\net40\QueryInterceptor.dll</HintPath>
+    </Reference>
+    <Reference Include="RouteMagic, Version=1.1.3.0, Culture=neutral, PublicKeyToken=84b59be021aa4cee, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\RouteMagic.1.1.3\lib\net40\RouteMagic.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\..\packages\SimpleInjector.2.0.0\lib\net40-client\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web">
+      <HintPath>..\..\packages\SimpleInjector.Integration.Web.2.0.0\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web.Mvc">
+      <HintPath>..\..\packages\SimpleInjector.Integration.Web.Mvc.2.0.0\lib\net40\SimpleInjector.Integration.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis">
+      <HintPath>..\..\packages\StackExchange.Redis.1.0.371\lib\net40\StackExchange.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.IO">
+      <HintPath>..\..\packages\Microsoft.Bcl.1.1.9\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime">
+      <HintPath>..\..\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Spatial">
+      <HintPath>..\..\packages\System.Spatial.5.0.1\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\..\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetMvc.3.0.20105.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetRazor.Core.1.0.20105.407\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivator, Version=1.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="WebBackgrounder">
+      <HintPath>..\..\packages\WebBackgrounder.0.2.0\lib\net40\WebBackgrounder.dll</HintPath>
+    </Reference>
+    <Reference Include="WebBackgrounder.EntityFramework, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\WebBackgrounder.EntityFramework.0.1\lib\net40\WebBackgrounder.EntityFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\nugetgallery\Website\App_Start\AuthenticationModule.cs">
+      <Link>App_Start\AuthenticationModule.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Commands\AppCommand.cs">
+      <Link>Commands\AppCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Commands\AutomaticallyCuratePackageCommand.cs">
+      <Link>Commands\AutomaticallyCuratePackageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Commands\CreateCuratedPackageCommand.cs">
+      <Link>Commands\CreateCuratedPackageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Commands\DeleteCuratedPackageCommand.cs">
+      <Link>Commands\DeleteCuratedPackageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Commands\ModifyCuratedPackageCommand.cs">
+      <Link>Commands\ModifyCuratedPackageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Controllers\AppController.cs">
+      <Link>Controllers\AppController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\CountInterceptor.cs">
+      <Link>DataServices\CountInterceptor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\DisregardODataInterceptor.cs">
+      <Link>DataServices\DisregardODataInterceptor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\ODataRemoveVersionSorter.cs">
+      <Link>DataServices\ODataRemoveVersionSorter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\FeedContext.cs">
+      <Link>DataServices\FeedContext.cs</Link>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\CuratedFeed.cs">
+      <Link>Entities\CuratedFeed.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\CuratedPackage.cs">
+      <Link>Entities\CuratedPackage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\HintAttribute.cs">
+      <Link>Infrastructure\HintAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\HttpHeaderValueProvider.cs">
+      <Link>Infrastructure\HttpHeaderValueProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\HttpHeaderValueProviderFactory.cs">
+      <Link>Infrastructure\HttpHeaderValueProviderFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\HttpStatusCodeWithBodyResult.cs">
+      <Link>Infrastructure\HttpStatusCodeWithBodyResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\JsonNetResult.cs">
+      <Link>Infrastructure\JsonNetResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Jobs\WorkItemCleanupJob.cs">
+      <Link>Infrastructure\Jobs\WorkItemCleanupJob.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Jobs\UpdateStatisticsJob.cs">
+      <Link>Infrastructure\Jobs\UpdateStatisticsJob.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110060711357_Initial.cs">
+      <Link>Migrations\201110060711357_Initial.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110060711357_Initial.Designer.cs">
+      <Link>Migrations\201110060711357_Initial.Designer.cs</Link>
+      <DependentUpon>201110060711357_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110102157002_PrereleaseChanges.cs">
+      <Link>Migrations\201110102157002_PrereleaseChanges.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110102157002_PrereleaseChanges.Designer.cs">
+      <Link>Migrations\201110102157002_PrereleaseChanges.Designer.cs</Link>
+      <DependentUpon>201110102157002_PrereleaseChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110180052097_GallerySettings.cs">
+      <Link>Migrations\201110180052097_GallerySettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110180052097_GallerySettings.Designer.cs">
+      <Link>Migrations\201110180052097_GallerySettings.Designer.cs</Link>
+      <DependentUpon>201110180052097_GallerySettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110230649210_PackageOwnerRequests.cs">
+      <Link>Migrations\201110230649210_PackageOwnerRequests.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110230649210_PackageOwnerRequests.Designer.cs">
+      <Link>Migrations\201110230649210_PackageOwnerRequests.Designer.cs</Link>
+      <DependentUpon>201110230649210_PackageOwnerRequests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111022024584_PackageDependencyVersionSpec.cs">
+      <Link>Migrations\201111022024584_PackageDependencyVersionSpec.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111022024584_PackageDependencyVersionSpec.Designer.cs">
+      <Link>Migrations\201111022024584_PackageDependencyVersionSpec.Designer.cs</Link>
+      <DependentUpon>201111022024584_PackageDependencyVersionSpec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111022051010_PackageReleaseNotes.cs">
+      <Link>Migrations\201111022051010_PackageReleaseNotes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111022051010_PackageReleaseNotes.Designer.cs">
+      <Link>Migrations\201111022051010_PackageReleaseNotes.Designer.cs</Link>
+      <DependentUpon>201111022051010_PackageReleaseNotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111080239544_ListPackagesIndexes.cs">
+      <Link>Migrations\201111080239544_ListPackagesIndexes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111080239544_ListPackagesIndexes.Designer.cs">
+      <Link>Migrations\201111080239544_ListPackagesIndexes.Designer.cs</Link>
+      <DependentUpon>201111080239544_ListPackagesIndexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111080816426_DisplayPackageIndexes.cs">
+      <Link>Migrations\201111080816426_DisplayPackageIndexes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111080816426_DisplayPackageIndexes.Designer.cs">
+      <Link>Migrations\201111080816426_DisplayPackageIndexes.Designer.cs</Link>
+      <DependentUpon>201111080816426_DisplayPackageIndexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111081908453_MyPackagesIndexes.cs">
+      <Link>Migrations\201111081908453_MyPackagesIndexes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111081908453_MyPackagesIndexes.Designer.cs">
+      <Link>Migrations\201111081908453_MyPackagesIndexes.Designer.cs</Link>
+      <DependentUpon>201111081908453_MyPackagesIndexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111150729167_AddSmtpPassword.cs">
+      <Link>Migrations\201111150729167_AddSmtpPassword.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111150729167_AddSmtpPassword.Designer.cs">
+      <Link>Migrations\201111150729167_AddSmtpPassword.Designer.cs</Link>
+      <DependentUpon>201111150729167_AddSmtpPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111222338036_GalleryOwnerEmailSettings.cs">
+      <Link>Migrations\201111222338036_GalleryOwnerEmailSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111222338036_GalleryOwnerEmailSettings.Designer.cs">
+      <Link>Migrations\201111222338036_GalleryOwnerEmailSettings.Designer.cs</Link>
+      <DependentUpon>201111222338036_GalleryOwnerEmailSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201201031925005_AddPasswordHash.cs">
+      <Link>Migrations\201201031925005_AddPasswordHash.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201201031925005_AddPasswordHash.Designer.cs">
+      <Link>Migrations\201201031925005_AddPasswordHash.Designer.cs</Link>
+      <DependentUpon>201201031925005_AddPasswordHash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201203180016174_CuratedFeeds.cs">
+      <Link>Migrations\201203180016174_CuratedFeeds.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201203180016174_CuratedFeeds.designer.cs">
+      <Link>Migrations\201203180016174_CuratedFeeds.designer.cs</Link>
+      <DependentUpon>201203180016174_CuratedFeeds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201203180320147_ChangeCuratedFeedIdToName.cs">
+      <Link>Migrations\201203180320147_ChangeCuratedFeedIdToName.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201203180320147_ChangeCuratedFeedIdToName.designer.cs">
+      <Link>Migrations\201203180320147_ChangeCuratedFeedIdToName.designer.cs</Link>
+      <DependentUpon>201203180320147_ChangeCuratedFeedIdToName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201203182132476_CuratedPackages.cs">
+      <Link>Migrations\201203182132476_CuratedPackages.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201203182132476_CuratedPackages.designer.cs">
+      <Link>Migrations\201203182132476_CuratedPackages.designer.cs</Link>
+      <DependentUpon>201203182132476_CuratedPackages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201205172325056_FrameworkName.cs">
+      <Link>Migrations\201205172325056_FrameworkName.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201205172325056_FrameworkName.designer.cs">
+      <Link>Migrations\201205172325056_FrameworkName.designer.cs</Link>
+      <DependentUpon>201205172325056_FrameworkName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201206131919241_AddTargetFxToDependencies.cs">
+      <Link>Migrations\201206131919241_AddTargetFxToDependencies.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201206131919241_AddTargetFxToDependencies.designer.cs">
+      <Link>Migrations\201206131919241_AddTargetFxToDependencies.designer.cs</Link>
+      <DependentUpon>201206131919241_AddTargetFxToDependencies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201206250141447_ExecuteELMAHSql.cs">
+      <Link>Migrations\201206250141447_ExecuteELMAHSql.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201206250141447_ExecuteELMAHSql.designer.cs">
+      <Link>Migrations\201206250141447_ExecuteELMAHSql.designer.cs</Link>
+      <DependentUpon>201206250141447_ExecuteELMAHSql.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208171904586_Language.cs">
+      <Link>Migrations\201208171904586_Language.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208171904586_Language.designer.cs">
+      <Link>Migrations\201208171904586_Language.designer.cs</Link>
+      <DependentUpon>201208171904586_Language.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208222206329_ColumnLengthOfPackageTable.cs">
+      <Link>Migrations\201208222206329_ColumnLengthOfPackageTable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208222206329_ColumnLengthOfPackageTable.designer.cs">
+      <Link>Migrations\201208222206329_ColumnLengthOfPackageTable.designer.cs</Link>
+      <DependentUpon>201208222206329_ColumnLengthOfPackageTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208222227425_PackageIndexes.cs">
+      <Link>Migrations\201208222227425_PackageIndexes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208222227425_PackageIndexes.designer.cs">
+      <Link>Migrations\201208222227425_PackageIndexes.designer.cs</Link>
+      <DependentUpon>201208222227425_PackageIndexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208230640333_PackageSortingIndexes.cs">
+      <Link>Migrations\201208230640333_PackageSortingIndexes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208230640333_PackageSortingIndexes.designer.cs">
+      <Link>Migrations\201208230640333_PackageSortingIndexes.designer.cs</Link>
+      <DependentUpon>201208230640333_PackageSortingIndexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208302051344_CreateAggregateStatisticsSP.cs">
+      <Link>Migrations\201208302051344_CreateAggregateStatisticsSP.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208302051344_CreateAggregateStatisticsSP.designer.cs">
+      <Link>Migrations\201208302051344_CreateAggregateStatisticsSP.designer.cs</Link>
+      <DependentUpon>201208302051344_CreateAggregateStatisticsSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201209181743161_AggregateStatsSp_ReduxLastUpdate.cs">
+      <Link>Migrations\201209181743161_AggregateStatsSp_ReduxLastUpdate.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201209181743161_AggregateStatsSp_ReduxLastUpdate.designer.cs">
+      <Link>Migrations\201209181743161_AggregateStatsSp_ReduxLastUpdate.designer.cs</Link>
+      <DependentUpon>201209181743161_AggregateStatsSp_ReduxLastUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\SqlResourceMigration.cs">
+      <Link>Migrations\SqlResourceMigration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\PackageCurators\AutomaticPackageCurator.cs">
+      <Link>PackageCurators\AutomaticPackageCurator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\PackageCurators\IAutomaticPackageCurator.cs">
+      <Link>PackageCurators\IAutomaticPackageCurator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\PackageCurators\TagBasedPackageCurator.cs">
+      <Link>PackageCurators\TagBasedPackageCurator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\PackageCurators\WebMatrixPackageCurator.cs">
+      <Link>PackageCurators\WebMatrixPackageCurator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\PackageCurators\Windows8PackageCurator.cs">
+      <Link>PackageCurators\Windows8PackageCurator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\CuratedFeedByKeyQuery.cs">
+      <Link>Queries\CuratedFeedByKeyQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\CuratedFeedByNameQuery.cs">
+      <Link>Queries\CuratedFeedByNameQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\CuratedFeedsByManagerKeyQuery.cs">
+      <Link>Queries\CuratedFeedsByManagerKeyQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\PackageIdsQuery.cs">
+      <Link>Queries\PackageIdsQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\PackageRegistrationByIdQuery.cs">
+      <Link>Queries\PackageRegistrationByIdQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\PackageRegistrationByKeyQuery.cs">
+      <Link>Queries\PackageRegistrationByKeyQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\PackageVersionsQuery.cs">
+      <Link>Queries\PackageVersionsQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\UserByUSernameQuery.cs">
+      <Link>Queries\UserByUSernameQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RequestModels\CreateCuratedPackageRequest.cs">
+      <Link>RequestModels\CreateCuratedPackageRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RequestModels\ModifyCuratedPackageRequest.cs">
+      <Link>RequestModels\ModifyCuratedPackageRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\CloudBlobClientWrapper.cs">
+      <Link>Services\CloudBlobClientWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\CloudBlobContainerWrapper.cs">
+      <Link>Services\CloudBlobContainerWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\CloudBlobWrapper.cs">
+      <Link>Services\CloudBlobWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IAggregateStatsService.cs">
+      <Link>Services\IAggregateStatsService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\ICloudBlob.cs">
+      <Link>Services\ICloudBlob.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\ICloudBlobClient.cs">
+      <Link>Services\ICloudBlobClient.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\ICloudBlobContainer.cs">
+      <Link>Services\ICloudBlobContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\INuGetExeDownloaderService.cs">
+      <Link>Services\INuGetExeDownloaderService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\ISearchService.cs">
+      <Link>Services\ISearchService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\PackageSearchResults.cs">
+      <Link>Services\PackageSearchResults.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IUploadFileService.cs">
+      <Link>Services\IUploadFileService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RequireRemoteHttpsAttribute.cs">
+      <Link>RequireRemoteHttpsAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\TestableStorageClientException.cs">
+      <Link>Services\TestableStorageClientException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\AccountViewModel.cs">
+      <Link>ViewModels\AccountViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\CuratedFeedViewModel.cs">
+      <Link>ViewModels\CuratedFeedViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\DependencySetsViewModel.cs">
+      <Link>ViewModels\DependencySetsViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\EmailConfirmationModel.cs">
+      <Link>ViewModels\EmailConfirmationModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\PackageOwnerConfirmationModel.cs">
+      <Link>ViewModels\PackageOwnerConfirmationModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\ResendConfirmationEmailViewModel.cs">
+      <Link>ViewModels\ResendConfirmationEmailViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\CookieTempDataProvider.cs">
+      <Link>Infrastructure\CookieTempDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\NuGetControllerFactory.cs">
+      <Link>Infrastructure\NuGetControllerFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\Extensions.cs">
+      <Link>Services\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="ApiController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\PackageStatisticsServiceType.cs" />
+    <Compile Include="AuthenticationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\DocumentationController.cs" />
+    <Compile Include="Controllers\SolutionsController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\StyleguideController.cs" />
+    <Compile Include="Controllers\ResourceController.cs" />
+    <Compile Include="Entities\Course.cs" />
+    <Compile Include="Entities\CourseModule.cs" />
+    <Compile Include="Entities\CourseModuleNameType.cs" />
+    <Compile Include="Entities\CourseNameType.cs" />
+    <Compile Include="Entities\PackageAuthor.cs" />
+    <Compile Include="Entities\PackageOwnerRequest.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\UserCourseAchievement.cs" />
+    <Compile Include="Entities\UserCourseModuleAchievement.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Infrastructure\Captcha.cs" />
+    <Compile Include="Infrastructure\CassetteConfiguration.cs" />
+    <Compile Include="Infrastructure\CSharpRazorViewEngine.cs" />
+    <Compile Include="Infrastructure\ISpamValidationModel.cs" />
+    <Compile Include="Infrastructure\ValidateFormResponseAttribute.cs" />
+    <Compile Include="Infrastructure\Routing\HyphenatedRouteHandler.cs" />
+    <Compile Include="Infrastructure\Routing\SeoRoute.cs" />
+    <Compile Include="MethodExtensionsWrappers.cs" />
+    <Compile Include="Migrations\201608281925093_TrackPackageCreator.cs" />
+    <Compile Include="Migrations\201608281925093_TrackPackageCreator.Designer.cs">
+      <DependentUpon>201608281925093_TrackPackageCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608282004148_AddTrustedMaintainer.cs" />
+    <Compile Include="Migrations\201608282004148_AddTrustedMaintainer.Designer.cs">
+      <DependentUpon>201608282004148_AddTrustedMaintainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608282019564_ReduceModerationEmails.cs" />
+    <Compile Include="Migrations\201608282019564_ReduceModerationEmails.Designer.cs">
+      <DependentUpon>201608282019564_ReduceModerationEmails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608282039043_SetUsersDefaultModerationNotifications.cs" />
+    <Compile Include="Migrations\201608282039043_SetUsersDefaultModerationNotifications.Designer.cs">
+      <DependentUpon>201608282039043_SetUsersDefaultModerationNotifications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805072106573_Add_UserItems.cs" />
+    <Compile Include="Migrations\201805072106573_Add_UserItems.Designer.cs">
+      <DependentUpon>201805072106573_Add_UserItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909091450200_Courses.cs" />
+    <Compile Include="Migrations\201909091450200_Courses.Designer.cs">
+      <DependentUpon>201909091450200_Courses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909091456152_CourseIndexes.cs" />
+    <Compile Include="Migrations\201909091456152_CourseIndexes.Designer.cs">
+      <DependentUpon>201909091456152_CourseIndexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912010426221_AdjustPackageVarcharMaxColumns.cs" />
+    <Compile Include="Migrations\201912010426221_AdjustPackageVarcharMaxColumns.Designer.cs">
+      <DependentUpon>201912010426221_AdjustPackageVarcharMaxColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912010439468_PackageStatusIndex.cs" />
+    <Compile Include="Migrations\201912010439468_PackageStatusIndex.Designer.cs">
+      <DependentUpon>201912010439468_PackageStatusIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912302335265_AdjustVarCharMaxColumnsPartTwo.cs" />
+    <Compile Include="Migrations\201912302335265_AdjustVarCharMaxColumnsPartTwo.Designer.cs">
+      <DependentUpon>201912302335265_AdjustVarCharMaxColumnsPartTwo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RequestModels\RegisterRequest.cs" />
+    <Compile Include="RequestModels\SignInRequest.cs" />
+    <Compile Include="RouteAreaCollectionExtensions.cs" />
+    <Compile Include="RouteCollectionExtensions.cs" />
+    <Compile Include="Services\AmazonSqsClientWrapper.cs" />
+    <Compile Include="Services\AmazonSqsPackageStatisticsService.cs" />
+    <Compile Include="Entities\CourseConstants.cs" />
+    <Compile Include="Services\DatabasePackageStatisticsService.cs" />
+    <Compile Include="Services\CourseAchievementsService.cs" />
+    <Compile Include="Services\IAmazonSqsClient.cs" />
+    <Compile Include="Services\ICourseAchievementsService.cs" />
+    <Compile Include="Services\IScanService.cs" />
+    <Compile Include="Services\IPackageStatisticsService.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\ScanService.cs" />
+    <Compile Include="DataServices\V2Feed.svc.cs">
+      <DependentUpon>V2Feed.svc</DependentUpon>
+    </Compile>
+    <Compile Include="DataServices\V2FeedPackage.cs" />
+    <Compile Include="MvcOverrides\BaseModelBinder.cs" />
+    <Compile Include="Entities\EntityRepository.cs" />
+    <Compile Include="Entities\GallerySetting.cs" />
+    <Compile Include="Entities\PackageDownloadCacheStatusType.cs" />
+    <Compile Include="Entities\PackageFramework.cs" />
+    <Compile Include="Entities\PackageScanResult.cs" />
+    <Compile Include="Entities\PackageScanStatusType.cs" />
+    <Compile Include="Entities\PackageStatistics.cs" />
+    <Compile Include="Entities\PackageTestResults.cs" />
+    <Compile Include="Entities\PackageAutomatedReviewResultStatusType.cs" />
+    <Compile Include="Entities\ScanResult.cs" />
+    <Compile Include="Infrastructure\Caching\Cache.cs" />
+    <Compile Include="Infrastructure\Lucene\LuceneCommon.cs" />
+    <Compile Include="Infrastructure\Lucene\LuceneFileSystem.cs" />
+    <Compile Include="Infrastructure\Lucene\LuceneIndexingJob.cs" />
+    <Compile Include="Infrastructure\Lucene\LuceneIndexingService.cs" />
+    <Compile Include="Infrastructure\Lucene\LuceneSearchService.cs" />
+    <Compile Include="Infrastructure\Lucene\PackageIndexEntity.cs" />
+    <Compile Include="Infrastructure\Lucene\PerFieldAnalyzer.cs" />
+    <Compile Include="JsonApiController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506131442550_Add-InformationUrls.cs" />
+    <Compile Include="Migrations\201506131442550_Add-InformationUrls.Designer.cs">
+      <DependentUpon>201506131442550_Add-InformationUrls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511050501056_TestResults.cs" />
+    <Compile Include="Migrations\201511050501056_TestResults.Designer.cs">
+      <DependentUpon>201511050501056_TestResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511091549239_AddPackageOperationsUserKey.cs" />
+    <Compile Include="Migrations\201511091549239_AddPackageOperationsUserKey.Designer.cs">
+      <DependentUpon>201511091549239_AddPackageOperationsUserKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511281337511_RecordTestResult.cs" />
+    <Compile Include="Migrations\201511281337511_RecordTestResult.Designer.cs">
+      <DependentUpon>201511281337511_RecordTestResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511281714545_PackageValidationResults.cs" />
+    <Compile Include="Migrations\201511281714545_PackageValidationResults.Designer.cs">
+      <DependentUpon>201511281714545_PackageValidationResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512060515325_ModerationEnhancements.cs" />
+    <Compile Include="Migrations\201512060515325_ModerationEnhancements.Designer.cs">
+      <DependentUpon>201512060515325_ModerationEnhancements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601130410412_PackageCleanupResultDate.cs" />
+    <Compile Include="Migrations\201601130410412_PackageCleanupResultDate.Designer.cs">
+      <DependentUpon>201601130410412_PackageCleanupResultDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601212108511_DownloadCacheInformation.cs" />
+    <Compile Include="Migrations\201601212108511_DownloadCacheInformation.Designer.cs">
+      <DependentUpon>201601212108511_DownloadCacheInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602281953097_AddScanInformation.cs" />
+    <Compile Include="Migrations\201602281953097_AddScanInformation.Designer.cs">
+      <DependentUpon>201602281953097_AddScanInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectExtensions.cs" />
+    <Compile Include="PackagesController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PagesController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RssController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AggregateStatsService.cs" />
+    <Compile Include="Services\CloudBlobFileStorageService.cs" />
+    <Compile Include="Services\IFileStorageService.cs" />
+    <Compile Include="Services\IImageFileService.cs" />
+    <Compile Include="Services\IIndexingService.cs" />
+    <Compile Include="Services\ImageFileService.cs" />
+    <Compile Include="Services\NuGetExeDownloaderService.cs" />
+    <Compile Include="Services\PackageFileService.cs" />
+    <Compile Include="Services\SearchFilter.cs" />
+    <Compile Include="Services\SearchResults.cs" />
+    <Compile Include="Services\UploadFileService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="ViewModels\ContactAdminsViewModel.cs" />
+    <Compile Include="ViewModels\ContactDiscountViewModel.cs" />
+    <Compile Include="ViewModels\ContactBlockedViewModel.cs" />
+    <Compile Include="ViewModels\ContactGeneralViewModel.cs" />
+    <Compile Include="ViewModels\ContactQuickDeploymentViewModel.cs" />
+    <Compile Include="ViewModels\CourseLeftViewModel.cs" />
+    <Compile Include="ViewModels\CourseModuleAchievementViewModel.cs" />
+    <Compile Include="ViewModels\CourseModuleViewModel.cs" />
+    <Compile Include="ViewModels\ContactPartnerViewModel.cs" />
+    <Compile Include="ViewModels\ContactSalesOtherViewModel.cs" />
+    <Compile Include="ViewModels\ContactSalesViewModel.cs" />
+    <Compile Include="ViewModels\DiscountViewModel.cs" />
+    <Compile Include="ViewModels\CourseViewModel.cs" />
+    <Compile Include="ViewModels\CourseAchievementViewModel.cs" />
+    <Compile Include="ViewModels\DocumentationSearchViewModel.cs" />
+    <Compile Include="ViewModels\DocumentationViewModel.cs" />
+    <Compile Include="ViewModels\ListPackageItemViewModel.cs" />
+    <Compile Include="ViewModels\MarkdownPostViewModel.cs" />
+    <Compile Include="ViewModels\PasswordChangeViewModel.cs" />
+    <Compile Include="ViewModels\PasswordResetViewModel.cs" />
+    <Compile Include="ViewModels\ResourceViewModel.cs" />
+    <Compile Include="ViewModels\ContactTrialViewModel.cs" />
+    <Compile Include="XmlExtensions.cs" />
+    <Compile Include="SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StringExtensions.cs" />
+    <Compile Include="T4MVC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\ManagePackageOwnersViewModel.cs">
+      <Link>ViewModels\ManagePackageOwnersViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\IPackageVersionModel.cs">
+      <Link>ViewModels\IPackageVersionModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\IPageableEnumerable.cs">
+      <Link>ViewModels\IPageableEnumerable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\FileSystemService.cs">
+      <Link>Services\FileSystemService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IFileSystemService.cs">
+      <Link>Services\IFileSystemService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\PackageDependency.cs">
+      <Link>Entities\PackageDependency.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\EntityException.cs">
+      <Link>Entities\EntityException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ExtensionMethods.cs">
+      <Link>ExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\FormsAuthenticationService.cs">
+      <Link>Services\FormsAuthenticationService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\ICryptographyService.cs">
+      <Link>Services\ICryptographyService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\IEntity.cs">
+      <Link>Entities\IEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IFormsAuthenticationService.cs">
+      <Link>Services\IFormsAuthenticationService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IPackageFileService.cs">
+      <Link>Services\IPackageFileService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\IEntityRepository.cs">
+      <Link>Entities\IEntityRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\EmailMessage.cs">
+      <Link>Entities\EmailMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RequestModels\DisplayPackageRequest.cs">
+      <Link>RequestModels\DisplayPackageRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RequestModels\SubmitPackageRequest.cs">
+      <Link>RequestModels\SubmitPackageRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\App_Start\VersionRouteConstraint.cs">
+      <Link>App_Start\VersionRouteConstraint.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\IPreviousNextPager.cs">
+      <Link>ViewModels\IPreviousNextPager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\ManagePackagesViewModel.cs">
+      <Link>ViewModels\ManagePackagesViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\PasswordResetRequestViewModel.cs">
+      <Link>ViewModels\PasswordResetRequestViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\PreviousNextPagerViewModel.cs">
+      <Link>ViewModels\PreviousNextPagerViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\VerifyPackageViewModel.cs">
+      <Link>ViewModels\VerifyPackageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="App_Start\AppActivator.cs" />
+    <Compile Include="App_Start\AppHarborModule.cs" />
+    <Compile Include="App_Start\Configuration.cs" />
+    <Compile Include="App_Start\ContainerBinding.cs" />
+    <Compile Include="App_Start\IConfiguration.cs" />
+    <Compile Include="App_Start\PackageStoreType.cs" />
+    <Compile Include="App_Start\Routes.cs" />
+    <Compile Include="Controllers\JsonApiController.cs" />
+    <Compile Include="DataServices\FeedServiceBase.cs" />
+    <Compile Include="DataServices\PackageExtensions.cs" />
+    <Compile Include="DataServices\V2SubmittedFeed.svc.cs">
+      <DependentUpon>V2SubmittedFeed.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PackageSubmittedStatusType.cs" />
+    <Compile Include="Infrastructure\SimpleInjectorContainerResolutionBehavior.cs" />
+    <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\PackagesController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\RssController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Entities\EntitiesContext.cs" />
+    <Compile Include="Entities\Package.cs" />
+    <Compile Include="Entities\PackageFile.cs" />
+    <Compile Include="Entities\PackageRegistration.cs" />
+    <Compile Include="Entities\PackageStatusType.cs" />
+    <Compile Include="Entities\UserSiteProfile.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="EnumerationExtensions.cs" />
+    <Compile Include="IPrincipalExensions.cs" />
+    <Compile Include="Migrations\201210010306298_AddUserSiteProfiles.cs" />
+    <Compile Include="Migrations\201210010306298_AddUserSiteProfiles.Designer.cs">
+      <DependentUpon>201210010306298_AddUserSiteProfiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201210061242099_SiteProfileImage.cs" />
+    <Compile Include="Migrations\201210061242099_SiteProfileImage.Designer.cs">
+      <DependentUpon>201210061242099_SiteProfileImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408121427165_AddPackageFiles.cs" />
+    <Compile Include="Migrations\201408121427165_AddPackageFiles.Designer.cs">
+      <DependentUpon>201408121427165_AddPackageFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408121529063_UpdatePackageFiles.cs" />
+    <Compile Include="Migrations\201408121529063_UpdatePackageFiles.Designer.cs">
+      <DependentUpon>201408121529063_UpdatePackageFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410190823050_PackageStatuses.cs" />
+    <Compile Include="Migrations\201410190823050_PackageStatuses.Designer.cs">
+      <DependentUpon>201410190823050_PackageStatuses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410191904327_PackageReviewComments.cs" />
+    <Compile Include="Migrations\201410191904327_PackageReviewComments.Designer.cs">
+      <DependentUpon>201410191904327_PackageReviewComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411041729492_AddPackageIsTrusted.cs" />
+    <Compile Include="Migrations\201411041729492_AddPackageIsTrusted.Designer.cs">
+      <DependentUpon>201411041729492_AddPackageIsTrusted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411042101302_AddPackageTrustedFields.cs" />
+    <Compile Include="Migrations\201411042101302_AddPackageTrustedFields.Designer.cs">
+      <DependentUpon>201411042101302_AddPackageTrustedFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505232028439_PackageSubmittedStatusType.cs" />
+    <Compile Include="Migrations\201505232028439_PackageSubmittedStatusType.Designer.cs">
+      <DependentUpon>201505232028439_PackageSubmittedStatusType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MigrationsConfiguration.cs" />
+    <Compile Include="MvcOverrides\AppHarbor.cs" />
+    <Compile Include="MvcOverrides\RequireHttpsAppHarborAttribute.cs" />
+    <Compile Include="RouteNames.cs" />
+    <Compile Include="Services\AmazonS3ClientWrapper.cs" />
+    <Compile Include="Services\AmazonS3FileStorageService.cs" />
+    <Compile Include="Services\CryptographyService.cs" />
+    <Compile Include="Services\FileSystemFileStorageService.cs" />
+    <Compile Include="Services\IAmazonS3Client.cs" />
+    <Compile Include="Services\IMessageService.cs" />
+    <Compile Include="Services\IPackageService.cs" />
+    <Compile Include="Services\IUserSiteProfilesService.cs" />
+    <Compile Include="Services\MailSender.cs" />
+    <Compile Include="Services\MessageService.cs" />
+    <Compile Include="Services\PackageService.cs" />
+    <Compile Include="Services\RssActionResult.cs" />
+    <Compile Include="Services\UserSiteProfilesService.cs" />
+    <Compile Include="Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="UrlExtensions.cs" />
+    <Compile Include="UsersController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AggregateStats.cs" />
+    <Compile Include="ViewModels\CommentViewModel.cs" />
+    <Compile Include="ViewModels\ContactOwnersViewModel.cs" />
+    <Compile Include="ViewModels\DisplayPackageViewModel.cs" />
+    <Compile Include="ViewModels\EditProfileViewModel.cs" />
+    <Compile Include="ViewModels\ListPackageVersionViewModel.cs" />
+    <Compile Include="ViewModels\PackageListViewModel.cs" />
+    <Compile Include="ViewModels\PackageViewModel.cs" />
+    <Compile Include="ViewModels\ReportAbuseViewModel.cs" />
+    <Compile Include="ViewModels\UserProfileModel.cs" />
+    <Compile Include="ViewModels\UserSiteProfileViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\nugetgallery\Website\Infrastructure\AggregateStatistics.sql">
+      <Link>Infrastructure\AggregateStatistics.sql</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\nugetgallery\Website\Infrastructure\Elmah.SqlServer.sql">
+      <Link>Infrastructure\Elmah.SqlServer.sql</Link>
+    </EmbeddedResource>
+    <Content Include="7za.exe" />
+    <Content Include="apple-touch-icon-114x114.png" />
+    <Content Include="apple-touch-icon-120x120.png" />
+    <Content Include="apple-touch-icon-144x144.png" />
+    <Content Include="apple-touch-icon-152x152.png" />
+    <Content Include="apple-touch-icon-180x180.png" />
+    <Content Include="apple-touch-icon-57x57.png" />
+    <Content Include="apple-touch-icon-72x72.png" />
+    <Content Include="apple-touch-icon-76x76.png" />
+    <Content Include="apple-touch-icon.png" />
+    <Content Include="cloudflare-ratelimited.html" />
+    <Content Include="Content\account.css" />
+    <Content Include="Content\dist\chocolatey.slim.css" />
+    <Content Include="Content\easymde.min.css" />
+    <Content Include="Content\fonts\fa-brands-400.svg" />
+    <Content Include="Content\fonts\fa-solid-900.svg" />
+    <Content Include="Content\Images\404.png" />
+    <Content Include="Content\Images\404.svg" />
+    <Content Include="Content\Images\AH_Logo_vertical.png" />
+    <Content Include="Content\Images\appharbor-logo.png" />
+    <Content Include="Content\Images\appharbor_logo.png" />
+    <Content Include="Content\Images\Badges\badges.png" />
+    <Content Include="Content\Images\Badges\CreatingChocolateyPackages.png" />
+    <Content Include="Content\Images\Badges\GettingStartedWithChocolatey.png" />
+    <Content Include="Content\Images\Badges\InstallingUpgradingUninstalling.png" />
+    <Content Include="Content\Images\blog\chocolatey-fest-announce.png" />
+    <Content Include="Content\Images\blog\chocolatey-fest-no-year.png" />
+    <Content Include="Content\Images\blog\chocolatey-fest.png" />
+    <Content Include="Content\Images\blog\increased-web-traffic.png" />
+    <Content Include="Content\Images\blog\redesign-badges.jpg" />
+    <Content Include="Content\Images\blog\redesign-default-view.gif" />
+    <Content Include="Content\Images\blog\redesign-filter-dropdown.jpg" />
+    <Content Include="Content\Images\blog\redesign-filter-header.jpg" />
+    <Content Include="Content\Images\blog\redesign-install-tabs-puppet.jpg" />
+    <Content Include="Content\Images\blog\redesign-install-tabs.jpg" />
+    <Content Include="Content\Images\blog\redesign-show-hide.gif" />
+    <Content Include="Content\Images\blog\request-latency.png" />
+    <Content Include="Content\Images\boxstarter.png" />
+    <Content Include="Content\Images\businesses\Ansible-red-sm.png" />
+    <Content Include="Content\Images\businesses\Artifactory-sm.png" />
+    <Content Include="Content\Images\businesses\AWS-sm.png" />
+    <Content Include="Content\Images\businesses\Azure-sm.png" />
+    <Content Include="Content\Images\businesses\Betis-Group-sm.jpg" />
+    <Content Include="Content\Images\businesses\Boxstarter-sm.png" />
+    <Content Include="Content\Images\businesses\Buyitdirect-sm.jpg" />
+    <Content Include="Content\Images\businesses\Chef-Dark.png" />
+    <Content Include="Content\Images\businesses\Docker-sm.png" />
+    <Content Include="Content\Images\businesses\ECEC-sm.png" />
+    <Content Include="Content\Images\businesses\EastCentralCollege-sm.png" />
+    <Content Include="Content\Images\businesses\ec-sm.jpg" />
+    <Content Include="Content\Images\businesses\GitHub-sm.png" />
+    <Content Include="Content\Images\businesses\GitLab-sm.png" />
+    <Content Include="Content\Images\businesses\GoogleCloudPlatform-sm.png" />
+    <Content Include="Content\Images\businesses\Hulu.png" />
+    <Content Include="Content\Images\businesses\Inedo-sm.png" />
+    <Content Include="Content\Images\businesses\Insight-sm.png" />
+    <Content Include="Content\Images\businesses\ivanti-sm.png" />
+    <Content Include="Content\Images\businesses\JCVI-sm.png" />
+    <Content Include="Content\Images\businesses\Jenkins-sm.png" />
+    <Content Include="Content\Images\businesses\JetBrains-sm.png" />
+    <Content Include="Content\Images\businesses\Microsoft-SCCM-sm.jpg" />
+    <Content Include="Content\Images\businesses\MPAC-sm.png" />
+    <Content Include="Content\Images\businesses\MyGet-Blue-sm.png" />
+    <Content Include="Content\Images\businesses\MyGet-Blue.png" />
+    <Content Include="Content\Images\businesses\Nexus-sm.png" />
+    <Content Include="Content\Images\businesses\NuGet-sm.png" />
+    <Content Include="Content\Images\businesses\OctopusDeploy-Dark-sm.png" />
+    <Content Include="Content\Images\businesses\OctopusDeploy-Dark.png" />
+    <Content Include="Content\Images\businesses\Otter-sm.png" />
+    <Content Include="Content\Images\businesses\PCM-sm.png" />
+    <Content Include="Content\Images\businesses\Powershell-sm.png" />
+    <Content Include="Content\Images\businesses\PRIDE-sm.jpg" />
+    <Content Include="Content\Images\businesses\Puppet-Dark.png" />
+    <Content Include="Content\Images\businesses\Saltstack-sm.png" />
+    <Content Include="Content\Images\businesses\Shadowsoft-sm.png" />
+    <Content Include="Content\Images\businesses\SHI-sm.png" />
+    <Content Include="Content\Images\businesses\SwissRe.png" />
+    <Content Include="Content\Images\businesses\TheSageColleges-sm.png" />
+    <Content Include="Content\Images\businesses\Tricore-sm.png" />
+    <Content Include="Content\Images\businesses\Uni-sm.png" />
+    <Content Include="Content\Images\businesses\VMware-sm.png" />
+    <Content Include="Content\Images\businesses\Yelp-Stroke.png" />
+    <Content Include="Content\Images\businesses\Yelp.png" />
+    <Content Include="Content\Images\ccm-computer-white.jpg" />
+    <Content Include="Content\Images\ccm-mockup.jpg" />
+    <Content Include="Content\Images\changePassword.png" />
+    <Content Include="Content\Images\choco-chefconf.jpg" />
+    <Content Include="Content\Images\choco-ps-summit.jpg" />
+    <Content Include="Content\Images\chocolatey-staff.jpg" />
+    <Content Include="Content\Images\chocolateyHeadquarters.jpg" />
+    <Content Include="Content\Images\Chocolatey_Future.png" />
+    <Content Include="Content\Images\circle_green_small.png" />
+    <Content Include="Content\Images\circle_red_small.png" />
+    <Content Include="Content\Images\codeplex.jpg" />
+    <Content Include="Content\Images\community-mockup-grey.gif" />
+    <Content Include="Content\Images\community-mockup.gif" />
+    <Content Include="Content\Images\contribGraphic.png" />
+    <Content Include="Content\Images\copy.png" />
+    <Content Include="Content\Images\covid-response.png" />
+    <Content Include="Content\Images\dep-graph.svg" />
+    <Content Include="Content\Images\docs\chocolateyicon.gif" />
+    <Content Include="Content\Images\docs\chocolateyicon.png" />
+    <Content Include="Content\Images\docs\chocolateynhprofiler.png" />
+    <Content Include="Content\Images\docs\ChocolateyPackagingPublicVsPrivate.png" />
+    <Content Include="Content\Images\docs\chocopkgup\KetarinCustomCommand.png" />
+    <Content Include="Content\Images\docs\chocopkgup\KetarinGlobalVariables.png" />
+    <Content Include="Content\Images\docs\chocopkgup\KetarinJobSettings.png" />
+    <Content Include="Content\Images\docs\chocopkgup\KetarinMain.png" />
+    <Content Include="Content\Images\docs\chocopkgup\KetarinSettings.png" />
+    <Content Include="Content\Images\docs\chocopkgup\KetarinSetVariables.png" />
+    <Content Include="Content\Images\docs\chocopkgup\KetarinShowCustomField.png" />
+    <Content Include="Content\Images\docs\chocopkgup\KetarinVariables.png" />
+    <Content Include="Content\Images\docs\chocopro_features_installdirectory.png" />
+    <Content Include="Content\Images\docs\choco_info_cached.png" />
+    <Content Include="Content\Images\docs\choco_install_cached.png" />
+    <Content Include="Content\Images\docs\cinst.png" />
+    <Content Include="Content\Images\docs\clistExample.png" />
+    <Content Include="Content\Images\docs\cloudflare_ratelimiting.png" />
+    <Content Include="Content\Images\docs\cloudflare_ratelimiting_choco.png" />
+    <Content Include="Content\Images\docs\cloudflare_ratelimiting_choco_install.png" />
+    <Content Include="Content\Images\docs\cup.png" />
+    <Content Include="Content\Images\docs\cverExample.png" />
+    <Content Include="Content\Images\docs\DownloadChocolateyPackage.png" />
+    <Content Include="Content\Images\docs\features\ccm\ccm_overview.jpg" />
+    <Content Include="Content\Images\docs\features\ccm\error_when_sending_email_500.png" />
+    <Content Include="Content\Images\docs\features\ccm\error_when_sending_email_inline.png" />
+    <Content Include="Content\Images\docs\features\ccm\test_email_sent_correctly.png" />
+    <Content Include="Content\Images\docs\features\ccm\updated_appsettingsjson_file.png" />
+    <Content Include="Content\Images\docs\features\features_auto_uninstall.png" />
+    <Content Include="Content\Images\docs\features\features_choco_sync.png" />
+    <Content Include="Content\Images\docs\features\features_direct_installer.png" />
+    <Content Include="Content\Images\docs\features\features_install_upgrade_refreshenv.png" />
+    <Content Include="Content\Images\docs\features\features_non_admin_custom_source_error.png" />
+    <Content Include="Content\Images\docs\features\features_non_admin_installer.png" />
+    <Content Include="Content\Images\docs\features\features_non_admin_selfservice.png" />
+    <Content Include="Content\Images\docs\features\features_outdated.png" />
+    <Content Include="Content\Images\docs\features\features_override_install_directory.png" />
+    <Content Include="Content\Images\docs\features\features_packages_from_installers.png" />
+    <Content Include="Content\Images\docs\features\features_packages_in_programs_and_features.png" />
+    <Content Include="Content\Images\docs\features\features_package_audit.png" />
+    <Content Include="Content\Images\docs\features\features_package_reducer.png" />
+    <Content Include="Content\Images\docs\features\features_package_reducer_optimize.png" />
+    <Content Include="Content\Images\docs\features\features_package_throttle.png" />
+    <Content Include="Content\Images\docs\features\features_recompile_packages.png" />
+    <Content Include="Content\Images\docs\features\features_shimgen.png" />
+    <Content Include="Content\Images\docs\features\features_software_audit.png" />
+    <Content Include="Content\Images\docs\features\features_synchronize.png" />
+    <Content Include="Content\Images\docs\features\features_upgrade.png" />
+    <Content Include="Content\Images\docs\features\features_upgrade_everything.png" />
+    <Content Include="Content\Images\docs\gifs\chocopro_features_installdirectory.gif" />
+    <Content Include="Content\Images\docs\gifs\chocopro_install.gif" />
+    <Content Include="Content\Images\docs\gifs\chocopro_install_stopped.gif" />
+    <Content Include="Content\Images\docs\gifs\choco_business_features.gif" />
+    <Content Include="Content\Images\docs\gifs\choco_business_features_recompile.gif" />
+    <Content Include="Content\Images\docs\gifs\choco_config.gif" />
+    <Content Include="Content\Images\docs\gifs\choco_help.gif" />
+    <Content Include="Content\Images\docs\gifs\choco_install.gif" />
+    <Content Include="Content\Images\docs\gifs\choco_install_pro.gif" />
+    <Content Include="Content\Images\docs\gifs\choco_outdated.gif" />
+    <Content Include="Content\Images\docs\gifs\choco_search.gif" />
+    <Content Include="Content\Images\docs\gifs\choco_tab_completion.gif" />
+    <Content Include="Content\Images\docs\gifs\choco_uninstall.gif" />
+    <Content Include="Content\Images\docs\gifs\choco_upgrade.gif" />
+    <Content Include="Content\Images\docs\gifs\choco_upgrade_noop.gif" />
+    <Content Include="Content\Images\docs\git-tfs.png" />
+    <Content Include="Content\Images\docs\git-tfs2.png" />
+    <Content Include="Content\Images\docs\gui\in-action-with-branding.gif" />
+    <Content Include="Content\Images\docs\gui\in-action.gif" />
+    <Content Include="Content\Images\docs\gui\main-screen-with-branding.png" />
+    <Content Include="Content\Images\docs\gui\main-screen.png" />
+    <Content Include="Content\Images\docs\hero.png" />
+    <Content Include="Content\Images\docs\internalizer\architecture-diagram.png" />
+    <Content Include="Content\Images\docs\internalizer\jenkins-ps-plugin.png" />
+    <Content Include="Content\Images\docs\moderation-1.jpg" />
+    <Content Include="Content\Images\docs\moderation-10.jpg" />
+    <Content Include="Content\Images\docs\moderation-11.jpg" />
+    <Content Include="Content\Images\docs\moderation-13.jpg" />
+    <Content Include="Content\Images\docs\moderation-4.jpg" />
+    <Content Include="Content\Images\docs\moderation-5.jpg" />
+    <Content Include="Content\Images\docs\moderation-6.jpg" />
+    <Content Include="Content\Images\docs\msysgit.png" />
+    <Content Include="Content\Images\docs\msysgit2.png" />
+    <Content Include="Content\Images\docs\quickdeploy\QDE-architecture.gif" />
+    <Content Include="Content\Images\docs\quickdeploy\QDE-hyperv.gif" />
+    <Content Include="Content\Images\docs\quickdeploy\QDE-hypervapp.gif" />
+    <Content Include="Content\Images\docs\quickdeploy\QDE-vmdk.gif" />
+    <Content Include="Content\Images\docs\recompile\choco_delete_pkg_files.png" />
+    <Content Include="Content\Images\docs\recompile\choco_download_zip.png" />
+    <Content Include="Content\Images\docs\recompile\choco_npp_download.png" />
+    <Content Include="Content\Images\docs\recompile\choco_rename_nupkg_zip.png" />
+    <Content Include="Content\Images\docs\reducemoderationemail.png" />
+    <Content Include="Content\Images\docs\statlight.png" />
+    <Content Include="Content\Images\docs\triage-broken.jpg" />
+    <Content Include="Content\Images\docs\triage-download.jpg" />
+    <Content Include="Content\Images\docs\triage-maintainerlinks.jpg" />
+    <Content Include="Content\Images\docs\triage-maintainerrepository.jpg" />
+    <Content Include="Content\Images\docs\triage-maintainers.jpg" />
+    <Content Include="Content\Images\docs\triage-packagesource.jpg" />
+    <Content Include="Content\Images\docs\triage-reportabuse.jpg" />
+    <Content Include="Content\Images\docs\triage-siteadmins.jpg" />
+    <Content Include="Content\Images\docs\triage-waiting.jpg" />
+    <Content Include="Content\Images\docs\virus_scan_flagged.png" />
+    <Content Include="Content\Images\docs\virus_scan_normal.png" />
+    <Content Include="Content\Images\download.png" />
+    <Content Include="Content\Images\editIcon.png" />
+    <Content Include="Content\Images\editProfile.png" />
+    <Content Include="Content\Images\errorPage.png" />
+    <Content Include="Content\Images\gene.svg" />
+    <Content Include="Content\Images\genes.jpg" />
+    <Content Include="Content\Images\github.jpg" />
+    <Content Include="Content\Images\greenArrow.png" />
+    <Content Include="Content\Images\gui.png" />
+    <Content Include="Content\Images\ChocolateyGUI_main_screen.png" />
+    <Content Include="Content\Images\headerbackground.png" />
+    <Content Include="Content\Images\headers\c4b-banner.jpg" />
+    <Content Include="Content\Images\headers\chocolatey-staff.jpg" />
+    <Content Include="Content\Images\headers\home.jpg" />
+    <Content Include="Content\Images\headers\web.jpg" />
+    <Content Include="Content\Images\hero.png" />
+    <Content Include="Content\Images\herowithlogo.png" />
+    <Content Include="Content\Images\How-Chocolatey-Works.mp4" />
+    <Content Include="Content\Images\icons\arrow-watch.png" />
+    <Content Include="Content\Images\icon_slogan.png" />
+    <Content Include="Content\Images\inputBackground.png" />
+    <Content Include="Content\Images\integrations-mockup.jpg" />
+    <Content Include="Content\Images\integration_points-dark.png" />
+    <Content Include="Content\Images\invalidBG.png" />
+    <Content Include="Content\Images\just-type-logo.svg" />
+    <Content Include="Content\Images\businesses\Chef.png" />
+    <Content Include="Content\Images\businesses\Elastic.png" />
+    <Content Include="Content\Images\businesses\ISE.png" />
+    <Content Include="Content\Images\businesses\MyGet.png" />
+    <Content Include="Content\Images\businesses\OctopusDeploy.png" />
+    <Content Include="Content\Images\businesses\ProGet.png" />
+    <Content Include="Content\Images\businesses\Puppet.png" />
+    <Content Include="Content\Images\businesses\SEEK.png" />
+    <Content Include="Content\Images\businesses\ShareByLink.png" />
+    <Content Include="Content\Images\businesses\Velocity.png" />
+    <Content Include="Content\Images\logo.svg" />
+    <Content Include="Content\Images\logo2.svg" />
+    <Content Include="Content\Images\logo_3.svg" />
+    <Content Include="Content\Images\logo_small.svg" />
+    <Content Include="Content\Images\logo_square.svg" />
+    <Content Include="Content\Images\managePackages.png" />
+    <Content Include="Content\Images\mine.png" />
+    <Content Include="Content\Images\navbackground.png" />
+    <Content Include="Content\Images\newAccountGraphic.png" />
+    <Content Include="Content\Images\nothing-50x50.png" />
+    <Content Include="Content\Images\nugetlogo.png" />
+    <Content Include="Content\Images\nugetLogoFooter.png" />
+    <Content Include="Content\Images\package-source.jpg" />
+    <Content Include="Content\Images\packageDefaultIcon-50x50.png" />
+    <Content Include="Content\Images\packageDefaultIcon.png" />
+    <Content Include="Content\Images\packageOwnerActionIcons.png" />
+    <Content Include="Content\Images\packagesDefaultIcon.png" />
+    <Content Include="Content\Images\profile-chocolatey-repository.jpg" />
+    <Content Include="Content\Images\quick-deployment-environment-chart.jpg" />
+    <Content Include="Content\Images\rd_logo.png" />
+    <Content Include="Content\Images\RealDimensionsLogo.png" />
+    <Content Include="Content\Images\recommended.png" />
+    <Content Include="Content\Images\recommendedSmall.png" />
+    <Content Include="Content\Images\remote-work.png" />
+    <Content Include="Content\Images\required.png" />
+    <Content Include="Content\Images\searchButton.png" />
+    <Content Include="Content\Images\sendMessageGraphic.png" />
+    <Content Include="Content\Images\stackexchange.png" />
+    <Content Include="Content\Images\styleguide\logo-space.jpg" />
+    <Content Include="Content\Images\sync-watch.png" />
+    <Content Include="Content\Images\tangled-arrows.png" />
+    <Content Include="Content\Images\team\gary-sq.jpg" />
+    <Content Include="Content\Images\team\gary.png" />
+    <Content Include="Content\Images\team\mukesh-sq.jpg" />
+    <Content Include="Content\Images\team\mukesh.png" />
+    <Content Include="Content\Images\team\paul-sq.jpg" />
+    <Content Include="Content\Images\team\paul.png" />
+    <Content Include="Content\Images\team\rob-sq.jpg" />
+    <Content Include="Content\Images\team\stephanie-1.jpg" />
+    <Content Include="Content\Images\team\stephanie-2.jpg" />
+    <Content Include="Content\Images\team\stephanie-sq.jpg" />
+    <Content Include="Content\Images\trash.png" />
+    <Content Include="Content\Images\turbo-logo.png" />
+    <Content Include="Content\Images\Turbo-on-Red.png" />
+    <Content Include="Content\Images\turbo_logo.png" />
+    <Content Include="Content\Images\twitter.png" />
+    <Content Include="Content\Images\upgrade-steps-vertical.jpg" />
+    <Content Include="Content\Images\uploadPackage.png" />
+    <Content Include="Content\Images\userGraphic.png" />
+    <Content Include="Content\Images\userIcon.png" />
+    <Content Include="Content\Images\userIconWhite.png" />
+    <Content Include="Content\Images\videos\03-15.jpg" />
+    <Content Include="Content\Images\videos\03-01.jpg" />
+    <Content Include="Content\Images\videos\03-18.jpg" />
+    <Content Include="Content\Images\videos\03-19.jpg" />
+    <Content Include="Content\Images\videos\03-16.jpg" />
+    <Content Include="Content\Images\videos\03-17.jpg" />
+    <Content Include="Content\Images\videos\03-20.jpg" />
+    <Content Include="Content\Images\videos\03-21.jpg" />
+    <Content Include="Content\Images\videos\03-01.jpg" />
+    <Content Include="Content\Images\videos\04-01.jpg" />
+    <Content Include="Content\Images\videos\04-02.jpg" />
+    <Content Include="Content\Images\videos\04-0301.jpg" />
+    <Content Include="Content\Images\videos\04-0302.jpg" />
+    <Content Include="Content\Images\videos\04-0401.jpg" />
+    <Content Include="Content\Images\videos\04-0402.jpg" />
+    <Content Include="Content\Images\videos\04-0501.jpg" />
+    <Content Include="Content\Images\videos\04-0502.jpg" />
+    <Content Include="Content\Images\videos\04-06.jpg" />
+    <Content Include="Content\Images\videos\blog-01.jpg" />
+    <Content Include="Content\Images\videos\CaseStudy.jpg" />
+    <Content Include="Content\Images\videos\01-01.jpg" />
+    <Content Include="Content\Images\videos\02-01.jpg" />
+    <Content Include="Content\Images\videos\02-04.jpg" />
+    <Content Include="Content\Images\videos\03-03.jpg" />
+    <Content Include="Content\Images\videos\03-04.jpg" />
+    <Content Include="Content\Images\videos\02-05.jpg" />
+    <Content Include="Content\Images\videos\03-05.jpg" />
+    <Content Include="Content\Images\videos\03-06.jpg" />
+    <Content Include="Content\Images\videos\03-07.jpg" />
+    <Content Include="Content\Images\videos\02-03.jpg" />
+    <Content Include="Content\Images\videos\03-08.jpg" />
+    <Content Include="Content\Images\videos\03-09.jpg" />
+    <Content Include="Content\Images\videos\02-02.jpg" />
+    <Content Include="Content\Images\videos\03-10.jpg" />
+    <Content Include="Content\Images\videos\03-11.jpg" />
+    <Content Include="Content\Images\videos\01-02.jpg" />
+    <Content Include="Content\Images\videos\01-03.jpg" />
+    <Content Include="Content\Images\videos\03-02.jpg" />
+    <Content Include="Content\Images\videos\03-12.jpg" />
+    <Content Include="Content\Images\videos\01-04.jpg" />
+    <Content Include="Content\Images\videos\03-13.jpg" />
+    <Content Include="Content\Images\videos\03-14.jpg" />
+    <Content Include="Content\Images\videos\01-05.jpg" />
+    <Content Include="Content\Images\xmark.png" />
+    <Content Include="Content\Images\YourPackage.png" />
+    <Content Include="Content\packages.css" />
+    <Content Include="Content\pages.css" />
+    <Content Include="Content\prism\prism.css" />
+    <Content Include="..\..\nugetgallery\Website\api\Web.config">
+      <Link>api\Web.config</Link>
+    </Content>
+    <Content Include="cloudflare-blocked.html" />
+    <Content Include="DataServices\V2Feed.svc" />
+    <Content Include="DataServices\V2SubmittedFeed.svc" />
+    <Content Include="Errors\Error.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="googled7980ca724c3d811.html" />
+    <Content Include="gulpfile.js" />
+    <Content Include="Install-LastPoshClient.ps1" />
+    <None Include="Cassette.targets" />
+    <Content Include="chocolatey-media-kit.zip" />
+    <Content Include="chocolatey-styleguide.zip" />
+    <Content Include="Content\scss\chocolatey.scss" />
+    <Content Include="Content\scss\purge.scss" />
+    <Content Include="Content\scss\_base.scss" />
+    <Content Include="Content\scss\_callouts.scss" />
+    <Content Include="Content\scss\_chocolatey-variables.scss" />
+    <Content Include="Content\scss\_icons.scss" />
+    <Content Include="Content\scss\_preloader.scss" />
+    <Content Include="Content\scss\_testimonials.scss" />
+    <Content Include="Content\scss\_navigation.scss" />
+    <Content Include="Content\scss\_carousels.scss" />
+    <Content Include="Content\scss\_backgrounds.scss" />
+    <Content Include="Content\scss\_resources.scss" />
+    <Content Include="Content\scss\_courses.scss" />
+    <Content Include="Content\scss\_cards.scss" />
+    <Content Include="Content\scss\_tabs.scss" />
+    <Content Include="Content\scss\_status-icons.scss" />
+    <Content Include="Content\fonts\fa-brands-400.eot" />
+    <Content Include="Content\fonts\fa-brands-400.ttf" />
+    <Content Include="Content\fonts\fa-brands-400.woff" />
+    <Content Include="Content\fonts\fa-brands-400.woff2" />
+    <Content Include="Content\fonts\fa-solid-900.eot" />
+    <Content Include="Content\fonts\fa-solid-900.ttf" />
+    <Content Include="Content\fonts\fa-solid-900.woff" />
+    <Content Include="Content\fonts\fa-solid-900.woff2" />
+    <Content Include="Content\scss\_search.scss" />
+    <Content Include="Content\scss\_lists.scss" />
+    <Content Include="Import-QuickDeployCertificate.ps1" />
+    <Content Include="Content\scss\_ribbons.scss" />
+    <None Include="optipng.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="opensearch.xml" />
+    <Content Include="Scripts\anchorjs\anchor.min.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bundle.txt" />
+    <Content Include="Scripts\clipboard.js" />
+    <Content Include="Scripts\closeable\index.js" />
+    <Content Include="Scripts\courses\courses.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\documentation\documentation.js" />
+    <Content Include="Scripts\easymde\easymde.min.js" />
+    <Content Include="Scripts\header\bundle.txt" />
+    <Content Include="Scripts\header\modernizr-2.6.2.js" />
+    <Content Include="Scripts\home\bundle.txt" />
+    <Content Include="Scripts\install-steps\install-steps.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\manageowners\bundle.txt" />
+    <Content Include="Scripts\manageowners\knockout.3.5.0.js" />
+    <Content Include="Scripts\package-list\package-list.js" />
+    <Content Include="Scripts\packages\package-details.js" />
+    <Content Include="Scripts\prism\prism.js" />
+    <Content Include="Scripts\validation\bundle.txt" />
+    <Content Include="Scripts\validation\jquery.validate.js" />
+    <Content Include="Scripts\home\stats.js" />
+    <Content Include="Scripts\validation\MicrosoftAjax.js" />
+    <Content Include="Scripts\validation\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\validation\MicrosoftMvcValidation.js" />
+    <Content Include="Views\Packages\UploadPackage.cshtml" />
+    <Content Include="Views\Pages\ContactQuickDeployment.cshtml" />
+    <Content Include="Views\Pages\Home.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Packages\DisplayPackage.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Code\ViewHelpers.cshtml" />
+    <Content Include="_app_offline.htm" />
+    <Content Include="Views\Pages\Notice.cshtml" />
+    <Content Include="Views\Packages\_ListVersion.cshtml" />
+    <Content Include="Views\Pages\Pricing.cshtml" />
+    <Content Include="Views\Pages\Company.cshtml" />
+    <Content Include="Views\Pages\ContactGeneral.cshtml" />
+    <Content Include="Views\Pages\Media.cshtml" />
+    <Content Include="Views\Pages\Partner.cshtml" />
+    <Content Include="Views\Pages\Press.cshtml" />
+    <Content Include="Views\Pages\ReportIssue.cshtml" />
+    <Content Include="Views\Pages\Support.cshtml" />
+    <Content Include="Views\Pages\Kickstarter.cshtml" />
+    <Content Include="Views\Shared\_BaseLayout.cshtml" />
+    <Content Include="Views\Documentation\_Layout.cshtml" />
+    <Content Include="Views\Pages\Features.cshtml" />
+    <Content Include="Views\Pages\Thanks.cshtml" />
+    <Content Include="Views\Pages\MarkdownPostArticle.cshtml" />
+    <Content Include="Views\Pages\MarkdownPostIndex.cshtml" />
+    <Content Include="Views\Blog\Celebrating50Million.md" />
+    <Content Include="Views\Blog\_Layout.cshtml" />
+    <Content Include="Views\Blog\Celebrating5Years.md" />
+    <Content Include="Views\Blog\ChocolateyBusinessAndProfessionalComing.md" />
+    <Content Include="Views\Blog\ChocolateyHasANewLogo.md" />
+    <Content Include="Views\Blog\CreateChocolateyPackages.md" />
+    <Content Include="Views\Blog\HostYourOwnServer.md" />
+    <Content Include="Views\Blog\InternalizePackages.md" />
+    <Content Include="Views\Blog\Hacktoberfest2016.md" />
+    <Content Include="Views\Blog\ExtendingChocolateyPackagingAtWalmart.md" />
+    <Content Include="Views\Blog\MukeshSharmaJoinsChocolatey.md" />
+    <Content Include="Views\Blog\PackageBuilderAnnouncements.md" />
+    <Content Include="Views\Blog\PackageSynchronizerSyncCommand.md" />
+    <Content Include="Views\Pages\Discount.cshtml" />
+    <Content Include="Views\Blog\ChocolateyGUI0.15.0.md" />
+    <Content Include="Views\Pages\Evaluation.cshtml" />
+    <Content Include="Views\Shared\_CookiePolicy.cshtml" />
+    <Content Include="Views\Packages\_CommunityInfoDisclaimer.cshtml" />
+    <Content Include="Views\Blog\GaryEwanParkJoinsChocolatey.md" />
+    <Content Include="Views\Blog\BoxstarterMovesUnderChocolateyGitHubOrganization.md" />
+    <Content Include="Views\Blog\SaveTheDateChocolateyFest.md" />
+    <Content Include="Views\Blog\PaulBroadwithJoinsChocolatey.md" />
+    <Content Include="Views\Blog\ChocolateyFestComingSoon.md" />
+    <Content Include="Views\Blog\StephanieBurrowsJoinsChocolatey.md" />
+    <Content Include="Views\Blog\ChocolateyFestReturns2020.md" />
+    <Content Include="Views\Shared\MainLayout.cshtml" />
+    <Content Include="Views\Shared\MinimalLayout.cshtml" />
+    <Content Include="Views\Packages\_UploadSteps.cshtml" />
+    <Content Include="Views\Shared\_AlertTop.cshtml" />
+    <Content Include="Views\Shared\_CopyrightNavigation.cshtml" />
+    <Content Include="Views\Shared\_TopNavigation.cshtml" />
+    <Content Include="Views\Shared\_BottomNavigation.cshtml" />
+    <Content Include="Views\Styleguide\Home.cshtml" />
+    <Content Include="Views\Styleguide\_Layout.cshtml" />
+    <Content Include="Views\Styleguide\_ViewStart.cshtml" />
+    <Content Include="Views\Styleguide\Colors.cshtml" />
+    <Content Include="Views\Styleguide\Alerts.cshtml" />
+    <Content Include="Views\Styleguide\Buttons.cshtml" />
+    <Content Include="Views\Styleguide\Cards.cshtml" />
+    <Content Include="Views\Styleguide\Sections.cshtml" />
+    <Content Include="Views\Styleguide\Testimonials.cshtml" />
+    <Content Include="Views\Styleguide\Font.cshtml" />
+    <Content Include="Views\Styleguide\Logo.cshtml" />
+    <Content Include="Views\Styleguide\Carousels.cshtml" />
+    <Content Include="Views\Resources\Files\01-02-Puppet.md" />
+    <Content Include="Views\Resources\Home.cshtml" />
+    <Content Include="Views\Resources\CaseStudies.cshtml" />
+    <Content Include="Views\Resources\Files\01-05-Yelp.md" />
+    <Content Include="Views\Resources\Files\03-13-WhatIsChocolatey.md" />
+    <Content Include="Views\Resources\_BreadCrumbs.cshtml" />
+    <Content Include="Views\Resources\SuccessStories.cshtml" />
+    <Content Include="Views\Resources\Files\02-03-ManagingWindowsAtFacebook.md" />
+    <Content Include="Views\Resources\Files\03-07-KillingGoldenImages.md" />
+    <Content Include="Views\Resources\_Layout.cshtml" />
+    <Content Include="Views\Resources\Post.cshtml" />
+    <Content Include="Views\Resources\Videos.cshtml" />
+    <Content Include="Views\Resources\Files\01-01-CMEGroup.md" />
+    <Content Include="Views\Resources\Files\02-04-EvolutionofTicketmaster.md" />
+    <Content Include="Views\Resources\Files\02-05-GroupPolicyAtPuppet.md" />
+    <Content Include="Views\Resources\Files\02-02-PSDayUK.md" />
+    <Content Include="Views\Resources\Files\01-03-Qualcomm.md" />
+    <Content Include="Views\Resources\Files\01-04-TDSecurity.md" />
+    <Content Include="Views\Resources\Files\03-03-FutureOfWindowsAutomation.md" />
+    <Content Include="Views\Resources\Files\03-02-DockerAContainerFullOfChocolatey.md" />
+    <Content Include="Views\Resources\Files\02-01-DanFranciscusChocoFest18.md" />
+    <Content Include="Views\Resources\Files\03-06-KarenKwentusChocoFest18.md" />
+    <Content Include="Views\Resources\Files\03-04-GilbertSanchezChocoFest18.md" />
+    <Content Include="Views\Resources\Files\03-08-MarkJohnsonChocoFest18.md" />
+    <Content Include="Views\Resources\Files\03-12-StevenMurawskiChocoFest18.md" />
+    <Content Include="Views\Resources\Files\03-14-YelpChocoFest18.md" />
+    <Content Include="Views\Courses\GettingStarted\WhatIsChocolatey.cshtml" />
+    <Content Include="Views\Courses\Home.cshtml" />
+    <Content Include="Views\Courses\_ModuleLayout.cshtml" />
+    <Content Include="Views\Courses\GettingStarted\_ViewStart.cshtml" />
+    <Content Include="Views\Courses\GettingStarted\Home.cshtml" />
+    <Content Include="Views\Courses\GettingStarted\Requirements.cshtml" />
+    <Content Include="Views\Courses\_LeftSideColumn.cshtml" />
+    <Content Include="Views\Courses\GettingStarted\_CourseDescription.cshtml" />
+    <Content Include="Views\Courses\GettingStarted\HowToUse.cshtml" />
+    <Content Include="Views\Courses\GettingStarted\Terminology.cshtml" />
+    <Content Include="Views\Courses\GettingStarted\ChocolateyPackages.cshtml" />
+    <Content Include="Views\Courses\GettingStarted\InstallationInDetail.cshtml" />
+    <Content Include="Views\Courses\GettingStarted\HowChocolateyWorks.cshtml" />
+    <Content Include="Views\Courses\GettingStarted\_NextUrl.cshtml" />
+    <Content Include="Views\Courses\_QuizCTA.cshtml" />
+    <Content Include="Views\Courses\_AllCourses.cshtml" />
+    <Content Include="Views\Courses\Installation\_CourseDescription.cshtml" />
+    <Content Include="Views\Courses\Installation\_ViewStart.cshtml" />
+    <Content Include="Views\Courses\Installation\Home.cshtml" />
+    <Content Include="Views\Courses\Installation\Installing.cshtml" />
+    <Content Include="Views\Courses\Installation\Upgrading.cshtml" />
+    <Content Include="Views\Pages\Install.cshtml" />
+    <Content Include="Views\Courses\Installation\Uninstalling.cshtml" />
+    <Content Include="Views\Courses\Installation\_Method.cshtml" />
+    <Content Include="Views\Courses\Installation\_NextUrl.cshtml" />
+    <Content Include="Views\Pages\_Courses.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\_CourseDescription.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\_NextUrl.cshtml" />
+    <Content Include="Views\Courses\_Popup.cshtml" />
+    <Content Include="Views\Courses\_CourseAchievementBadgeDisplay.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\_ViewStart.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\Home.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\SummaryRulesAndGuidlines.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\AutomaticPackaging.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\BuildingTestingAndPushing.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\InstallingUpgradingAndUninstalling.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\PackageMaintainerHandover.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\NamingDescriptionAndVersioning.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\InternationalizationAndLocalization.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\NugetPackagesAndNuspec.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\Shims.cshtml" />
+    <Content Include="Views\Courses\CreatingChocolateyPackages\ChocoNewCommand.cshtml" />
+    <Content Include="Views\Pages\Sitemap.cshtml" />
+    <Content Include="Views\Pages\Community.cshtml" />
+    <Content Include="Views\Pages\HowChocolateyWorks.cshtml" />
+    <Content Include="Views\Pages\WhyChocolatey.cshtml" />
+    <Content Include="Views\Pages\UseCases.cshtml" />
+    <Content Include="Views\Pages\Compare.cshtml" />
+    <Content Include="Views\Pages\ContactTrial.cshtml" />
+    <Content Include="Views\Pages\_ContactSideColumn.cshtml" />
+    <Content Include="Views\Pages\ContactUs.cshtml" />
+    <Content Include="Views\Pages\ContactDiscount.cshtml" />
+    <Content Include="Views\Pages\ContactPartner.cshtml" />
+    <Content Include="Views\Pages\ContactSales.cshtml" />
+    <Content Include="Views\Pages\ContactSalesOther.cshtml" />
+    <Content Include="Views\Pages\ContactBlocked.cshtml" />
+    <Content Include="Views\Blog\ChocolateyRedesign.md" />
+    <Content Include="Views\Pages\Careers.cshtml" />
+    <Content Include="Views\Shared\_SearchBox.cshtml" />
+    <Content Include="Views\Documentation\Search.cshtml" />
+    <Content Include="Views\Blog\InfrastructureChangesOctober2019.md" />
+    <Content Include="Views\Shared\_Loader.cshtml" />
+    <Content Include="Views\Documentation\Documentation.cshtml" />
+    <Content Include="Views\Documentation\DocumentationLayout.cshtml" />
+    <Content Include="Views\Pages\_WrittenTestimonials.cshtml" />
+    <Content Include="Views\Resources\Testimonials.cshtml" />
+    <Content Include="Views\Resources\Files\03-01-AzureVmWithChocolatey.md" />
+    <Content Include="Views\Resources\Files\03-05-JFrogWebinar.md" />
+    <Content Include="Views\Resources\Files\03-09-MicrosoftBuild18.md" />
+    <Content Include="Views\Resources\Files\03-10-PuppetConfWithRob18.md" />
+    <Content Include="Views\Resources\Files\03-11-PuppetizeLive18.md" />
+    <Content Include="Views\Resources\Files\03-15-PSDayUKRobReynolds.md" />
+    <Content Include="Views\Resources\Files\03-16-BoxOfChocolateyNDCConferences.md" />
+    <Content Include="Views\Resources\Files\03-17-BoxOfChocolateyAdelaide.md" />
+    <Content Include="Views\Resources\Files\03-18-PackageManagementwithProGet.md" />
+    <Content Include="Views\Resources\Files\03-19-Winops2017RobReynolds.md" />
+    <Content Include="Views\Resources\Files\03-20-TechGumboChocolateyBeginnersGuide.md" />
+    <Content Include="Views\Resources\Files\03-21-EgeeChocolateyPackageManager.md" />
+    <Content Include="Views\Documentation\Files\AutomaticPackages.md" />
+    <Content Include="Views\Documentation\Files\ChocolateyConfiguration.md" />
+    <Content Include="Views\Documentation\Files\ChocolateyFAQs.md" />
+    <Content Include="Views\Documentation\Files\ChocolateyInstallPS1.md" />
+    <Content Include="Views\Documentation\Files\ChocolateyStory.md" />
+    <Content Include="Views\Documentation\Files\ChocolateyVsNinite.md" />
+    <Content Include="Views\Documentation\Files\CommandsApiKey.md" />
+    <Content Include="Views\Documentation\Files\CommandsConfig.md" />
+    <Content Include="Views\Documentation\Files\CommandsDownload.md" />
+    <Content Include="Views\Documentation\Files\CommandsFeature.md" />
+    <Content Include="Views\Documentation\Files\CommandsFeatures.md" />
+    <Content Include="Views\Documentation\Files\CommandsInfo.md" />
+    <Content Include="Views\Documentation\Files\CommandsInstall.md" />
+    <Content Include="Views\Documentation\Files\CommandsList.md" />
+    <Content Include="Views\Documentation\Files\CommandsNew.md" />
+    <Content Include="Views\Documentation\Files\CommandsOptimize.md" />
+    <Content Include="Views\Documentation\Files\CommandsOutdated.md" />
+    <Content Include="Views\Documentation\Files\CommandsPack.md" />
+    <Content Include="Views\Documentation\Files\CommandsPin.md" />
+    <Content Include="Views\Documentation\Files\CommandsPush.md" />
+    <Content Include="Views\Documentation\Files\CommandsReference.md" />
+    <Content Include="Views\Documentation\Files\CommandsSearch.md" />
+    <Content Include="Views\Documentation\Files\CommandsSetapiKey.md" />
+    <Content Include="Views\Documentation\Files\CommandsSource.md" />
+    <Content Include="Views\Documentation\Files\CommandsSources.md" />
+    <Content Include="Views\Documentation\Files\CommandsSupport.md" />
+    <Content Include="Views\Documentation\Files\CommandsSync.md" />
+    <Content Include="Views\Documentation\Files\CommandsSynchronize.md" />
+    <Content Include="Views\Documentation\Files\CommandsUninstall.md" />
+    <Content Include="Views\Documentation\Files\CommandsUnpackself.md" />
+    <Content Include="Views\Documentation\Files\CommandsUpdate.md" />
+    <Content Include="Views\Documentation\Files\CommandsUpgrade.md" />
+    <Content Include="Views\Documentation\Files\CommandsVersion.md" />
+    <Content Include="Views\Documentation\Files\CommunityPackagesDisclaimer.md" />
+    <Content Include="Views\Documentation\Files\CreatePackages.md" />
+    <Content Include="Views\Documentation\Files\CreatePackagesQuickStart.md" />
+    <Content Include="Views\Documentation\Files\DefaultChocolateyInstallReasoning.md" />
+    <Content Include="Views\Documentation\Files\DevelopmentEnvironmentSetup.md" />
+    <Content Include="Views\Documentation\Files\FeaturesAgentService.md" />
+    <Content Include="Views\Documentation\Files\FeaturesAutomaticallyRecompilePackages.md" />
+    <Content Include="Views\Documentation\Files\FeaturesBranding.md" />
+    <Content Include="Views\Documentation\Files\FeaturesChocolateyCentralManagement.md" />
+    <Content Include="Views\Documentation\Files\FeaturesCreatePackagesFromInstallers.md" />
+    <Content Include="Views\Documentation\Files\FeaturesInfrastructureAutomation.md" />
+    <Content Include="Views\Documentation\Files\FeaturesInstallDirectoryOverride.md" />
+    <Content Include="Views\Documentation\Files\FeaturesPackageAudit.md" />
+    <Content Include="Views\Documentation\Files\FeaturesPackageReducer.md" />
+    <Content Include="Views\Documentation\Files\FeaturesPackageThrottle.md" />
+    <Content Include="Views\Documentation\Files\FeaturesPrivateCdn.md" />
+    <Content Include="Views\Documentation\Files\FeaturesShim.md" />
+    <Content Include="Views\Documentation\Files\FeaturesSynchronize.md" />
+    <Content Include="Views\Documentation\Files\FeaturesVirusCheck.md" />
+    <Content Include="Views\Documentation\Files\GettingStarted.md" />
+    <Content Include="Views\Documentation\Files\HelpersFormatFileSize.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetChecksumValid.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetChocolateyBins.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetChocolateyUnzip.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetChocolateyWebFile.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetEnvironmentVariable.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetEnvironmentVariableNames.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetFtpFile.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetOSArchitectureWidth.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetPackageParameters.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetToolsLocation.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetUACEnabled.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetUninstallRegistryKey.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetVirusCheckValid.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetWebFile.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetWebFileName.md" />
+    <Content Include="Views\Documentation\Files\HelpersGetWebHeaders.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallBinFile.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyDesktopLink.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyEnvironmentVariable.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyExplorerMenuItem.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyFileAssociation.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyInstallPackage.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyPackage.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyPath.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyPinnedTaskBarItem.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyPowershellCommand.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyShortcut.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyVsixPackage.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyWindowsService.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallChocolateyZipPackage.md" />
+    <Content Include="Views\Documentation\Files\HelpersInstallVsix.md" />
+    <Content Include="Views\Documentation\Files\HelpersReference.md" />
+    <Content Include="Views\Documentation\Files\HelpersSetEnvironmentVariable.md" />
+    <Content Include="Views\Documentation\Files\HelpersSetPowerShellExitCode.md" />
+    <Content Include="Views\Documentation\Files\HelpersStartChocolateyProcessAsAdmin.md" />
+    <Content Include="Views\Documentation\Files\HelpersStartChocolateyWindowsService.md" />
+    <Content Include="Views\Documentation\Files\HelpersStopChocolateyWindowsService.md" />
+    <Content Include="Views\Documentation\Files\HelpersTestProcessAdminRights.md" />
+    <Content Include="Views\Documentation\Files\HelpersUninstallBinFile.md" />
+    <Content Include="Views\Documentation\Files\HelpersUninstallChocolateyEnvironmentVariable.md" />
+    <Content Include="Views\Documentation\Files\HelpersUninstallChocolateyPackage.md" />
+    <Content Include="Views\Documentation\Files\HelpersUninstallChocolateyWindowsService.md" />
+    <Content Include="Views\Documentation\Files\HelpersUninstallChocolateyZipPackage.md" />
+    <Content Include="Views\Documentation\Files\HelpersUpdateSessionEnvironment.md" />
+    <Content Include="Views\Documentation\Files\HelpersWriteChocolateyFailure.md" />
+    <Content Include="Views\Documentation\Files\HelpersWriteChocolateySuccess.md" />
+    <Content Include="Views\Documentation\Files\HelpersWriteFileUpdateLog.md" />
+    <Content Include="Views\Documentation\Files\HelpersWriteFunctionCallLogMessage.md" />
+    <Content Include="Views\Documentation\Files\History.md" />
+    <Content Include="Views\Documentation\Files\Home.md" />
+    <Content Include="Views\Documentation\Files\Hosting-Chocolatey-Packages-on-MyGet.md" />
+    <Content Include="Views\Documentation\Files\How-To-Change-Cache.md" />
+    <Content Include="Views\Documentation\Files\How-To-Create-Custom-Package-Templates.md" />
+    <Content Include="Views\Documentation\Files\How-To-Create-Extensions.md" />
+    <Content Include="Views\Documentation\Files\How-To-Deprecate-A-Chocolatey-Package.md" />
+    <Content Include="Views\Documentation\Files\How-To-Host-Feed.md" />
+    <Content Include="Views\Documentation\Files\How-To-Install-Upgrade-Package-Without-Scripts.md" />
+    <Content Include="Views\Documentation\Files\How-To-Mount-An-Iso-In-Chocolatey-Package.md" />
+    <Content Include="Views\Documentation\Files\How-To-Parse-PackageParameters-Argument.md" />
+    <Content Include="Views\Documentation\Files\How-To-Recompile-Packages.md" />
+    <Content Include="Views\Documentation\Files\How-To-Set-Up-Chocolatey-Server.md" />
+    <Content Include="Views\Documentation\Files\How-To-Setup-Internal-Package-Repository.md" />
+    <Content Include="Views\Documentation\Files\How-To-Setup-Offline-Installation.md" />
+    <Content Include="Views\Documentation\Files\Installation-Licensed.md" />
+    <Content Include="Views\Documentation\Files\Installation.md" />
+    <Content Include="Views\Documentation\Files\Legal.md" />
+    <Content Include="Views\Documentation\Files\Migrate-Old-Chocolatey-Directory-to-ProgramData.md" />
+    <Content Include="Views\Documentation\Files\Moderation.md" />
+    <Content Include="Views\Documentation\Files\PackageMaintainerHandover.md" />
+    <Content Include="Views\Documentation\Files\PackageTriageProcess.md" />
+    <Content Include="Views\Documentation\Files\Packaging-Next.md" />
+    <Content Include="Views\Documentation\Files\Presentations.md" />
+    <Content Include="Views\Documentation\Files\Proxy-Settings-for-Chocolatey.md" />
+    <Content Include="Views\Documentation\Files\ReleaseNotes.md" />
+    <Content Include="Views\Documentation\Files\ReleaseNotesAgent.md" />
+    <Content Include="Views\Documentation\Files\ReleaseNotesCentralManagement.md" />
+    <Content Include="Views\Documentation\Files\ReleaseNotesExtension.md" />
+    <Content Include="Views\Documentation\Files\ReleaseNotesLicensed.md" />
+    <Content Include="Views\Documentation\Files\Resources.md" />
+    <Content Include="Views\Documentation\Files\Roadmap.md" />
+    <Content Include="Views\Documentation\Files\Security.md" />
+    <Content Include="Views\Documentation\Files\Troubleshooting.md" />
+    <Content Include="Views\Documentation\Files\Uninstallation.md" />
+    <Content Include="Views\Documentation\Files\Videos.md" />
+    <Content Include="Views\Documentation\Files\Why.md" />
+    <Content Include="Views\Shared\NewsletterLayout.cshtml" />
+    <Content Include="Views\Shared\_NewsletterNavigation.cshtml" />
+    <Content Include="Views\Shared\_Modals.cshtml" />
+    <Content Include="Views\Blog\ChocolateyCommunityRepositoryServiceInterruptions.md" />
+    <Content Include="Views\Blog\RemoveSupportForOldTLSProtocols.md" />
+    <Content Include="Views\Shared\_AuthenticationSubNavigation.cshtml" />
+    <Content Include="Views\Shared\_PackageStatusSubNavigation.cshtml" />
+    <Content Include="Views\Shared\_ResourceSubNavigation.cshtml" />
+    <Content Include="Views\Documentation\Files\ReleaseNotesChocoCli.md" />
+    <Content Include="Views\Documentation\Files\ReleaseNotesChocolateyGui.md" />
+    <Content Include="Views\Solutions\SelfServiceAnywhere.cshtml" />
+    <Content Include="Views\Products\Home.cshtml" />
+    <Content Include="Views\Products\ChocolateyForBusiness.cshtml" />
+    <Content Include="Views\Pages\_TrustedBusinessCarousel.cshtml" />
+    <Content Include="Views\Pages\Covid19.cshtml" />
+    <Content Include="Views\Pages\_SelfServiceResources.cshtml" />
+    <Content Include="Views\Resources\Files\04-0502-C4BSelfServiceAndChocolateyGuiDemo.md" />
+    <Content Include="Views\Resources\Files\04-0501-C4BSelfServiceAndChocolateyGuiIntro.md" />
+    <Content Include="Views\Blog\EnableRemoteWorkQuickDeploymentEnvironment.md" />
+    <Content Include="Views\Documentation\Files\QuickDeploymentDesktopReadme.md" />
+    <Content Include="Views\Documentation\Files\QuickDeploymentEnvironment.md" />
+    <Content Include="Views\Documentation\Files\QuickDeploymentFirewallChanges.md" />
+    <Content Include="Views\Documentation\Files\QuickDeploymentSetup.md" />
+    <Content Include="Views\Documentation\Files\QuickDeploymentSslSetup.md" />
+    <Content Include="Views\Documentation\Files\QuickDeploymentClientSetup.md" />
+    <Content Include="Views\Resources\Features.cshtml" />
+    <Content Include="Views\Resources\Files\04-01-C4BIntroduction.md" />
+    <Content Include="Views\Resources\Files\04-02-C4BWhyChocolatey.md" />
+    <Content Include="Views\Resources\Files\04-0301-C4BPackageBuilderPart1.md" />
+    <Content Include="Views\Resources\Files\04-0302-C4BPackageBuilderPart2.md" />
+    <Content Include="Views\Resources\Files\04-0401-C4BPackageInternalizerPart1.md" />
+    <Content Include="Views\Resources\Files\04-0402-C4BPackageInternalizerPart2.md" />
+    <Content Include="Views\Resources\Files\04-06-C4BChocolateyCentralManagement.md" />
+    <Content Include="Views\Shared\_C4BSubNavigation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="package.json" />
+    <Content Include="package-lock.json" />
+    <None Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </None>
+    <None Include="T4MVC.tt.settings.t4" />
+    <Content Include="Views\Authentication\LogOn.cshtml" />
+    <Content Include="Views\Packages\ConfirmOwner.cshtml" />
+    <Content Include="Views\Packages\ContactOwners.cshtml" />
+    <Content Include="Views\Packages\Delete.cshtml" />
+    <Content Include="Views\Packages\_ListPackage.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Packages\Download.cshtml" />
+    <Content Include="Views\Packages\ListPackages.cshtml" />
+    <Content Include="Views\Packages\ManagePackageOwners.cshtml" />
+    <Content Include="Views\Packages\ReportAbuse.cshtml" />
+    <Content Include="Views\Packages\VerifyPackage.cshtml" />
+    <Content Include="Views\Pages\Privacy.cshtml" />
+    <Content Include="Views\Pages\Terms.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Object.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Users\Account.cshtml" />
+    <Content Include="Views\Users\ChangePassword.cshtml" />
+    <Content Include="Views\Users\Confirm.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\ForgotPassword.cshtml" />
+    <Content Include="Views\Users\Packages.cshtml" />
+    <Content Include="Views\Users\PasswordChanged.cshtml" />
+    <Content Include="Views\Users\PasswordSent.cshtml" />
+    <Content Include="Views\Users\Profiles.cshtml" />
+    <Content Include="Views\Users\Register.cshtml" />
+    <Content Include="Views\Users\ResendConfirmation.cshtml" />
+    <Content Include="Views\Users\ResetPassword.cshtml" />
+    <Content Include="Views\Users\Thanks.cshtml" />
+    <Content Include="Views\web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Errors\404.cshtml" />
+    <Content Include="Errors\ErrorLayout.cshtml" />
+    <Content Include="Errors\_PageStart.cshtml" />
+    <Content Include="Views\Packages\_PackageDependencies.cshtml" />
+    <Content Include="Web.ForbiddenHandlers.config" />
+    <Content Include="Install.ps1" />
+    <Content Include="InstallAbsoluteLatest.ps1" />
+    <Content Include="Views\Packages\ContactAdmins.cshtml" />
+    <Content Include="Views\Pages\About.cshtml" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <VSToolsPath Condition="Exists('$(VSToolsPath)') == false">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v14.0</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>55881</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55881/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\packages\RazorGenerator.MsBuild.*\tools\RazorGenerator.targets" />
+  <Import Project="$(ProjectDir)Cassette.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Target Name="Bundle" AfterTargets="Build">
+    <Exec Command="&quot;$(msbuildtoolspath)\msbuild.exe&quot; &quot;$(ProjectDir)cassette.targets&quot; /p:OutputPath=$(OutputPath) /p:WebProjectOutputDir=&quot;$(WebProjectOutputDir)&quot; /t:Bundle /nr:false" />
+  </Target>
+  <PropertyGroup>
+    <PreBuildEvent>if "%25USERNAME:~0,5%25"=="apphb" (
+  call npm install gulp -g
+)
+
+cd $(SolutionDir)chocolatey\Website
+call npm install
+call "%25appdata%25\npm\gulp"</PreBuildEvent>
+  </PropertyGroup>
+</Project>

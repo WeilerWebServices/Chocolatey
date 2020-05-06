@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="static ">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chocolatey Software</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700">
+    <style>
+        *,::after,::before{box-sizing: border-box;}
+        html,body{margin: 0;padding: 0;}
+        body{font:normal normal 400 1rem/1.5 "PT Sans",sans-serif;color:#212529;background-color:#f8f9fa;display:flex;flex-direction:column;min-height:100vh;}
+        footer,section,main{display:block;}
+        section{width:100%;max-width:1140px;padding:1rem;margin:0 auto;}
+        main{margin:auto 0;}
+        header,footer{color:#fff;padding:1rem;text-align:center;}
+        header{background:#5c9fd8;}
+        footer{background-color:#202f3c;border-top:5px solid #5c9fd8;}
+        h1,h2,h3,h4,h5,h6{font-weight:400;line-height:1.2;margin:0 0 .5rem;}
+        h2+h3{margin-bottom:1rem;}
+        h1{font-size:2.5rem;}
+        h2{font-size:2rem;}
+        h3{font-size:1.75rem;}
+        h4{font-size:1.5rem;}
+        h5{font-size:1.25rem;}
+        h6{font-size:1rem;}
+        p{margin:0 0 1rem;}
+        li ul,li ol,footer *,header *{margin:0}
+        a{color:#5c9fd8;text-decoration:none;outline:none;}
+        a:hover{color:#2d79bb;}
+        blockquote{margin:0.923em;color:#666;font-style:italic;}
+        pre{margin:0.923em 0;}
+        pre,code,tt{font:1rem 'andale mono','lucida console',monospace;line-height:1.462em;}
+        .text-center{text-align:center;}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chocolatey Website and Community Repository</h1>
+    </header>
+    <main>
+        <section>
+            <div class="text-center">
+                <h2>The site is currently under maintenance/offline</h2>
+                <h3>We will be back Shortly</h3>
+            </div>
+            <p>
+                We are working to make the Chocolatey website and community repository even more awesome and we’ll be back soon, but please don't hold your
+                breath we don't want you passing out at your desk and us getting sued, but I digress. If this outage is related to an incident
+                with the site, you can find more information on our <a href="https://status.chocolatey.org/">status page</a>, or you can
+                <a href="http://twitter.com/chocolateynuget">follow us on twitter</a> for updates or simply check back later. In the meantime
+                here are some things you might consider doing:
+            </p>
+            <ul>
+                <li>Solve world hunger, or at least get the kids more maps and stuff</li>
+                <li>Start crossing things off your Honey-Do List</li>
+                <li>Keep frantically hitting refresh waiting for Chocolatey.org to come back</li>
+            </ul>
+            <h3>Some more information:</h3>
+            <h4>What is the Chocolatey Community Repository?</h4>
+            <p>
+                This is a special section of the Chocolatey website that contains packages maintained and validated by our community that you can use for free to
+                install and manage software. It's a great resource for the community, however if you are an organization there are some caveats to consider before
+                using the community repository directly (such as rate limiting, reliability, etc).
+            </p>
+            <p>
+                You can also <a title="Creating and submitting a package" href="https://github.com/chocolatey/choco/wiki/CreatePackages">develop your own package</a>
+                and share it via the Chocolatey Community Repository.
+            </p>
+            <h4>What is Chocolatey?</h4>
+            <p>Chocolatey is like apt-get, but for Windows.</p>
+            <h4>How Does Chocolatey Work?</h4>
+            <p>
+                When you use Chocolatey to install a package, it copies the package to your system, runs the PowerShell script chocolateyInstall.ps1 (if there is one in the package)
+                and puts executables on the path (if there are any in the package).
+            </p>
+        </section>
+    </main>
+    <footer>
+        <p><strong>&copy; 2019</strong> Chocolatey Software, Inc.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{c950befc-b3ee-4dcd-a0a6-a2244584d1e7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MyApplication</RootNamespace>
+    <AssemblyName>MyApplication</AssemblyName>
+    <Name>Boxstarter.TestRunner</Name>
+    <ProjectHome />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Boxstarter.TestRunner.psd1" />
+    <Compile Include="Boxstarter.TestRunner.psm1" />
+    <Compile Include="Boxstarter.proj" />
+    <Compile Include="BoxstarterBuild.ps1" />
+    <Compile Include="Get-BoxstarterFeedAPIKey.ps1" />
+    <Compile Include="Get-FeedsAPIKeyPath.ps1" />
+    <Compile Include="Publish-BoxstarterPackage.ps1" />
+    <Compile Include="Set-BoxstarterFeedAPIKey.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Bootstrap.ps1" />
+    <Content Include="en-US\about_Boxstarter_TestRunner.help.txt" />
+    <Content Include="Get-BoxstarterDeployOptions.ps1" />
+    <Content Include="Get-BoxstarterPackageNugetFeed.ps1" />
+    <Content Include="Get-BoxstarterPackagePublishedVersion.ps1" />
+    <Content Include="Get-BoxstarterPackage.ps1" />
+    <Content Include="Get-OptionsPath.ps1" />
+    <Content Include="Get-PackageFeedsPath.ps1" />
+    <Content Include="Get-SecretOptionsPath.ps1" />
+    <Content Include="Install-BoxstarterScripts.ps1" />
+    <Content Include="Select-BoxstarterResultsToPublish.ps1" />
+    <Content Include="Remove-BoxstarterPackageNugetFeed.ps1" />
+    <Content Include="Set-BoxstarterDeployOptions.ps1" />
+    <Content Include="Set-BoxstarterPackageNugetFeed.ps1" />
+    <Content Include="Test-BoxstarterPackage.ps1" />
+    <Content Include="TestResult.Format.ps1xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="en-US\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="Build" />
+</Project>

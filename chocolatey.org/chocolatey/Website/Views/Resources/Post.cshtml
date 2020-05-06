@@ -1,0 +1,153 @@
+﻿@model ResourceViewModel
+
+@{
+    ViewBag.Title = Model.Type + "- " + Model.Title;
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Scripts");
+}
+
+@section ExtraHeaders {
+    @if (Model.Type.Contains("Customer Success Story"))
+    {
+        <link rel="canonical" href="https://chocolatey.org/resources/success-stories/@Model.UrlPath" />
+    }
+    else if (Model.Type.Contains("Video"))
+    {
+        <link rel="canonical" href="https://chocolatey.org/resources/videos/@Model.UrlPath" />
+    }
+    else if (Model.Type.Contains("Case Study"))
+    {
+        <link rel="canonical" href="https://chocolatey.org/resources/case-studies/@Model.UrlPath" />
+    }
+    else if (Model.Type.Contains("Feature"))
+    {
+        <link rel="canonical" href="https://chocolatey.org/resources/features/@Model.UrlPath" />
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.Summary))
+    {
+        <meta property="og:description" content="@Model.Summary" />
+        <meta property="description" content="@Model.Summary" />
+    }
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+}
+
+<section id="secondaryNav">
+    @Html.Partial("~/Views/Shared/_ResourceSubNavigation.cshtml")
+</section>
+<section class="py-3 py-lg-5">
+    <div class="container">
+        @if (Model.Type.Contains("Customer Success Story"))
+        {
+            <h1>@Model.Name at @Model.Company</h1>
+        }
+        else if (Model.Type.Contains("Video") || Model.Type.Contains("Case Study") || Model.Type.Contains("Feature"))
+        {
+            <h1>@Model.Title</h1>
+        }
+        <hr />
+        <div class="d-sm-flex justify-content-between align-items-center pb-3 pb-lg-5">
+            <p class="text-muted mb-2 mb-md-0 d-none">With @Model.Name at @Model.Company | @Model.Published.GetValueOrDefault().ToLongDateString()</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.RouteUrl(RouteName.Resources, new {resourceType = "home"})">Resources</a></li>
+                    @if (Model.Type.Contains("Customer Success Story"))
+                    {
+                        <li class="breadcrumb-item"><a href="@Url.RouteUrl(RouteName.Resources, new {resourceType = "success-stories"})">Customer Success Stories</a></li>
+                    }
+                    else if (Model.Type.Contains("Video"))
+                    {
+                        <li class="breadcrumb-item"><a href="@Url.RouteUrl(RouteName.Resources, new {resourceType = "videos"})">Videos</a></li>
+                    }
+                    else if (Model.Type.Contains("Case Study"))
+                    {
+                        <li class="breadcrumb-item"><a href="@Url.RouteUrl(RouteName.Resources, new {resourceType = "case-studies"})">Case Studies</a></li>
+                    }
+                    else if (Model.Type.Contains("Feature") && Model.Tags.Contains("c4b-feature"))
+                    {
+                        <li class="breadcrumb-item"><a href="@Url.RouteUrl(RouteName.Resources, new {resourceType = "features"})#c4b">C4B Features</a></li>
+                    }
+                    else if (Model.Type.Contains("Feature") && Model.Tags.Contains("open-source-feature"))
+                    {
+                        <li class="breadcrumb-item"><a href="@Url.RouteUrl(RouteName.Resources, new {resourceType = "features"})#open-source">Open Source Features</a></li>
+                    }
+                    @if (Model.Type.Contains("Customer Success Story"))
+                    {
+                        <li class="breadcrumb-item active" aria-current="page">@Model.Name at @Model.Company</li>
+                    }
+                    else if (Model.Type.Contains("Video") || Model.Type.Contains("Case Study") || Model.Type.Contains("Feature"))
+                    {
+                        <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+                    }
+                </ol>
+            </nav>
+            <hr class="d-sm-none" />
+            <ul class="list-unstyled mb-0 d-flex justify-content-center">
+                <li class="mr-2" style="margin-top: -1px;">
+                    <div class="fb-share-button" data-href="https://chocolatey.org/@Request.RawUrl" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchocolatey.org%2F@Request.RawUrl&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
+                </li>
+                <li class="list-inline-item">
+                    <script type="IN/Share" data-url="https://chocolatey.org/@Request.RawUrl"></script>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-12 mx-auto">
+                @if (!String.IsNullOrEmpty(Model.Video))
+                {
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/@Model.Video" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                }
+                else if (!String.IsNullOrEmpty(Model.InternalVideo))
+                {
+                    <video class="embed-responsive embed-responsive-16by9" controls>
+                        <source src="@Url.Content("~/content/images/" + Model.InternalVideo)" type="video/mp4">
+                    </video>
+                }
+            </div>
+            @if (Model.Type.Contains("Customer Success Story"))
+            {
+                <div class="col-lg-10 mx-auto pt-3 pt-lg-5 text-center">
+                    @if (!String.IsNullOrEmpty(Model.Quote))
+                    {
+                        <q class="h3 pb-4">@Model.Quote</q>
+                    }
+                    <h2 class="text-primary"><strong>@Model.Company</strong></h2>
+                    <p class="mb-0"><i>@Model.Name, @Model.Position</i></p>
+                </div>
+            }
+            @if (!Model.Type.Contains("Customer Success Story") && String.IsNullOrEmpty(Model.Post))
+            {
+                <div class="col-12 mx-auto pt-3 pt-lg-5 text-center">
+                    <h5>@Html.Raw(Model.Summary)</h5>
+                </div>
+            }
+            @if (!String.IsNullOrEmpty(Model.Post))
+            {
+                <div class="col-12 mx-auto pt-3 pt-lg-5">
+                    @Html.Raw(Model.Post)
+                </div>
+            }
+        </div>
+        @if (Model.Type.Contains("Feature") && Model.Tags.Contains("c4b-feature"))
+        {
+            <div class="row">
+                @*Loop through videos*@
+            </div>
+        }
+    </div>
+</section>

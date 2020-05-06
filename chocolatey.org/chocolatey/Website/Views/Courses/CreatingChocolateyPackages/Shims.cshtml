@@ -1,0 +1,84 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "All About Shims";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#excluding-executables">Excluding Executables</a></li>
+    <li><a href="#shims-and-gui">Shims and GUI</a></li>
+}
+
+<h2 id="excluding-executables" class="mb-3">How to Exclude Executables from Getting Shims</h2>
+<p>If you have executables in the package or brought into the package folder during PowerShell run and you want to exclude them you need to create an empty file named exactly like (<strong>case sensitive</strong>) the executable with <code>.ignore</code> suffixed on the end in the same directory where the executable is or will be.</p>
+<p>Example: In the case of <code>Bob.exe</code> you would create a file named <code>Bob.exe.ignore</code> and that file would not get a redirect batch link. The Chocolatey package has an example of that. To further expand, <code>bob.exe.ignore</code> would not work because it doesn&#39;t have the correct casing.</p>
+<p>Here's a great <a href="https://github.com/ferventcoder/chocolatey-packages/blob/6ea7c087bd999d428a564b5d7e236ae998ef72e9/automatic/git.commandline/tools/chocolateyInstall.ps1#L13-L20">programmatic example</a>:</p>
+<pre class="border mb-3"><code class="language-powershell">$files = get-childitem $installDir -include *.exe -recurse
+
+foreach ($file in $files) {
+  #generate an ignore file
+  New-Item &quot;$file.ignore&quot; -type file -force | Out-Null
+}</code></pre>
+
+<h2 id="shims-and-gui" class="mt-5 mb-3">Setting Up Shims for Applications That Have a GUI</h2>
+<p>If you don't want to see a hanging window when you open an application from the command line that was set up with Chocolatey, you want to create a file next to the executable that is named exactly the same (<strong>case sensitive</strong>) with <code>.gui</code> suffixed on the end.</p>
+<p>Example: In the case of <code>Bob.exe</code> you would create a file named <code>Bob.exe.gui</code> and that file would be set up as a GUI application so the window will call it and then move on without waiting for it to finish. Again, <code>bob.exe.gui</code> would not work because it doesn't have the correct casing.</p>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>In order to create a shim for a GUI application, which will not leave a hanging command window when executed, what text should be suffixed to the file which is created?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">cli</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">gui</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">ignore</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>If you don’t want Chocolatey to create a shim file for an exe called Application.exe in you Chocolatey Package, what is the name of the file that should be created?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">application.exe.ignore</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">Application.exe.gui</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree">Application.exe.ignore</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

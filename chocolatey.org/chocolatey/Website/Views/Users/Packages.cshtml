@@ -1,0 +1,137 @@
+﻿@model ManagePackagesViewModel
+@{
+    ViewBag.Tab = "Packages";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Scripts");
+}
+
+<section id="secondaryNav">
+    @Html.Partial("~/Views/Shared/_AuthenticationSubNavigation.cshtml")
+</section>
+<section class="container py-3 py-xl-5">
+    <h2 class="text-center text-xl-left">Manage My Packages</h2>
+    <hr />
+    @if (Model.Packages.Any())
+    {
+        <div class="row">
+            <div class="col-12">
+                <h3 class="mb-4">
+                    Published Packages <i class="fas fa-question-circle h4" alt="Save" data-toggle="tooltip" data-placement="top" title="These packages are currently published for the world to see."></i>
+                </h3>
+                @PrintPublishedPackages(Model.Packages.Where(p => p.Listed), unlisted: false)
+            </div>
+        </div>
+        var unlistedPackages = Model.Packages.Where(p => !p.Listed);
+        if (unlistedPackages.Any())
+        {
+            <hr class="mt-4 mb-3 my-xl-5 border-0" />
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="mb-4">
+                        Unlisted Packages <i class="fas fa-question-circle h4" alt="Save" data-toggle="tooltip" data-placement="top" title="These packages are currently unlisted."></i>
+                    </h3>
+                    @PrintPublishedPackages(unlistedPackages, unlisted: true)
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12">
+                <h3>No Packages!</h3>
+                <p>You don't have any packages. Maybe now is a good time to <a href="@Url.UploadPackage()">upload a package</a>.</p>
+            </div>
+        </div>
+    }
+</section>
+@helper PrintPublishedPackages(IEnumerable<PackageViewModel> packages, bool unlisted)
+{
+    var totlalDownloads = 0;
+    <div class="table-responsive-sm">
+        <table class="table table-hover table-striped mb-0">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" class="first actions">Actions</th>
+                    <th scope="col">Package</th>
+                    <th scope="col">Package ID</th>
+                    <th scope="col">Version</th>
+                    <th scope="col">Published</th>
+                    <th scope="col" class="last">Downloads</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var package in packages)
+                {
+                    <tr>
+                        <td class="actions">
+                            @if (unlisted)
+                            {
+                                <a href="@Url.DeletePackage(package)" title="List Package" class="editPackageLink"><img src="@Links.Content.Images.editIcon_png" alt="List Package" /></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.EditPackage(package)" title="Edit" class="editPackageLink" data-toggle="modal" data-target="#package-edit"><img src="@Links.Content.Images.editIcon_png" alt="Edit" /></a>
+                                <a href="@Url.DeletePackage(package)" title="Delete" class="deletePackageLink"><img src="@Links.Content.Images.trash_png" alt="Delete" /></a>
+                            }
+                        </td>
+                        <td>
+                            <a href="@Url.Package(package)" title="View package page.">@package.Title</a>
+                        </td>
+                        <td>@package.Id</td>
+                        <td>@package.Version</td>
+                        <td>@package.PublishedDate.ToString("dd MMM yyyy")</td>
+                        <td>@package.DownloadCount</td>
+                    </tr>
+                    totlalDownloads += package.DownloadCount;
+                }
+            </tbody>
+            <tfoot>
+                <tr class="border-bottom">
+                    <td colspan="5" class="h4">
+                        You have a total of @packages.Count() packages.
+                    </td>
+                    <td class="total h4">
+                        @totlalDownloads
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    foreach (var package in packages)
+    {
+        <div class="modal fade" id="package-edit" tabindex="-1" role="dialog" aria-labelledby="package-edit" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h2 class="mb-0">Edit @package.Title Package</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>To edit the metadata for a package, please upload an updated version of the package.</strong></p>
+                        <p>
+                            Chocolatey's Community Package Repository currently does not allow updating package metadata on the website. This helps ensure
+                            that the package itself (and the source used to build the package) remains the one true
+                            source of package metadata.
+                        </p>
+                        <p class="mb-0">This does require that you increment the package version.</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <a href="@Url.UploadPackage()" class="btn btn-success"><i class="fas fa-upload" alt="Upload"></i> Upload Updated Package</a>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@section BottomScripts
+{
+    <script language="javascript" type="text/javascript">
+        ((window.gitter = {}).chat = {}).options = {
+            room: 'chocolatey/chocolatey.org'
+        };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+}

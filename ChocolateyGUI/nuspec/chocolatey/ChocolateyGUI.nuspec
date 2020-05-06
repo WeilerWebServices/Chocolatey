@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>chocolateygui</id>
+    <version>$version$</version>
+    <title>Chocolatey GUI</title>
+    <authors>Chocolatey</authors>
+    <owners>Chocolatey</owners>
+    <projectUrl>https://github.com/chocolatey/ChocolateyGUI</projectUrl>
+    <projectSourceUrl>https://github.com/chocolatey/ChocolateyGUI</projectSourceUrl>
+    <packageSourceUrl>https://github.com/chocolatey/ChocolateyGUI/tree/develop/nuspec/chocolatey</packageSourceUrl>
+    <iconUrl>https://raw.githubusercontent.com/chocolatey/choco/master/docs/logo/chocolateyicon.gif</iconUrl>
+    <licenseUrl>https://raw.githubusercontent.com/chocolatey/ChocolateyGUI/develop/LICENSE.txt</licenseUrl>
+    <bugTrackerUrl>https://github.com/chocolatey/ChocolateyGUI/issues</bugTrackerUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+Chocolatey GUI is a delicious GUI on top of the Chocolatey command line tool.
+
+## Features
+
+* View all **installed** and **available** packages
+* **Upgrade** installed, but outdated packages
+* **Install** and **uninstall** packages
+* See detailed **package information**
+
+## Package Parameters
+
+- `/ShowConsoleOutput` - Enables/disables whether or not Chocolatey GUI shows output from the commands being executed when a job is running
+- `/DefaultToTileViewForLocalSource` - Enables/disables whether or not Chocolatey GUI defauls to tile instead of list view for the local source view
+- `/DefaultToTileViewForRemoteSource` - Enables/disables whether or not Chocolatey GUI defauls to tile instead of list view for all remote source views
+- `/UseDelayedSearch` - Enables/disables whether or not Chocolatey GUI uses a live search, which returns results after a short delay without clicking the search button
+- `/PreventPreload` - Prevents preloading results with a blank search when opening the remote source view.
+- `/ExcludeInstalledPackages` - Enables/disables whether or not Chocolatey GUI shows packages that are already installed when viewing sources
+- `/ShowAggregatedSourceView` - Enables/disables whether or not Chocolatey GUI shows an additional source combining all sources into one location
+- `/ShowAdditionalPackageInformation` - Show additional package information on Local and Remote views.
+- `/AllowNonAdminAccessToSettings` - Controls whether or not a non-administrator user can access the Settings Screen.  NOTE: This feature will only work when using the licensed extension for Chocolatey and Chocolatey GUI.
+- `/UseKeyboardBindings` - Allows keyboard bindings to be used to interact with different areas of the Chocolatey GUI User Interface.
+- `/HidePackageDownloadCount` - Allows keyboard bindings to be used to interact with different areas of the Chocolatey GUI User Interface.
+- `/OutdatedPackagesCacheDurationInMinutes` - The length of time, in minutes, which Chocolatey GUI will wait before invalidating the cached result of outdated packages for the machine
+
+As an example, the following installation command could be used to enable `ShowConsoleOutput` to ensure `UseDelayedSearch` is disabled, and set the output cache to 120 minutes:
+
+`choco install chocolateygui --params="'/ShowConsoleOutput=$true /UseDelayedSearch=$false /OutdatedPackagesCacheDurationInMinutes=120'"`
+  </description>
+    <summary>A GUI for Chocolatey</summary>
+  <releaseNotes>
+All release notes for Chocolatey GUI can be found on the GitHub site - https://github.com/chocolatey/ChocolateyGUI/releases
+  </releaseNotes>
+    <tags>chocolateygui chocolatey admin foss</tags>
+    <dependencies>
+      <dependency id="Chocolatey" version="0.10.8" />
+      <dependency id="chocolatey-core.extension" version="1.3.3" />
+      <dependency id="dotnet4.5.2" version="4.5.2.20140902" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="chocolateyInstall.ps1" target="tools"/>
+    <file src="chocolateyUninstall.ps1" target="tools"/>
+    <file src="helper.ps1" target="tools"/>
+    <file src="..\..\BuildArtifacts\ChocolateyGUI.msi" target="tools"/>
+    <file src="..\..\LICENSE.txt" target="tools\LICENSE.txt"/>
+    <file src="VERIFICATION.txt" target="tools"/>
+  </files>
+</package>

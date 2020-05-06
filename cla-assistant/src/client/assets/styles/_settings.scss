@@ -1,0 +1,34 @@
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  display: flex;
+}
+
+.settings h4,
+.settings .h4{
+  color: $text-color;
+}
+
+.settings{
+  img{
+    height:1.5em; min-height:15px;
+  }
+}
+
+.hint {
+  color: $gray;
+}
+
+
+// diff-match-patch
+.ins, ins {
+  color: black;
+  background: #bbffbb;
+}
+
+.del, del {
+  color: black;
+  background: #ffbbbb;
+}

@@ -1,0 +1,115 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Uninstalling Chocolatey";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#script">Script</a></li>
+}
+
+<p>Should you decide you don't like Chocolatey, you can uninstall it simply by removing the folder (and the environment variable(s) that it creates). Since it is not actually installed on your system, you don't have to worry that it cluttered up your registry (the applications that you installed with Chocolatey or manually, now that&#39;s a different story).</p>
+<h4 class="mt-4 mb-3">Folder</h4>
+<ul>
+    <li>C:\Chocolatey - for Chocolatey version < <code>0.9.8.27</code></li>
+    <li>C:\ProgramData\chocolatey > <code>0.9.8.27</code></li>
+</ul>
+<p><strong>NOTE:</strong> If you upgraded from <code>0.9.8.26</code> to <code>0.9.8.27</code> it is likely that <code>Chocolatey</code> is installed at C:\Chocolatey, which was the default prior to <code>0.9.8.27</code>. If you did a fresh install of Chocolatey at version <code>0.9.8.27</code> then the installation folder will be <code>C:\ProgramData\Chocolatey</code></p>
+
+<h4 class="mt-4 mb-3">Environment Variables</h4>
+<ul>
+    <li>ChocolateyInstall</li>
+    <li>ChocolateyBinRoot</li>
+    <li>ChocolateyToolsLocation</li>
+    <li>PATH (will need updated to remove)</li>
+</ul>
+
+<h2 id="script" class="mt-5">Script</h2>
+<p>There are no warranties on this script whatsoever, but here is something you can try:</p>
+<div class="callout callout-warning">
+    <strong>WARNING!!</strong> This will remove Chocolatey and all packages, software, and configurations in the Chocolatey Installation folder from your machine. Everything will be GONE. This is very destructive. DO NOT RUN this script unless you completely understand what the intention of this script is and are good with it. If you mess something up, we cannot help you fix it.
+</div>
+<div class="callout callout-danger">
+    <strong class="text-danger">WARNING:</strong> Seriously, this script may destroy your machine and require a rebuild. Think twice before running this.
+</div>
+<p class="text-danger"><strong>Click the red button below to reveal the uninstall scripts.</strong></p>
+<button type="button" class="btn btn-danger btn-hide">Yes, I understand the dangers of running these scripts</button>
+<div id="uninstall-scripts" class="d-none">
+<p>If you also intend to delete the Chocolatey directory, remove the <code>-WhatIf</code>:</p>
+<pre><code class="language-powershell">Remove-Item -Recurse -Force &quot;$env:ChocolateyInstall&quot; -WhatIf
+[System.Text.RegularExpressions.Regex]::Replace([Microsoft.Win32.Registry]::CurrentUser.OpenSubKey(&#39;Environment&#39;).GetValue(&#39;PATH&#39;, &#39;&#39;, [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames).ToString(), [System.Text.RegularExpressions.Regex]::Escape(&quot;$env:ChocolateyInstall\bin&quot;) + &#39;(?&gt;;)?&#39;, &#39;&#39;, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase) | %{[System.Environment]::SetEnvironmentVariable(&#39;PATH&#39;, $_, &#39;User&#39;)}
+[System.Text.RegularExpressions.Regex]::Replace([Microsoft.Win32.Registry]::LocalMachine.OpenSubKey(&#39;SYSTEM\CurrentControlSet\Control\Session Manager\Environment\&#39;).GetValue(&#39;PATH&#39;, &#39;&#39;, [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames).ToString(),  [System.Text.RegularExpressions.Regex]::Escape(&quot;$env:ChocolateyInstall\bin&quot;) + &#39;(?&gt;;)?&#39;, &#39;&#39;, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase) | %{[System.Environment]::SetEnvironmentVariable(&#39;PATH&#39;, $_, &#39;Machine&#39;)}</code></pre>
+<p class="mt-3">If you also intend to delete the tools directory that was managed by Chocolatey, remove both of the <code>-WhatIf</code> switches:</p>
+<pre><code class="language-powershell">if ($env:ChocolateyBinRoot -ne &#39;&#39; -and $env:ChocolateyBinRoot -ne $null) { Remove-Item -Recurse -Force &quot;$env:ChocolateyBinRoot&quot; -WhatIf }
+if ($env:ChocolateyToolsRoot -ne &#39;&#39; -and $env:ChocolateyToolsRoot -ne $null) { Remove-Item -Recurse -Force &quot;$env:ChocolateyToolsRoot&quot; -WhatIf }
+[System.Environment]::SetEnvironmentVariable(&quot;ChocolateyBinRoot&quot;, $null, &#39;User&#39;)
+[System.Environment]::SetEnvironmentVariable(&quot;ChocolateyToolsLocation&quot;, $null, &#39;User&#39;)</code></pre>
+</div>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+              <legend class="d-none">Quiz</legend>
+              @Html.HiddenFor(m => m.CourseName)
+              @Html.HiddenFor(m => m.CourseKey)
+              @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>When uninstalling Chocolatey, will this also remove all the underlying applications that were installed onto your machine?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">No</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">Yes</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>Who is responsible for the outcome of running the uninstallation script that is available on this site?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">Chocolatey Software, Inc.</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">I am</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree">The Chocolatey Community</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)
+
+@section BottomScripts {
+    <script>
+        $(function () {
+            $('.btn-hide').click(function () {
+                $('.btn-hide').addClass('d-none').prev().addClass('d-none');
+                $('#uninstall-scripts').removeClass('d-none');
+            });
+        });
+    </script>
+}

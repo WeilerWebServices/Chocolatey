@@ -1,0 +1,243 @@
+﻿@{
+    ViewBag.Title = "Compare";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/pages.css");
+    Bundles.Reference("Scripts");
+}
+
+<section class="container py-3 py-lg-5" id="compare">
+    <h1 class="text-center pb-3 pb-lg-5">Compare Chocolatey Editions</h1>
+    <table class="table table-bordered border-0">
+        <thead>
+            <tr class="sticky-top">
+                <th class="border-0 d-none d-md-table-cell" scope="col"></th>
+                <th class="sticky-top" scope="col">Open Source</th>
+                <th class="sticky-top" scope="col">Pro</th>
+                <th class="sticky-top" scope="col">Architect</th>
+                <th class="sticky-top" scope="col">Business (C4B)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "create-packages" })">Create Packages</a> / <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-create-custom-package-templates" })">Customize Packaging Templates</a></th>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-host-feed" })">Host Your Own Package Repository</a> - Chocolatey supports <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-sources" })">multiple package sources</a> including your own internal (private and/or authenticated) feeds!</th>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-infrastructure-automation" })">Integration with other tools</a> - Chocolatey works with all infrastructure management and RMM tools!</th>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-shim" })">Package Shims</a> - Adds exes to known PATH, use immediately after installing!</th>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-upgrade" })">Upgrade all software with one command</a> - it's like Windows Update, but for all your internal and 3rd party software!</th>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-reference" })">30+ built-in PowerShell functions</a> - turns complex software management tasks into one line function calls!</th>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-create-extensions" })">Package Extensions</a> - Extend Chocolatey with your own PowerShell Modules (extensions)!</th>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row">Enhanced functionality, additional PowerShell functions - giving you more control, reliability, smoother usage, and covering more scenarios that make sense for organizations!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-automatically-recompile-packages" })">Package Internalizer</a> - Convert existing packages for complete offline / reliable use (removes need for internet access from existing packages)!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-create-packages-from-installers" })">Package Builder</a> - Detect and create full software deployments in 5-10 seconds!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row">Direct Installer (aka Package-less Install) - Install and upgrade directly from exe/msi files!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-create-packages-from-installers" })">Generate Packages from Programs and Features</a> - create packages for all current installs in under 60 seconds?!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-agent-service" })">Background Mode / Self-Service Installer</a> - Chocolatey as a background service so admins and non-admins alike can manage software!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-agent-service" })">Central Console Management UI</a> - Reporting and management of software for your entire organization from one location!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span> (Reporting in Preview)</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-create-packages-from-installers" })">Package Builder UI</a> - A visual interface to create packages!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-synchronize" })">Package Synchronizer - Automatic Sync</a> - keep installed packages synced up with software they are tracking when upgrades and uninstalls are performed outside of Chocolatey!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-synchronize" })#sync-command">Package Synchronizer - Sync Command</a> - create packages out of Programs and Features and bring existing software installations under Chocolatey management!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-package-audit" })">Package Audit</a> - see who installed what/when!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-package-reducer" })">Package Reducer</a> - reduce the size of your package directories automatically!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-package-throttle" })">Package Throttle</a> - reduce download speeds for low bandwidth environments!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-install-directory-override" })">Install Directory Override</a> - one switch for all installers!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-private-cdn" })">Download CDN Cache</a> - no more 404s!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-virus-check" })">Runtime Malware/Virus Protection</a> - stay protected!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-download" })">Package Downloader</a> - download existing packages with an easy command!</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row">Priorization of Bugs and Features</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row">Packaging Support Services - You upload your troublesome installers, we provide you fully automated packages</th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td>Cost Per Use at Any Time</td>
+                <td>Cost Per Use at Any Time</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "community-packages-disclaimer" })">Support for Community Packages</a></th>
+                <td>N/A</td>
+                <td>N/A</td>
+                <td>N/A</td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Support)">Email Support</a></th>
+                <td><span class="fas fa-ban"></span></td>
+                <td>8 Incidents Annually</td>
+                <td><span class="fas fa-check"></span></td>
+                <td><span class="fas fa-check"></span></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="@Url.RouteUrl(RouteName.Support)">Phone Support</a></th>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td><span class="fas fa-ban"></span></td>
+                <td>Available add-on w/Premium Support</td>
+            </tr>
+            <tr>
+                <th scope="row">Licensing &amp; Terms</th>
+                <td><a href="https://github.com/chocolatey/choco/blob/master/LICENSE" rel="noreferrer">Apache v2.0</a></td>
+                <td><a href="https://github.com/chocolatey/choco/blob/master/LICENSE" rel="noreferrer">Apache v2.0</a> + Additional EULA</td>
+                <td><a href="https://chocolatey.box.com/shared/static/juxrqlamujp9llm2x90m5ah9jp89megf.pdf" rel="noreferrer">Master Software License Agreement</a></td>
+                <td><a href="https://chocolatey.box.com/shared/static/juxrqlamujp9llm2x90m5ah9jp89megf.pdf" rel="noreferrer">Master Software License Agreement</a> (redline signature format available on request)</td>
+            </tr>
+            <tr class="d-none">
+                <th class="border-0 d-none d-md-table-cell" scope="row"></th>
+                <td><a href="@Url.RouteUrl(RouteName.Install)" title="Install Now" alt="Install Now"class="btn btn-outline-secondary d-block" target="_blank">Install Now</a></td>
+                <td><a href="https://www.bluesnap.com/jsp/buynow.jsp?contractId=3284622" rel="noreferrer" title="Secure Online Payments by BlueSnap" alt="Secure Online Payments and Credit Card Processing by BlueSnap" class="btn btn-dark d-block" target="_blank">Purchase</a></td>
+                <td><a href="@Url.RouteUrl(RouteName.ContactSales)" title="Contact Sales" alt="Contact Sales" class="btn btn-secondary d-block" target="_blank">Contact Sales</a></td>
+                <td><a href="@Url.RouteUrl(RouteName.ContactSales)" title="Contact Sales" alt="Contact Sales" class="btn btn-outline-primary d-block mb-2" target="_blank">Contact Sales</a><a href="https://www.bluesnap.com/jsp/buynow.jsp?contractId=3343184&quantity=100" rel="noreferrer" title="Secure Online Payments by BlueSnap" alt="Secure Online Payments and Credit Card Processing by BlueSnap" class="btn btn-primary d-block" target="_blank">Purchase</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="@Url.RouteUrl(RouteName.Pricing)" class="btn btn-primary d-md-none w-100 mb-3">Get Pricing</a>
+    <p><small><strong>* Disclaimer: </strong>Estimated release dates do not constitute, and should not be construed as, a promise or commitment by Chocolatey Software, Inc (Chocolatey Software) to develop, market, or deliver any particular product, feature, or function. The timing and content of Chocolatey Software future product releases could differ materially from the expectations discussed here. Chocolatey Software reserves the right to change product plans or roadmap at any time.</small></p>
+    <h4 class="mb-0 text-center">Questions? Please see the <a href="@Url.RouteUrl(RouteName.Pricing)#pricing-faq">FAQ section first.</a> If your question is not answered, please <a href="@Url.RouteUrl(RouteName.ContactUs)" target="_blank"> contact us.</a><br />For special pricing, please  <a href="@Url.RouteUrl(RouteName.ContactSales)" target="_blank"> contact sales.</a> You can also <a href="@Url.RouteUrl(RouteName.ContactTrial)">setup a free evaluation of Chocolatey for Business</a></h4>
+</section>

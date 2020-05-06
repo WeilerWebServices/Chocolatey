@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<registrySnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <user>S-1-5-21-1953236517-242735908-2433092285-500</user>
+  <keys>
+    <key installerType="Msi" displayName="AquaSnap 1.15.1" displayVersion="1.15.1">
+      <RegistryView>Registry32</RegistryView>
+      <KeyPath>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{4D8AEE74-4B7E-4591-904F-46CFDE2329E2}</KeyPath>
+      <DefaultValue />
+      <InstallLocation>C:\Program Files (x86)\AquaSnap\</InstallLocation>
+      <UninstallString>MsiExec.exe /X{4D8AEE74-4B7E-4591-904F-46CFDE2329E2}</UninstallString>
+      <HasQuietUninstall>false</HasQuietUninstall>
+      <Publisher>http://www.nurgo-software.com?utm_source=AquaSnap&amp;utm_medium=application</Publisher>
+      <InstallDate>20151206</InstallDate>
+      <InstallSource>C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\AquaSnap\1.15.1\</InstallSource>
+      <Language>1033</Language>
+      <Version>17760257</Version>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>15</VersionMinor>
+      <SystemComponent>false</SystemComponent>
+      <WindowsInstaller>true</WindowsInstaller>
+      <NoRemove>false</NoRemove>
+      <NoModify>true</NoModify>
+      <NoRepair>false</NoRepair>
+      <ReleaseType />
+      <ParentKeyName />
+    </key>
+  </keys>
+</registrySnapshot>

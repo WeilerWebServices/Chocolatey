@@ -1,0 +1,165 @@
+﻿@using NuGetGallery;
+@{
+    ViewBag.Title = "Why Chocolatey";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Scripts");
+}
+
+<div id="header" class="bg-medium-dark">
+    <section class="py-3 py-lg-5">
+        <div class="container py-3 py-lg-5">
+            <div class="row">
+                <div class="col-lg-10 mx-auto text-center">
+                    <h1 class="display-3">Why Chocolatey?</h1>
+                    <h5 class="mb-0">Deploying software can be repetitive, complex, and error-prone. What if you could quickly solve these issues and spend more time on high value tasks? </h5>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="shape-border shape-border-bottom"></div>
+</div>
+<section class="pb-3 pb-lg-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2>The Problem</h2>
+                <hr class="border-hr" />
+                <p>
+                    We often hear that managing Windows software can be a frustrating or time-consuming experience. In addition, teams may have some automated approaches, but have identified gaps in the experience.
+                    Newer automation approaches (DevOps) and configuration management tools still don't fully address Windows software management in an easy and maintainable way.
+                </p>
+                <p>Some of the common challenges include:</p>
+                <ul class="times-list mb-3">
+                    <li><strong>TIME: </strong>Manual approach to software deployment is time consuming & inefficient</li>
+                    <li><strong>COMPLEXITY: </strong>Traditional tools are complex & ineffective in today's IT environment</li>
+                    <li><strong>COST: </strong>Deploying & managing Windows software without standard package management results in additional overheads</li>
+                </ul>
+                <p>With the ongoing confusion on where do you start? What is the best approach?</p>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="video-story">
+                            <div class="text-center" data-toggle="modal" data-target="#chocolatey-story"><img class="img-fluid shadow mb-3" src="@Url.Content("~/content/images/videos/03-13.jpg")" alt="What is Chocolatey" title="What is Chocolatey" /></div>
+                            <div class="modal fade" id="chocolatey-story" tabindex="-1" role="dialog" aria-labelledby="What is Chocolatey Video" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body p-0">
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" data-src="https://www.youtube.com/embed/Z8olEnt65bk?autoplay=1" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <q class="h5 text-muted text-italic">The biggest challenge is reducing duplication of effort, so users turn to Chocolatey for simplicity.</q>
+                            <p class="text-center">Rob Reynolds, Founder of Chocolatey Software</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-3 py-lg-5 bg-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div id="terminal" class="shadow" style="max-height: 500px;">
+                    <div class="d-flex flex-row-reverse align-items-center bg-white p-2">
+                        <h3 class="mb-0">&times</h3>
+                        <div class="maximize mx-3"></div>
+                        <h3 class="mb-0">-</h3>
+                    </div>
+                    <div class="terminal-body bg-dark text-white p-3 h3 mb-0 text-left">
+                        > choco <span data-animate="install docker-desktop,upgrade nodejs,uninstall flashplayer,search nodejs --id-starts-with,info docker-desktop">install docker-desktop</span><span class="terminal-cursor"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h2>Simplify Complex Processes, Save Time & Effort</h2>
+                <hr class="border-hr" />
+                <p>There are a lot of different installer formats and multiple approaches to deploying Windows software. Deploying software without package management on Windows can be complicated and time-consuming.</p>
+                <p>
+                    System engineers can spend hours deploying and configuring Windows software manually.
+                    Traditional tools were not built for modern automation and a DevOps approach, which can make achieving consistency and gaining insights across your environment difficult.
+                </p>
+                <p>
+                    Chocolatey simplifies this through simple, repeatable, and automated approach, by using a universal packaging format for managing all aspects of Windows software. 
+                    Whether you are managing native installers, zips, script, runtime binaries or in-house developed applications, Chocolatey treats them all as 1st class citizens and gives you a consistent, unified approach to software management!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-3 py-lg-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2>Write Once, Deploy Anywhere, with Anything, and then Simply Track & Manage</h2>
+                <hr class="border-hr" />
+                <p>
+                    Chocolatey aims to automate the entire software lifecycle from install through
+                    upgrade and removal on Windows operating systems. We aim to simplify complex
+                    processes through a single unifying interface allowing you to control the chaos.
+                </p>
+                <p>
+                    Chocolatey for Business allows organizations to adopt a DevOps approach that can
+                    easily manage your Windows environment, delivering applications to servers and
+                    end-users faster and more reliably. By taking advantage of PowerShell to provide
+                    automated software management instructions, Chocolatey’s built-in functions
+                    turn complex tasks into one-line function calls.
+                </p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img width="600" class="img-fluid" src="@Url.Content("~/content/images/upgrade-steps-vertical.jpg")" alt="Upgrade Steps" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-3 py-lg-5 bg-white">
+    <div class="container">
+        <h2>Next Steps</h2>
+        <hr class="border-hr mb-4" />
+        <div class="row">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <span class="fas fa-graduation-cap display-3 text-primary"></span>
+                        <h3 class="text-center mb-0 w-75 mx-auto">I'm new to Chocolatey and want to learn more</h3>
+                    </div>
+                    <div class="card-footer bg-white pt-0 pb-4">
+                        <a href="@Url.RouteUrl(RouteName.Courses)" class="btn btn-primary">Take the Getting Started Course</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <span class="fas fa-tachometer-alt display-3 text-primary"></span>
+                        <h3 class="text-center mb-0 w-75 mx-auto">I'm looking for solutions for my business</h3>
+                    </div>
+                    <div class="card-footer bg-white pt-0 pb-4">
+                        <a href="@Url.RouteUrl(RouteName.Products, new {productName = "home"})" class="btn btn-primary">See Chocolatey Products</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <span class="fas fa-users display-3 text-primary"></span>
+                        <h3 class="text-center mb-0 w-75 mx-auto">I want to join the Chocolatey Community</h3>
+                    </div>
+                    <div class="card-footer bg-white pt-0 pb-4">
+                        <a href="@Url.RouteUrl(RouteName.Community)" class="btn btn-primary">Join the Community</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,29 @@
+﻿@if (TempData.ContainsKey("Message") || TempData.ContainsKey("ErrorMessage"))
+{
+    <div class="modal fade" id="tempdata-message" tabindex="-1" role="dialog" aria-labelledby="tempdata-message" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    @if (TempData.ContainsKey("Message"))
+                    {
+                        <i class="fas fa-check-circle display-1 text-success" alt="Saved Successfully"></i>
+                        <h3>@TempData["Message"]</h3>
+                    }
+                    else
+                    {
+                        <i class="fas fa-times-circle display-1 text-danger" alt="Not Saved"></i>
+                        <h3>@TempData["ErrorMessage"]</h3>
+                    }
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,86 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Terminology";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#terminology">Terminology</a></li>
+}
+
+<h2 id="terminology" class="mb-3">Terminology</h2>
+<p>Software and Package are not terms used interchangeably in the Chocolatey community. It's important to understand the distinction between them and how they are related.</p>
+<ul>
+    <li><strong>Chocolatey</strong> - Windows package manager for software management, can also be considered a framework</li>
+    <li><strong>Chocolatey.org</strong> - Website that is one stop shop for Chocolatey information and contains a community maintained package repository. It is important to understand that Chocolatey and the community feed are not intertwined, they are not the same thing. See <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "community-packages-disclaimer" })">community feed disclaimer</a> to get a better understanding.</li>
+    <li><strong>NuGet</strong> - Framework and .NET package manager for software libraries. Chocolatey uses the NuGet packaging framework</li>
+    <li><strong>Package</strong> - See <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "getting-started" })#what-are-chocolatey-packages" target="_blank">What are Chocolatey Packages?</a>. Packages can contain the software they represent and the final location of software may or may not be in the package.</li>
+    <li><strong>Software</strong> - Software refers to the actual runtime software that a package represents. This can be installed to the system through native installers, or come from zip/archive files or just dropping the runtime software right into the package.</li>
+    <li><strong>Native Installer</strong> - Actual installers that install software into Programs and Features, "natively" on a Windows machine. This is like MSI, InnoSetup (exe), NSIS (exe), InstallShield (exe/msi), etc. Windows has over 20 different installer formats.</li>
+    <li><strong>Install Package</strong> - packages that wrap native installers</li>
+    <li><strong>Portable Package</strong> - packages that use zip or just contain the runtime software. Usually these packages do not require administrative privileges to install or run. See <a href="https://github.com/chocolatey/choco/wiki/ChocolateyFAQs#portable-application-something-that-doesnt-require-a-system-install-to-use">https://github.com/chocolatey/choco/wiki/ChocolateyFAQs#portable-application-something-that-doesnt-require-a-system-install-to-use</a></li>
+    <li><strong>Extension Package</strong> - packages that provide extensions to Chocolatey's PowerShell module through additional PowerShell modules.</li>
+    <li><strong>Template Package</strong> - packages that have packaging templates in them, used in package creation. See <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-create-custom-package-templates" })">create your own package templates</a>.</li>
+    <li><strong>Metapackage</strong> - packages that only exist to take dependencies on other packages, usually as a way of providing one command to get a complete setup. Some metapackages exist to provide discoverability, such as "git" versus "git.install." The git package just depends on git.install, so running the install for either package will result in the git software being installed on the machine.</li>
+    <li><strong>Virtual package</strong> - a concept that a package can "provide" some functionality and any package that meets that provides will be considered a dependency met. For example, if you need to take a dependency on a pdf reader, you wouldn't want to take a hard dependency on AdobeReader, but instead you would hope that adobereader provides pdf as well as other packages like SumatraPDF and FoxitReader. Then you could take a dependency on pdf and if any of those packages are installed, the dependency is met. Otherwise an algorithm would determine which one to install. THIS IS NOT IMPLEMENTED AT THIS TIME WITH CHOCOLATEY.</li>
+</ul>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>What is a Chocolatey metapackage?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">Packages that only exist to take dependencies on other packages</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">Packages that wrap native installers</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">Packages that use zip or just contain the runtime software</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>What is the correct terminology used to describe a Chocolatey Package that provides extensions to Chocolatey’s PowerShell Module through additional PowerShell modules?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">Extension Package</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">Template Package</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree">Virtual Package</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

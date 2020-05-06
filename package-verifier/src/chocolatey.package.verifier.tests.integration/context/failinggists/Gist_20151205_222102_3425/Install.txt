@@ -1,0 +1,211 @@
+﻿==> default: Running provisioner: shell...
+    default: Running: shell/VagrantAction.ps1 as c:\tmp\vagrant-shell.ps1
+==> default: Chocolatey is running on Windows v 6.3.9600.0
+==> default: Attempting to delete file "C:/ProgramData/chocolatey/choco.exe.old".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\choco.exe.old".
+==> default: Command line: "C:\ProgramData\chocolatey\choco.exe" install AquaSnap --version 1.15.1 -fdvy
+==> default: Received arguments: install AquaSnap --version 1.15.1 -fdvy
+==> default: NOTE: Hiding sensitive configuration data! Please double and triple 
+==> default:  check to be sure no sensitive data is shown, especially if copying 
+==> default:  output to a gist for review.
+==> default: Configuration: CommandName='install'|
+==> default: CacheLocation='C:\Users\ADMINI~1\AppData\Local\Temp'|
+==> default: ContainsLegacyPackageInstalls='True'|
+==> default: CommandExecutionTimeoutSeconds='2700'|
+==> default: Sources='https://chocolatey.org/api/v2/'|Debug='True'|Verbose='True'|
+==> default: Force='True'|Noop='False'|HelpRequested='False'|RegularOutput='True'|
+==> default: QuietOutput='False'|PromptForConfirmation='False'|AcceptLicense='True'|
+==> default: AllowUnofficialBuild='False'|Input='AquaSnap'|Version='1.15.1'|
+==> default: AllVersions='False'|SkipPackageInstallProvider='False'|
+==> default: PackageNames='AquaSnap'|Prerelease='False'|ForceX86='False'|
+==> default: 
+==> default: OverrideArguments='False'|NotSilent='False'|IgnoreDependencies='False'|
+==> default: AllowMultipleVersions='False'|AllowDowngrade='False'|
+==> default: ForceDependencies='False'|Information.PlatformType='Windows'|
+==> default: Information.PlatformVersion='6.3.9600.0'|
+==> default: Information.PlatformName='Windows Server 2012 R2'|
+==> default: Information.ChocolateyVersion='0.9.9.11'|
+==> default: Information.ChocolateyProductVersion='0.9.9.11'|
+==> default: Information.FullName='choco, Version=0.9.9.11, Culture=neutral, PublicKeyToken=79d02ea9cad655eb'|
+==> default: 
+==> default: Information.Is64Bit='True'|Information.IsInteractive='False'|
+==> default: Information.IsUserAdministrator='True'|
+==> default: Information.IsProcessElevated='True'|Features.AutoUninstaller='True'|
+==> default: Features.CheckSumFiles='True'|Features.FailOnAutoUninstaller='False'|
+==> default: ListCommand.LocalOnly='False'|
+==> default: ListCommand.IncludeRegistryPrograms='False'|
+==> default: UpgradeCommand.FailOnUnfound='False'|
+==> default: UpgradeCommand.FailOnNotInstalled='False'|
+==> default: UpgradeCommand.NotifyOnlyAvailableUpgrades='False'|
+==> default: NewCommand.AutomaticPackage='False'|SourceCommand.Command='unknown'|
+==> default: SourceCommand.Priority='0'|FeatureCommand.Command='unknown'|
+==> default: ConfigCommand.Command='unknown'|PushCommand.TimeoutInSeconds='0'|
+==> default: PinCommand.Command='unknown'|
+==> default: _ Chocolatey:ChocolateyInstallCommand - Normal Run Mode _
+==> default: Installing the following packages:
+==> default: AquaSnap
+==> default: By installing you accept licenses for the packages.
+==> default: [NuGet] Installing 'AquaSnap 1.15.1'.
+==> default: [NuGet] Added file 'AquaSnap.png' to folder 'AquaSnap'.
+==> default: 
+==> default: [NuGet] Added file 'ChocolateyInstall.ps1' to folder 'AquaSnap\tools'.
+==> default: [NuGet] Added file 'ChocolateyUninstall.ps1' to folder 'AquaSnap\tools'.
+==> default: [NuGet] Added file 'AquaSnap.nupkg' to folder 'AquaSnap'.
+==> default: [NuGet] Successfully installed 'AquaSnap 1.15.1'.
+==> default: 
+==> default: AquaSnap v1.15.1 (forced)
+==> default: Contents of 'C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyInstall.ps1':
+==> default: $packageName = 'AquaSnap'
+==> default: $installerType = 'msi'
+==> default: $url  = 'http://www.nurgo-software.com/download/AquaSnap.msi'
+==> default: $silentArgs = '/qb'
+==> default: $validExitCodes = @(0)
+==> default: 
+==> default: Install-ChocolateyPackage "$packageName" "$installerType" "$silentArgs" "$url" "$url" -validExitCodes $validExitCodes
+==> default: Calling command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; 
+==> default: & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyInstall.ps1' -installArguments '' -packageParameters ''"']
+==> default:  DEBUG: Posh version is 4.0
+==> default: 
+==> default:  VERBOSE: Exporting function 'Get-BinRoot'.
+==> default:  VERBOSE: Exporting function 'Get-ChecksumValid'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyUnzip'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyWebFile'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariableNames'.
+==> default:  VERBOSE: Exporting function 'Get-FtpFile'.
+==> default:  VERBOSE: Exporting function 'Get-ProcessorBits'.
+==> default:  VERBOSE: Exporting function 'Get-UACEnabled'.
+==> default:  VERBOSE: Exporting function 'Get-VirusCheckValid'.
+==> default:  VERBOSE: Exporting function 'Get-WebFile'.
+==> default:  VERBOSE: Exporting function 'Get-WebHeaders'.
+==> default:  VERBOSE: Exporting function 'Install-BinFile'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyDesktopLink'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyEnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyExplorerMenuItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyFileAssociation'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyInstallPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPackage'.
+==> default: 
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPath'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPinnedTaskBarItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPowershellCommand'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyShortcut'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyVsixPackage'.
+==> default:  VERBOSE: Exporting function 'Install-Vsix'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Set-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Start-ChocolateyProcessAsAdmin'.
+==> default:  VERBOSE: Exporting function 'Test-ProcessAdminRights'.
+==> default: 
+==> default:  VERBOSE: Exporting function 'Uninstall-BinFile'.
+==> default:  VERBOSE: Exporting function 'Uninstall-ChocolateyPackage'.
+==> default: 
+==> default:  VERBOSE: Exporting function 'UnInstall-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Update-SessionEnvironment'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateyFailure'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateySuccess'.
+==> default:  VERBOSE: Exporting function 'Write-FileUpdateLog'.
+==> default:  VERBOSE: Exporting alias 'Generate-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Add-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Remove-BinFile'.
+==> default:  DEBUG: Running 'Install-ChocolateyPackage' for AquaSnap with 
+==> default:  url:'http://www.nurgo-software.com/download/AquaSnap.msi', args: '/qb', 
+==> default:  fileType: 'msi', url64bit: 
+==> default:  'http://www.nurgo-software.com/download/AquaSnap.msi', checksum: '', 
+==> default:  checksumType: '', checksum64: '', checksumType64: '', validExitCodes: '0' 
+==> default:  DEBUG: Running 'Get-ChocolateyWebFile' for AquaSnap with 
+==> default:  url:'http://www.nurgo-software.com/download/AquaSnap.msi', 
+==> default:  fileFullPath:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\AquaSnap\1.15.1\A
+==> default:  quaSnapInstall.msi', 
+==> default:  url64bit:'http://www.nurgo-software.com/download/AquaSnap.msi', checksum: '', 
+==> default:  checksumType: '', checksum64: '', checksumType64: ''
+==> default:  DEBUG: Running 'Get-ProcessorBits'
+==> default:  DEBUG: CPU is 64 bit
+==> default:  DEBUG: Setting url to 'http://www.nurgo-software.com/download/AquaSnap.msi' and
+==> default:   bitPackage to 64
+==> default:  DEBUG: Running 'Get-WebHeaders' with 
+==> default:  url:'http://www.nurgo-software.com/download/AquaSnap.msi', userAgent: 
+==> default:  'chocolatey command line'
+==> default:  DEBUG: Setting the UserAgent to 'chocolatey command line'
+==> default:  DEBUG: Request Headers:
+==> default:  DEBUG:   'Accept':'*/*'
+==> default:  DEBUG:   'User-Agent':'chocolatey command line'
+==> default:  DEBUG: Response Headers:
+==> default: 
+==> default:  DEBUG:   'Connection':'keep-alive'
+==> default:  DEBUG:   'X-Cacheable':'Cacheable'
+==> default:  DEBUG:   'X-CDN-Geo':'chi'
+==> default: 
+==> default:  DEBUG:   'X-CDN-Geo-IP':'46.105.194.69'
+==> default:  DEBUG:   'X-CDN-Any-IP':'213.186.33.107'
+==> default:  DEBUG:   'Accept-Ranges':'bytes'
+==> default:  DEBUG:   'Content-Length':'3950779'
+==> default:  DEBUG:   'Cache-Control':'max-age=1'
+==> default:  DEBUG:   'Content-Type':'application/x-msdownload'
+==> default:  DEBUG:   'Date':'Sun, 06 Dec 2015 06:20:06 GMT'
+==> default:  DEBUG:   'Expires':'Sun, 06 Dec 2015 06:20:07 GMT'
+==> default:  DEBUG:   'Last-Modified':'Wed, 23 Sep 2015 20:06:55 GMT'
+==> default:  Downloading AquaSnap 64 bit
+==> default:    from 'http://www.nurgo-software.com/download/AquaSnap.msi'
+==> default:  DEBUG: Running 'Get-WebFile' for 
+==> default: 
+==> default:  C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\AquaSnap\1.15.1\AquaSnapInstall
+==> default:  .msi with url:'http://www.nurgo-software.com/download/AquaSnap.msi', userAgent:
+==> default:   'chocolatey command line' 
+==> default:  DEBUG: Setting the UserAgent to 'chocolatey command line'
+==> default:  DEBUG: Checking that 
+==> default: 
+==> default:  'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\AquaSnap\1.15.1\AquaSnapInstal
+==> default:  l.msi' is the size we expect it to be.
+==> default:  DEBUG: Verifying package provided checksum of '' for 
+==> default: 
+==> default:  'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\AquaSnap\1.15.1\AquaSnapInstal
+==> default:  l.msi'.
+==> default:  DEBUG: Running 'Get-ChecksumValid' with 
+==> default:  file:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\AquaSnap\1.15.1\AquaSnapI
+==> default:  nstall.msi', checksum: '', checksumType: ''
+==> default:  DEBUG: Running 'Install-ChocolateyInstallPackage' for AquaSnap with 
+==> default:  file:'C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\AquaSnap\1.15.1\AquaSnapI
+==> default:  nstall.msi', args: '/qb', fileType: 'msi', validExitCodes: '0' 
+==> default:  Installing AquaSnap...
+==> default:  DEBUG: Running 'Start-ChocolateyProcessAsAdmin' with exeToRun:'msiexec', 
+==> default: 
+==> default:  statements: '/i 
+==> default:  "C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\AquaSnap\1.15.1\AquaSnapInstal
+==> default:  l.msi" /qb ' 
+==> default:  DEBUG: Elevating Permissions and running msiexec /i 
+==> default:  "C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\AquaSnap\1.15.1\AquaSnapInstal
+==> default:  l.msi" /qb . This may take a while, depending on the statements.
+==> default:  DEBUG: Finishing 'Start-ChocolateyProcessAsAdmin'
+==> default: 
+==> default:  AquaSnap has been installed.
+==> default: Command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyInstall.ps1' -installArguments '' -packageParameters ''"'] exited with '0'
+==> default: Calling command ['"shutdown" /a']
+==> default: Command ['"shutdown" /a'] exited with '1116'
+==> default: Capturing package files in 'C:\ProgramData\chocolatey\lib\AquaSnap'
+==> default: 
+==> default:  Found 'C:\ProgramData\chocolatey\lib\AquaSnap\AquaSnap.nupkg'
+==> default:   with checksum '2AE441E4591807CAC88A6656B35FC6E6'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\AquaSnap\AquaSnap.png'
+==> default:   with checksum '937E0B688A818F30C7CC82D56EEB6E71'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyInstall.ps1'
+==> default:   with checksum '9C9613385ED336A2651E864FC6D504AF'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyUninstall.ps1'
+==> default:   with checksum '33ACC853A7A23CE93C245069B379BA03'
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\extensions".
+==> default: Adding 'Hidden' attribute(s) to 'C:\ProgramData\chocolatey\.chocolatey'.
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\.chocolatey\AquaSnap.1.15.1".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\.chocolatey\AquaSnap.1.15.1\.registry.update"
+==> default: 
+==> default:  to "C:\ProgramData\chocolatey\.chocolatey\AquaSnap.1.15.1\.registry".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\AquaSnap.1.15.1\.registry.update".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\.chocolatey\AquaSnap.1.15.1\.files.update"
+==> default:  to "C:\ProgramData\chocolatey\.chocolatey\AquaSnap.1.15.1\.files".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\AquaSnap.1.15.1\.files.update".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\AquaSnap.1.15.1\.sxs".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\AquaSnap.1.15.1\.pin".
+==> default:  The install of aquasnap was successful.
+==> default: Chocolatey installed 1/1 package(s). 0 package(s) failed.
+==> default: 
+==> default:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+==> default: Exiting with 0

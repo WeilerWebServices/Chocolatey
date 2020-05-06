@@ -1,0 +1,36 @@
+﻿@model ResendConfirmationEmailViewModel
+@{
+    ViewBag.Title = "Resend Email Confirmation";
+    Layout = "~/Views/Shared/MinimalLayout.cshtml";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/account.css");
+    Bundles.Reference("Scripts");
+    Bundles.Reference("Scripts/validation");
+}
+
+<h3 class="text-center">Resend Email Confirmation</h3>
+<p>
+    We are sorry to hear you did not get our confirmation email. Enter your email below
+    and we will resend the confirmation email. Alternatively you might have been
+    redirected to this page because the confirmation link you clicked was old and needs
+    to be updated. Enter your email address and a new one will be sent, sorry for the
+    inconvenience.
+</p>
+<hr class="mb-0" />
+@using (Html.BeginForm())
+{
+    <fieldset class="form">
+        <legend class="d-none">Resend Email Confirmation</legend>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="form-field">
+            @Html.LabelFor(m => m.Email) <span class="fas fa-asterisk"></span>
+            @Html.EditorFor(m => m.Email)
+            <span class="field-hint-message">The Email field is required.</span>
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <p class="mb-0 mt-3"><small>Fields marked with</small> <span class="fas fa-asterisk"></span> <small>are required.</small></p>
+        <input class="btn btn-primary mx-auto mt-3 d-block" type="submit" value="Send" title="Resend Email Confirmation" />
+        <p class="mb-0 mt-2 text-center"><small><a class="cancel" href="@Url.LogOn()" title="Cancel Changes and go back.">Cancel</a></small></p>
+    </fieldset>
+}

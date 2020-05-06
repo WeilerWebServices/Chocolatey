@@ -1,0 +1,126 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildScripts", "BuildScripts", "{E959DA78-673C-42A8-B935-F9665BC4C54B}"
+	ProjectSection(SolutionItems) = preProject
+		BuildScripts\bootstrapper.ps1 = BuildScripts\bootstrapper.ps1
+		BuildScripts\BoxstarterChocolateyInstall.ps1 = BuildScripts\BoxstarterChocolateyInstall.ps1
+		BuildScripts\build.proj = BuildScripts\build.proj
+		BuildScripts\build.ps1 = BuildScripts\build.ps1
+		BuildScripts\chocolateyinstall.ps1 = BuildScripts\chocolateyinstall.ps1
+		BuildScripts\default.ps1 = BuildScripts\default.ps1
+		BuildScripts\releaseNotes.xml = BuildScripts\releaseNotes.xml
+		BuildScripts\setup.bat = BuildScripts\setup.bat
+		BuildScripts\setup.ps1 = BuildScripts\setup.ps1
+		BuildScripts\VERIFICATION.txt = BuildScripts\VERIFICATION.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9934F8F4-B4E6-4C70-8BEA-30CCF926284A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		BoxStarter.bat = BoxStarter.bat
+		boxstarter.config = boxstarter.config
+		BoxstarterShell.ps1 = BoxstarterShell.ps1
+		build.bat = build.bat
+		LICENSE.txt = LICENSE.txt
+		NOTICE.txt = NOTICE.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{87B9154F-EDBF-47CE-AAF2-7ECF4B6C9A93}"
+	ProjectSection(SolutionItems) = preProject
+		BuildScripts\nuget\Boxstarter.Azure.nuspec = BuildScripts\nuget\Boxstarter.Azure.nuspec
+		BuildScripts\nuget\boxstarter.bootstrapper.nuspec = BuildScripts\nuget\boxstarter.bootstrapper.nuspec
+		BuildScripts\nuget\boxstarter.chocolatey.nuspec = BuildScripts\nuget\boxstarter.chocolatey.nuspec
+		BuildScripts\nuget\BoxStarter.Common.nuspec = BuildScripts\nuget\BoxStarter.Common.nuspec
+		BuildScripts\nuget\Boxstarter.HyperV.nuspec = BuildScripts\nuget\Boxstarter.HyperV.nuspec
+		BuildScripts\nuget\boxstarter.nuspec = BuildScripts\nuget\boxstarter.nuspec
+		BuildScripts\nuget\Boxstarter.TestRunner.nuspec = BuildScripts\nuget\Boxstarter.TestRunner.nuspec
+		BuildScripts\nuget\BoxStarter.WinConfig.nuspec = BuildScripts\nuget\BoxStarter.WinConfig.nuspec
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{85FA5520-9E21-4B74-92EA-D855DF17E8E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boxstarter.WebLaunch", "Boxstarter.ClickOnce\Boxstarter.WebLaunch.csproj", "{7339091F-13A0-4353-8DED-589BDFC8FE0F}"
+EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Boxstarter.Chocolatey", "Boxstarter.Chocolatey\Boxstarter.Chocolatey.pssproj", "{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}"
+EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Boxstarter.Bootstrapper", "Boxstarter.Bootstrapper\Boxstarter.Bootstrapper.pssproj", "{5E1CDDBB-95BC-4F9D-8491-D7AD6C497D2C}"
+EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Tests", "Tests\Tests.pssproj", "{A76A363C-7088-497F-914B-C3239B8D1D73}"
+EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Boxstarter.WinConfig", "Boxstarter.WinConfig\Boxstarter.WinConfig.pssproj", "{D63439CD-1975-444D-94EA-EC0948179464}"
+EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Boxstarter.Common", "Boxstarter.Common\Boxstarter.Common.pssproj", "{8C57DF4B-E993-4E7D-A531-5E1F2F4223AD}"
+EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "BuildPackages", "BuildPackages\BuildPackages.pssproj", "{E70B5066-8334-412E-9F1D-6D60FFC9A635}"
+EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Boxstarter.HyperV", "Boxstarter.HyperV\Boxstarter.HyperV.pssproj", "{00AD20D0-9FF8-4E4B-9B9A-006D06430FD0}"
+EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Boxstarter.Azure", "Boxstarter.Azure\Boxstarter.Azure.pssproj", "{AFE71B90-0CD1-42B8-9E7A-FFB2791AB326}"
+EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Boxstarter.TestRunner", "Boxstarter.TestRunner\Boxstarter.TestRunner.pssproj", "{C950BEFC-B3EE-4DCD-A0A6-A2244584D1E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{85FA5520-9E21-4B74-92EA-D855DF17E8E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85FA5520-9E21-4B74-92EA-D855DF17E8E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85FA5520-9E21-4B74-92EA-D855DF17E8E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85FA5520-9E21-4B74-92EA-D855DF17E8E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7339091F-13A0-4353-8DED-589BDFC8FE0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7339091F-13A0-4353-8DED-589BDFC8FE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7339091F-13A0-4353-8DED-589BDFC8FE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7339091F-13A0-4353-8DED-589BDFC8FE0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E1CDDBB-95BC-4F9D-8491-D7AD6C497D2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E1CDDBB-95BC-4F9D-8491-D7AD6C497D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E1CDDBB-95BC-4F9D-8491-D7AD6C497D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E1CDDBB-95BC-4F9D-8491-D7AD6C497D2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A76A363C-7088-497F-914B-C3239B8D1D73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76A363C-7088-497F-914B-C3239B8D1D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76A363C-7088-497F-914B-C3239B8D1D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76A363C-7088-497F-914B-C3239B8D1D73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D63439CD-1975-444D-94EA-EC0948179464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D63439CD-1975-444D-94EA-EC0948179464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D63439CD-1975-444D-94EA-EC0948179464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D63439CD-1975-444D-94EA-EC0948179464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C57DF4B-E993-4E7D-A531-5E1F2F4223AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C57DF4B-E993-4E7D-A531-5E1F2F4223AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C57DF4B-E993-4E7D-A531-5E1F2F4223AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C57DF4B-E993-4E7D-A531-5E1F2F4223AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E70B5066-8334-412E-9F1D-6D60FFC9A635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E70B5066-8334-412E-9F1D-6D60FFC9A635}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E70B5066-8334-412E-9F1D-6D60FFC9A635}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E70B5066-8334-412E-9F1D-6D60FFC9A635}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00AD20D0-9FF8-4E4B-9B9A-006D06430FD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00AD20D0-9FF8-4E4B-9B9A-006D06430FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00AD20D0-9FF8-4E4B-9B9A-006D06430FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00AD20D0-9FF8-4E4B-9B9A-006D06430FD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFE71B90-0CD1-42B8-9E7A-FFB2791AB326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFE71B90-0CD1-42B8-9E7A-FFB2791AB326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFE71B90-0CD1-42B8-9E7A-FFB2791AB326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFE71B90-0CD1-42B8-9E7A-FFB2791AB326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C950BEFC-B3EE-4DCD-A0A6-A2244584D1E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C950BEFC-B3EE-4DCD-A0A6-A2244584D1E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C950BEFC-B3EE-4DCD-A0A6-A2244584D1E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C950BEFC-B3EE-4DCD-A0A6-A2244584D1E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{87B9154F-EDBF-47CE-AAF2-7ECF4B6C9A93} = {E959DA78-673C-42A8-B935-F9665BC4C54B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BDC0F1CE-AD79-4619-9325-75AB1768C3CE}
+	EndGlobalSection
+EndGlobal

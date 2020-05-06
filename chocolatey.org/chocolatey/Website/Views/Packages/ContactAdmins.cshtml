@@ -1,0 +1,81 @@
+﻿@model ContactAdminsViewModel
+@{
+    ViewBag.Tab = "Packages";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/account.css");
+    Bundles.Reference("Scripts");
+    Bundles.Reference("Scripts/validation");
+}
+@section TopScripts {
+    <script>
+        function onSubmit(token) {
+            document.getElementById("i-recaptcha").submit();
+        }
+    </script>
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+}
+
+<section id="secondaryNav">
+    @Html.Partial("~/Views/Shared/_AuthenticationSubNavigation.cshtml")
+</section>
+<section class="container py-3 py-xl-5" id="account">
+    <div class="row">
+        <div class="col-xl-10 mx-auto">
+            <h2 class="text-center text-xl-left">Contact Website Administrators about <a href="@Url.Package(Model.PackageId,  null)">@Model.PackageId</a></h2>
+            <hr />
+            <div class="callout callout-secondary">
+                <p>
+                    <strong>Important:</strong> This form is for contacting site administrators about packages that are seriously neglected or to work through the package triage process to become a co-maintainer. If "@Model.PackageId" simply doesn't
+                    appear to work or work correctly, please
+                    <a href="@Url.Action(MVC.Packages.ContactOwners(Model.PackageId))" title="contact the maintainers">contact the maintainers of "@Model.PackageId".</a>
+                </p>
+                <p><strong>Note:</strong> If you want to report abuse, please <a href="@Url.Action(MVC.Packages.ReportAbuse(Model.PackageId, Model.PackageVersion))" title="Report Abuse">report abuse</a>.</p>
+                <p>If you are contacting the admins for a package that is outdated, please be sure you have contacted the maintainers of the package first and waited the allotted time prior to continuing the package triage process.</p>
+            </div>
+            <div class="callout callout-warning">
+                <p> Are you a software vendor? Please read this first - <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "package-triage-process" })#are-you-a-software-vendor">Have my distribution rights been violated?</a></p>
+                <p>If you are here to request/ask about helping with package maintenance, you've come to the right place!</p>
+            </div>
+            <div class="callout callout-danger">
+                <p><strong>Do not share sensitive information with this form.</strong></p>
+            </div>
+            @using (Html.BeginForm("ContactAdmins", "Packages", FormMethod.Post, new { id = "i-recaptcha" }))
+            {
+                <fieldset class="form">
+                    <legend class="d-none">Contact Admins</legend>
+                    @Html.AntiForgeryToken()
+                    <div class="form-field">
+                        @if (!Model.ConfirmedUser)
+                        {
+                            @Html.LabelFor(m => m.Email) <span class="fas fa-asterisk"></span>
+                            @Html.EditorFor(m => m.Email)
+                            <span class="field-hint-message">Provide your email address so we can follow up with you.</span>
+                            @Html.ValidationMessageFor(m => m.Email)
+                        }
+                        else
+                        {
+                            <input type="hidden" name="Email" value="test@example.com" />
+                        }
+                    </div>
+                    <div class="form-field mt-3">
+                        @Html.LabelFor(m => m.Message) <span class="fas fa-asterisk"></span>
+                        @Html.TextAreaFor(m => m.Message, new { @rows = 5 })
+                        @Html.ValidationMessageFor(m => m.Message)
+                    </div>
+                    <div class="form-field my-3">
+                        <label class="for-checkbox checkbox">
+                            @Html.CheckBoxFor(m => m.CopySender, new { @class = "check-box" })
+                            Send me a copy
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="form-field">
+                        @Html.ValidationMessageFor(m => m.SpamValidationResponse)
+                    </div>
+                    <p class="mt-3"><small>Fields marked with</small> <span class="fas fa-asterisk"></span> <small>are required.</small></p>
+                    <input class="btn btn-primary g-recaptcha" data-sitekey="@System.Configuration.ConfigurationManager.AppSettings["reCAPTCHA::PublicKey"]" data-callback="onSubmit" data-badge="bottomleft" type="submit" value="Send Message" title="Contact Admins about '@Model.PackageId'" />
+                </fieldset>
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MarkdownPostViewModel>
+@{
+    ViewBag.Title = "The Official Chocolatey Blog";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/pages.css");
+    Bundles.Reference("Scripts");
+}
+
+<section id="secondaryNav">
+    @Html.Partial("~/Views/Shared/_ResourceSubNavigation.cshtml")
+</section>
+<section id="blogList" class="py-3 py-lg-5">
+    <div class="container">
+        <h1 class="pb-4 text-center">Chocolatey Blog</h1>
+        <div class="row">
+            @foreach (var post in @Model)
+            {
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body h-100">
+                            <div class="row h-100">
+                                <div class="d-none d-sm-block col-sm-3 col-xl-2 text-center blog-img">
+                                    @Html.Raw(post.Image)
+                                </div>
+                                <div class="col-sm-9 col-xl-10 d-flex flex-column">
+                                    <h4 class="mb-0">@post.Title</h4>
+                                    <p class="text-muted mb-2"><small>By @post.Author | @post.Published.GetValueOrDefault().ToLongDateString()</small></p>
+                                    @if (post.Summary.Length < 125)
+                                    {
+                                        <p>@post.Summary</p>
+                                    }
+                                    else
+                                    {
+                                        <p>@post.Summary.Substring(0, 125)<text>...</text></p>
+                                    }
+                                    <div class="mt-auto"><a class="btn btn-primary" href="@Url.RouteUrl(RouteName.BlogArticle, new { articleName = post.UrlPath })">Continue Reading<span class="fas fa-angle-right"></span></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section BottomScripts {
+    <script>
+        $(function () {
+            $('.blog-img:not(:has(img))').append('<img src="https://cloud.githubusercontent.com/assets/63502/19225605/12326f66-8e65-11e6-9640-183716e99a39.png" alt="Chocolatey Software" />');
+        });
+    </script>
+}

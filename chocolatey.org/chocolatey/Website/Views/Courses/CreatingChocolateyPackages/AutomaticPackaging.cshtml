@@ -1,0 +1,95 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Automatic Packaging";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#credits">Credits</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#setup">Setup</a></li>
+    <li><a href="#au-documentation">AU Documentation</a></li>
+}
+
+<h2 id="credits" class="mb-3">About Automatic Packaging and Credits</h2>
+<p>Automatic packaging is a process that <strong>package maintainers can run on <em>their own</em> to keep the packages they maintain up to date</strong>. It is not a required step for maintaining packages on the community feed (<a href="https://chocolatey.org/packages" class="uri">https://chocolatey.org/packages</a>), but it is recommended you find a way to automate the delivery of packages to the community feed when there are updates if you are going to maintain more than 5 packages and you are not the software vendor for the packages you maintain.</p>
+<div class="callout callout-primary"><strong>NOTE:</strong> Not to be confused with the automatic package creation feature in <a href="https://chocolatey.org/pricing">Chocolatey for Business</a> - that feature creates packages directly from software installer files. This feature is for package maintenance of existing packages on the community feed.</div>
+<p>You can learn more about the AU updater via its <a href="https://github.com/majkinetor/au/blob/master/README.md">documentation</a>. It is a PowerShell module, so you are doing everything with PowerShell scripts. You can also run everything on AppVeyor so you are not required to schedule updater on your own machine.</p>
+<p>AU is brought to you by a Chocolatey community member <a href="https://github.com/majkinetor">Miodrag Milic</a> and it is becoming more awesome all the time.</p>
+
+<h2 id="requirements" class="mt-5 mb-3">Requirements</h2>
+<ul>
+    <li>PowerShell v5+.</li>
+    <li>The <a href="https://chocolatey.org/packages/au">AU module</a>.</li>
+</ul>
+
+<h2 id="setup" class="mt-5 mb-3">Setup</h2>
+<ol>
+    <li>Fork <a href="https://github.com/chocolatey-community/chocolatey-test-environment"><code>chocolatey-packages-template</code></a> and rename it to something like <code>chocolatey-packages</code> (on GitHub - go into Settings, Repository name and rename).</li>
+    <li>Clone the repo locally.</li>
+    <li>Head into the setup folder and look for <code>au_setup.ps1</code>. Review that file and then run it.</li>
+    <li>Follow the <a href="https://github.com/chocolatey-community/chocolatey-test-environment">README</a> in the setup folder.</li>
+</ol>
+<p>When creating packages, do not use <code>--auto</code> as AU doesn't use token replacement for updating packages, it replaces the xml elements and code directly.</p>
+
+<h2 id="au-documentation" class="mt-5 mb-3">Everything Related to AU</h2>
+<p>AU maintains its own documentation at <a href="https://github.com/majkinetor/au/blob/master/README.md">documentation</a>.</p>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>What is the recommended way to create an automatically updating Chocolatey Package?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">Manually</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">Automatic Updater</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">Ketarin</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>What is the minimum PowerShell version that is supported by AU?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">PowerShell Core</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">PowerShell 3</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree">PowerShell 5</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

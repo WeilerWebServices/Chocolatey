@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Chocolatey</ShortName>
+  <Description>Search Chocolatey's Community Package Repository</Description>
+  <Url type="text/html" method="get" template="https://chocolatey.org/packages?q={searchTerms}"/>
+  <Image>https://chocolatey.org/favicon.ico</Image>
+  <InputEncoding>UTF-8</InputEncoding>
+  <SearchForm>https://chocolatey.org/</SearchForm>
+</OpenSearchDescription>

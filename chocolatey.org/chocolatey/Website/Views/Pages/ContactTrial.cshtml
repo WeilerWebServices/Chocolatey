@@ -1,0 +1,93 @@
+﻿@using NuGetGallery
+@model ContactTrialViewModel
+@{
+    ViewBag.Title = "Trial";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/account.css");
+    Bundles.Reference("Scripts");
+    Bundles.Reference("Scripts/validation");
+}
+@section TopScripts {
+    <script>
+        function onSubmit(token) {
+            document.getElementById("i-recaptcha").submit();
+        }
+    </script>
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+}
+
+<section id="account">
+    <div class="container py-3 py-lg-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <h2 class="text-primary">Contact Us to Setup a Free Chocolatey for Business Trial</h2>
+                <h4>Please provide the information below and we'll reach out as soon as possible.</h4>
+                @using (Html.BeginForm("ContactTrial", "Pages", FormMethod.Post, new { id = "i-recaptcha" }))
+                {
+                    <fieldset class="form">
+                        <legend class="d-none">Trial Inquiry</legend>
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-field">
+                                    @Html.LabelFor(m => m.FirstName) <span class="fas fa-asterisk"></span>
+                                    @Html.EditorFor(m => m.FirstName)
+                                    @Html.ValidationMessageFor(m => m.FirstName)
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-field">
+                                    @Html.LabelFor(m => m.LastName) <span class="fas fa-asterisk"></span>
+                                    @Html.EditorFor(m => m.LastName)
+                                    @Html.ValidationMessageFor(m => m.LastName)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            @Html.LabelFor(m => m.Email) <span class="fas fa-asterisk"></span>
+                            @Html.EditorFor(m => m.Email)
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                        <div class="form-field">
+                            @Html.LabelFor(m => m.PhoneNumber) <span class="fas fa-asterisk"></span><span class="fas fa-question-circle small pl-2" alt="Why is phone number required?" data-toggle="tooltip" data-placement="top" title="We need this as a way to contact you in case you don't receive our emails."></span>
+                            @Html.EditorFor(m => m.PhoneNumber)
+                            @Html.ValidationMessageFor(m => m.PhoneNumber)
+                        </div>
+                        <div class="form-field">
+                            @Html.LabelFor(m => m.CompanyName) <span class="fas fa-asterisk"></span>
+                            @Html.EditorFor(m => m.CompanyName)
+                            @Html.ValidationMessageFor(m => m.CompanyName)
+                        </div>
+                        <div class="form-field">
+                            @Html.LabelFor(m => m.Machines) <span class="fas fa-asterisk"></span>
+                            @Html.EditorFor(m => m.Machines)
+                            @Html.ValidationMessageFor(m => m.Machines)
+                        </div>
+                        <div class="form-field">
+                            @Html.LabelFor(m => m.Message) <span class="fas fa-asterisk"></span>
+                            @Html.TextAreaFor(m => m.Message, new { @rows = 5 })
+                            @Html.ValidationMessageFor(m => m.Message)
+                        </div>
+                        <div class="form-field mt-3">
+                            <label class="for-checkbox checkbox mb-0">
+                                @Html.CheckBoxFor(m => m.CheckBox, new { @class = "check-box" })
+                                I am not attempting to market software or services (such as SEO). I am also not requesting advertising space. <span class="fas fa-asterisk"></span>
+                                <span class="checkmark"></span>
+                            </label>
+                            @Html.ValidationMessageFor(m => m.CheckBox)
+                        </div>
+                        <div class="form-field">
+                            @Html.ValidationMessageFor(m => m.SpamValidationResponse)
+                        </div>
+                        <p class="mb-0 mt-3"><small>Fields marked with</small> <span class="fas fa-asterisk"></span> <small>are required. <strong>Trials provided to organizations only.</strong></small></p>
+                        <input class="btn btn-primary mt-3 g-recaptcha" data-sitekey="@System.Configuration.ConfigurationManager.AppSettings["reCAPTCHA::PublicKey"]" data-callback="onSubmit" data-badge="bottomleft" type="submit" value="Send Message" title="Send us a message. We'll be in touch soon!" />
+                    </fieldset>
+                }
+            </div>
+            <div class="col-lg-4">
+                @Html.Partial("~/Views/Pages/_ContactSideColumn.cshtml")
+            </div>
+        </div>
+    </div>
+</section>

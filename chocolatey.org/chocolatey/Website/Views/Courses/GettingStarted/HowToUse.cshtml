@@ -1,0 +1,89 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Using Chocolatey";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#command-example">Command Example</a></li>
+    <li><a href="#advanced-install-concepts">Advanced Install Concepts</a></li>
+}
+
+<h2 id="command-example" class="mb-3">Command Example</h2>
+<p>Now that you have Chocolatey on your machine (<a href="@Url.RouteUrl(RouteName.Docs, new { docName = "installation" })">need to install?</a>), you can run several commands.</p>
+<p>Take a look at the <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-reference" })">command reference</a>. We are going to be using the <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-install" })">install command</a>.</p>
+<p>Let's install <a href="http://notepad-plus-plus.org/">Notepad++</a>.</p>
+<ol>
+    <li>Open a command line.</li>
+    <li>Type <code>choco install notepadplusplus</code> and press Enter.</li>
+    <li>If you have UAC turned on or are not an administrator, Chocolatey is going to request administrative permission at some point (at least once during the process). Otherwise it will not be able to finish what it is doing successfully. If you don't have UAC turned on, it will just continue on without stopping to bother you.</li>
+    <li>Thats it. Pretty simple but powerful little concept!</li>
+</ol>
+
+<h2 id="advanced-install-concepts" class="mt-5 mb-3">Overriding Default Install Directory or Other Advanced Install Concepts</h2>
+<ol>
+    <li>Yes we support that through the use of install arguments - see <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-install" })#installarguments">Install Arguments</a></li>
+    <li>If you wanted to pass native argument to the installer, like the install directory, you would need to know the silent argument passed to that particular installer and then you would specify it on the command line or in the packages.config.</li>
+    <li>If it was an MSI, then usually you could pass <code>-ia &quot;INSTALLDIR=&quot;&quot;D:\Program Files&quot;&quot;&quot;</code> (for cmd.exe, it's different for PowerShell). See <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-reference" })#how-to-pass-options-switches">how to pass options/switches</a> for specifics on passing quoted values through.</li>
+    <li>For example, Notepad++ uses the <a href="http://nsis.sourceforge.net/Main_Page">NSIS</a> (NullSoft Scriptable Install System) installer. If we look at the silent options, we see that <a href="http://nsis.sourceforge.net/Docs/Chapter3.html#installerusagecommon">/D</a> is how we influence the install directory. So we would pass <code>choco install notepadplusplus.install -ia &quot;'/D=E:\SomeDirectory\somebody\npp'&quot;</code> -note that we are looking at the specific package over the virtual (although you can do the same with notepadplusplus as well).</li>
+</ol>
+<p>Is there a better way? Absolutely, see <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-install-directory-override" })">ubiquitous install directory switch</a>!</p>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>What command is used to install a Chocolatey Package?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne"><code>choco install &lt;packageName&gt;</code></label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo"><code>choco info &lt;packageName&gt;</code></label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree"><code>choco update &lt;packageName&gt;</code></label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>What command option can be used to pass arguments directly to the native installer within a Chocolatey package?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne"><code>--package-parameters</code></label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo"><code>--override-arguments</code></label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree"><code>--install-arguments</code></label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

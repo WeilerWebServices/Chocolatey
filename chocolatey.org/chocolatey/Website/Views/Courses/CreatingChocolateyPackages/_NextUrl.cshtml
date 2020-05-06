@@ -1,0 +1,38 @@
+﻿@{
+string currentUrl = Request.Url.AbsoluteUri;
+
+if (currentUrl.ToLower().Contains("package-maintainer-handover"))
+{
+    <a href="@Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.CreatingChocolateyPackages), courseModuleName = "home" })" class="btn btn-success mt-3">Review Unfinished Modules<span class="fas fa-angle-right"></span></a>
+}
+else
+{
+    <a href="@if (currentUrl.ToLower().Contains("summary-rules-and-guidlines")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.CreatingChocolateyPackages), courseModuleName = "nuget-packages-and-nuspec" })
+}
+else if (currentUrl.ToLower().Contains("nuget-packages-and-nuspec")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.CreatingChocolateyPackages), courseModuleName = "choco-new-command" })
+}
+else if (currentUrl.ToLower().Contains("choco-new-command")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.CreatingChocolateyPackages), courseModuleName = "naming-description-and-versioning" })
+}
+else if (currentUrl.ToLower().Contains("naming-description-and-versioning")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.CreatingChocolateyPackages), courseModuleName = "installing-upgrading-and-uninstalling" })
+}
+else if (currentUrl.ToLower().Contains("installing-upgrading-and-uninstalling")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.CreatingChocolateyPackages), courseModuleName = "shims" })
+}
+else if (currentUrl.ToLower().Contains("shims")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.CreatingChocolateyPackages), courseModuleName = "internationalization-and-localization" })
+}
+else if (currentUrl.ToLower().Contains("internationalization-and-localization")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.CreatingChocolateyPackages), courseModuleName = "building-testing-and-pushing" })
+}
+else if (currentUrl.ToLower().Contains("building-testing-and-pushing")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.CreatingChocolateyPackages), courseModuleName = "automatic-packaging" })
+}
+else if (currentUrl.ToLower().Contains("automatic-packaging")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.CreatingChocolateyPackages), courseModuleName = "package-maintainer-handover" })
+}" class="btn btn-success mt-3">Continue with Course<span class="fas fa-angle-right"></span></a>
+}
+}

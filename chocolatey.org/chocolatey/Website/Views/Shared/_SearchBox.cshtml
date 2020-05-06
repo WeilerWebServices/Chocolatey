@@ -1,0 +1,36 @@
+﻿@using NuGetGallery
+@{
+    var pagePackages = ViewContext.RouteData.Values["Action"].Equals("ListPackages");
+    var pageDocs = ViewContext.RouteData.Values["Action"].Equals("Documentation");
+    var searchAction = string.Empty;
+    if (pagePackages) {
+        searchAction =  @Url.PackageList();
+    }
+    else if (pageDocs) {
+        searchAction =  @Url.RouteUrl(RouteName.Docs, new { docName = "search" });
+    }
+    else
+    {
+        searchAction = @Url.SearchResults();
+    }
+}
+
+<form class="form-inline search-box position-relative @if(!pageDocs){<text>search-packages</text>} d-none" autocomplete= "off" role="search" action="@searchAction" method="get">
+    <div class="input-group w-100">
+        <input class="form-control" name="q" type="text" title="Search" placeholder="Search @if(pagePackages){<text>Packages</text>}" value="@(String.IsNullOrEmpty(ViewBag.SearchTerm) ? "" : ViewBag.SearchTerm)" autofocus>
+        <div class="input-group-append">
+            <button class="btn btn-light" type="submit" title="Search" value="">
+                <span class="fas fa-search" alt="Search"></span>
+            </button>
+        </div>
+    </div>
+    <div class="search-help position-absolute d-none">
+        <span class="arrow-up position-absolute"></span>
+        <div class="card mt-3 rounded">
+            <div class="card-body d-md-flex justify-content-between text-dark">
+                <p class="mb-md-0 small"><strong>id:searchValue</strong> search by id only</p>
+                <p class="mb-0 small"><strong>tag:searchValue</strong> search by tags</p>
+            </div>
+        </div>
+    </div>
+</form>

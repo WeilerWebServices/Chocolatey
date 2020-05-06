@@ -1,0 +1,4 @@
+jquery-3.3.1.js
+bootstrap.bundle.js
+clipboard.js
+custom.js

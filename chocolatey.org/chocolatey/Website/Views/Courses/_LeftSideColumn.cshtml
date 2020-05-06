@@ -1,0 +1,41 @@
+﻿@using NuGetGallery;
+@model CourseLeftViewModel
+@{
+    var courseNameType = CourseNameType.GettingStartedWithChocolatey;
+    if (Model.CourseNameType != CourseNameType.Unknown)
+    {
+        courseNameType = Model.CourseNameType;
+    }
+}
+
+<ol class="course-list @if (User.Identity.IsAuthenticated){<text>authenticated</text>}">
+    @{
+       
+        var modules = new SortedList<int, CourseModuleViewModel>();
+        foreach (var module in Model.CourseModules.Where(m => m.CourseKey == CourseConstants.GetCourseKey(courseNameType)).OrEmptyListIfNull())
+        {
+            modules.Add(module.CourseModuleKey, module);
+        }
+
+        foreach (var moduleSorted in modules.OrEmptyListIfNull())
+        {
+            var module = moduleSorted.Value;
+            <li class="@if (User.Identity.IsAuthenticated && Model.UserCourseAchievements != null)
+                       {
+                         foreach (var userCourseAchievement in Model.UserCourseAchievements.OrEmptyListIfNull())
+                         {
+                             var moduleAchievement = userCourseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == module.CourseModuleKey);
+                             if (moduleAchievement != null && moduleAchievement.CompletedDate.HasValue)
+                             {
+                                 {<text>mod-completed</text>}
+                             }
+                         }
+                       }">
+              <a href="@Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(module.CourseKey), courseModuleName = CourseConstants.GetCourseModuleUrl(@module.CourseModuleKey) })">
+                @module.CourseModuleName<i class="fas fa-angle-right"></i>
+                <span class="text-muted">@module.CourseModuleDescription</span>
+              </a>
+            </li>
+        }
+    }
+</ol>

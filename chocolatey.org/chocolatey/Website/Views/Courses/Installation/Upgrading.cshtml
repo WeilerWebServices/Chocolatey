@@ -1,0 +1,68 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Upgrading Chocolatey";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+
+<p>Once installed, Chocolatey can be upgraded in exactly the same way as any other package that has been installed using Chocolatey. Simply use the command to upgrade to the latest stable release of Chocolatey:</p>
+<h4><code>choco upgrade chocolatey</code></h4>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+              <legend class="d-none">Quiz</legend>
+              @Html.HiddenFor(m => m.CourseName)
+              @Html.HiddenFor(m => m.CourseKey)
+              @Html.HiddenFor(m => m.CourseModuleKey)
+              <div class="form-field mt-3">
+                <h5>What parameter should be provided to the install command in order to install a beta version of Chocolatey?</h5>
+                @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionOne" })
+                <label for="QuestOneOptionOne"><code>--pre</code></label><br />
+                @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                <label for="QuestOneOptionTwo"><code>--beta</code></label><br />
+                @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionThree" })
+                <label for="QuestOneOptionThree"><code>--alpha</code></label>
+              </div>
+              <div class="form-field mt-3">
+                <h5>When talking about release package versions, i.e. non pre-release package versions, what Chocolatey Command can be executed to find out if there is a newer version of Chocolatey available?</h5>
+                @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                <label for="QuestTwoOptionOne"><code>choco list -lo</code></label><br />
+                @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionTwo" })
+                <label for="QuestTwoOptionTwo"><code>choco outdated</code></label><br />
+                @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionThree" })
+                <label for="QuestTwoOptionThree"><code>choco uninstall chocolatey</code></label>
+              </div>
+              <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

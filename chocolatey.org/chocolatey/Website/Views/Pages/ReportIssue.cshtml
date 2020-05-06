@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Notice";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Scripts");
+}
+
+<section class="container py-3 py-lg-5">
+    <div class="row">
+        <div class="col-12 text-center pb-5">
+            <h1 id="business-legal">Found An Issue?</h1>
+        </div>
+        <div class="col-12">
+            <h3><strong>Was it with a package on this site?</strong></h3>
+            <p>If you are having issue with a package, please see <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "package-triage-process" })">Request Package Fixes or Updates / Become a maintainer of an existing package</a>.</p>
+            <p>Packages provided on this site are community packages, as such they are unsupported. If you are looking for package support, and you are a business customer, please <a href="@Url.RouteUrl(RouteName.ContactUs)">contact us</a> about custom packaging for your needs.</p>
+
+            <h3 class="pt-3"><strong>Security Issue?</strong></h3>
+            <p>Stop here. If you found a security issue, please see <a href="@Url.RouteUrl(RouteName.Security)">Security</a> and the report issues at the bottom.</p>
+
+            <h3 class="pt-3"><strong>Are you a licensed customer / do you have a support contract?</strong></h3>
+            <p>Please see our <a href="@Url.RouteUrl(RouteName.Support)">support page</a> for details. Please use the support email. Optionally, if your support contract includes phone support, call the support line.</p>
+            <p>You can also log issues at <a href="https://github.com/chocolatey/chocolatey-licensed-issues">Licensed Issues</a> and we will route the requests to the proper repositories.</p>
+
+            <h3 class="pt-3"><strong>Are you an open source user?</strong></h3>
+            <p>Please see <a href="@Url.RouteUrl(RouteName.Support)#foss">open source support</a> for details.</p>
+
+            <h3 class="pt-3"><strong>Was it with this site?</strong></h3>
+            <p>Please report the issue to the <a href="https://github.com/chocolatey/chocolatey.org/issues">Chocolatey.org repository</a>.</p>
+
+            <h3 class="pt-3"><strong>Was it with the choco.exe client?</strong></h3>
+            <p>If you have found an issue with the CLI (choco.exe), please see <a href="https://github.com/chocolatey/choco#submitting-issues">the choco repository</a>.</p>
+
+            <h3 class="pt-3"><strong>Was it with the Chocolatey GUI?</strong></h3>
+            <p class="mb-0">If you have found an issue with the GUI (Chocolatey GUI), please see <a href="https://github.com/chocolatey/ChocolateyGUI#submitting-issues">the Chocolatey GUI repository</a>.</p>
+        </div>
+    </div>
+</section>

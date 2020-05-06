@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fileSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <files>
+    <file path="C:\ProgramData\chocolatey\lib\apacheds\apacheds.nupkg" checksum="1BF031FD42D1775779C5B77D8B7C409D" />
+    <file path="C:\ProgramData\chocolatey\lib\apacheds\apachedsInstall.zip.txt" checksum="BDB0F697DEF18F6C51140129DEDDCC5F" />
+    <file path="C:\ProgramData\chocolatey\lib\apacheds\tools\chocolateyInstall.ps1" checksum="F2EF7AFE1726ECAC2E004C75CDA37569" />
+    <file path="C:\ProgramData\chocolatey\lib\apacheds\tools\chocolateyUninstall.ps1" checksum="48A3172DA545DF2F59647777DF0B61E1" />
+    <file path="C:\ProgramData\chocolatey\lib\apacheds\tools\Install-Service.ps1" checksum="DAFAD4F2556FDD2E11ED6193ED5AAD99" />
+    <file path="C:\ProgramData\chocolatey\lib\apacheds\tools\OverwriteParameters.ps1" checksum="3314CFC7A1CFDF0EFABCB96E201C51D5" />
+    <file path="C:\ProgramData\chocolatey\lib\apacheds\tools\Uninstall-ZipPackage.ps1" checksum="013B219C52C12C6A82B434521BB73F2E" />
+  </files>
+</fileSnapshot>

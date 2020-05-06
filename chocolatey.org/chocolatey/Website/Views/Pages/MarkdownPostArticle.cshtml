@@ -1,0 +1,91 @@
+﻿@model MarkdownPostViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/pages.css");
+    Bundles.Reference("Content/prism/prism.css");
+    Bundles.Reference("Scripts");
+    Bundles.Reference("Scripts/prism");
+}
+
+@section ExtraHeaders {
+    <link rel="canonical" href="https://chocolatey.org/blog/@Model.UrlPath" />
+    @if (!string.IsNullOrWhiteSpace(Model.Summary))
+    {
+        <meta property="og:description" content="@Model.Summary" />
+        <meta property="description" content="@Model.Summary" />
+    }
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+}
+
+<section id="secondaryNav">
+    @Html.Partial("~/Views/Shared/_ResourceSubNavigation.cshtml")
+</section>
+<section class="py-3 py-lg-5">
+    <div class="container">
+        <h1 class="mb-0">@Model.Title</h1>
+        <hr />
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-left">
+                <p class="text-muted mb-2 mb-md-0">By @Model.Author | @Model.Published.GetValueOrDefault().ToLongDateString()</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <ul class="blogShare list-unstyled mb-0 d-flex justify-content-center justify-content-md-end">
+                    <li class="mr-2" style="margin-top: -1px;">
+                        <div class="fb-share-button" data-href="https://chocolatey.org/blog/@Model.UrlPath" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchocolatey.org%2Fblog%2F@Model.UrlPath&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="mb-3 mb-xl-5" />
+        <div class="post">
+            @Html.Raw(Model.Post)
+        </div>
+        <a class="btn btn-primary my-3" href="@Url.RouteUrl(RouteName.BlogHome)"><span class="fas fa-angle-left"></span> Return to Posts</a>
+        <a class="h4 mt-4 collapsed d-block" data-toggle="collapse" href="#blog-comments" role="button" aria-expanded="false" aria-controls="blog-comments" title="Blog Comments">View Blog Comments</a>
+        <div class="collapse" id="blog-comments">
+            @{
+                var disqusShortname = System.Configuration.ConfigurationManager.AppSettings["DisqusShortname"];
+            }
+            <a name="comments"></a>
+            <div id="disqus_thread"></div>
+            <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+</section>
+
+@section BottomScripts {
+    <script type="text/javascript" language="javascript">
+        var disqus_shortname = '@disqusShortname';
+
+        (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('code').addClass('language-powershell');
+            $('pre').addClass('line-numbers border py-2');
+            Prism.highlightAll();
+        });
+    </script>
+}

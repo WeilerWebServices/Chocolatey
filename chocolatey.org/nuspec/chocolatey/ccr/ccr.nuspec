@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata>
+    <id>ccr</id>
+    <version>0.0.0</version>
+    <owners>Rob Reynolds</owners>
+    <title>Chocolatey Community Repository</title>
+    <authors>Chocolatey</authors>
+    <projectUrl>https://github.com/chocolatey/chocolatey.org/</projectUrl>
+    <iconUrl>https://github.com/chocolatey/choco/raw/master/docs/logo/chocolateyicon.gif</iconUrl>
+    <copyright>2020 Chocolatey Software, Inc.</copyright>
+    <licenseUrl>https://github.com/chocolatey/chocolatey.org/blob/master/LICENSE.txt</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>Chocolatey Community Repository</tags>
+    <summary>Chocolatey Community Repository Website</summary>
+    <description>
+Need to put something in here...
+    </description>
+    <releaseNotes>
+Need to put something in here...
+    </releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\chocolateyBeforeModify.ps1" target="tools" />
+    <file src="tools\chocolateyInstall.ps1" target="tools" />
+    <file src="tools\chocolateyUninstall.ps1" target="tools" />
+    <file src="..\..\..\BuildArtifacts\_PublishedWebsites\Website\**\*" target="tools\ccr" />
+  </files>
+</package>

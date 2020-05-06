@@ -1,0 +1,288 @@
+﻿@using NuGetGallery
+
+<header class="w-100">
+    @Html.Partial("~/Views/Shared/_AlertTop.cshtml")
+    <nav id="topNav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand p-0" href="@Url.Home()">
+            <img class="d-none d-lg-block" alt="Chocolatey Software" src="@Url.Content("~/content/images/logo_square.svg")" />
+            <img class="d-lg-none" alt="Chocolatey Software" src="@Url.Content("~/content/images/logo_small.svg")" />
+        </a>
+        <div class="d-flex align-items-center d-lg-none">
+            <button class="btn btn-outline-light btn-nav-toggle mr-3 collapsed" type="button" data-toggle="collapse" data-target="#topNavbar" aria-controls="topNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fas fa-bars"></span>
+            </button>
+            @if (!ViewContext.RouteData.Values["Action"].Equals("ListPackages"))
+            {
+                <div class="nav-search d-lg-none">
+                    @Html.Partial("~/Views/Shared/_SearchBox.cshtml")
+                    <button class="btn btn-outline-light btn-search">
+                        <span class="fas fa-search" alt="Search"></span>
+                    </button>
+                </div>
+            }
+        </div>
+        <div class="collapse navbar-collapse" id="topNavbar">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="overview" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Overview</a>
+                    <div class="dropdown-menu" aria-labelledby="overview">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 d-lg-none">
+                                    <a class="goback" href="#"><span class="fas fa-chevron-left"></span> Go Back</a>
+                                    <h4 class="text-center">Overview</h4>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.WhyChocolatey)">Why Chocolatey?</a>
+                                            <p class="d-none d-md-block">Chocolatey is a software management solution unlike anything else you've ever experienced on Windows. Chocolatey brings the concepts of true package management to allow you to version things, manage dependencies and installation order, better inventory management, and other features.</p>
+                                        </li>
+                                        <li><a href="@Url.RouteUrl(RouteName.HowChocolateyWorks)">How Chocolatey Works</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.UseCases)">Use Cases</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.UseCases)#server">Server</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.UseCases)#desktop">Desktop</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.UseCases)#cloud">Cloud / Containers</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.UseCases)#integrations">Integrations</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Resources, new {resourceType = "success-stories"})">Customer Stories</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.ResourceName, new {resourceType= "success-stories", resourceName = "puppet-customer-success-story"})">Puppet<span class="fas fa-angle-right"></span></a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.ResourceName, new {resourceType= "success-stories", resourceName = "yelp-customer-success-story"})">Yelp<span class="fas fa-angle-right"></span></a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.ResourceName, new {resourceType= "success-stories", resourceName = "cme-group-customer-success-story"})">CME Group<span class="fas fa-angle-right"></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="product" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product</a>
+                    <div class="dropdown-menu" aria-labelledby="product">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 d-lg-none">
+                                    <a class="goback" href="#"><span class="fas fa-chevron-left"></span> Go Back</a>
+                                    <h4 class="text-center">Product</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.Products, new {productName = "chocolatey-for-business"})">Chocolatey for Business</a>
+                                            <p class="d-none d-md-block">Chocolatey for Business (C4B) is the enterprise offering that enables companies to adopt a DevOps approach to managing their Windows environment, allowing you to deliver applications to your users more reliably and faster.</p>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.Products, new {productName = "home"})#pro-edition">Pro Edition</a>
+                                            <p class="d-none d-md-block">Pro is a personal, named license that grants having licensed versions of Chocolatey on up to 8 machines and provides the ultimate Chocolatey experience!</p>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.Products, new {productName = "home"})#foss">Open Source</a>
+                                            <p class="d-none d-md-block">Chocolatey has the largest online registry of Windows packages. Learn how Open Source Chocolatey can support your next project.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.Compare)">Compare Editions</a>
+                                            <p class="d-none d-md-block">Learn the difference between the Chocolatey Editions and what will fit your needs the best.</p>
+                                        </li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Pricing)">Pricing</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.ContactTrial)">Try Chocolatey for Business Free</a></li>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.Pricing)">Purchase</a>
+                                            <p class="d-none d-md-block">I'm ready to get started now!</p>
+                                        </li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Support)">Support</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="solutions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Solutions</a>
+                    <div class="dropdown-menu" aria-labelledby="solutions">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 d-lg-none">
+                                    <a class="goback" href="#"><span class="fas fa-chevron-left"></span> Go Back</a>
+                                    <h4 class="text-center">Solutions</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.Solutions, new {solutionName = "home"})">Self-Service Anywhere</a>
+                                            <p class="d-none d-md-block">
+                                                Chocolatey provides a unique approach to managing your end-user software (desktops / laptops) and can be combined with your existing solutions. 
+                                                Chocolatey for Business (C4B) enables better security, enhanced visibility with centralized reporting, and a self-service GUI. Self-Service Anywhere allows non-administrators to easily access and manage IT approved software from the office, from home, or anywhere they have an internet connection.
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "quick-deployment-environment" })">Quick Deployment Environment (QDE)</a>
+                                            <p class="d-none d-md-block">
+                                                The Quick Deployment Environment (QDE) provides a single virtual machine appliance to be imported into your hypervisor-of-choice, which contains most of the various components of a Chocolatey organizational solution. Deploy recommended architecture in 2-3 hours.
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="community" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
+                    <div class="dropdown-menu" aria-labelledby="community">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 d-lg-none">
+                                    <a class="goback" href="#"><span class="fas fa-chevron-left"></span> Go Back</a>
+                                    <h4 class="text-center">Community</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.ListPackages)">Community Packages</a>
+                                            <p class="d-none d-md-block">Search the largest online registry of Windows packages. Chocolatey packages encapsulate everything required to manage a particular piece of software into one deployment artifact by wrapping installers, executables, zips, and scripts into a compiled package file.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Community)">Community Resources</a></li>
+                                        <li><a href="https://github.com/chocolatey" target="_blank" rel="noreferrer">Chocolatey on GitHub</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.BlogHome)">Blog</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="learn" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Learn</a>
+                    <div class="dropdown-menu" aria-labelledby="learn">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 d-lg-none">
+                                    <a class="goback" href="#"><span class="fas fa-chevron-left"></span> Go Back</a>
+                                    <h4 class="text-center">Learn</h4>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.Install)">Install Chocolatey</a>
+                                            <p class="d-none d-md-block">Get step-by-step instructions on how to install Chocolatey.</p>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.Courses)">Getting Started Course</a>
+                                            <p class="d-none d-md-block">New to Chocolatey? Learn the requirements and how to get Chocolatey up and running in no time!</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Resources, new {resourceType = "home"})">Resource Library</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new {docName = "home"})">Docs</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Resources, new {resourceType = "videos"})">Videos</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Resources, new {resourceType = "case-studies"})">Case Studies</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Courses)">Courses</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.MediaKit)">Media Kit</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.Support)">Support</a>
+                                            <p class="d-none d-md-block">Need help? Read our Support FAQ to find out the next steps.</p>
+                                        </li>
+                                        <li><a href="@Url.RouteUrl(RouteName.BlogHome)">Blog</a></li>
+                                        <li><a href="http://eepurl.com/4qUJH" target="_blank" rel="noreferrer">Newsletter</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="partners" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partners</a>
+                    <div class="dropdown-menu" aria-labelledby="partners">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 d-lg-none">
+                                    <a class="goback" href="#"><span class="fas fa-chevron-left"></span> Go Back</a>
+                                    <h4 class="text-center">Partners</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Partner)">Overview</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.ContactPartner)">Become a Partner</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Partner)#technology">Technology Partners</a></li>
+                                    </ul>
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Partner)#resellers">Resellers</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="about" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+                    <div class="dropdown-menu" aria-labelledby="about">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 d-lg-none">
+                                    <a class="goback" href="#"><span class="fas fa-chevron-left"></span> Go Back</a>
+                                    <h4 class="text-center">About</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>
+                                            <a href="@Url.RouteUrl(RouteName.About)">About Chocolatey</a>
+                                            <p class="d-none d-md-block">Chocolatey Software is focused on helping our community, customers, and partners with solutions that help fill the gaps that are often ignored. We offer a simple, pragmatic, and open approach to software management.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Careers)">Careers</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.ContactUs)">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                @if (!ViewContext.RouteData.Values["Action"].Equals("Documentation") && !ViewContext.RouteData.Values["Action"].Equals("ListPackages"))
+                {
+                    <li class="nav-item d-none d-lg-block">
+                        <div class="nav-search">
+                            @Html.Partial("~/Views/Shared/_SearchBox.cshtml")
+                            <button class="btn btn-outline-light btn-search">
+                                <span class="fas fa-search" alt="Search"></span>
+                            </button>
+                        </div>
+                    </li>
+                }
+                <li class="nav-item">
+                    <a class="btn btn-outline-light d-none d-lg-block" href="@Url.RouteUrl(RouteName.Install)">Install Now</a>
+                    <a class="btn btn-primary d-lg-none" href="@Url.RouteUrl(RouteName.Install)">Install Now</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,210 @@
+﻿@{
+    ViewBag.Title = "Partnership";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Scripts");
+}
+
+<div id="header" class="bg-medium-dark">
+    <section class="py-3 py-lg-5">
+        <div class="container text-center">
+            <h1 class="display-3">Chocolatey Partner Ecosystem</h1>
+            <h1>Help your customers. Enhance your solutions. <br class="d-lg-block" />Drive new revenue streams.</h1>
+            <a class="btn btn-lg btn-light mt-3" href="@Url.RouteUrl(RouteName.ContactPartner)">Become a Partner</a>
+        </div>
+    </section>
+    <div class="shape-border shape-border-bottom"></div>
+</div>
+<section id="network" class="pb-3 pb-lg-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2>Solution Provider Program</h2>
+                <hr class="border-hr" />
+                <p>Chocolatey's Partner Network offers resources, support and training to differentiate your business from your competition and increase your profitability with new revenue streams.</p>
+                <p>Solution Providers use their technical skills and market knowledge to resell Chocolatey for Business, either as part of an existing Windows project or an IT automation solution. Partnering with Chocolatey will mark you as a market leader in modern Windows automation and DevOps.</p>
+                <ul>
+                    <li><strong>Referral</strong> - Simply engage with our sales team to inform us of customers interested in Chocolatey and we will offer you an attractive referral fee for any customers that purchase Chocolatey for Business.</li>
+                    <li><strong>Silver</strong> - Receive an attractive discount by signing up to our partner program. Register your opportunities, undertake training and work with us on driving new business. At least one Chocolatey trained professional required.</li>
+                    <li><strong>Gold</strong> - Receive an increased discount over our Silver level. Work with us on a business plan in return for leads and marketing support. At least two Chocolatey trained professionals required.</li>
+                </ul>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="card w-75 mx-auto testimonial">
+                    <div class="card-body">
+                        <img class="rounded-circle border text-center" src="/content/images/team/mukesh-sq.jpg" alt="Mukesh Sharma, COO of Chocolatey" title="Mukesh Sharma, COO of Chocolatey" />
+                        <h3 class="mt-2 mb-0 text-primary"><small>Mukesh Sharma</small></h3>
+                        <p><small><i>COO of Chocolatey</i></small></p>
+                        <q class="mb-0">Our goal is to support you with training and and sales support to give you the resources needed to deliver automation solutions to your customers.</q>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="technology" class="py-3 py-lg-5 bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 text-center">
+                <ul class="nav nav-pills pb-3 justify-content-center nav-pills-list" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link py-0 active" id="partner-workflow-tab" data-toggle="pill" href="#partner-workflow" role="tab" aria-controls="partner-workflow" aria-selected="true"><small class="font-weight-bold">Deployment & Workflow</small></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link py-0" id="partner-repositories-tab" data-toggle="pill" href="#partner-repositories" role="tab" aria-controls="partner-repositories" aria-selected="false"><small class="font-weight-bold">Repositories</small></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link py-0" id="partner-pipelines-tab" data-toggle="pill" href="#partner-pipelines" role="tab" aria-controls="partner-pipelines" aria-selected="false"><small class="font-weight-bold">Pipelines</small></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link py-0" id="partner-environments-tab" data-toggle="pill" href="#partner-environments" role="tab" aria-controls="partner-environments" aria-selected="false"><small class="font-weight-bold">Environments</small></a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="partner-workflow" role="tabpanel" aria-labelledby="partner-workflow-tab">
+                        <div class="row text-center align-items-center justify-content-center">
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://puppet.com" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Puppet-Dark.png")" alt="Puppet" data-toggle="tooltip" title="Puppet" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://chef.io" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Chef-Dark.png")" alt="Chef Software" data-toggle="tooltip" title="Chef Software" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://www.ansible.com" rel="noreferrer" target="_blank"><img class="img-fluid" width="80" src="@Url.Content("~/content/images/businesses/Ansible-red-sm.png")" alt="Ansible" data-toggle="tooltip" title="Ansible" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://www.saltstack.com" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Saltstack-sm.png")" alt="SaltStack" data-toggle="tooltip" title="SaltStack" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://inedo.com/otter" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Otter-sm.png")" alt="Otter" data-toggle="tooltip" title="Otter" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <img class="img-fluid" width="80" src="@Url.Content("~/content/images/businesses/Powershell-sm.png")" alt="Microsoft Powershell DSC" data-toggle="tooltip" title="Microsoft Powershell DSC" />
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://octopus.com" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/OctopusDeploy-Dark-sm.png")" alt="Octopus Deploy" data-toggle="tooltip" title="Octopus Deploy" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://boxstarter.org" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Boxstarter-sm.png")" alt="Boxstarter" data-toggle="tooltip" title="Boxstarter" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://www.ivanti.com" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/ivanti-sm.png")" alt="ivanti" data-toggle="tooltip" title="ivanti" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://www.microsoft.com/en-us/cloud-platform/system-center-configuration-manager" rel="noreferrer" target="_blank"><img class="img-fluid" width="100" src="@Url.Content("~/content/images/businesses/Microsoft-SCCM-sm.jpg")" alt="Microsoft SCCM" data-toggle="tooltip" title="Microsoft SCCM" /></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="partner-repositories" role="tabpanel" aria-labelledby="partner-repositories-tab">
+                        <div class="row text-center align-items-center justify-content-center">
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://jfrog.com/artifactory" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/Artifactory-sm.png")" alt="Artifactory" data-toggle="tooltip" title="Artifactory" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://www.sonatype.com/nexus-repository-sonatype" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="60" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/Nexus-sm.png")" alt="Nexus" data-toggle="tooltip" title="Nexus" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://inedo.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/Inedo-sm.png")" alt="Inedo" data-toggle="tooltip" title="Inedo" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://www.myget.org" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/MyGet-Blue-sm.png")" alt="MyGet" data-toggle="tooltip" title="MyGet" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://www.nuget.org" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/NuGet-sm.png")" alt="NuGet" data-toggle="tooltip" title="NuGet" /></a>
+                            </div>
+                            @*<div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="#" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="#" alt="Microsoft Visual Studio Team Services" data-toggle="tooltip" title="Microsoft Visual Studio Team Services" /></a>
+                            </div>*@
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="partner-pipelines" role="tabpanel" aria-labelledby="partner-pipelines-tab">
+                        <div class="row text-center align-items-center justify-content-center">
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://jenkins.io" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/Jenkins-sm.png")" alt="Jenkins" data-toggle="tooltip" title="Jenkins" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://www.jetbrains.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/JetBrains-sm.png")" alt="JetBrains TeamCity" data-toggle="tooltip" title="JetBrains TeamCity" /></a>
+                            </div>
+                            @*<div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="#" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="#" alt="Microsoft Intune" data-toggle="tooltip" title="Microsoft Intune" /></a>
+                            </div>*@
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://gitlab.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/GitLab-sm.png")" alt="GitLab" data-toggle="tooltip" title="GitLab" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://github.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/GitHub-sm.png")" alt="GitHub" data-toggle="tooltip" title="GitHub" /></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="partner-environments" role="tabpanel" aria-labelledby="partner-environments-tab">
+                        <div class="row text-center align-items-center justify-content-center">
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://www.vmware.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/VMware-sm.png")" alt="VMware" data-toggle="tooltip" title="VMware" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://aws.amazon.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/AWS-sm.png")" alt="AWS" data-toggle="tooltip" title="AWS" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://azure.microsoft.com/en-us/" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/Azure-sm.png")" alt="Azure" data-toggle="tooltip" title="Azure" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://cloud.google.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/GoogleCloudPlatform-sm.png")" alt="Google Cloud Platform (GCP)" data-toggle="tooltip" title="Google Cloud Platform (GCP)" /></a>
+                            </div>
+                            <div class="col-6 col-lg-3 px-3 my-3">
+                                <a href="https://www.docker.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/Docker-sm.png")" alt="Docker" data-toggle="tooltip" title="Docker" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h2>Technology Alliances</h2>
+                <hr class="border-hr" />
+                <p>Chocolatey integrates with leading configuration managers and automation solutions such as Puppet, Chef, Microsoft SCCM, and Ansible (Red Hat).</p>
+                <p>Our customers are keen to extend their usage and compatibility with other leading technology offerings.  We are keen to work with other leading software vendors to build joint solutions to help customers simplify and automate their Windows experience.</p>
+                <a class="btn btn-primary" href="@Url.RouteUrl(RouteName.ContactPartner)">Become a Partner</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="resellers" class="py-3 py-lg-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2>Value Added Resellers</h2>
+                <hr class="border-hr" />
+                <p>Value Added Resellers (VARs) offer Chocolatey as part of their IT practices and help customers simplify the purchasing process. Chocolatey’s partner program supports VARs as look they help their customers automate their Windows environments.</p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="row text-center align-items-center justify-content-center">
+                    <div class="col-6 col-lg-3 px-3 my-3">
+                        <a href="https://puppet.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/Puppet-Dark.png")" alt="Puppet" data-toggle="tooltip" title="Puppet" /></a>
+                    </div>
+                    <div class="col-6 col-lg-3 px-3 my-3">
+                        <a href="https://www.shi.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/SHI-sm.png")" alt="SHI" data-toggle="tooltip" title="SHI" /></a>
+                    </div>
+                    <div class="col-6 col-lg-3 px-3 my-3">
+                        <a href="https://www.insight.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/Insight-sm.png")" alt="Insight" data-toggle="tooltip" title="Insight" /></a>
+                    </div>
+                    <div class="col-6 col-lg-3 px-3 my-3">
+                        <a href="http://www.pcm.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/PCM-sm.png")" alt="PCM" data-toggle="tooltip" title="PCM" /></a>
+                    </div>
+                    <div class="col-6 col-lg-3 px-3 my-3">
+                        <a href="https://shadow-soft.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/Shadowsoft-sm.png")" alt="Shadow-Soft" data-toggle="tooltip" title="Shadow-Soft" /></a>
+                    </div>
+                    @*<div class="col-2 col-lg-3 px-3 my-3">
+                        <a href="#" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="#" alt="QBS" data-toggle="tooltip" title="QBS" /></a>
+                    </div>*@
+                    <div class="col-6 col-lg-3 px-3 my-3">
+                        <a href="https://www.betis.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/Betis-Group-sm.jpg")" alt="Betis Direct" data-toggle="tooltip" title="Betis Direct" /></a>
+                    </div>
+                    @*<div class="col-6 col-lg-3 px-3 my-3">
+                        <a href="http://aquionenergy.com" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="#" alt="Aquion" data-toggle="tooltip" title="Aquion" /></a>
+                    </div>*@
+                    <div class="col-6 col-lg-3 px-3 my-3">
+                        <a href="https://www.buyitdirect.co.uk" rel="noreferrer" target="_blank"><img class="lazy img-fluid" width="100" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/businesses/Buyitdirect-sm.jpg")" alt="Buyitdirect" data-toggle="tooltip" title="Buyitdirect" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

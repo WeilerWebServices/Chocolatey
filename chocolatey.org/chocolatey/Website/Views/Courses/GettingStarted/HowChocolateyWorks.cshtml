@@ -1,0 +1,104 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "How Chocolatey Works";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#upgrade">Upgrade</a></li>
+    <li><a href="#uninstall">Uninstall</a></li>
+}
+
+<h2 id="installation" class="mb-3">Installation</h2>
+<ol>
+    <li>Chocolatey uses NuGet (NuGet.Core.dll) to retrieve the package from the source. This is typically a nupkg that is stored in a folder, share, or an OData location (HTTP/HTTPS). For more information on sources, please see <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-sources" })">Sources</a> and <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-host-feed" })">Source Repositories</a>.</li>
+    <li>The package is installed into <code>$env:ChocolateyInstall\lib\&lt;pkgId&gt;</code>. The package install location is not configurable - the package must install here for tracking, upgrade, and uninstall purposes. The software that may be installed later during this process <strong><em>is</em></strong> configurable. See <a href="@Url.RouteUrl(RouteName.CourseName, new { courseName= "getting-started", courseModuleName= "terminology" })">Terminology</a> to understand the difference between "package" and "software" as the terms relate to Chocolatey.</li>
+    <li>Choco determines if it is self-contained or has automation scripts - PowerShell scripts (*.ps1 files) and possibly other formats at a later date.</li>
+    <li>Choco takes a registry snapshot for later comparison.</li>
+    <li>If there are automation scripts, choco will run those. They can contain whatever you need to do, if they are PowerShell you have the full power of Posh (PowerShell), but you should try to ensure they are compatible with Posh v2+ (PowerShell v2 and beyond).</li>
+    <li>Choco compares the snapshot and determines uninstaller information and saves that to a .registry file.</li>
+    <li>Choco snapshots the folder based on all files that are currently in the package directory.</li>
+    <li>Choco looks for executable files in the package folder and generates shims into the <code>$env:ChocolateyInstall\bin</code> folder so those items are available on the path. Those could have been embedded into the package or brought down from somewhere (internet, ftp, file folder share, etc) and placed there. If there is a shim ignore file <code>&lt;exeName&gt;.exe.ignore</code>, then Chocolatey will not generate a shim in the bin folder.</li>
+</ol>
+
+<h2 id="upgrade" class="mt-5 mb-3">Upgrade</h2>
+<ol>
+    <li>Starting in 0.9.10, Chocolatey will look for and run a chocolateyBeforeModify.ps1 file in the existing package prior to upgrading or uninstalling a package. This is your opportunity to shut down services and/or processes. This is run from the existing package, not the new version of the package. If it fails, it just passes a warning and continues on.</li>
+    <li>Similar to install, except choco will make a backup of the package folder (and only the package folder) prior to attempting upgrade.</li>
+    <li>The files snapshot is used to determine what files can be removed from the package folder. If those files have not changed, they will be removed.</li>
+    <li>If the upgrade fails, choco will ask if you want to rollback the package folder to the previous version. If you choose to move roll back, it will put the backed up package directory back in place. This does not fix any folders you may have been using outside of the package directory, such as where the native installer may have installed a program to nor the location of <code>Get-ToolsLocation</code>/<code>Get-BinRoot</code> (e.g. <code>c:\tools</code>). You will need to handle those fixes on your own. Chocolatey also doesn&#39;t rerun any install scripts on rollback.</li>
+</ol>
+
+<h2 id="uninstall" class="mt-5 mb-3">Uninstall</h2>
+<ol>
+    <li>Choco makes the determination that the package is actually installed.</li>
+    <li>Starting in 0.9.10, Chocolatey will look for and run a chocolateyBeforeModify.ps1 file in the existing package prior to upgrading or uninstalling a package. This is your opportunity to shut down services and/or processes. If it fails, it just passes a warning and continues on.</li>
+    <li>Choco will make a backup of the package folder.</li>
+    <li>The automation script is run if found. This should be used to clean up anything that is put there with the install script.</li>
+    <li>If auto uninstaller is turned on, choco will attempt to run the auto uninstaller if a silent uninstall can be determined. Otherwise it will prompt the user (unless -y) to ask if they want the uninstaller to continue. The auto uninstaller can automatically detect about 80% of the different native uninstallers and determine or use the silent uninstall arguments.</li>
+    <li>If everything is successful so far, the files snapshot is used to determine what files can be removed from the package folder. If those files have not changed, they will be removed.</li>
+    <li>If everything is deleted from the package folder, the folder is also removed.</li>
+</ol>
+<p>When a package has an exe file, Chocolatey will create a link "shortcut" to the file (called a shim) so that you can run that tool anywhere on the machine. See <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-shim" })">shimming</a> for more information.</p>
+<p>When a package has a chocolateyInstall.ps1, it will run the script. The instructions in the file can be anything. This is limited only by the .NET framework and PowerShell.</p>
+<p>Most of the Chocolatey packages that take advantage of the PowerShell download an application installer and execute it silently.</p>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>During which operations will the chocolateyBeforeModify.ps1 file be executed?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">Install</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">Install and Upgrade</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">Upgrade and Uninstall</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>What percentage of native uninstallers can Chocolatey’s Auto Uninstaller feature help with?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">70</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">80</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree">90</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

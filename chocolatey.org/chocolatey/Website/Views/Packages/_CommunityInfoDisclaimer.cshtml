@@ -1,0 +1,33 @@
+﻿<div class="modal modal-closeable" id="package-disclaimer" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Welcome to the Chocolatey Community Package Repository! The packages found in this section of the site are provided, maintained, and moderated by the community.</p>
+                <h3>Moderation</h3>
+                <p>Every version of each package undergoes a rigorous moderation process before it goes live that typically includes:</p>
+                <ul>
+                    <li><a href="@Url.RouteUrl(RouteName.Security)#chocolateyorg-packages" target="_blank">Security</a>, consistency, and <a href="https://github.com/chocolatey/package-validator/wiki#what-is-the-validator" target="_blank">quality checking</a></li>
+                    <li><a href="https://github.com/chocolatey/package-verifier/wiki" target="_blank">Installation testing</a></li>
+                    <li><a href="@Url.RouteUrl(RouteName.Security)#chocolateyorg-packages" target="_blank">Virus checking through VirusTotal</a></li>
+                    <li>Human moderators who give final review and sign off</li>
+                </ul>
+                <p>More detail at <a href="@Url.RouteUrl(RouteName.Security)#chocolateyorg-packages" target="_blank">Security</a> and <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "moderation" })" target="_blank">Moderation</a>.</p>
+                <h3>Organizational Use</h3>
+                <p>
+                    If you are an organization using Chocolatey, we want your experience to be fully reliable.
+                    Due to the nature of this publicly offered repository, <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "community-packages-disclaimer" })#reliability" target="_blank">reliability</a> cannot be guaranteed.
+                    Packages offered here are subject to distribution rights, which means they may need to reach out further to the internet to the official locations to download files at runtime.
+                </p>
+                <p>
+                    Fortunately, distribution rights do not apply for internal use. With any edition of Chocolatey (including the free open source edition), you can <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-host-feed" })" rel="noreferrer" target="_blank">host your own packages</a> and cache or <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-recompile-packages" })" target="_blank">internalize</a> existing community packages.
+                </p>
+                <h3>Disclaimer</h3>
+                <p>Your use of the packages on this site means you understand they are not supported or guaranteed in any way. <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "community-packages-disclaimer" })" rel="noreferrer" target="_blank">Learn more...</a></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close" data-dismiss="modal">I Understand</button>
+            </div>
+        </div>
+    </div>
+</div>
+

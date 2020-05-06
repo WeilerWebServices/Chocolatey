@@ -1,0 +1,177 @@
+﻿==> default: Running provisioner: shell...
+    default: Running: shell/VagrantAction.ps1 as c:\tmp\vagrant-shell.ps1
+==> default: Chocolatey is running on Windows v 6.3.9600.0
+==> default: Attempting to delete file "C:/ProgramData/chocolatey/choco.exe.old".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\choco.exe.old".
+==> default: Command line: "C:\ProgramData\chocolatey\choco.exe" uninstall applicationcompatibilitytoolkit --version 5.6 -dvy
+==> default: Received arguments: uninstall applicationcompatibilitytoolkit --version 5.6 -dvy
+==> default: NOTE: Hiding sensitive configuration data! Please double and triple 
+==> default:  check to be sure no sensitive data is shown, especially if copying 
+==> default:  output to a gist for review.
+==> default: Configuration: CommandName='uninstall'|
+==> default: CacheLocation='C:\Users\ADMINI~1\AppData\Local\Temp'|
+==> default: ContainsLegacyPackageInstalls='True'|
+==> default: CommandExecutionTimeoutSeconds='2700'|
+==> default: Sources='https://chocolatey.org/api/v2/'|Debug='True'|Verbose='True'|
+==> default: Force='False'|Noop='False'|HelpRequested='False'|RegularOutput='True'|
+==> default: QuietOutput='False'|PromptForConfirmation='False'|AcceptLicense='True'|
+==> default: AllowUnofficialBuild='False'|Input='applicationcompatibilitytoolkit'|
+==> default: Version='5.6'|AllVersions='False'|SkipPackageInstallProvider='False'|
+==> default: PackageNames='applicationcompatibilitytoolkit'|Prerelease='False'|
+==> default: ForceX86='False'|OverrideArguments='False'|NotSilent='False'|
+==> default: IgnoreDependencies='False'|AllowMultipleVersions='False'|
+==> default: AllowDowngrade='False'|ForceDependencies='False'|
+==> default: Information.PlatformType='Windows'|
+==> default: Information.PlatformVersion='6.3.9600.0'|
+==> default: Information.PlatformName='Windows Server 2012 R2'|
+==> default: Information.ChocolateyVersion='0.9.9.11'|
+==> default: Information.ChocolateyProductVersion='0.9.9.11'|
+==> default: Information.FullName='choco, Version=0.9.9.11, Culture=neutral, PublicKeyToken=79d02ea9cad655eb'|
+==> default: 
+==> default: Information.Is64Bit='True'|Information.IsInteractive='False'|
+==> default: Information.IsUserAdministrator='True'|
+==> default: Information.IsProcessElevated='True'|Features.AutoUninstaller='True'|
+==> default: Features.CheckSumFiles='True'|Features.FailOnAutoUninstaller='False'|
+==> default: ListCommand.LocalOnly='False'|
+==> default: ListCommand.IncludeRegistryPrograms='False'|
+==> default: UpgradeCommand.FailOnUnfound='False'|
+==> default: UpgradeCommand.FailOnNotInstalled='False'|
+==> default: UpgradeCommand.NotifyOnlyAvailableUpgrades='False'|
+==> default: NewCommand.AutomaticPackage='False'|SourceCommand.Command='unknown'|
+==> default: SourceCommand.Priority='0'|FeatureCommand.Command='unknown'|
+==> default: ConfigCommand.Command='unknown'|PushCommand.TimeoutInSeconds='0'|
+==> default: PinCommand.Command='unknown'|
+==> default: _ Chocolatey:ChocolateyUninstallCommand - Normal Run Mode _
+==> default: Uninstalling the following packages:
+==> default: applicationcompatibilitytoolkit
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib-bkp".
+==> default: 
+==> default: Backing up existing applicationcompatibilitytoolkit prior to upgrade.
+==> default: Moving 'C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit'
+==> default:  to 'C:\ProgramData\chocolatey\lib-bkp\applicationcompatibilitytoolkit'
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit".
+==> default: 
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\applicationcompatibilitytoolkit\applicationcompatibilitytoolkit.nupkg"
+==> default:  to "C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\applicationcompatibilitytoolkit.nupkg".
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\tools".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\applicationcompatibilitytoolkit\tools\chocolateyInstall.ps1"
+==> default:  to "C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\tools\chocolateyInstall.ps1".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\applicationcompatibilitytoolkit\tools\chocolateyUninstall.ps1"
+==> default:  to "C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\tools\chocolateyUninstall.ps1".
+==> default: Capturing package files in 'C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit'
+==> default: 
+==> default:  Found 'C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\applicationcompatibilitytoolkit.nupkg'
+==> default:   with checksum '2A62F5DA567C00D30BEE5EDB0CBF1D09'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\tools\chocolateyInstall.ps1'
+==> default:   with checksum 'D7F8382EE4831301DD86A7CB49AEEA82'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\tools\chocolateyUninstall.ps1'
+==> default:   with checksum 'FF19EF6FDEE3A1CB53603FD52DA0538D'
+==> default: [NuGet] Uninstalling 'applicationcompatibilitytoolkit 5.6'.
+==> default: 
+==> default: 
+==> default: applicationcompatibilitytoolkit v5.6
+==> default: Contents of 'C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\tools\chocolateyUninstall.ps1':
+==> default: Try 
+==> default: 
+==> default:   {
+==> default:   Start-ChocolateyProcessAsAdmin "/x{0F5AEBB0-43F3-4571-ACE7-A7942E8AA179} /l*v $env:temp\CHOCO-UNINSTALL-applicationcompatibilitytoolkit.log /qn" 'msiexec.exe' -ValidExitCodes @(0,3010)
+==> default:   Write-ChocolateySuccess $package
+==> default:   }
+==> default: catch {
+==> default:   Write-ChocolateyFailure $package "$($_.Exception.Message)"
+==> default:   throw
+==> default: }
+==> default: 
+==> default: 
+==> default: Calling command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\tools\chocolateyUninstall.ps1' -installArguments '' -packageParameters ''"']
+==> default:  DEBUG: Posh version is 4.0
+==> default: 
+==> default:  DEBUG: Loading community extensions
+==> default:  VERBOSE: Exporting function 'Get-BinRoot'.
+==> default:  VERBOSE: Exporting function 'Get-ChecksumValid'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyUnzip'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyWebFile'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariableNames'.
+==> default:  VERBOSE: Exporting function 'Get-FtpFile'.
+==> default:  VERBOSE: Exporting function 'Get-ProcessorBits'.
+==> default:  VERBOSE: Exporting function 'Get-UACEnabled'.
+==> default:  VERBOSE: Exporting function 'Get-VirusCheckValid'.
+==> default:  VERBOSE: Exporting function 'Get-WebFile'.
+==> default:  VERBOSE: Exporting function 'Get-WebHeaders'.
+==> default:  VERBOSE: Exporting function 'Install-BinFile'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyDesktopLink'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyEnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyExplorerMenuItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyFileAssociation'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyInstallPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPath'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPinnedTaskBarItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPowershellCommand'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyShortcut'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyVsixPackage'.
+==> default:  VERBOSE: Exporting function 'Install-Vsix'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Set-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Start-ChocolateyProcessAsAdmin'.
+==> default:  VERBOSE: Exporting function 'Test-ProcessAdminRights'.
+==> default:  VERBOSE: Exporting function 'Uninstall-BinFile'.
+==> default:  VERBOSE: Exporting function 'Uninstall-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'UnInstall-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Update-SessionEnvironment'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateyFailure'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateySuccess'.
+==> default:  VERBOSE: Exporting function 'Write-FileUpdateLog'.
+==> default:  VERBOSE: Exporting alias 'Generate-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Add-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Remove-BinFile'.
+==> default:  DEBUG: Running 'Start-ChocolateyProcessAsAdmin' with exeToRun:'msiexec.exe', 
+==> default: 
+==> default:  statements: '/x{0F5AEBB0-43F3-4571-ACE7-A7942E8AA179} /l*v 
+==> default:  C:\Users\ADMINI~1\AppData\Local\Temp\CHOCO-UNINSTALL-applicationcompatibilityto
+==> default:  olkit.log /qn' 
+==> default:  DEBUG: Elevating Permissions and running msiexec.exe 
+==> default:  /x{0F5AEBB0-43F3-4571-ACE7-A7942E8AA179} /l*v 
+==> default:  C:\Users\ADMINI~1\AppData\Local\Temp\CHOCO-UNINSTALL-applicationcompatibilityto
+==> default:  olkit.log /qn. This may take a while, depending on the statements.
+==> default:  T h i s   a c t i o n   i s   o n l y   v a l i d   f o r   p r o d u c t s   t h a t   a r e   c u r r e n t l y   i n s t a l l e d . 
+==> default: 
+==> default:   
+==> default:   WARNING: Write-ChocolateyFailure is deprecated. If you are the package 
+==> default: 
+==> default:  maintainer, please use 'throw $_.Exception' instead.
+==> default:  [ERROR] Running msiexec.exe with /x{0F5AEBB0-43F3-4571-ACE7-A7942E8AA179} /l*v 
+==> default:  C:\Users\ADMINI~1\AppData\Local\Temp\CHOCO-UNINSTALL-applicationcompatibilityto
+==> default:  olkit.log /qn was not successful. Exit code was '1605' Error Message: 
+==> default:  .
+==> default: 
+==> default:  At C:\ProgramData\chocolatey\helpers\functions\Write-ChocolateyFailure.ps1:24 
+==> default:  char:3
+==> default:  +   throw "$failureMessage"
+==> default:  +   ~~~~~~~~~~~~~~~~~~~~~~~
+==> default:      + CategoryInfo          : OperationStopped: ([ERROR] Running...or Message: 
+==> default:  .:String) [], RuntimeException
+==> default:      + FullyQualifiedErrorId : [ERROR] Running msiexec.exe with /x{0F5AEBB0-43F 
+==> default:     3-4571-ACE7-A7942E8AA179} /l*v C:\Users\ADMINI~1\AppData\Local\Temp\CHOCO-  
+==> default:    UNINSTALL-applicationcompatibilitytoolkit.log /qn was not successful. Exit   
+==> default:    code was '1605' Error Message: 
+==> default:  .
+==> default: Command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\tools\chocolateyUninstall.ps1' -installArguments '' -packageParameters ''"'] exited with '1'
+==> default: Calling command ['"shutdown" /a']
+==> default: Command ['"shutdown" /a'] exited with '1116'
+==> default: applicationcompatibilitytoolkit uninstall not successful.
+==> default: Error while running 'C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\tools\chocolateyUninstall.ps1'.
+==> default:  See log for details.
+==> default: applicationcompatibilitytoolkit not uninstalled. An error occurred during uninstall:
+==> default:  applicationcompatibilitytoolkit uninstall not successful.
+==> default: Chocolatey uninstalled 0/1 packages. 1 packages failed.
+==> default:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+==> default: Failures
+==> default:  - applicationcompatibilitytoolkit
+==> default: Exiting with 1
+[ERROR] The following WinRM command responded with a non-zero exit status.
+[ERROR] Vagrant assumes that this means the command failed!
+[ERROR] powershell -ExecutionPolicy Bypass -OutputFormat Text -file c:\tmp\vagrant-shell.ps1
+[ERROR] Stdout from the command:
+[ERROR] Stderr from the command:

@@ -1,0 +1,124 @@
+﻿@using Markdig
+@using NuGetGallery
+@using Markdig.Parsers
+@model VerifyPackageViewModel
+@{
+    ViewBag.Tab = "Upload Your Package";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/account.css");
+    Bundles.Reference("Content/prism/prism.css");
+    Bundles.Reference("Scripts");
+    Bundles.Reference("Scripts/prism");
+
+    var markdownPipelineBuilder = new MarkdownPipelineBuilder()
+                 .UseSoftlineBreakAsHardlineBreak()
+                 .UseAutoLinks()
+                 .UseGridTables()
+                 .UsePipeTables()
+                 .UseAutoIdentifiers()
+                 .UseEmphasisExtras()
+                 .UseNoFollowLinks()
+                 .UseCustomContainers()
+                 .UseBootstrap();
+
+    markdownPipelineBuilder.BlockParsers.TryRemove<IndentedCodeBlockParser>();
+
+    var MarkdownPipeline = markdownPipelineBuilder.Build();
+}
+
+<section id="secondaryNav">
+    @Html.Partial("~/Views/Shared/_AuthenticationSubNavigation.cshtml")
+</section>
+<section id="account" class="container py-3 py-md-5">
+    <div class="row">
+        <div class="col-sm-9 m-auto">
+            <div class="card border-0 rounded-0 shadow">
+                <div class="card-body">
+                    @Html.Partial("~/Views/Packages/_UploadSteps.cshtml")
+                    <hr />
+                    <div class="callout-warning">
+                        These package details are read from the package file and cannot be changed.
+                        If anything below is incorrect, click Cancel and upload
+                        a correct package.
+                    </div>
+                    <h3 class="mb-0">Package ID:</h3>
+                    <p>@Model.Id</p>
+                    <h3 class="mb-0">Version:</h3>
+                    <p>@Model.Version</p>
+                    @if (!String.IsNullOrEmpty(Model.Title))
+                    {
+                        <h3 class="mb-0">Title:</h3>
+                        <p>@Model.Title</p>
+                    }
+                    <h3 class="mb-0">Description:</h3>
+                    @Html.Raw(Markdown.ToHtml(Model.Description.clean_html() ?? string.Empty, MarkdownPipeline))
+                    <h3 class="mb-0">Authors:</h3>
+                    <p>@Model.Authors</p>
+                    @if (!String.IsNullOrEmpty(Model.Tags))
+                    {
+                        <h3 class="mb-0">Tags:</h3>
+                        <p>@Model.Tags</p>
+                    }
+                    @if (!String.IsNullOrEmpty(Model.LicenseUrl))
+                    {
+                        <h3 class="mb-0">License URL:</h3>
+                        <p>
+                            @if (Model.RequiresLicenseAcceptance)
+                            {<text>Acceptance of license required: </text>}
+                            <a href="@Model.LicenseUrl" target="_blank">@Model.LicenseUrl</a>
+
+                        </p>
+                    }
+                    @if (!String.IsNullOrEmpty(Model.ProjectUrl))
+                    {
+                        <h3 class="mb-0">Project URL:</h3>
+                        <p><a href="@Model.ProjectUrl" target="_blank">@Model.ProjectUrl</a></p>
+                    }
+
+                    @using (Html.BeginForm())
+                    {
+                        <fieldset class="form mt-4">
+                            <legend class="d-none">Submit Package</legend>
+                            @Html.AntiForgeryToken()
+                            <div class="form-field">
+                                <label for="Listed" class="checkbox">
+                                    @Html.EditorFor(package => package.Listed)
+                                    List this package in search results.
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <button class="btn btn-success mt-3" type="submit" value="Verify Details & Submit">Verify Details &amp; Submit</button>
+                            <a href="@Url.Action(MVC.Packages.CancelUpload())" class="cancel btn btn-danger mt-3" title="Cancel the upload in progress.">Cancel</a>
+                        </fieldset>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section BottomScripts {
+    <script>
+        $(function () {
+            $('a.cancel').click(function () {
+                var $anchor = $(this);
+                var $form = $anchor.parents('form');
+                $form.attr('action', $anchor.attr('href'));
+                $form.submit();
+                return false;
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.step_1').removeClass('step_active').addClass('step_inactive');
+            $('.step_2').removeClass('step_disabled').addClass('step_active');
+        });
+    </script>
+    <script language="javascript" type="text/javascript">
+        ((window.gitter = {}).chat = {}).options = {
+            room: 'chocolatey/chocolatey.org'
+        };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+}
+

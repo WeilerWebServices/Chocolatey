@@ -1,0 +1,115 @@
+﻿@using NuGetGallery;
+
+@{
+    Layout = "~/Views/Shared/NewsletterLayout.cshtml";
+    ViewBag.Title = "Community";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Scripts");
+    Bundles.Reference("Scripts/home");
+}
+
+<div id="header" class="bg-medium-dark community-header">
+    <section class="py-3 py-lg-5">
+        <div class="container py-lg-5">
+            <h1 class="mb-0 text-center">Welcome to the <br /><span class="display-3">Chocolatey Community</span></h1>
+        </div>
+    </section>
+    <div class="shape-border shape-border-bottom"></div>
+</div>
+<section id="community-packages">
+    <div class="container pb-3 pb-lg-5 ">
+        <div class="row align-items-center">
+            <div class="col-12 text-center mb-3">
+                <img class="w-100" src="@Url.Content("~/content/images/community-mockup-grey.gif")" alt="Chocolatey Community" />
+                <h1 class="py-3">Choose from Thousands of Community Packages</h1>
+            </div>
+            <div class="col-lg-6">
+                <p>Chocolatey has the largest online registry of Windows packages. Chocolatey packages encapsulate everything required to manage a particular piece of software into <a href="@Url.RouteUrl(RouteName.Docs, new {docName = "getting-started"})#what-are-chocolatey-packages">one deployment artifact</a> by <a href="@Url.RouteUrl(RouteName.Docs, new {docName = "getting-started"})#what-are-chocolatey-packages">wrapping installers, executables, zips, and/or scripts into a compiled package</a> file.</p>
+                <ul class="fa-ul">
+                    <li><span class="fa-li"><span class="fas fa-check text-success"></span></span>Package submissions go through a rigorous moderation review process, including automatic virus scanning.</li>
+                    <li><span class="fa-li"><span class="fas fa-check text-success"></span></span>The community repository has a strict policy on malicious and pirated software.</li>
+                    <li><span class="fa-li"><span class="fas fa-check text-success"></span></span>If you are an organization using Chocolatey, using the community repository is not recommended and in some cases <a href="@Url.RouteUrl(RouteName.Docs, new {docName = "community-packages-disclaimer"})#rate-limiting">rate limited.</a></li>
+                </ul>
+                <div class="text-center mb-3 mb-lg-0">
+                    <a class="btn btn-primary" href="@Url.RouteUrl(RouteName.ListPackages)">Search Chocolatey Packages</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-dark text-center">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h1><span id="UniquePackages" class="num" title="This includes packages that may only have prereleases"></span>/<span id="TotalPackages" class="num" title="This is the total number of package versions - one for every version of a package"></span></h1>
+                        <p class="mb-0">Unique Packages / Total Packages</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h1><span id="Downloads" class="num"></span></h1>
+                        <p class="mb-0">Total Community Package Installs</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h1><span id="PackagesPassingVerification" class="num" title="These are the latest version of a package and whether it is passing the verifier - run once a month against the latest version of all packages"></span></h1>
+                        <p class="mb-0"><a href="@Url.RouteUrl(RouteName.FAQ)#what-is-the-verifier">Known Good Packages</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="get-involved" class="py-3 py-lg-5 bg-white">
+    <div class="container">
+        <div class="row divider-row">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="text-center">
+                    <span class="fas fa-book-reader display-1 text-primary"></span>
+                    <h3 class="mb-3">Learn</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><a href="@Url.RouteUrl(RouteName.Resources, new {resourceType = "home"})">Resource Library</a></li>
+                    <li class="mb-3"><a href="@Url.RouteUrl(RouteName.Docs, new {docName = "home"})">Docs</a></li>
+                    <li class="mb-3"><a href="@Url.RouteUrl(RouteName.Courses)">Courses</a></li>
+                    <li class="mb-0"><a href="https://us8.list-manage.com/subscribe?u=86a6d80146a0da7f2223712e4&id=73b018498d" target="_blank" rel="noreferrer">Announcement Newsletter</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4  mb-4 mb-lg-0">
+                <div class="text-center">
+                    <span class="fas fa-star display-1 text-primary"></span>
+                    <h3 class="mb-3">Participate</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><a href="https://gitter.im/chocolatey/chocolatey.org" target="_blank" rel="noreferrer"><span class="fab fa-gitter mr-2"></span>Gitter Room</a></li>
+                    <li class="mb-3"><a href="https://groups.google.com/forum/#!forum/chocolatey" target="_blank" rel="noreferrer"><span class="fab fa-google mr-2"></span>Google Group</a></li>
+                    <li class="mb-0"><a href="https://github.com/chocolatey" target="_blank" rel="noreferrer"><span class="fab fa-github mr-2"></span>Chocolatey on Github</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <div class="text-center">
+                    <span class="fas fa-thumbs-up display-1 text-primary"></span>
+                    <h3 class="mb-3">Follow Online</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><a href="https://twitter.com/chocolateynuget" target="_blank" rel="noreferrer"><span class="fab fa-twitter mr-2"></span>Chocolatey on Twitter</a></li>
+                    <li class="mb-3"><a href="https://facebook.com/ChocolateySoftware" target="_blank" rel="noreferrer"><span class="fab fa-facebook mr-2"></span>Chocolate on Facebook</a></li>
+                    <li class="mb-0"><a href="https://www.youtube.com/chocolateysoftware" target="_blank" rel="noreferrer"><span class="fab fa-youtube mr-2"></span>Chocolate on Youtube</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-3 py-lg-5">
+    @Html.Partial("~/Views/Pages/_Courses.cshtml")
+</section>
+
+@section BottomScripts
+{
+    <script language="javascript" type="text/javascript">
+        ((window.gitter = {}).chat = {}).options = {
+            room: 'chocolatey/chocolatey.org'
+        };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+    <script type="text/javascript" language="javascript">
+        $(getStats);
+    </script>
+}

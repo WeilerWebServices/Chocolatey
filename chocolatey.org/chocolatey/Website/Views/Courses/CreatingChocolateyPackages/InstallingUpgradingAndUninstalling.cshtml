@@ -1,0 +1,107 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Installing, Upgrading, and Uninstalling Your Package";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#installation-paths">Installation Paths</a></li>
+    <li><a href="#limiting-installation">Limiting Installation</a></li>
+    <li><a href="#upgrading">Upgrading Your Package</a></li>
+    <li><a href="#uninstalling">Uninstalling Your Package</a></li>
+}
+
+<h2 id="installation-paths" class="mb-3">Installation Paths</h2>
+<p>As the package maintainer, you decide where the packaged application is installed or extracted to. Depending on your type of application (see <em>"What distinction does Chocolatey make between an installable and a portable application?"</em> at the bottom of the <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "chocolatey-faqs" })">FAQ</a>) there are a couple of suitable locations (not listed in any particular order):</p>
+<h4 class="mt-4">1. The Default Installation Path of Your .msi/.exe Setup File</h4>
+<p>
+    The original creator probably had a reason for choosing a specific default installation path.<br />
+    If you think, the user should be able to customize this path and you, the package maintainer, know how to pass a custom path on to the installer, then you should use <code>%ChocolateyBinRoot%</code>.
+</p>
+
+<h4 class="mt-4">2. The package directory in <code>%ChocolateyInstall%\lib\mypackage</code></h4>
+<p>You can extract the application within the package directory itself (or even ship an extracted version with the package). This allows Chocolatey to automatically find executables and put those on <code>%path%</code>.</p>
+
+
+<h4 class="mt-4">3. Path provided by the <code>Get-BinRoot</code> helper - will be deprecated later (closer to v1) but okay to use for now</h4>
+<p>The path returned by the helper <code>Get-BinRoot</code> can be used as the parent directory for the installation. <code>Get-BinRoot</code> will return the value of the environment variable <code>%ChocolateyBinRoot%</code>. If the value does not contain a drive reference, the system drive will be prepended. If the environment variable is not set, the default path (<del><code>C:\Tools</code></del> <code>C:\Chocolatey\bin</code>) will be returned.</p>
+<p>As an example, <a href="https://github.com/ferventcoder/chocolatey-packages/blob/master/manual/mingw/tools/chocolateyInstall.ps1">MinGW</a> uses <code>%ChocolateyBinRoot%</code>. If the environment variable is not set, it will be set to <code>c:\tools</code> and MinGW will install to <code>C:\Tools\MinGW</code> by default. If <code>%ChocolateyBinRoot%</code> is set to &quot;C:\Common\bin&quot;, MinGW installs to <code>C:\Common\bin\MinGW</code>.</p>
+<p><code>%ChocolateyBinRoot%</code> gives the Chocolatey user a way of controlling where packages are installed. If you want to allow customizing the installation path, then this is currently the way to go.</p>
+
+<h4 class="mt-4">Make it clear in the package description</h4>
+<p>No matter how you decide, you are advised to state the default installation directory in your package description. This prevents confusion about where the application will end up being installed.</p>
+<p>If you allow customizing the installation path, then append instructions on how to do that, too.</p>
+
+<h2 id="limiting-installation" class="mt-5 mb-3">Install Only on Some Versions of Windows</h2>
+<p>Right now if the software the package installs is only supported on particular versions of Windows, you should absolutely fail the package. An installed package indicates success. If you pass a warning message but don't also throw an error, that means the package installed successfully. Folks using the package are going to be confused because they will then expect that the underlying software is also installed. The software itself may throw a cryptic error, which will lead to questions from the community about why it is broken (when it is just unsupported). Do yourself a favor and check the version of Windows and throw an error if it is not a supported version. Under no circumstances should you bypass with a warning, because a warning is still a success.</p>
+<p>There is at least one noted exception to this and that is low-level packages that are meant as dependencies that need to be present even if they do not install anything. These are things like KBs that only need to be installed on some versions of Windows. If the package failed and it was a dependency of a higher level package that installed software, it would cause issues attempting to install that software on different versions of Windows. Since about 5% of the packages apply to this exception, stick with the above thoughts for packages.</p>
+<div class="callout callout-warning"><strong>NOTE</strong>: We will ultimately enhance the nuspec and take care of this for you automatically. Until we get there, follow the above avenue.</div>
+
+<h2 id="upgrading" class="mt-5 mb-3">Upgrading</h2>
+<p>Prior to choco version 0.9.10, there is no dedicated automation script for upgrade scenarios. Instead, your <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "chocolatey-install-ps1" })">chocolateyInstall.ps1</a> script should support installing/upgrading on top of any previous versions of your package.</p>
+<p>
+    More recent versions of choco (0.9.10+) give you the option of supplying a <code>chocolateyBeforeModify.ps1</code> script.<br />
+    If applicable, the version of this script from the currently installed package will be run before subsequent chocolateyInstall or chocolateyUninstall scripts.
+</p>
+
+<h2 id="uninstalling" class="mt-5 mb-3">Uninstalling</h2>
+<p>Uninstalling is handled by a <code>chocolateyUninstall.ps1</code> script, which should be in your package's <code>tools</code> directory, next to <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "chocolatey-install-ps1" })">chocolateyInstall.ps1</a>. All the usual <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-reference" })">helper reference</a> are available. If your package doesn&#39;t uninstall cleanly, people will get grumpy because they&#39;ll have to manually clean up after you. Be a good human being and write an uninstaller.</p>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>Who is responsible for a Chocolatey Package only being installed on the correct Operating System for the underlying software of the package?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">Chocolatey</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">Windows</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">Package Maintainer</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>In what version of Chocolatey was the chocolateyBeforeModify.ps1 file introduced?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">0.9.10</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">0.10.4</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree">0.8.0</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

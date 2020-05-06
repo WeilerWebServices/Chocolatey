@@ -1,0 +1,44 @@
+﻿@* Generator : WebPage *@
+@using NuGetGallery;
+<!DOCTYPE html> 
+<html lang="en" class="static "> 
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chocolatey Software</title> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700">
+        <link href="@Href("~/Content/dist/chocolatey.slim.css")" rel="stylesheet" />
+        <link href="@Href("~/favicon.ico")" rel="shortcut icon" type="image/x-icon" />
+        <script src="@Href("~/Scripts/header/modernizr-2.6.2.js")"></script>
+    </head>
+    <body>
+        <header>
+
+        </header>
+        <main class="my-auto">
+            <section class="container py-3 py-md-5">
+                <div class="row">
+                    @RenderBody()
+                </div>
+            </section>
+        </main>
+        <footer>
+            <section class="container-fluid bg-dark text-center pt-3">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="mb-0 text-white"><strong>&copy; @DateTime.UtcNow.Year</strong> Chocolatey Software, Inc</p>
+
+                        @{
+                            string commitId = System.Configuration.ConfigurationManager.AppSettings["appharbor.commit_id"];
+                            string worker = System.Configuration.ConfigurationManager.AppSettings["appharbor.worker_name"];
+                        }
+                        <p id="releaseTag" class="mb-0 text-dark"><small>Deployed from <a class="text-dark" href="https://github.com/chocolatey/chocolatey.org/commit/@commitId" title="View the commit.">@commitId.Substring(0, 10)</a>. You are on @worker.</small></p>
+                    </div>
+                </div>
+            </section>
+        </footer>
+        <script src="@Href("~/Scripts/jquery-3.3.1.js")"></script>
+        @RenderSection("BottomScripts", required: false)
+    </body>
+</html>

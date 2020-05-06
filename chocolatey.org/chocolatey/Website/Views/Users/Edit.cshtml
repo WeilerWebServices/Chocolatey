@@ -1,0 +1,147 @@
+﻿@model EditProfileViewModel
+@{
+    ViewBag.Title = "Edit Profile";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/account.css");
+    Bundles.Reference("Scripts");
+    Bundles.Reference("Scripts/validation");
+}
+
+<section id="secondaryNav">
+    @Html.Partial("~/Views/Shared/_AuthenticationSubNavigation.cshtml")
+</section>
+<section id="account" class="py-3 py-lg-5 edit-profile">
+    <div class="container">
+        @Html.ValidationSummary(true)
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form">
+                <legend class="d-none">Edit Profile</legend>
+                <div class="row">
+                    <div class="col-12 text-right mb-3">
+                        <input class="btn btn-success" type="submit" value="Save All Changes" title="Save Changes" />
+                        <a class="btn btn-danger cancel" href="@Url.Action("Account")" title="Cancel changes and go back.">Cancel</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h4>Email and Notification Information</h4>
+                                <hr />
+                                @if (!String.IsNullOrEmpty(Model.PendingNewEmailAddress))
+                                {
+                                    <div class="callout-warning">
+                                        You recently requested to change your email address to <strong>@Model.PendingNewEmailAddress</strong>.
+                                        This change will take effect when you confirm the address. Check your inbox (or spam folder) for an
+                                        email with a confirmation link.
+                                    </div>
+                                }
+                                <div class="form-field">
+                            	    <i class="fas fa-question-circle" alt="Save" data-toggle="tooltip" data-placement="top" title="If you change your email address, you will need to confirm your new address for it to take effect."></i>
+                                    @Html.LabelFor(m => m.EmailAddress)
+                                    @Html.EditorFor(m => m.EmailAddress)
+                                    @Html.ValidationMessageFor(m => m.EmailAddress)
+                                </div>
+                                <div class="form-field my-3">
+                                    <label for="EmailAllowed" class="checkbox">
+                                        @Html.EditorFor(m => m.EmailAllowed)
+                                        Receive Email Notifications
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="callout-danger">
+                                    <strong>Important:</strong> This setting allows users of the site to contact you
+                                    about packages that you own using the <em>Contact Maintainers</em> form, or to request that you become a maintainer
+                                    of their package. Unchecking this means users cannot contact you for these reasons. <strong>
+                                        You will still receive moderation related email and/or email from site administrators.
+                                    </strong> Unchecking the box also does not unsubscribe you from the newsletter. You will need to manage that from your MailChimp subscription.
+                                </div>
+                                <hr class="my-5" />
+                                <div class="form-field">
+                                    <label for="EmailAllModerationNotifications" class="checkbox mb-1">
+                                        @Html.EditorFor(m => m.EmailAllModerationNotifications)
+                                        Send All Moderation Related Messages
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <p>When packages go through moderation review, should the system send all messages or just warnings and failures?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h4>Repository Links</h4>
+                                <hr />
+                                <div class="form-field mb-3">
+                                    <i class="fas fa-question-circle" alt="Save" data-toggle="tooltip" data-placement="top" title="The full Url to your packages repository (this is where you keep what builds the packages). Also put your automatic packages into this repository (the packages that use Chocolatey Package Updater to build and push automatically)."></i>
+                                    @Html.LabelFor(m => m.PackagesRepository)
+                                    @Html.EditorFor(m => m.PackagesRepository)
+                                    @Html.ValidationMessageFor(m => m.PackagesRepository)
+                                </div>
+                                <div class="form-field">
+                                    <i class="fas fa-question-circle" alt="Save" data-toggle="tooltip" data-placement="top" title="Deprecated field, leave this empty. It is recommended to include your automatic packages into the repository you specified above. No need for an additional separate repository."></i>
+                                    @Html.LabelFor(m => m.PackagesRepositoryAuto)
+                                    @Html.EditorFor(m => m.PackagesRepositoryAuto)
+                                    @Html.ValidationMessageFor(m => m.PackagesRepositoryAuto)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h4>Social Links</h4>
+                                <hr />
+                                <div class="form-field mb-3">
+                                    <i class="fas fa-question-circle" alt="Save" data-toggle="tooltip" data-placement="top" title="Your twitter handle"></i>
+                                    @Html.LabelFor(m => m.TwitterUserName)
+                                    @Html.EditorFor(m => m.TwitterUserName)
+                                    @Html.ValidationMessageFor(m => m.TwitterUserName)
+                                </div>
+                                <div class="form-field mb-3">
+                                    <i class="fas fa-question-circle" alt="Save" data-toggle="tooltip" data-placement="top" title="Your github username"></i>
+                                    @Html.LabelFor(m => m.GithubUserName)
+                                    @Html.EditorFor(m => m.GithubUserName)
+                                    @Html.ValidationMessageFor(m => m.GithubUserName)
+                                </div>
+                                <div class="form-field mb-3">
+                                    <i class="fas fa-question-circle" alt="Save" data-toggle="tooltip" data-placement="top" title="Your codeplex username"></i>
+                                    @Html.LabelFor(m => m.CodeplexUserName)
+                                    @Html.EditorFor(m => m.CodeplexUserName)
+                                    @Html.ValidationMessageFor(m => m.CodeplexUserName)
+                                </div>
+                                <div class="form-field mb-3">
+                                    <i class="fas fa-question-circle" alt="Save" data-toggle="tooltip" data-placement="top" title="The full Url to your stack exchange profile. This is not the same as stackoverflow."></i>
+                                    @Html.LabelFor(m => m.StackExchangeUrl)
+                                    @Html.EditorFor(m => m.StackExchangeUrl)
+                                    @Html.ValidationMessageFor(m => m.StackExchangeUrl)
+                                </div>
+                                <div class="form-field mb-3">
+                                    <i class="fas fa-question-circle" alt="Save" data-toggle="tooltip" data-placement="top" title="The full Url to your homepage"></i>
+                                    @Html.LabelFor(m => m.HomepageUrl)
+                                    @Html.EditorFor(m => m.HomepageUrl)
+                                    @Html.ValidationMessageFor(m => m.HomepageUrl)
+                                </div>
+                                <div class="form-field">
+                                    <i class="fas fa-question-circle" alt="Save" data-toggle="tooltip" data-placement="top" title="The full Url to your blog"></i>
+                                    @Html.LabelFor(m => m.BlogUrl)
+                                    @Html.EditorFor(m => m.BlogUrl)
+                                    @Html.ValidationMessageFor(m => m.BlogUrl)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        } 
+    </div>
+</section>
+
+@section BottomScripts
+{
+    <script language="javascript" type="text/javascript">
+        ((window.gitter = {}).chat = {}).options = {
+            room: 'chocolatey/chocolatey.org'
+        };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+}

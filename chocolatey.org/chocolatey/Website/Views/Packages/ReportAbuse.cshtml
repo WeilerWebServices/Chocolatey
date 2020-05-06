@@ -1,0 +1,98 @@
+﻿@model ReportAbuseViewModel
+@{
+    ViewBag.Tab = "Packages";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/account.css");
+    Bundles.Reference("Scripts");
+    Bundles.Reference("Scripts/validation");
+}
+@section TopScripts {
+    <script>
+        function onSubmit(token) {
+            document.getElementById("i-recaptcha").submit();
+        }
+    </script>
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+}
+
+<section id="secondaryNav">
+    @Html.Partial("~/Views/Shared/_AuthenticationSubNavigation.cshtml")
+</section>
+<section class="container py-3 py-xl-5" id="account">
+    <div class="row">
+        <div class="col-xl-10 mx-auto">
+            <h2 class="text-center text-xl-left">Report Abuse for <a href="@Url.Package(Model.PackageId,  null)">@Model.PackageId</a></h2>
+            <hr />
+            <div class="callout callout-secondary">
+                <p>
+                    <strong>Important:</strong> This form is for reporting <em>abusive</em> packages such as
+                    packages containing <em>malicious code</em> or spam. If "@Model.PackageId" simply doesn't
+                    appear to work or work correctly, please
+                    <a href="@Url.Action(MVC.Packages.ContactOwners(Model.PackageId))" title="contact the maintainers">contact the maintainers of "@Model.PackageId".</a>
+                </p>
+                <p><strong>Note:</strong> If you need to contact the <em>site administrators for any other reason</em> (including package triage / become a co-maintainer) for this package, please <a href="@Url.RouteUrl(RouteName.PackageVersionAction, new { action = "ContactAdmins", id = Model.PackageId, version = Model.PackageVersion })" title="Contact Site Admins">contact the admins.</a></p>
+            </div>
+            <div class="callout callout-warning">
+                <p>Are you a software vendor? Please read this first - <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "package-triage-process" })#are-you-a-software-vendor">Have my distribution rights been violated?</a></p>
+                <p>If you are here to request/ask about helping with package maintenance, please <a href="@Url.RouteUrl(RouteName.PackageVersionAction, new { action = "ContactAdmins", id = Model.PackageId, version = Model.PackageVersion })" title="Contact Site Admins">contact the admins.</a></p>
+            </div>
+            <div class="callout callout-danger">
+                <p><strong>Do not share sensitive information with this form.</strong></p>
+            </div>
+            @using (Html.BeginForm("ReportAbuse", "Packages", FormMethod.Post, new { id = "i-recaptcha" }))
+            {
+                <fieldset class="form">
+                    <legend class="d-none">Report Abuse</legend>
+                    @Html.AntiForgeryToken()
+                    <div class="form-field">
+                        @if (!Model.ConfirmedUser)
+                        {
+                            @Html.LabelFor(m => m.Email) <span class="fas fa-asterisk"></span>
+                            @Html.EditorFor(m => m.Email)
+                            <span class="field-hint-message">Provide your email address so we can follow up with you.</span>
+                            @Html.ValidationMessageFor(m => m.Email)
+                        }
+                        else
+                        {
+                            <input type="hidden" id="Email" name="Email" value="test@example.com" />
+                        }
+                    </div>
+                    <div class="form-field mt-3">
+                        @Html.LabelFor(m => m.Message) <span class="fas fa-asterisk"></span>
+                        @Html.TextAreaFor(m => m.Message, new { @rows = 5 })
+                        @Html.ValidationMessageFor(m => m.Message)
+                    </div>
+                    <div class="form-field my-3">
+                        <label class="for-checkbox checkbox">
+                            @Html.CheckBoxFor(m => m.CopySender, new { @class = "check-box" })
+                            Send me a copy
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="form-field">
+                        <label class="for-checkbox checkbox mb-0">
+                            @Html.CheckBoxFor(m => m.CheckBox, new { @class = "check-box" })
+                            I understand that the community repository already runs packages and binaries through VirusTotal and I have reviewed that on the package page itself prior to reporting possible malware. <span class="fas fa-asterisk"></span>
+                            <span class="checkmark"></span>
+                        </label>
+                        @Html.ValidationMessageFor(m => m.CheckBox)
+                    </div>
+                    <div class="form-field">
+                        @Html.ValidationMessageFor(m => m.SpamValidationResponse)
+                    </div>
+                    <p class="mt-3"><small>Fields marked with</small> <span class="fas fa-asterisk"></span> <small>are required.</small></p>
+                    <input class="btn btn-primary g-recaptcha" data-sitekey="@System.Configuration.ConfigurationManager.AppSettings["reCAPTCHA::PublicKey"]" data-callback="onSubmit" data-badge="bottomleft" type="submit" value="Report Abuse" title="Report '@Model.PackageId' for abuse" />
+                </fieldset>
+            }
+        </div>
+    </div>
+</section>
+
+@section BottomScripts {
+    <script language="javascript" type="text/javascript">
+        ((window.gitter = {}).chat = {}).options = {
+            room: 'chocolatey/chocolatey.org'
+        };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+}

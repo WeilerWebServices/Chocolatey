@@ -1,0 +1,89 @@
+﻿@model DisplayPackageViewModel
+@{
+    ViewBag.Tab = "Packages";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/account.css");
+    Bundles.Reference("Scripts");
+}
+
+<section id="secondaryNav">
+    @Html.Partial("~/Views/Shared/_AuthenticationSubNavigation.cshtml")
+</section>
+<section class="container py-3 py-xl-5" id="account">
+    <div class="row">
+        <div class="col-xl-10 mx-auto">
+            <h2 class="text-center text-xl-left"><em>@Model.Title @Model.Version</em> Listing</h2>
+            <hr />
+            <p><strong>Permanently deleting packages is not supported, but you can control how they are listed.</strong></p>
+            <p>
+                Unlisting a package hides the package from search results and all NuGet commands, but packages
+                are still available for download. For example, they can still be downloaded as dependencies to
+                other packages.
+            </p>
+            @if (!Model.Listed && Model.Status != PackageStatusType.Approved && Model.Status != PackageStatusType.Exempted)
+            {
+                <div class="callout callout-danger">
+                    <p>Until this package is approved, it is not allowed to be listed.</p>
+                </div>
+            }
+            else
+            {
+                <div class="row mt-5">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="card">
+                            <div class="card-body">
+                            @using (Html.BeginForm())
+                            {
+                                <fieldset class="form" id="unlist-form">
+                                    <legend class="d-none">Edit @Model.Title Package</legend>
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-field my-1 d-flex justify-content-center">
+                                        <label for="Listed" class="checkbox">
+                                            @Html.EditorFor(package => package.Listed)
+                                            List @Model.Title @Model.Version in search results.
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <p>
+                                        Unchecking this box means your package cannot be installed directly and it will
+                                        not show up in search results.
+                                    </p>
+                                    <button class="btn btn-primary d-block mt-3 mx-auto" type="submit" value="Save" title="Save Changes">Save Changes</button>
+                                    <p class="mb-0 mt-2 text-center"><small><a class="cancel" href="@Url.Action("DisplayPackage")" title="Cancel Changes and go back to package page.">Cancel</a></small></p>
+                                </fieldset>
+                            }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <h3 class="mt-5">Why can&#8217;t I delete my package?</h3>
+            <p>
+                Our policy is to only permanently delete Chocolatey packages that really need it, such as
+                packages that contain passwords, malicious/harmful code, etc. This policy is very similar
+                to the policies employed by other package managers such as
+                <a href="http://help.rubygems.org/kb/gemcutter/removing-a-published-rubygem" title="">Ruby Gems</a>.
+            </p>
+            <p>
+                Unlisting the package will remove the package from
+                being available in the Chocolatey Gallery. The package is still available for download as a dependency for
+                two main reasons.
+            </p>
+            <ul>
+                <li>
+                    Other packages may depend on that package. Those packages might not necessarily be in this gallery.
+                </li>
+                <li>
+                    Helps ensure that important community owned packages are not mass deleted.
+                </li>
+            </ul>
+            <p class="mb-0">
+                If you need the package permanently removed, click on the <a href="@Url.Action(MVC.Packages.ReportAbuse(Model.Id, Model.Version))" title="Report Abuse">Report Abuse</a> link and we'll take care
+                of it for you. PLEASE ONLY DO THIS IF THERE IS AN URGENT PROBLEM WITH THE PACKAGE.
+                (Passwords, malicious code, etc). Even if you remove it, it&#8217;s prudent to immediately
+                reset any passwords/sensitive data you accidentally pushed instead of waiting for us to delete
+                the package.
+            </p>
+        </div>
+    </div>
+</section>

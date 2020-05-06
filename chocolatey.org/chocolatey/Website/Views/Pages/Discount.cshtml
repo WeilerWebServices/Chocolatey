@@ -1,0 +1,60 @@
+﻿@using NuGetGallery
+@model DiscountViewModel
+@{
+    ViewBag.Title = "Student Discount";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/account.css");
+    Bundles.Reference("Scripts");
+    Bundles.Reference("Scripts/validation");
+}
+@section TopScripts {
+    <script>
+        function onSubmit(token) {
+            document.getElementById("i-recaptcha").submit();
+        }
+    </script>
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+}
+
+<section id="account">
+    <div class="container py-3 py-lg-5">
+        <div class="row">
+            <div class="col-xl-6 mx-auto">
+                <h2 class="text-primary">Chocolatey Software Student Discount</h2>
+                <h4>Please provide the information below and we'll reach out as soon as possible.</h4>
+                @using (Html.BeginForm("Discount", "Pages", FormMethod.Post, new { id = "i-recaptcha" }))
+                {
+                    <fieldset class="form">
+                        <legend class="d-none">Student Discount</legend>
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <div class="form-field d-none">
+                            @Html.DropDownListFor(m => m.DiscountType, Model.DiscountTypeItems, new { Value = "StudentDiscount" })
+                        </div>
+                        <div class="form-field">
+                            @Html.LabelFor(m => m.FirstName) <span class="fas fa-asterisk"></span>
+                            @Html.EditorFor(m => m.FirstName)
+                            @Html.ValidationMessageFor(m => m.FirstName)
+                        </div>
+                        <div class="form-field">
+                            @Html.LabelFor(m => m.LastName) <span class="fas fa-asterisk"></span>
+                            @Html.EditorFor(m => m.LastName)
+                            @Html.ValidationMessageFor(m => m.LastName)
+                        </div>
+                        <div class="form-field">
+                            @Html.LabelFor(m => m.Email) <span class="fas fa-asterisk"></span>
+                            @Html.EditorFor(m => m.Email)
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                        <div class="form-field">
+                            @Html.ValidationMessageFor(m => m.SpamValidationResponse)
+                        </div>
+                        <p class="mb-0 mt-3"><small>Fields marked with</small> <span class="fas fa-asterisk"></span> <small>are required.</small></p>
+                        <input class="btn btn-primary mt-3 g-recaptcha" data-sitekey="@System.Configuration.ConfigurationManager.AppSettings["reCAPTCHA::PublicKey"]" data-callback="onSubmit" data-badge="bottomleft" type="submit" value="Send" title="Send us a message. We'll be in touch soon!" />
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</section>

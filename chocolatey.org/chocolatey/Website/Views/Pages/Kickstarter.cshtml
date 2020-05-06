@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "Kickstarter";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/pages.css");
+    Bundles.Reference("Scripts");
+}
+
+<section class="py-3 py-lg-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center pb-4">Chocolatey Kickstarter</h1>
+                <p>In October 2014, we ran a highly successful <a href="https://www.kickstarter.com/projects/ferventcoder/chocolatey-the-alternative-windows-store-like-yum/description" rel="noreferrer">Kickstarter campaign</a> to put the things in place for a viable future for Chocolatey for the next 20+ years!</p>
+                <ul>
+                    <li>At the time the community repository had just over 5 million downloads of software/packages and 2,000+ unique packages. Compare that to just two years later at 60+ million downloads and over 4,000 unique packages!</li>
+                    <li>The team was attempting to raise at least $40,000.</li>
+                    <li>The Kickstarter campaign ran for 32 days.</li>
+                    <li>The campaign funded successfully with 3 days left in the campaign.</li>
+                    <li>We received backing from 1,044 folks and organizations totalling $51,071 (127% of goal)!</li>
+                    <li>This makes Chocolatey one of the first and few successful Kickstarters in the Microsoft .NET ecosystem.</li>
+                </ul>
+                <p>As a community, you told us you wanted Chocolatey to stick around for the foreseeable future as much as we did and were willing to step up and make a difference. If you benefit from Chocolatey today, it is due in part to the amazing folks and organizations that stepped up and said "Yes!" Be sure to thank a backer if you happen to meet them!</p>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h3 class="mb-3 text-center">Why did we do a Kickstarter?</h3>
+                <p>The following were the original stated goals of the <a href="https://www.kickstarter.com/projects/ferventcoder/chocolatey-the-alternative-windows-store-like-yum/description" rel="noreferrer">Kickstarter</a>:</p>
+                <ul>
+                    <li>To <span style="font-weight: bold;">invest in non-free features</span> we believe bring more stability, safety, and security to Chocolatey.</li>
+                    <li>To <span style="font-weight: bold;">support improvements to the infrastructure</span>. We currently spend under $1K/month (this was in 2014, it has more than doubled as of 2016) and see a need to more than double that to support a staging environment, a build/test infrastructure, and load balancing needs as Chocolatey continues to increase steadily in popularity. At the time, the costs were paid by Rob's company (RealDimensions Software, LLC) and the tremendous generosity of others, including <a href="https://appharbor.com">AppHarbor</a>. We believe there is a crucial need for Chocolatey to become self-sustaining to reduce unforeseen risks.</li>
+                    <li>To <span style="font-weight: bold;">give the Chocolatey team more freedom</span> to concentrate on Chocolatey so we can get these features to you faster.</li>
+                </ul>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="card w-75 mx-auto testimonial">
+                    <div class="card-body">
+                        <img class="rounded-circle border text-center" src="/content/images/team/rob-sq.jpg" alt="Rob Reynolds, CEO and Founder of Chocolatey" title="Rob Reynolds, CEO and Founder of Chocolatey" />
+                        <h3 class="mt-2 mb-0 text-primary"><small>Rob Reynolds</small></h3>
+                        <p><small><i>CEO and Founder of Chocolatey</i></small></p>
+                        <q class="mb-0">If you were a backer at any level, thank you! Without your support, Chocolatey would have struggled to achieve what we've achieved together. Where we are today is a reflection of decisions we made yesterday. What you've enabled us to do has been awesome!</q>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="bg-white" id="sponsors">
+    <section class="py-3 py-lg-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center pb-4">Awesome Backers</h1>
+                    <p>Backers at this level supported Chocolatey with at least a $750 donation. These organizations are amazing and support automation on Windows and Chocolatey at the highest level! When you are looking for the best organizations to support, keep these organizations in mind.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xl-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex align-items-center justify-content-center" style="background: #222;">
+                            <a href="https://puppet.com" rel="noreferrer" title="Puppet, Inc" target="_blank"><img src="@Url.Content("~/content/images/businesses/Puppet.png")" alt="Logo for Puppet, Inc" /></a>
+                        </div>
+                        <div class="card-footer text-center bg-white">
+                            <h4 class="mb-0"><strong>$1,200 Level</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex align-items-center justify-content-center" style="background: #323232;">
+                            <a href="https://chef.io" rel="noreferrer" title="Chef Software, Inc" target="_blank"><img src="@Url.Content("~/content/images/businesses/Chef.png")" alt="Logo for Chef Software, Inc" /></a>
+                        </div>
+                        <div class="card-footer text-center bg-white">
+                            <h4 class="mb-0"><strong>$999 Level</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex align-items-center justify-content-center" style="background: #005571;">
+                            <a href="https://www.elastic.co" rel="noreferrer" title="Elasticsearch BV" target="_blank"><img src="@Url.Content("~/content/images/businesses/Elastic.png")" alt="Logo for Elastic" /></a>
+                        </div>
+                        <div class="card-footer text-center bg-white">
+                            <h4 class="mb-0"><strong>$999 Level</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex align-items-center justify-content-center" style="background: #e60278;">
+                            <a href="https://www.seek.com.au/" rel="noreferrer" title="SEEK - Australia's number one jobs site" target="_blank"><img src="@Url.Content("~/content/images/businesses/SEEK.png")" alt="Logo for SEEK" /></a>
+                        </div>
+                        <div class="card-footer text-center bg-white">
+                            <h4 class="mb-0"><strong>$999 Level</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <a href="https://www.ise.com/" rel="noreferrer" title="Integrated Securities Exchange Holdings, Inc" target="_blank"><img src="@Url.Content("~/content/images/businesses/ISE.png")" alt="Logo for Integrated Securities Exchange Holdings, Inc" /></a>
+                        </div>
+                        <div class="card-footer border-top text-center bg-white">
+                            <h4 class="mb-0"><strong>$750 Level</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex align-items-center justify-content-center" style="background: #0495dc;">
+                            <a href="https://www.myget.org/" rel="noreferrer" title="MyGet Ltd" target="_blank"><img src="@Url.Content("~/content/images/businesses/MyGet.png")" alt="Logo for MyGet" /></a>
+                        </div>
+                        <div class="card-footer text-center bg-white">
+                            <h4 class="mb-0"><strong>$750 Level</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex align-items-center justify-content-center" style="background: #0F2535;">
+                            <a href="https://octopus.com/" rel="noreferrer" title="Octopus Deploy" target="_blank"><img src="@Url.Content("~/content/images/businesses/OctopusDeploy.png")" alt="Logo for Octopus Deploy" /></a>
+                        </div>
+                        <div class="card-footer text-center bg-white">
+                            <h4 class="mb-0"><strong>$750 Level</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <a href="http://inedo.com/proget?utm_source=choco&utm_medium=txt&utm_campaign=chocospon" rel="noreferrer" title="ProGet is from Inedo Software, Inc" target="_blank"><img src="@Url.Content("~/content/images/businesses/ProGet.png")" alt="Logo for ProGet" /></a>
+                        </div>
+                        <div class="card-footer border-top text-center bg-white">
+                            <h4 class="mb-0"><strong>$750 Level</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4 ml-xl-auto">
+                    <div class="card h-100">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <a class="text-center" href="https://www.sharebylink.com/" rel="noreferrer" title="ShareByLink.com Open-Source File Sharing" target="_blank"><img src="@Url.Content("~/content/images/businesses/ShareByLink.png")" alt="Logo for ShareByLink" /> <br /><span>ShareByLink</span></a>
+                        </div>
+                        <div class="card-footer border-top text-center bg-white">
+                            <h4 class="mb-0"><strong>$750 Level</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4 mr-xl-auto">
+                    <div class="card h-100">
+                        <div class="card-body d-flex align-items-center justify-content-center" style="background: #222;">
+                            <a href="https://velocity.silverlakesoftware.com" rel="noreferrer" title="Velocity by Silverlake Software LLC" target="_blank"><img src="@Url.Content("~/content/images/businesses/Velocity.png")" alt="Logo for Velocity" /></a>
+                        </div>
+                        <div class="card-footer text-center bg-white">
+                            <h4 class="mb-0"><strong>$750 Level</strong></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center py-4">Additional Backers</h1>
+                    <p>With over 1,000 backers in October/November 2014, these were a percentage of the early adopters of Chocolatey! If we were to run a Kickstarter campaign now, based on the popularity of the site today, we believe we would have had over 10,000 backers!</p>
+                    <p>Checkout the full list at <a href="https://www.kickstarter.com/projects/ferventcoder/chocolatey-the-alternative-windows-store-like-yum/community" rel="noreferrer">https://www.kickstarter.com/projects/ferventcoder/chocolatey-the-alternative-windows-store-like-yum/community</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

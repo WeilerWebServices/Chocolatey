@@ -1,0 +1,39 @@
+﻿@model EmailConfirmationModel
+@{
+    Layout = "~/Views/Shared/MinimalLayout.cshtml";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/account.css");
+    Bundles.Reference("Scripts");
+    Bundles.Reference("Scripts/validation");
+}
+
+@if (Model.SuccessfulConfirmation)
+{
+    <h3 class="text-center">
+        @if (Model.ConfirmingNewAccount)
+        {
+            @: Account registration completed!
+        }
+        else
+        {
+            @: Email address change confirmed!
+        }
+    </h3>
+    if (Model.ConfirmingNewAccount)
+    {
+        <p>Click on the button below to log in to the site. You may now upload packages and make your mark in the community.</p>
+    }
+    else
+    {
+        <p>Your email address is now updated.</p>
+    }
+    <div class="text-center">
+        <a class="btn btn-primary mx-auto" href="@Url.Action("Account")" title="Go to Account">Go to Account</a>
+    </div>
+}
+else
+{
+    <h3 class="text-center">Confirmation Error</h3>
+    <p class="text-danger font-weight-bold">Could not confirm your email address. Make sure you clicked on the confirmation URL in the email we sent.</p>
+    <p>If you see this screen and you are logged in, you can likely safely ignore it.</p>
+}

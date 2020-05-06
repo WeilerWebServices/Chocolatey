@@ -1,0 +1,124 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Naming, Description, and Versioning Recommendations";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#package-name">Naming Your Package</a></li>
+    <li><a href="#description-and-release-notes">Description and Release Notes</a></li>
+    <li><a href="#package-versioning">Versioning Recommendations</a></li>
+    <li><a href="#additional-tips">Additional Tips</a></li>
+}
+
+<h2 id="package-name" class="mb-3">Naming Your Package</h2>
+<p>The <strong>title</strong> of your package (<code>&lt;title&gt;</code> tag in the nuspec) should be the same as the name of the application. Follow the official spelling, use upper and lower case and don't forget the spaces. Examples of correct package titles are: <em>Google&nbsp; Chrome</em>, <em>CCleaner</em>, <em>PuTTY</em> and <em>FileZilla</em>. The title will appear on the left side in the package list of the Chocolatey gallery, followed by the version.</p>
+<p>There are some guidelines in terms of the package <strong>id</strong> (<code>&lt;id&gt;</code> tag in the nuspec):</p>
+<ul>
+    <li><strong>Use only lowercase letters</strong>, even if you used uppercase letters in the package title. (This is considered a guideline because it is correctable in other ways). Once a package is submitted (even prior moderation), the Gallery will always show the id with the casing of the first package version. In addition, changing the casing of the package id may have negative side effects on dependencies (note: this last statement needs verified).</li>
+    <li>If the original application name consists of compound words without spaces (CamelCase), just as <em>MKVToolNix</em>, <em>TightVNC</em> and <em>VirtualBox</em>, the package id's are simply the same (but <strong>lowercase</strong> of course): <code>mkvtoolnix</code>, <code>tightvnc</code>, and <code>virtualbox</code>.</li>
+    <li>If the name of the application contains multiple words separated by spaces, such as <em>MusicBrainz&nbsp; Picard</em> or <em>Adobe Reader</em>, replace the spaces with the hyphen-minus character " - " (U+002D) or just omit them. <strong>Don't use dots.</strong> They should be used only if the original application name contains dots (e.&nbsp; g. <em>Paint.NET</em>). Hence the correct id's of the previously mentioned applications can be <code>musicbrainz-picard</code> or <code>adobereader</code>. It is highly suggested to use the hyphen method when there are long package names, because that increases readability.</li>
+    <li>For sub-packages, use the hyphen-minus character " - " (U+002D) as separator, not a dot. Sub-packages are intended for separate packages that include extensions, modules or additional features/files for other applications. Therefore <code>keepass-langfiles</code> is a proper package id, because it adds the language files for the main application which in this case is <em>KeePass</em>. Another example is <code>libreoffice-help</code> for the help pack for <em>LibreOffice</em>, the open source office suite.</li>
+    <li>If you want to package an open source application, look on the repositories of some popular Linux distributions, such as <a href="http://www.debian.org/distrib/packages#search_packages">Debian</a>, <a href="http://packages.ubuntu.com/">Ubuntu</a> and <a href="https://www.archlinux.org/packages/">Arch Linux</a> if they already have a package of it. If that is the case, <strong>use the same package id</strong>. This will make it easier for Linux and Windows users, because then they don't have to remember and use different package names.</li>
+</ul>
+<p>These guidelines are already commonly applied on packages for all major Linux distributions, because they lead to a more consistent look of software repositories, easier to remember package id&#39;s and less considerations about the naming for package creators.</p>
+<p>Note that a lot of packages in the Chocolatey Gallery don't follow these guidelines. The simple reason is that the affected packages were created before the introduction of these guidelines.</p>
+<p>If you are going to offer a package that has both an installer and an archive (zip or executable only) version of the application, create three packages&nbsp;  - see <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "chocolatey-faqs" })#what-distinction-does-chocolatey-make-between-an-installable-and-a-portable-application">Portable vs Installable</a> and <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "chocolatey-faqs" })#what-is-the-difference-between-packages-named-install-ie-autohotkeyinstall-portable-ie-autohotkeyportable-and-ie-autohotkey">Install, Portable, and Meta/Virtual Packages</a></p>
+
+<h2 id="description-and-release-notes" class="mt-5 mb-3">Description and Release Notes</h2>
+<p>The <code>&lt;description&gt;</code> of the package should contain a short text or at least a few words about the software for which the package is made. Here are a few things that should be respected:</p>
+<ul>
+    <li>The description should always be written in English, even if the packaged software does not provide an UI in English. You can also include the software's description in its original language, but insert it after the English description.</li>
+    <li>The description should not just contain a repetition of the package name.</li>
+    <li>It should not just consist of a link where more information can be found. For that purpose there's already <code>&lt;projectUrl&gt;</code>.</li>
+    <li>The contents of <code>&lt;description&gt;</code> and also <code>&lt;releaseNotes&gt;</code> are parsed as Markdown, so don't insert line breaks in the middle of sentences. Remember to add empty lines to separate paragraphs and add an empty line before a list.</li>
+</ul>
+
+<h2 id="package-versioning" class="mt-5 mb-3">Versioning Recommendations</h2>
+<p>Versioning can be both simple and complicated. The best recommendation is to use the same versioning that the installable/portable application uses. With Chocolatey you get four version segments. If the application only uses 1, 2 or 3 version segments, follow suit.</p>
+<p>If the 4th segment is used, some folks like to drop the segment altogether and use that as only the package fix notation using one of the notations in the next section. There is no recommendations at this time.</p>
+<p>The main release of a product versions are usually sufficient. If there are also beta versions available and you would rather have that, then please create both the official release and the beta (and set the beta as a prerelease when pushing the item to chocolatey.org). Regular users of packages may want to use official releases only and not betas.</p>
+<div class="callout callout-primary">NOTE: Both of these have the SAME package id, just different versions.</div>
+<h4 class="mt-4">Package Fix Version Notation</h4>
+<p>Package fix version notation ONLY applies when you are making a fix to the package because the existing version of a package is incorrect in some way. So if the software is <code>1.1.0</code>, in a normal scenario the package version should be <code>1.1.0</code>. If you find that the <code>1.1.0</code> package has an issue and you need to fix the package but keep the same version of the software, that is where package fix version notation comes into play. You would end up with both a <code>1.1.0</code> package and a <code>1.1.0.YYYYMMDD</code> version of the package.</p>
+<div class="callout callout-danger"><strong>NOTE: This doesn't apply to packages on the community feed (aka <a href="https://chocolatey.org/packages" class="uri">https://chocolatey.org/packages</a>) that are still under review (not yet approved). Please read the instructions given in email for resubmitting the same version.</strong></div>
+<p>If you need to fix an approved package for some reason, you can use the fourth version element (aka segment) for a package fix notation. There are two recommended methods of package fix version notation:</p>
+<ul>
+    <li><strong>Date (Year/Month/Day)</strong> - Some folks use year month day package fix notation (yyyyMMdd as in 20120627 seen as 1.2.0.20120627)</li>
+    <li>Sequential - <strong>Not recommended</strong> - Some folks use sequential numbering (0, then 1, etc as in 0 for no fix, 1 for first fix and so on seen as 1.2.0.0 and 1.2.0.1).</li>
+</ul>
+<p>Date Package Fix Version Notation is recommended because one can ascertain what it is immediately upon seeing it, where sequential is not obvious on sight whether it is part of the software versioning or something special with the package.</p>
+<p>Package fix version notation is only acceptable in the fourth segment. Do not use any of the other segments for package fix notation. If an application only uses 1 or 2 version segments, add zeros into the other segments until you get to the 4th segment (i.e.&nbsp; 1.0.0.20120627).</p>
+<p>When the fourth segment is already used, it is recommended to add two zeroes (00) to the end of the version. Then when you need to fix, you just increment that number. So if the package was ruby and the version was 2.0.0-p353, the package is 2.0.0.35300 (adding the two zeroes at the end). Then a fix would be 2.0.0.35301 and so on. <strong>WARNING</strong>: If you decide to add a secondary set of numbers to the fourth segment, you MUST ALWAYS include that secondary set of numbers while the other three version segments are the same. The reason - if you fix <code>.1</code> to <code>.100</code>, then release <code>.2</code>, <code>.100</code> is greater than <code>.2</code> because versioning doesn't look at the " . ", only the number in the element. So <code>100</code> is greater than <code>2</code>.</p>
+<h2 id="internationalization-and-localization-of-packages">Internationalization and localization of packages</h2>
+<p>For Chocolatey, internationalization and localization of packages is very important, because it has users from all over the world. Many applications support multiple languages, but they use several different methods to achieve that. Therefore, there is no standard how internationalization/localization has to be integrated into packages. However, here are a few examples of packages that use various techniques. You can use them as inspiration for new packages:</p>
+<ul>
+    <li>The ideal situation is when an application determines the user's system language and automatically installs with that language. Then you don't have to take any action relating to localization, because the application already handles that. Examples of such applications are <a href="https://chocolatey.org/packages/vlc">VLC Media Player</a> and <a href="https://chocolatey.org/packages/libreoffice-fresh">LibreOffice</a>.</li>
+    <li>When an application provides different installers for different languages, you should determine the system language and download the appropriate installer. The package for <a href="https://chocolatey.org/packages/Firefox">Mozilla Firefox</a> (<a href="https://github.com/chocolatey-community/chocolatey-coreteampackages/tree/master/automatic/firefox">source code</a>) uses this method.</li>
+    <li>Sometimes an application installer or executable has already integrated all supported languages, but doesn't automatically select the system language during a silent install. Often you can pass an additional install parameter to select the desired language. This is used for example in the <a href="https://chocolatey.org/packages/ccleaner">CCleaner</a> package (<a href="https://github.com/tonigellida/chocolateyautomaticpackages/tree/master/ccleaner">source code</a>).</li>
+    <li>Some application use separate language files which must be downloaded separately and put somewhere in the application directory. It is best when you create a separate package for the language files. If your package id is <code>packageid</code>, then call it <code>packageid-langfiles</code>. The <a href="https://chocolatey.org/packages/keepass-langfiles">language files package for KeePass</a> is an example how this can be achieved.</li>
+</ul>
+
+<h2 id="additional-tips" class="mt-5 mb-3">Additional Tips</h2>
+<h4>Dependecy Chaining</h4>
+<p>You can make packages that depend on other packages just by adding those dependencies to the nuspec. Take a look at <a href="https://github.com/ferventcoder/chocolatey-packages/blob/master/manual/ferventcoder.chocolatey.utilities/ferventcoder.chocolatey.utilities.nuspec">ferventcoder.chocolatey.utilities nuspec</a>.</p>
+<h4 class="mt-4">Avoid Folders Named "Content"</h4>
+<p>Do not use a folder named "content" in your package. NuGet attaches a special meaning to this folder and will not allow you to have dependencies on packages that have content folders without also having a content folder. It's turtles all the way down until we or NuGet removes this limitation.</p>
+
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>What case should be used when naming the id for your Chocolatey Package?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">Pascal Case</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">Lower Case</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">Snake Case</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>Once a package has been submitted to the Chocolatey Community Repository and approved, can it be modifed?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">Yes, make as many changes as you want</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">No, once approved a package is immutable, meaning it can’t be changed</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

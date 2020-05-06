@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fileSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <files>
+    <file path="C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\applicationcompatibilitytoolkit.nupkg" checksum="2A62F5DA567C00D30BEE5EDB0CBF1D09" />
+    <file path="C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\tools\chocolateyInstall.ps1" checksum="D7F8382EE4831301DD86A7CB49AEEA82" />
+    <file path="C:\ProgramData\chocolatey\lib\applicationcompatibilitytoolkit\tools\chocolateyUninstall.ps1" checksum="FF19EF6FDEE3A1CB53603FD52DA0538D" />
+  </files>
+</fileSnapshot>

@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Documentation/DocumentationLayout.cshtml";
+}
+@section css
+{
+    @RenderSection("css", required: false)
+}
+@section ExtraHeaders
+{
+    @RenderSection("ExtraHeaders", required: false)
+}
+@section TopScripts
+{
+    @RenderSection("TopScripts", required: false)
+}
+
+@RenderBody()
+
+@section BottomScripts {
+    @RenderSection("BottomScripts", required: false)
+}

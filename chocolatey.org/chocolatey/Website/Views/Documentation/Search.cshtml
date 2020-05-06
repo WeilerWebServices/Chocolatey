@@ -1,0 +1,8 @@
+﻿@{
+  ViewBag.Title = string.IsNullOrWhiteSpace(Model.SearchTerm) ? "Documentation Search Results" : "Search results matching " + Model.SearchTerm;
+}
+
+<article>
+<h1>Search for "@Model.SearchTerm" Docs and Site Search Results</h1>
+<gcse:searchresults-only></gcse:searchresults-only>
+</article>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{a76a363c-7088-497f-914b-c3239b8d1d73}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MyApplication</RootNamespace>
+    <AssemblyName>MyApplication</AssemblyName>
+    <Name>Tests</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Azure\Get-AzureVMCheckpoint.tests.ps1" />
+    <Content Include="Chocolatey\Enable-BoxstarterCredSSP.Tests.ps1" />
+    <Content Include="TestRunner\Get-BoxstarterDeployOptions.Tests.ps1" />
+    <Content Include="TestRunner\Get-BoxstarterPackage.tests.ps1" />
+    <Content Include="TestRunner\Publish-BoxstarterPackage.Tests.ps1" />
+    <Content Include="TestRunner\Select-BoxstarterResultsToPublish.tests.ps1" />
+    <Content Include="TestRunner\Set-BoxstarterPackageNugetFeed.Tests.ps1" />
+    <Content Include="TestRunner\Test-BoxstarterPackage.Tests.ps1" />
+    <Content Include="HyperV\Enable-BoxstarterVHD.Tests.ps1" />
+    <Content Include="HyperV\Enable-BoxstarterVM.Tests.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Azure\" />
+    <Folder Include="Bootstrapper\" />
+    <Folder Include="Chocolatey\" />
+    <Folder Include="Common\" />
+    <Folder Include="HyperV\" />
+    <Folder Include="TestRunner\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Azure\Enable-BoxstarterVM.Tests.ps1" />
+    <Compile Include="Bootstrapper\Test-PendingReboot.tests.ps1" />
+    <Compile Include="Bootstrapper\Invoke-BoxStarter.tests.ps1" />
+    <Compile Include="Bootstrapper\Invoke-Reboot.tests.ps1" />
+    <Compile Include="Chocolatey\Chocolatey.tests.ps1" />
+    <Compile Include="Chocolatey\Enable-BoxstarterClientRemoting.Tests.ps1" />
+    <Compile Include="Chocolatey\Get-BoxstarterConfig.tests.ps1" />
+    <Compile Include="Chocolatey\Get-PackageRoot.tests.ps1" />
+    <Compile Include="Chocolatey\Install-BoxstarterPackage.tests.ps1" />
+    <Compile Include="Chocolatey\Invoke-BoxstarterBuild.tests.ps1" />
+    <Compile Include="Chocolatey\Invoke-ChocolateyBoxstarter.tests.ps1" />
+    <Compile Include="Chocolatey\New-BoxstarterPackage.tests.ps1" />
+    <Compile Include="Chocolatey\New-PackageFromScript.tests.ps1" />
+    <Compile Include="Chocolatey\Set-BoxstarterShare.Tests.ps1" />
+    <Compile Include="Common\Invoke-FromTask.tests.ps1" />
+    <Compile Include="TestRunner\Install-BoxstarterScripts.tests.ps1" />
+    <Compile Include="TestRunner\Set-BoxstarterFeedAPIKey.Tests.ps1" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="Build" />
+</Project>

@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "How Chocolatey Works";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Scripts");
+}
+
+<div id="header" class="bg-medium-dark">
+    <section class="py-3 py-lg-5">
+        <div class="container py-3 py-lg-5 text-center">
+            <h1 class="display-3 mb-0">How Chocolatey Works</h1>
+        </div>
+    </section>
+    <div class="shape-border shape-border-bottom"></div>
+</div>
+<section class="pb-3 pb-lg-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Overview</h2>
+                <hr class="border-hr" />
+                <p>
+                    Chocolatey is a software management solution that gives you the freedom to create a simple software package and then deploy it anywhere you have Windows using any of your familiar configuration or system management tools.
+                </p>
+                <p>
+                    If you ever used yum, apt, pacman or indeed any package managers on Linux, or Homebrew on a Mac, you already know what Chocolatey is. Chocolatey is <i>the</i> Windows package manager, in the same way that RPM is a package manager for Linux.
+                </p>
+                <p>
+                    Designed to be simple to use, it provides a suite of powerful features that scale for your existing, and your future infrastructure. Power and flexibility in one simple product, that's Chocolatey.
+                </p>
+                <p>
+                    So whether you are an individual, a small organization, or a large enterprise, Chocolatey provides you with the features to be able to manage your Windows software simply, saving you time and resources. 
+                    Getting started with Chocolatey is quick and easy - you can start using Open Source for free or contact us for a trial of our commercial edition.
+                </p>
+            </div>
+            <div class="col-lg-6 mx-auto">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="video-story">
+                            <div class="text-center" data-toggle="modal" data-target="#chocolatey-story"><img class="img-fluid shadow mb-3" src="@Url.Content("~/content/images/videos/03-13.jpg")" alt="What is Chocolatey" title="What is Chocolatey" /></div>
+                            <div class="modal fade" id="chocolatey-story" tabindex="-1" role="dialog" aria-labelledby="What is Chocolatey Video" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body p-0">
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" data-src="https://www.youtube.com/embed/Z8olEnt65bk?autoplay=1" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <q class="h5 text-muted text-italic">The biggest challenge is reducing duplication of effort, so users turn to Chocolatey for simplicity.</q>
+                            <p class="text-center">Rob Reynolds, Founder of Chocolatey Software</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-3 py-lg-5 bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <video class="img-fluid" autoplay muted loop>
+                    <source src="@Url.Content("~/content/images/How-Chocolatey-Works.mp4")" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 px-lg-5 py-lg-5">
+                <div class="text-center">
+                    <span class="fas fa-rocket display-3 text-primary"></span>
+                    <h3 class="my-3">Deploy Anywhere You Have Windows</h3>
+                </div>
+                <p>
+                    We designed Chocolatey to work with the widest range of Windows operating systems all the way back to Windows 7 and Windows Server 2003.
+                    We also support cloud environments such as Microsoft Azure, Amazon AWS and any others where Windows platforms are available. Chocolatey runs on Windows Server.Core and Docker Windows container as well.
+                </p>
+                <p>
+                    One product to manage all the software on your entire Windows estate cuts training costs for staff saving both money and time that could be better spent elsewhere within your organization.
+                </p>
+            </div>
+            <div class="col-lg-6 py-lg-5">
+                <div class="text-center">
+                    <span class="fas fa-check display-3 text-primary"></span>
+                    <h3 class="my-3">Complete Software Coverage</h3>
+                </div>
+                <p>
+                    The software environment on Windows is much more than what is shown in Programs and Features. Which is why Chocolatey manages all software on Windows including software installers, scripts, zip files and internal software.
+                </p>
+                <p>Check out our<a href="@Url.RouteUrl(RouteName.Docs, new {docName = "how-to-setup-internal-package-repository"})#architecture"> Architecture Diagram</a> for a better understanding of organizational requirements.</p>
+            </div>
+            <div class="col-lg-6 px-lg-5">
+                <div class="text-center">
+                    <span class="fas fa-lock display-3 text-primary"></span>
+                    <h3 class="my-3">Reliable and Secure</h3>
+                </div>
+                <p>Chocolatey requires no internet access whatsoever. You can <a href="@Url.RouteUrl(RouteName.Docs, new {docName = "how-to-setup-offline-installation"})">build and host packages internally</a> all for free, which gives you complete control over your environment.</p>
+                <p>
+                    Additionally, leverage over 7,000 community packages - <a href="@Url.RouteUrl(RouteName.Docs, new {docName = "how-to-recompile-packages"})">internalizing them</a> for use in your environment.
+                    This allows you to reuse existing logic that has been tested across multiple environments. Add in <a href="@Url.RouteUrl(RouteName.Docs, new {docName = "how-to-setup-internal-package-repository"})">automatic internalization using Package Internalizer</a>
+                    to take advantage of a hands off approach updating packages within moments of when they are updated in the community!
+                </p>
+            </div>
+            <div class="col-lg-6 px-lg-5">
+                <div class="text-center">
+                    <span class="fas fa-tools display-3 text-primary"></span>
+                    <h3 class="my-3">Use Familiar Tools</h3>
+                </div>
+                <p>
+                    Chocolatey packages use PowerShell to drive them so no need to learn another language to deploy software which cuts down the time from installation to package deployment.
+                </p>
+                <p>
+                    You can use Chocolatey to deploy software using the tools you already know. Many configuration management tools such as Ansible, Chef, Puppet, PowerShell DSC, Salt and others have specific support for Chocolatey.
+                    Any end point management solution such as SCCM, Altiris, Connectwise Automate or others that allow you to manage remote deployment can use Chocolatey to manage software as well.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

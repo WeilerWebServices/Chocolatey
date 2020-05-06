@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ResourceViewModel>
+@{
+    Layout = "~/Views/Shared/NewsletterLayout.cshtml";
+    ViewBag.Title = "Features";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Scripts");
+}
+@section ExtraHeaders {
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+}
+
+<section id="secondaryNav">
+    @Html.Partial("~/Views/Shared/_ResourceSubNavigation.cshtml")
+</section>
+<section class="py-3 py-lg-5">
+    <div class="container">
+        @Html.Partial("~/Views/Resources/_BreadCrumbs.cshtml")
+        <h3 id="c4b" class="mb-3">C4B Video Feature Series</h3>
+        <div class="row resource-list">
+            @foreach (var post in @Model)
+            {
+                if (post.Type.Contains("Feature") && post.Tags.Contains("c4b-feature"))
+                {
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <a href="@Url.RouteUrl(RouteName.ResourceName, new { resourceType= "features", resourceName = post.UrlPath })">
+                            <div class="card h-100">
+                                <div class="card-header font-weight-bold bg-medium-light text-center">
+                                    <span class="fas fa-star" alt="C4B @post.Type"></span>
+                                    <span>C4B @post.Type</span>
+                                </div>
+                                <div class="card-body p-0">
+                                    @Html.Raw(post.Image)
+                                </div>
+                                <div class="card-footer">
+                                    <h5>@post.Title</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>

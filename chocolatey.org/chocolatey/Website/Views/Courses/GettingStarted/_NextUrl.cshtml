@@ -1,0 +1,29 @@
+﻿@{
+string currentUrl = Request.Url.AbsoluteUri;
+
+if (currentUrl.ToLower().Contains("installation-in-detail"))
+{
+    <a href="@Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.GettingStartedWithChocolatey), courseModuleName = "home" })" class="btn btn-success mt-3">Review Unfinished Modules<span class="fas fa-angle-right"></span></a>
+}
+else
+{
+    <a href="@if (currentUrl.ToLower().Contains("what-is-chocolatey")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.GettingStartedWithChocolatey), courseModuleName = "requirements" })
+}
+else if (currentUrl.ToLower().Contains("requirements")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.GettingStartedWithChocolatey), courseModuleName = "how-to-use" })
+}
+else if (currentUrl.ToLower().Contains("how-to-use")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.GettingStartedWithChocolatey), courseModuleName = "terminology" })
+}
+else if (currentUrl.ToLower().Contains("terminology")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.GettingStartedWithChocolatey), courseModuleName = "chocolatey-packages" })
+}
+else if (currentUrl.ToLower().Contains("chocolatey-packages")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.GettingStartedWithChocolatey), courseModuleName = "how-chocolatey-works" })
+}
+else if (currentUrl.ToLower().Contains("how-chocolatey-works")) {
+    @Url.RouteUrl(RouteName.CourseName, new { courseName = CourseConstants.GetCourseUrl(CourseNameType.GettingStartedWithChocolatey), courseModuleName = "installation-in-detail" })
+}" class="btn btn-success mt-3">Continue with Course<span class="fas fa-angle-right"></span></a>
+}
+}

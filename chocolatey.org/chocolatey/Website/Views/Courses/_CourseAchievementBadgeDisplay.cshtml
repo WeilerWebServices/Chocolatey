@@ -1,0 +1,17 @@
+﻿@model CourseViewModel
+@{ 
+  var nextUrlViewLocation = "~/Views/Courses/{0}/_NextUrl.cshtml".format_with(CourseConstants.GetCourseUrl(Model.CourseNameType).Replace("-", ""));
+}
+
+@if (Model.UserCourseAchievements != null)
+{
+  var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+  if (courseAchievement != null && courseAchievement.Completed)
+  {
+    <a href="@Url.Action(MVC.Users.Profiles(Model.Username))" class="btn btn-success mt-3">See Badges<span class="fas fa-angle-right"></span></a>
+  }
+  else
+  {
+    @Html.Partial(nextUrlViewLocation)
+  }
+}

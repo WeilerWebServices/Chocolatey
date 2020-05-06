@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <version>$version$</version>
+    <authors>Chocolatey Software, Inc</authors>
+    <owners>Matt Wrock, Rob Reynolds, Gary Ewan Park</owners>
+    <copyright>2018 Chocolatey Software, Inc, 2012 - 2018 Matt Wrock</copyright>
+    <projectUrl>https://Boxstarter.org</projectUrl>
+    <id>Boxstarter.Common</id>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <iconUrl>https://raw.githubusercontent.com/chocolatey/boxstarter/master/Web/Images/boxLogo_sm.png</iconUrl>
+    <title>Boxstarter Common Module</title>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides common functions used by multiple Boxstarter Modules.
+
+## Package parameters
+
+* No desktop icon: `/nodesktopicon`
+    </description>
+    <tags>boxstarter</tags>
+    <releaseNotes xmlns="">
+- 2.11.0 packages missing chocolatey dlls for remote installs
+- Build script install deprecated package WindowsAzurePowershell
+- implement DelegateChocoSources switch to enable source feed passing
+- Chocolatey Package - include verification/license files
+- Chocolatey Packages - Don't include XML files
+- SignTool error when running build.bat
+- No Visual Studio Prereqs Specified In Docs
+</releaseNotes>
+  </metadata>
+  <files>
+    <file src="..\..\LICENSE.txt" target="tools" />
+    <file src="..\..\NOTICE.txt" target="tools" />
+    <file src="..\..\buildArtifacts\tempNuGetFolders\VERIFICATION.txt" target="tools" />
+    <file src="..\..\buildArtifacts\tempNuGetFolders\chocolateyinstall.ps1" target="tools" />
+    <file src="..\..\buildArtifacts\tempNuGetFolders\Setup.ps1" target="tools" />
+    <file src="..\..\buildArtifacts\tempNuGetFolders\Boxstarter.Common\**\*.*" target="tools\Boxstarter.Common" />
+  </files>
+</package>

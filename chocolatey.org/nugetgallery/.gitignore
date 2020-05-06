@@ -1,0 +1,13 @@
+bin
+obj
+*.user
+*.suo
+App_Data
+*.results.xml
+/packages
+_AzurePackage
+*.bak
+NuGetGallery.sln.docstates
+_ReSharper.NuGetGallery
+_PackagedWebsite
+TestResults

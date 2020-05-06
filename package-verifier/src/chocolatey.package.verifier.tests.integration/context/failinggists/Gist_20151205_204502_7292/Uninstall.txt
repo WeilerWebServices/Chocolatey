@@ -1,0 +1,172 @@
+﻿==> default: Running provisioner: shell...
+    default: Running: shell/VagrantAction.ps1 as c:\tmp\vagrant-shell.ps1
+==> default: Chocolatey is running on Windows v 6.3.9600.0
+==> default: Attempting to delete file "C:/ProgramData/chocolatey/choco.exe.old".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\choco.exe.old".
+==> default: Command line: "C:\ProgramData\chocolatey\choco.exe" uninstall etcd --version 2.2.2 -dvy
+==> default: 
+==> default: Received arguments: uninstall etcd --version 2.2.2 -dvy
+==> default: 
+==> default: NOTE: Hiding sensitive configuration data! Please double and triple 
+==> default:  check to be sure no sensitive data is shown, especially if copying 
+==> default:  output to a gist for review.
+==> default: Configuration: CommandName='uninstall'|
+==> default: 
+==> default: CacheLocation='C:\Users\ADMINI~1\AppData\Local\Temp'|
+==> default: ContainsLegacyPackageInstalls='True'|
+==> default: CommandExecutionTimeoutSeconds='2700'|
+==> default: Sources='https://chocolatey.org/api/v2/'|Debug='True'|Verbose='True'|
+==> default: Force='False'|Noop='False'|HelpRequested='False'|RegularOutput='True'|
+==> default: QuietOutput='False'|PromptForConfirmation='False'|AcceptLicense='True'|
+==> default: AllowUnofficialBuild='False'|Input='etcd'|Version='2.2.2'|
+==> default: AllVersions='False'|SkipPackageInstallProvider='False'|
+==> default: PackageNames='etcd'|Prerelease='False'|ForceX86='False'|
+==> default: OverrideArguments='False'|NotSilent='False'|IgnoreDependencies='False'|
+==> default: AllowMultipleVersions='False'|AllowDowngrade='False'|
+==> default: ForceDependencies='False'|Information.PlatformType='Windows'|
+==> default: Information.PlatformVersion='6.3.9600.0'|
+==> default: Information.PlatformName='Windows Server 2012 R2'|
+==> default: Information.ChocolateyVersion='0.9.9.11'|
+==> default: Information.ChocolateyProductVersion='0.9.9.11'|
+==> default: Information.FullName='choco, Version=0.9.9.11, Culture=neutral, PublicKeyToken=79d02ea9cad655eb'|
+==> default: 
+==> default: Information.Is64Bit='True'|Information.IsInteractive='False'|
+==> default: Information.IsUserAdministrator='True'|
+==> default: Information.IsProcessElevated='True'|Features.AutoUninstaller='True'|
+==> default: Features.CheckSumFiles='True'|Features.FailOnAutoUninstaller='False'|
+==> default: ListCommand.LocalOnly='False'|
+==> default: ListCommand.IncludeRegistryPrograms='False'|
+==> default: UpgradeCommand.FailOnUnfound='False'|
+==> default: UpgradeCommand.FailOnNotInstalled='False'|
+==> default: UpgradeCommand.NotifyOnlyAvailableUpgrades='False'|
+==> default: NewCommand.AutomaticPackage='False'|SourceCommand.Command='unknown'|
+==> default: SourceCommand.Priority='0'|FeatureCommand.Command='unknown'|
+==> default: ConfigCommand.Command='unknown'|PushCommand.TimeoutInSeconds='0'|
+==> default: PinCommand.Command='unknown'|
+==> default: _ Chocolatey:ChocolateyUninstallCommand - Normal Run Mode _
+==> default: Uninstalling the following packages:
+==> default: etcd
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib-bkp".
+==> default: 
+==> default: Backing up existing etcd prior to upgrade.
+==> default: Moving 'C:\ProgramData\chocolatey\lib\etcd'
+==> default:  to 'C:\ProgramData\chocolatey\lib-bkp\etcd'
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib\etcd".
+==> default: 
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\etcd\etcd.nupkg"
+==> default:  to "C:\ProgramData\chocolatey\lib\etcd\etcd.nupkg".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\etcd\etcdInstall.zip.txt"
+==> default:  to "C:\ProgramData\chocolatey\lib\etcd\etcdInstall.zip.txt".
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib\etcd\tools".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\etcd\tools\chocolateyinstall.ps1"
+==> default:  to "C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyinstall.ps1".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\etcd\tools\chocolateyuninstall.ps1"
+==> default:  to "C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyuninstall.ps1".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\etcd\tools\etcdctl.exe"
+==> default:  to "C:\ProgramData\chocolatey\lib\etcd\tools\etcdctl.exe".
+==> default: Capturing package files in 'C:\ProgramData\chocolatey\lib\etcd'
+==> default: 
+==> default:  Found 'C:\ProgramData\chocolatey\lib\etcd\etcd.nupkg'
+==> default:   with checksum '9E39F7E8E76C450334309B8AA4CDE3E0'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\etcd\etcdInstall.zip.txt'
+==> default:   with checksum '769F3D5FE8D85229F6B1343928041BAF'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyinstall.ps1'
+==> default:   with checksum '55360C3D6388BABB1463F8716292B79E'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyuninstall.ps1'
+==> default:   with checksum '20C74BFD2F7269A8F7A07FB1D390B634'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\etcd\tools\etcdctl.exe'
+==> default: 
+==> default:   with checksum 'D8D9B865400361AA6DC16E028B917567'
+==> default: [NuGet] Uninstalling 'etcd 2.2.2'.
+==> default: 
+==> default: 
+==> default: etcd v2.2.2
+==> default: Removing shim for etcdctl.exe at 'C:\ProgramData\chocolatey\bin\etcdctl.exe
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\bin\etcdctl.exe".
+==> default: Contents of 'C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyuninstall.ps1':
+==> default: # stop on all errors
+==> default: $ErrorActionPreference = 'Stop';
+==> default: $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+==> default: 
+==> default: if ((Get-Service | Where-Object { $_.Name -eq "etcd" }).length)
+==> default: {
+==> default: 	Get-Service etcd | Stop-Service
+==> default: 	&nssm remove etcd confirm
+==> default: }
+==> default: 
+==> default: Remove-Item C:\ProgramData\etcd -Recurse -Force
+==> default: Remove-Item "$toolsDir\etcdctl.exe"
+==> default: Calling command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; 
+==> default: & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyuninstall.ps1' -installArguments '' -packageParameters ''"']
+==> default:  DEBUG: Posh version is 4.0
+==> default:  DEBUG: Loading community extensions
+==> default:  VERBOSE: Exporting function 'Get-BinRoot'.
+==> default:  VERBOSE: Exporting function 'Get-ChecksumValid'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyUnzip'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyWebFile'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariableNames'.
+==> default:  VERBOSE: Exporting function 'Get-FtpFile'.
+==> default:  VERBOSE: Exporting function 'Get-ProcessorBits'.
+==> default:  VERBOSE: Exporting function 'Get-UACEnabled'.
+==> default:  VERBOSE: Exporting function 'Get-VirusCheckValid'.
+==> default:  VERBOSE: Exporting function 'Get-WebFile'.
+==> default:  VERBOSE: Exporting function 'Get-WebHeaders'.
+==> default:  VERBOSE: Exporting function 'Install-BinFile'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyDesktopLink'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyEnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyExplorerMenuItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyFileAssociation'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyInstallPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPath'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPinnedTaskBarItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPowershellCommand'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyShortcut'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyVsixPackage'.
+==> default:  VERBOSE: Exporting function 'Install-Vsix'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Set-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Start-ChocolateyProcessAsAdmin'.
+==> default:  VERBOSE: Exporting function 'Test-ProcessAdminRights'.
+==> default:  VERBOSE: Exporting function 'Uninstall-BinFile'.
+==> default:  VERBOSE: Exporting function 'Uninstall-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'UnInstall-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Update-SessionEnvironment'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateyFailure'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateySuccess'.
+==> default:  VERBOSE: Exporting function 'Write-FileUpdateLog'.
+==> default:  VERBOSE: Exporting alias 'Generate-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Add-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Remove-BinFile'.
+==> default:  S e r v i c e   " e t c d "   r e m o v e d   s u c c e s s f u l l y ! 
+==> default: 
+==> default:   
+==> default:   
+==> default:   
+==> default: Command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\etcd\tools\chocolateyuninstall.ps1' -installArguments '' -packageParameters ''"'] exited with '0'
+==> default:  Skipping auto uninstaller - No registry snapshot.
+==> default: 
+==> default: Calling command ['"shutdown" /a']
+==> default: Command ['"shutdown" /a'] exited with '1116'
+==> default: Attempting to delete directory "C:\ProgramData\chocolatey\.chocolatey\etcd.2.2.2".
+==> default: Attempting to delete directory "C:\ProgramData\chocolatey\lib-bkp\etcd".
+==> default: [NuGet] Removed file 'chocolateyinstall.ps1' to folder 'C:\ProgramData\chocolatey\lib\etcd\tools'.
+==> default: [NuGet] Removed file 'chocolateyuninstall.ps1' to folder 'C:\ProgramData\chocolatey\lib\etcd\tools'.
+==> default: [NuGet] Removed folder 'C:\ProgramData\chocolatey\lib\etcd\tools'.
+==> default: [NuGet] Removed file 'etcd.nupkg' to folder 'C:\ProgramData\chocolatey\lib\etcd'.
+==> default: [NuGet] The directory is not empty.
+==> default: 
+==> default: 
+==> default: [NuGet] Successfully uninstalled 'etcd 2.2.2'.
+==> default:  etcd has been successfully uninstalled.
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\lib\etcd\etcd.nupkg".
+==> default:  Found 'C:\ProgramData\chocolatey\lib\etcd\etcdInstall.zip.txt'
+==> default: 
+==> default:   with checksum '769F3D5FE8D85229F6B1343928041BAF'
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\lib\etcd\etcdInstall.zip.txt".
+==> default: Attempting to delete directory "C:\ProgramData\chocolatey\lib\etcd".
+==> default: 
+==> default: Chocolatey uninstalled 1/1 packages. 0 packages failed.
+==> default:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+==> default: Exiting with 0

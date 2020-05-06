@@ -1,0 +1,137 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "General Information and Nuspec";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#general-information">General Information</a></li>
+    <li><a href="#custom-scripts">Custom Scripts</a></li>
+    <li><a href="#nuspec">Nuspec</a></li>
+}
+
+<h2 id="general-information" class="mb-3">General Information</h2>
+<p>There are four main elements to a Chocolatey package. Only the nuspec is required (#1 below).</p>
+<ol>
+    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "create-packages" })#nuspec">Nuspec</a></li>
+    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "chocolatey-install-ps1" })">chocolateyInstall.ps1</a> - check out the <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-reference" })">helper reference</a></li>
+    <li>Any application files to include (it is highly suggested that you are the author in this case or you have the right to <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "legal" })">distribute files</a>). EXE files in the package/downloaded to package folder from chocolateyInstall.ps1 will get a link to the command line.</li>
+    <li>chocolateyUninstall.ps1, for uninstalling your package. See <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-reference" })">helper reference</a> for functions available in your script.</li>
+</ol>
+<div class="callout callout-warning"><strong>Note:</strong> Please maintain compatibility with Posh v2. Not every OS we support is on Posh v2 (nor comes OOB with Posh v3+). It's best to work with the widest compatibility of systems out there.</div>
+<p>
+    There is a video showing the creation of a package: <a href="http://www.youtube.com/watch?v=Wt_unjS_SUo" class="uri">http://www.youtube.com/watch?v=Wt_unjS_SUo</a><br />
+    The video is a bit outdated in showing the contents of the chocolateyInstall.ps1. Have a look at what the <a href="https://github.com/ferventcoder/chocolatey-packages/blob/master/manual/windirstat/tools/chocolateyInstall.ps1">chocolateyInstall.ps1</a> looks like now:
+</p>
+<pre class="border mb-3"><code class="language-powershell">$packageName = &#39;windirstat&#39;
+$fileType = &#39;exe&#39;
+$url = &#39;http://prdownloads.sourceforge.net/windirstat/windirstat1_1_2_setup.exe&#39;
+$silentArgs = &#39;/S&#39;
+
+Install-ChocolateyPackage $packageName $fileType $silentArgs $url</code></pre>
+
+<h2 id="custom-scripts" class="mt-5 mb-3">Scenarious When Custom Scripts Are Triggered</h2>
+<p>The table below shows which scripts are available, and which command(s) will cause them to be run.</p>
+<div class="table-sm-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Script Name</th>
+                <th>Install</th>
+                <th>Upgrade</th>
+                <th>Uninstall</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>chocolateyBeforeModify.ps1</td>
+                <td></td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>chocolateyInstall.ps1</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>chocolateyUninstall.ps1</td>
+                <td></td>
+                <td></td>
+                <td>Yes</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="callout callout-warning"><strong>Note:</strong> In the upgrade scenario, the chocolateyInstall.ps1 script will be the one included in the new package. The chocolateyBeforeModify.ps1 script will be the one from the previously installed package.</div>
+<p>The chocolateyBeforeModify.ps1 script will only be executed if using choco version 0.9.10 or later.</p>
+
+<h2 id="nuspec" class="mt-5 mb-3">Nuspec</h2>
+<p>The <code>Chocolatey</code> Windows package manager uses the same infrastructure as <a href="http://nuget.org/">NuGet</a>, the Visual Studio package manager by Outercurve Foundation (sponsored by Microsoft). Therefore packages are based on the same principles. One of those is a package description (specification) in <code>xml</code> format, known as the <code>Nuspec</code>.</p>
+<p>The <code>Nuspec</code> contains basic information such as the version, license, maintainer, and package dependencies. <code>Chocolatey</code> includes additional optional functionality on top of <a href="http://docs.nuget.org/docs/reference/nuspec-reference">NuGet&#39;s Nuspec format</a> - the best way to determine currently supported features is to create a test package, and look at the generated nuspec file.</p>
+<p><code>choco new testpackage</code></p>
+<div class="callout callout-primary"><strong>Note:</strong> If your package uses recently introduced functionality, you might want to include <code>chocolatey</code> as a dependency with the version being the lowest version that has the introduced functionality. Otherwise the installation could fail for users with an older version of <code>Chocolatey</code> installed.</div>
+<p>You can indicate the <code>Chocolatey</code> dependency like any other dependency. E.g.:</p>
+<pre class="border mb-3"><code class="language-powershell">&lt;dependencies&gt;
+    &lt;dependency id=&quot;chocolatey&quot; version=&quot;0.9.8.21&quot; /&gt;
+&lt;/dependencies&gt;</code></pre>
+<p>Logically, the version is based on the lowest compatible version. But if you don't know and used a lot of sorcery in your package, depend on the version of <code>Chocolatey</code> that you succesfully tested your package on.</p>
+<p><strong>See also:</strong> <a href="http://docs.nuget.org/docs/reference/versioning">NuGet Version Reference</a></p>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>Should my Chocolatey Package ever need to have a dependency on the Chocolatey package?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">No</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">Yes, if your package requires a feature that was added in a specific Chocolatey version</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>During which operations will the chocolateyUninstall.ps1 file be executed?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">Install</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">Upgrade</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree">Uninstall</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

@@ -1,0 +1,189 @@
+﻿==> default: Running provisioner: shell...
+    default: Running: shell/VagrantAction.ps1 as c:\tmp\vagrant-shell.ps1
+==> default: Chocolatey is running on Windows v 6.3.9600.0
+==> default: Attempting to delete file "C:/ProgramData/chocolatey/choco.exe.old".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\choco.exe.old".
+==> default: Command line: "C:\ProgramData\chocolatey\choco.exe" install MongoDb30 --version 3.0.2.1 -fdvy
+==> default: Received arguments: install MongoDb30 --version 3.0.2.1 -fdvy
+==> default: NOTE: Hiding sensitive configuration data! Please double and triple 
+==> default:  check to be sure no sensitive data is shown, especially if copying 
+==> default:  output to a gist for review.
+==> default: Configuration: CommandName='install'|
+==> default: CacheLocation='C:\Users\ADMINI~1\AppData\Local\Temp'|
+==> default: ContainsLegacyPackageInstalls='True'|
+==> default: CommandExecutionTimeoutSeconds='2700'|
+==> default: Sources='https://chocolatey.org/api/v2/'|Debug='True'|Verbose='True'|
+==> default: Force='True'|Noop='False'|HelpRequested='False'|RegularOutput='True'|
+==> default: QuietOutput='False'|PromptForConfirmation='False'|AcceptLicense='True'|
+==> default: AllowUnofficialBuild='False'|Input='MongoDb30'|Version='3.0.2.1'|
+==> default: AllVersions='False'|SkipPackageInstallProvider='False'|
+==> default: PackageNames='MongoDb30'|Prerelease='False'|ForceX86='False'|
+==> default: OverrideArguments='False'|NotSilent='False'|IgnoreDependencies='False'|
+==> default: AllowMultipleVersions='False'|AllowDowngrade='False'|
+==> default: ForceDependencies='False'|Information.PlatformType='Windows'|
+==> default: Information.PlatformVersion='6.3.9600.0'|
+==> default: Information.PlatformName='Windows Server 2012 R2'|
+==> default: Information.ChocolateyVersion='0.9.9.11'|
+==> default: Information.ChocolateyProductVersion='0.9.9.11'|
+==> default: Information.FullName='choco, Version=0.9.9.11, Culture=neutral, PublicKeyToken=79d02ea9cad655eb'|
+==> default: 
+==> default: Information.Is64Bit='True'|Information.IsInteractive='False'|
+==> default: Information.IsUserAdministrator='True'|
+==> default: Information.IsProcessElevated='True'|Features.AutoUninstaller='True'|
+==> default: Features.CheckSumFiles='True'|Features.FailOnAutoUninstaller='False'|
+==> default: ListCommand.LocalOnly='False'|
+==> default: ListCommand.IncludeRegistryPrograms='False'|
+==> default: UpgradeCommand.FailOnUnfound='False'|
+==> default: UpgradeCommand.FailOnNotInstalled='False'|
+==> default: UpgradeCommand.NotifyOnlyAvailableUpgrades='False'|
+==> default: NewCommand.AutomaticPackage='False'|SourceCommand.Command='unknown'|
+==> default: SourceCommand.Priority='0'|FeatureCommand.Command='unknown'|
+==> default: ConfigCommand.Command='unknown'|PushCommand.TimeoutInSeconds='0'|
+==> default: PinCommand.Command='unknown'|
+==> default: _ Chocolatey:ChocolateyInstallCommand - Normal Run Mode _
+==> default: Installing the following packages:
+==> default: MongoDb30
+==> default: By installing you accept licenses for the packages.
+==> default: [NuGet] Installing 'MongoDb30 3.0.2.1'.
+==> default: 
+==> default: [NuGet] Added file 'chocolateyInstall.ps1' to folder 'MongoDb30\tools'.
+==> default: [NuGet] Added file 'MongoDb30.nupkg' to folder 'MongoDb30'.
+==> default: [NuGet] Successfully installed 'MongoDb30 3.0.2.1'.
+==> default: 
+==> default: MongoDb30 v3.0.2.1 (forced)
+==> default: Contents of 'C:\ProgramData\chocolatey\lib\MongoDb30\tools\chocolateyInstall.ps1':
+==> default: $package_name = 'MongoDb30'
+==> default: $package_version = '3.0.7'
+==> default: $package_dir=Join-Path "c:\mongodb" $package_version
+==> default: $fileName = "mongodb-win32-x86_64-2008plus-ssl-$package_version-signed.msi"
+==> default: $url = "https://www.mongodb.org/dr/fastdl.mongodb.org/win32/$fileName/download"
+==> default: 
+==> default: $client = new-object System.Net.WebClient
+==> default: $msiFlePath = Join-Path $env:TEMP $fileName
+==> default: $client.DownloadFile($url, $msiFlePath)
+==> default: 
+==> default: $log_dir = $(Join-Path $package_dir "log")
+==> default: $current_datetime = Get-Date -format yyyyddMMhhmm
+==> default: $package_backup_dir = "${package_dir}-old_${current_datetime}"
+==> default: 
+==> default: try {
+==> default:     Install-ChocolateyInstallPackage '${package_name}' 'msi' '/quiet' msiFlePath
+==> default: 
+==> default:     Move-Item "$(Join-Path ${package_dir} ${package_file_name}\*)" "${package_dir}" -Force
+==> default:     Remove-Item $(Join-Path ${package_dir} ${package_file_name}) -Force -Recurse
+==> default:     Write-Host "Making sure ${package_dir} is in place"
+==> default:     if (!(Test-Path -path $package_dir)) {New-Item $package_dir -Type Directory  | Out-Null}
+==> default: 
+==> default: 
+==> default:     Write-Host "Making sure ${log_dir} is in place"
+==> default:     if (!(Test-Path -path $log_dir)) { New-Item $log_dir -Type Directory  | Out-Null }
+==> default: 
+==> default:     Write-ChocolateySuccess $package_name
+==> default: 
+==> default: } catch {
+==> default:     Write-ChocolateyFailure $package_name "$($_.Exception.Message)"
+==> default:     throw
+==> default: }
+==> default: Calling command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\MongoDb30\tools\chocolateyInstall.ps1' -installArguments '' -packageParameters ''"']
+==> default:  DEBUG: Posh version is 4.0
+==> default: 
+==> default:  VERBOSE: Exporting function 'Get-BinRoot'.
+==> default:  VERBOSE: Exporting function 'Get-ChecksumValid'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyUnzip'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyWebFile'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariableNames'.
+==> default:  VERBOSE: Exporting function 'Get-FtpFile'.
+==> default:  VERBOSE: Exporting function 'Get-ProcessorBits'.
+==> default:  VERBOSE: Exporting function 'Get-UACEnabled'.
+==> default:  VERBOSE: Exporting function 'Get-VirusCheckValid'.
+==> default:  VERBOSE: Exporting function 'Get-WebFile'.
+==> default:  VERBOSE: Exporting function 'Get-WebHeaders'.
+==> default:  VERBOSE: Exporting function 'Install-BinFile'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyDesktopLink'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyEnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyExplorerMenuItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyFileAssociation'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyInstallPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPath'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPinnedTaskBarItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPowershellCommand'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyShortcut'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyVsixPackage'.
+==> default:  VERBOSE: Exporting function 'Install-Vsix'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Set-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Start-ChocolateyProcessAsAdmin'.
+==> default:  VERBOSE: Exporting function 'Test-ProcessAdminRights'.
+==> default:  VERBOSE: Exporting function 'Uninstall-BinFile'.
+==> default:  VERBOSE: Exporting function 'Uninstall-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'UnInstall-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Update-SessionEnvironment'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateyFailure'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateySuccess'.
+==> default:  VERBOSE: Exporting function 'Write-FileUpdateLog'.
+==> default:  VERBOSE: Exporting alias 'Generate-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Add-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Remove-BinFile'.
+==> default:  DEBUG: Running 'Install-ChocolateyInstallPackage' for ${package_name} with 
+==> default:  file:'msiFlePath', args: '/quiet', fileType: 'msi', validExitCodes: '0' 
+==> default: 
+==> default:  Installing ${package_name}...
+==> default:  DEBUG: Running 'Start-ChocolateyProcessAsAdmin' with exeToRun:'msiexec', 
+==> default: 
+==> default:  statements: '/i "msiFlePath" /quiet ' 
+==> default:  DEBUG: Elevating Permissions and running msiexec /i "msiFlePath" /quiet . This 
+==> default:  may take a while, depending on the statements.
+==> default:  T h i s   i n s t a l l a t i o n   p a c k a g e   c o u l d   n o t   b e   o p e n e d .     V e r i f y   t h a t   t h e   p a c k a g e   e x i s t s   a n d   t h a t   y o u   c a n   a c c e s s   i t ,   o r   c o n t a c t   t h e   a p p l i c
+==> default:  a t i o n   v e n d o r   t o   v e r i f y   t h a t   t h i s   i s   a   v a l i d   W i n d o w s   I n s t a l l e r   p a c k a g e . 
+==> default:   
+==> default:   WARNING: Write-ChocolateyFailure is deprecated. If you are the package 
+==> default: 
+==> default:  maintainer, please use 'throw $_.Exception' instead.
+==> default:  [ERROR] Running msiexec with /i "msiFlePath" /quiet  was not successful. Exit 
+==> default: 
+==> default:  code was '1619' Error Message: 
+==> default:  .
+==> default:  At C:\ProgramData\chocolatey\helpers\functions\Write-ChocolateyFailure.ps1:24 
+==> default:  char:3
+==> default:  +   throw "$failureMessage"
+==> default:  +   ~~~~~~~~~~~~~~~~~~~~~~~
+==> default:      + CategoryInfo          : OperationStopped: ([ERROR] Running...or Message: 
+==> default:  .:String) [], RuntimeException
+==> default:      + FullyQualifiedErrorId : [ERROR] Running msiexec with /i "msiFlePath" /qu 
+==> default:     iet  was not successful. Exit code was '1619' Error Message: 
+==> default:  .
+==> default: Command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import
+==> default: -module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\MongoDb30\tools\chocolateyInstall.ps1' -installArguments '' -packageParameters ''"'] exited with '1'
+==> default: Calling command ['"shutdown" /a']
+==> default: Command ['"shutdown" /a'] exited with '1116'
+==> default: Capturing package files in 'C:\ProgramData\chocolatey\lib\MongoDb30'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\MongoDb30\MongoDb30.nupkg'
+==> default:   with checksum 'D277E1E3F21F4FF6A690CB44F5860CC4'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\MongoDb30\tools\chocolateyInstall.ps1'
+==> default:   with checksum '0975E20D93FDD46BAD2C2F162245665F'
+==> default: Adding 'Hidden' attribute(s) to 'C:\ProgramData\chocolatey\.chocolatey'.
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\.chocolatey\MongoDb30.3.0.2.1".
+==> default: 
+==> default: Attempting to copy "C:\ProgramData\chocolatey\.chocolatey\MongoDb30.3.0.2.1\.files.update"
+==> default:  to "C:\ProgramData\chocolatey\.chocolatey\MongoDb30.3.0.2.1\.files".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\MongoDb30.3.0.2.1\.files.update".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\MongoDb30.3.0.2.1\.sxs".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\MongoDb30.3.0.2.1\.pin".
+==> default: The install of mongodb30 was NOT successful.
+==> default: Error while running 'C:\ProgramData\chocolatey\lib\MongoDb30\tools\chocolateyInstall.ps1'.
+==> default:  See log for details.
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib-bad".
+==> default: Moving 'C:\ProgramData\chocolatey\lib\MongoDb30'
+==> default:  to 'C:\ProgramData\chocolatey\lib-bad\MongoDb30'
+==> default: Chocolatey installed 0/1 package(s). 1 package(s) failed.
+==> default:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+==> default: Failures:
+==> default:  - mongodb30
+==> default: Exiting with 1
+[ERROR] The following WinRM command responded with a non-zero exit status.
+[ERROR] Vagrant assumes that this means the command failed!
+[ERROR] powershell -ExecutionPolicy Bypass -OutputFormat Text -file c:\tmp\vagrant-shell.ps1
+[ERROR] Stdout from the command:
+[ERROR] Stderr from the command:

@@ -1,0 +1,190 @@
+# YAML spec:
+# https://aka.ms/yaml
+
+name: '$(Date:yyyyMMdd)$(Rev:.r) (#$(BuildID)) $(TeamProject) ($(SourceBranchName))'
+
+variables:
+  ChocoCIClient.labVMName: 'ChocoCIClient'
+  ChocoCIClient.labVMUserName: 'ansible'
+# ChocoCIClient.labVMPassword: <secret>
+  ChocoCIClient.ansibleUser: 'ansible-test'
+# ChocoCIClient.ansiblePassword: <secret>
+  collectionArtifactName: 'chocolatey.collection'
+  Package.Version: 24.6.26
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+  tags:
+    include:
+      - '*'
+
+pr:
+  - master
+
+stages:
+- stage: Build
+  displayName: '[Build]'
+
+  jobs:
+  - job: CreateVM
+    displayName: 'Create Windows VM'
+    pool:
+      vmImage: ubuntu-latest
+
+    steps:
+    - task: AzureDevTestLabsCreateVM@3
+      name: AzureVM
+      displayName: 'Create Azure Labs VM'
+      inputs:
+        azureSubscription: 'Visual Studio Professional Subscription - Joel'
+        LabId: '/subscriptions/6f2ac189-3b89-4d14-a0af-f5f808633f91/resourceGroups/choco-ci/providers/Microsoft.DevTestLab/labs/ChocoAnsibleLab'
+        VirtualMachineName: '$(ChocoCIClient.labVMName)'
+        TemplateFile: 'build/azure/client-template.json'
+        ParameterOverrides: '-newVMName ''$(ChocoCIClient.labVMName)'' -userName ''$(ChocoCIClient.labVMUserName)'' -password ''$(ChocoCIClient.labVMPassword)'' -Configure_WinRM_hostName ''$(ChocoCIClient.labVMFqdn)'''
+
+    - task: AzurePowerShell@4
+      displayName: 'VM Setup'
+      name: AzVmConfig
+      inputs:
+        azureSubscription: 'Visual Studio Professional Subscription - Joel'
+        ScriptPath: 'build/azure/Set-AzLabVMParams.ps1'
+        ScriptArguments: '-LabVMId $(AzureVM.labVmId) -Username $(ChocoCIClient.ansibleUser) -Secret $(ChocoCIClient.ansiblePassword)'
+        azurePowerShellVersion: LatestVersion
+
+  - job: Tests
+    displayName: 'Create & Test Collection'
+    dependsOn: CreateVM
+    pool:
+      vmImage: ubuntu-latest
+    variables:
+      labVmFqdn: $[ dependencies.CreateVM.outputs['AzVmConfig.Fqdn'] ]
+
+    steps:
+    - task: Bash@3
+      displayName: 'Install Dependencies'
+      inputs:
+        targetType: filePath
+        filePath: ./build/dependencies.sh
+
+    - task: PowerShell@2
+      displayName: 'Set Package Version'
+
+      inputs:
+        targetType: 'inline'
+        script: |
+          $version = if ("$(Build.SourceBranch)" -match '^refs/tags/(?<Tag>.+)') {
+              # Github version tags usually begin with a "v", but we just want the number
+              $matches.Tag -replace '^v'
+          }
+          else {
+              "$env:PACKAGE_VERSION-$(Get-Date -Format 'yyyyMMdd')-$(New-Guid)"
+          }
+          Write-Host "##vso[task.setvariable variable=Package.Version]$version"
+
+        errorActionPreference: 'stop'
+        failOnStderr: true
+        pwsh: true
+
+    - task: AzureCLI@2
+      displayName: 'Run Ansible-Test for Collection'
+      name: TestRun
+      inputs:
+        azureSubscription: 'Visual Studio Professional Subscription - Joel'
+        scriptType: pscore
+        scriptPath: 'build/Invoke-CollectionTests.ps1'
+        arguments: '-IsCIBuild -Username $(ChocoCIClient.ansibleUser) -ComputerName $(labVMFqdn) -Secret $(ChocoCIClient.ansiblePassword)'
+
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish Ansible-Test Output Artifact'
+      condition: succeededOrFailed()
+      inputs:
+        path: '$(System.DefaultWorkingDirectory)/testresults'
+        artifact: 'Ansible-Test Output Files'
+
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish Collection Tarball Artifact'
+      inputs:
+        path: '$(TestRun.ArtifactPath)'
+        artifact: '$(collectionArtifactName)'
+
+    - task: PublishTestResults@2
+      displayName: 'Publish JUnit Results'
+      condition: succeededOrFailed()
+      inputs:
+        testResultsFormat: 'JUnit'
+        searchFolder: '$(System.DefaultWorkingDirectory)/testresults'
+        testResultsFiles: '**/*.xml'
+        publishRunAttachments: true
+
+  - job: DestroyVM
+    displayName: 'Destroy Azure Labs VM'
+    pool:
+      vmImage: ubuntu-latest
+    dependsOn:
+      - CreateVM
+      - Tests
+    condition: always()
+    variables:
+      labVmId: $[ dependencies.CreateVM.outputs['AzureVM.labVmId'] ]
+
+    steps:
+    - task: AzureDevTestLabsDeleteVM@3
+      displayName: 'Destroy VM'
+      inputs:
+        azureSubscription: 'Visual Studio Professional Subscription - Joel'
+        LabId: '/subscriptions/6f2ac189-3b89-4d14-a0af-f5f808633f91/resourceGroups/choco-ci/providers/Microsoft.DevTestLab/labs/ChocoAnsibleLab'
+        LabVmId: '$(labVmId)'
+      continueOnError: true
+
+- stage: Publish
+  displayName: '[Publish]'
+  dependsOn: Build
+  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
+  variables:
+    ansibleConfigPath: '~/ansible.cfg'
+
+  jobs:
+  - job: Publish
+    displayName: 'Publish Chocolatey Collection'
+    pool:
+      vmImage: ubuntu-latest
+
+    steps:
+    - task: Bash@3
+      displayName: 'Install Dependencies'
+      inputs:
+        targetType: filePath
+        filePath: ./build/dependencies.sh
+
+    - task: DownloadPipelineArtifact@2
+      displayName: 'Download Tarball Artifact'
+      inputs:
+        artifact: '$(collectionArtifactName)'
+        targetPath: '$(System.DefaultWorkingDirectory)/artifacts/'
+
+    - task: PowerShell@2
+      displayName: 'Setup ansible.cfg'
+      inputs:
+        pwsh: true
+        targetType: inline
+        script: |
+          $config = Get-Content -Path ./build/ansible.cfg -Raw
+          $config = $config -replace '{{ REPLACE_GALAXY_TOKEN }}', '$(GalaxyApiKey)' -replace '{{ REPLACE_AH_TOKEN }}', '$(AHApiKey)'
+
+          $path = $(ansibleConfigPath)
+          Write-Host "Copying Ansible publishing configuration to '$path'"
+          $config | Set-Content -Path $path
+
+    - task: PowerShell@2
+      displayName: 'Publish Chocolatey Collection to Galaxy & AH'
+      inputs:
+        pwsh: true
+        targetType: filePath
+        filePath: ./build/Publish-Collection.ps1
+      env:
+        ANSIBLE_CONFIG: '$(System.DefaultWorkingDirectory)/build/ansible.cfg'
+        ANSIBLE_GALAXY_SERVER_RELEASE_GALAXY_TOKEN: '$(GalaxyApiKey)'
+        ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_TOKEN: '$(AHApiKey)'

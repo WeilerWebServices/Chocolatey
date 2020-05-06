@@ -1,0 +1,100 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "Building, Testing, and Pushing Your Package";
+}
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+@section RightSideColumn {
+    <li><a href="#building">Building</a></li>
+    <li><a href="#testing">Testing</a></li>
+    <li><a href="#pushing">Pushing</a></li>
+}
+
+<h2 id="building" class="mb-3">Building Your Package</h2>
+<p>Open a command line in the directory where the nuspec is and type <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-pack" })"><code>choco pack</code></a>. That's it.</p>
+
+<h2 id="testing" class="mt-5 mb-3">Testing Your Package</h2>
+<div class="callout callout-danger"><strong>NOTE</strong>: We strongly suggest the following should be performed in a VM and not on your machine.</div>
+<div class="callout callout-secondary"><strong>NOTE</strong>: Testing your package can be done in the same way as the verifier - take a look at <a href="https://github.com/chocolatey-community/chocolatey-test-environment">Chocolatey Verifier Testing</a>.</div>
+<p>To test the package you just built, open a command line shell and navigate to the directory where the <code>*.nupkg</code> file is located. Then type:</p>
+<pre class="border mb-3"><code class="language-powershell">choco install packageName -dv -s .</code></pre>
+<p>This will install the package right out of your source. As you find things you may need to fix, using <code>--force</code> (<code>-f</code>) will remove and reinstall the package from the updated <code>*.nupkg</code>. If you are specifically testing <code>chocolateyBeforeModify.ps1</code>, you need to be testing upgrade and uninstall scenarios. You need to install a version of the package with this file <strong>first</strong> as before modify is like uninstall, it runs from the installed package, not the package you are installing (like <code>chocolateyInstall.ps1</code> does).</p>
+<div class="callout callout-danger"><strong>NOTE:</strong> Using Force <code>--force</code> (<code>-f</code>) should only be done in subsequent testing where you are reinstalling the same package that you've changed and should NOT be used in regular use scenarios. It should definitely not be in scripts.</div>
+<div class="callout callout-warning"><strong>NOTE:</strong> If you are using a Semver dash in your package version (such as 1.0.0-beta), you will need to use the <code>-pre</code> switch or else you will get <em>Unable to find package</em> errors from <code>choco install</code>. You can also specify <code>-version 1.0.0-beta</code> to try to install that exact version.</div>
+<p><code>.</code> points to the current directory. You can specify multiple directories separated by a semicolon;</p>
+<p>When your <code>nuspec</code> specifies dependencies that are not in your source, you should add their paths to the source directory. E.g. in the case of Chocolatey itself:</p>
+<pre class="border mb-3"><code class="language-powershell">&lt;dependencies&gt;
+    &lt;dependency id=&quot;chocolatey&quot; version=&quot;0.9.8.20&quot; /&gt;
+&lt;/dependencies&gt;</code></pre>
+<p>
+    You'll need to append the API path like so:<br />
+    <code>-source &quot;'.;https://chocolatey.org/api/v2/'&quot;</code> (note the double quotes bookending the apostrophes here, use <code>%cd%</code> in cmd.exe or <code>$pwd</code> in Powershell.exe if <code>.</code> doesn't resolve). See <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-reference" })#how-to-pass-options-switches">passing options with quotes</a>. <strong>Note:</strong> If you need to do this, please ensure you run <code>choco pack</code> first. This method of passing a source won't work calling a nuspec or nupkg directly as it will override the source passed to the local folder.
+</p>
+<p>You can also use the <code>-debug</code> switch on <code>choco install</code> to provide more information.</p>
+<div class="callout callout-danger"><strong>NOTE:</strong> Do not call install with <code>.nupkg</code> - pointing to a file explicitly overrides source. You must call your install with the package name, not the nupkg file and location. You've already specified for choco to look in a local source with <code>-s &quot;'.;https://chocolatey.org/api/v2/'&quot;</code>. Call <code>choco install dude -s &quot;'.;https://chocolatey.org/api/v2/'&quot;</code>, not <code>choco install .\dude.nupkg -s &quot;'.;https://chocolatey.org/api/v2/'&quot;</code>.</div>
+<h4 class="mt-4">Alternative testing strategy</h4>
+<p>You can also type <code>choco install -fdv path/to/nuspec</code> and choco will build the nupkg and attempt to install it.</p>
+<div class="callout callout-warning"><strong>NOTE:</strong> This is not recommended if you are passing install arguments or package parameters due to some weirdness, and definitely does not work with passed sources as it need to override that with the local folder once it builds the package. Most likely you will want to stick with the recommended strategy.</div>
+
+<h2 id="pushing" class="mt-5 mb-3">Pushing Your Package</h2>
+<p>To push your package after you have built and tested it, you type <code>choco push packageName.nupkg -s sourceLocation</code> where <em>packageName.nupkg</em> is the name of the nupkg that was built with a version number as part of the package name and <em>sourceLocation</em> is the location of the source you want to push to (e.g. <code>https://push.chocolatey.org/</code> for chocolatey's community feed). You must have an api key for <a href="https://chocolatey.org/" class="uri">https://chocolatey.org/</a> set. Take a look at <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-push" })">choco push</a></p>
+<p>You can also log into chocolatey.org and upload your package from there (not recommended for packages over 2MB).</p>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                      var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                      if (courseAchievement != null)
+                                      {
+                                          CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>What is the recommended place to test your Chocolatey Package installation?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">Chocolatey Test Environment</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">Your own machine</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">Don’t test your Chocolatey Package</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>What is the correct command to test the installation of a local Chocolatey package called packageA, with no dependencies, located in the current folder of your PowerShell session?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne"><code>choco install ./packageA.nupkg</code></label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo"><code>choco install packageA --source=&quot;'.'&quot;</code></label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree"><code>choco install packageA</code></label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

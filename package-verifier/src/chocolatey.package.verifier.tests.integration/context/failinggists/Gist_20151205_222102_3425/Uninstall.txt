@@ -1,0 +1,180 @@
+﻿==> default: Running provisioner: shell...
+    default: Running: shell/VagrantAction.ps1 as c:\tmp\vagrant-shell.ps1
+==> default: Chocolatey is running on Windows v 6.3.9600.0
+==> default: Attempting to delete file "C:/ProgramData/chocolatey/choco.exe.old".
+==> default: Attempting to delete file "C:\ProgramData\chocolatey\choco.exe.old".
+==> default: Command line: "C:\ProgramData\chocolatey\choco.exe" uninstall AquaSnap --version 1.15.1 -dvy
+==> default: Received arguments: uninstall AquaSnap --version 1.15.1 -dvy
+==> default: NOTE: Hiding sensitive configuration data! Please double and triple 
+==> default:  check to be sure no sensitive data is shown, especially if copying 
+==> default:  output to a gist for review.
+==> default: Configuration: CommandName='uninstall'|
+==> default: CacheLocation='C:\Users\ADMINI~1\AppData\Local\Temp'|
+==> default: ContainsLegacyPackageInstalls='True'|
+==> default: CommandExecutionTimeoutSeconds='2700'|
+==> default: Sources='https://chocolatey.org/api/v2/'|Debug='True'|Verbose='True'|
+==> default: Force='False'|Noop='False'|HelpRequested='False'|RegularOutput='True'|
+==> default: QuietOutput='False'|PromptForConfirmation='False'|AcceptLicense='True'|
+==> default: AllowUnofficialBuild='False'|Input='AquaSnap'|Version='1.15.1'|
+==> default: AllVersions='False'|SkipPackageInstallProvider='False'|
+==> default: PackageNames='AquaSnap'|Prerelease='False'|ForceX86='False'|
+==> default: OverrideArguments='False'|NotSilent='False'|IgnoreDependencies='False'|
+==> default: AllowMultipleVersions='False'|AllowDowngrade='False'|
+==> default: ForceDependencies='False'|Information.PlatformType='Windows'|
+==> default: Information.PlatformVersion='6.3.9600.0'|
+==> default: Information.PlatformName='Windows Server 2012 R2'|
+==> default: Information.ChocolateyVersion='0.9.9.11'|
+==> default: Information.ChocolateyProductVersion='0.9.9.11'|
+==> default: Information.FullName='choco, Version=0.9.9.11, Culture=neutral, PublicKeyToken=79d02ea9cad655eb'|
+==> default: 
+==> default: Information.Is64Bit='True'|Information.IsInteractive='False'|
+==> default: Information.IsUserAdministrator='True'|
+==> default: Information.IsProcessElevated='True'|Features.AutoUninstaller='True'|
+==> default: Features.CheckSumFiles='True'|Features.FailOnAutoUninstaller='False'|
+==> default: ListCommand.LocalOnly='False'|
+==> default: ListCommand.IncludeRegistryPrograms='False'|
+==> default: UpgradeCommand.FailOnUnfound='False'|
+==> default: UpgradeCommand.FailOnNotInstalled='False'|
+==> default: UpgradeCommand.NotifyOnlyAvailableUpgrades='False'|
+==> default: NewCommand.AutomaticPackage='False'|SourceCommand.Command='unknown'|
+==> default: SourceCommand.Priority='0'|FeatureCommand.Command='unknown'|
+==> default: 
+==> default: ConfigCommand.Command='unknown'|PushCommand.TimeoutInSeconds='0'|
+==> default: PinCommand.Command='unknown'|
+==> default: _ Chocolatey:ChocolateyUninstallCommand - Normal Run Mode _
+==> default: Uninstalling the following packages:
+==> default: AquaSnap
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib-bkp".
+==> default: 
+==> default: Backing up existing AquaSnap prior to upgrade.
+==> default: Moving 'C:\ProgramData\chocolatey\lib\AquaSnap'
+==> default:  to 'C:\ProgramData\chocolatey\lib-bkp\AquaSnap'
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib\AquaSnap".
+==> default: 
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\AquaSnap\AquaSnap.nupkg"
+==> default:  to "C:\ProgramData\chocolatey\lib\AquaSnap\AquaSnap.nupkg".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\AquaSnap\AquaSnap.png"
+==> default:  to "C:\ProgramData\chocolatey\lib\AquaSnap\AquaSnap.png".
+==> default: Attempting to create directory "C:\ProgramData\chocolatey\lib\AquaSnap\tools".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\AquaSnap\tools\ChocolateyInstall.ps1"
+==> default:  to "C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyInstall.ps1".
+==> default: Attempting to copy "C:\ProgramData\chocolatey\lib-bkp\AquaSnap\tools\ChocolateyUninstall.ps1"
+==> default:  to "C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyUninstall.ps1".
+==> default: Capturing package files in 'C:\ProgramData\chocolatey\lib\AquaSnap'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\AquaSnap\AquaSnap.nupkg'
+==> default:   with checksum '2AE441E4591807CAC88A6656B35FC6E6'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\AquaSnap\AquaSnap.png'
+==> default:   with checksum '937E0B688A818F30C7CC82D56EEB6E71'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyInstall.ps1'
+==> default:   with checksum '9C9613385ED336A2651E864FC6D504AF'
+==> default:  Found 'C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyUninstall.ps1'
+==> default:   with checksum '33ACC853A7A23CE93C245069B379BA03'
+==> default: [NuGet] Uninstalling 'AquaSnap 1.15.1'.
+==> default: 
+==> default: 
+==> default: AquaSnap v1.15.1
+==> default: Contents of 'C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyUninstall.ps1':
+==> default: $package = 'AquaSnap'
+==> default: 
+==> default: try {
+==> default: 
+==> default:   # HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall
+==> default:   # HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\
+==> default:   # http://stackoverflow.com/questions/450027/uninstalling-an-msi-file-from-the-command-line-without-using-msiexec
+==> default:   $msiArgs = "/X{E0527016-B2F4-4EEB-97F6-A2B8C46196CA} /qb-! REBOOT=ReallySuppress"
+==> default: 
+==> default:   Start-ChocolateyProcessAsAdmin "$msiArgs" 'msiexec'
+==> default: 
+==> default: } catch {
+==> default:   Write-ChocolateyFailure $package "$($_.Exception.Message)"
+==> default:   throw
+==> default: }
+==> default: 
+==> default: Calling command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyUninstall.ps1' -installArguments '' -packageParameters ''"']
+==> default:  DEBUG: Posh version is 4.0
+==> default:  DEBUG: Loading community extensions
+==> default: 
+==> default:  VERBOSE: Exporting function 'Get-BinRoot'.
+==> default:  VERBOSE: Exporting function 'Get-ChecksumValid'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyUnzip'.
+==> default:  VERBOSE: Exporting function 'Get-ChocolateyWebFile'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Get-EnvironmentVariableNames'.
+==> default:  VERBOSE: Exporting function 'Get-FtpFile'.
+==> default:  VERBOSE: Exporting function 'Get-ProcessorBits'.
+==> default:  VERBOSE: Exporting function 'Get-UACEnabled'.
+==> default: 
+==> default:  VERBOSE: Exporting function 'Get-VirusCheckValid'.
+==> default:  VERBOSE: Exporting function 'Get-WebFile'.
+==> default:  VERBOSE: Exporting function 'Get-WebHeaders'.
+==> default:  VERBOSE: Exporting function 'Install-BinFile'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyDesktopLink'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyEnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyExplorerMenuItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyFileAssociation'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyInstallPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPath'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPinnedTaskBarItem'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyPowershellCommand'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyShortcut'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyVsixPackage'.
+==> default:  VERBOSE: Exporting function 'Install-Vsix'.
+==> default:  VERBOSE: Exporting function 'Install-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Set-EnvironmentVariable'.
+==> default:  VERBOSE: Exporting function 'Start-ChocolateyProcessAsAdmin'.
+==> default:  VERBOSE: Exporting function 'Test-ProcessAdminRights'.
+==> default:  VERBOSE: Exporting function 'Uninstall-BinFile'.
+==> default:  VERBOSE: Exporting function 'Uninstall-ChocolateyPackage'.
+==> default:  VERBOSE: Exporting function 'UnInstall-ChocolateyZipPackage'.
+==> default:  VERBOSE: Exporting function 'Update-SessionEnvironment'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateyFailure'.
+==> default:  VERBOSE: Exporting function 'Write-ChocolateySuccess'.
+==> default:  VERBOSE: Exporting function 'Write-FileUpdateLog'.
+==> default:  VERBOSE: Exporting alias 'Generate-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Add-BinFile'.
+==> default:  VERBOSE: Exporting alias 'Remove-BinFile'.
+==> default:  DEBUG: Running 'Start-ChocolateyProcessAsAdmin' with exeToRun:'msiexec', 
+==> default:  statements: '/X{E0527016-B2F4-4EEB-97F6-A2B8C46196CA} /qb-! 
+==> default:  REBOOT=ReallySuppress' 
+==> default:  DEBUG: Elevating Permissions and running msiexec 
+==> default:  /X{E0527016-B2F4-4EEB-97F6-A2B8C46196CA} /qb-! REBOOT=ReallySuppress. This may 
+==> default:  take a while, depending on the statements.
+==> default:  T h i s   a c t i o n   i s   o n l y   v a l i d   f o r   p r o d u c t s   t h a t   a r e   c u r r e n t l y   i n s t a l l e d . 
+==> default:   
+==> default:   WARNING: Write-ChocolateyFailure is deprecated. If you are the package 
+==> default: 
+==> default:  maintainer, please use 'throw $_.Exception' instead.
+==> default:  [ERROR] Running msiexec with /X{E0527016-B2F4-4EEB-97F6-A2B8C46196CA} /qb-! 
+==> default: 
+==> default:  REBOOT=ReallySuppress was not successful. Exit code was '1605' Error Message: 
+==> default:  .
+==> default:  At C:\ProgramData\chocolatey\helpers\functions\Write-ChocolateyFailure.ps1:24 
+==> default:  char:3
+==> default:  +   throw "$failureMessage"
+==> default:  +   ~~~~~~~~~~~~~~~~~~~~~~~
+==> default:      + CategoryInfo          : OperationStopped: ([ERROR] Running...or Message: 
+==> default:  .:String) [], RuntimeException
+==> default:      + FullyQualifiedErrorId : [ERROR] Running msiexec with /X{E0527016-B2F4-4E 
+==> default:     EB-97F6-A2B8C46196CA} /qb-! REBOOT=ReallySuppress was not successful. Exit  
+==> default:     code was '1605' Error Message: 
+==> default:  .
+==> default: Command ['"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoLogo -ExecutionPolicy Bypass -Command "[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = ''; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyUninstall.ps1' -installArguments '' -packageParameters ''"'] exited with '1'
+==> default: Calling command ['"shutdown" /a']
+==> default: Command ['"shutdown" /a'] exited with '1116'
+==> default: aquasnap uninstall not successful.
+==> default: Error while running 'C:\ProgramData\chocolatey\lib\AquaSnap\tools\ChocolateyUninstall.ps1'.
+==> default:  See log for details.
+==> default: AquaSnap not uninstalled. An error occurred during uninstall:
+==> default:  aquasnap uninstall not successful.
+==> default: 
+==> default: Chocolatey uninstalled 0/1 packages. 1 packages failed.
+==> default:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+==> default: Failures
+==> default:  - aquasnap
+==> default: Exiting with 1
+[ERROR] The following WinRM command responded with a non-zero exit status.
+[ERROR] Vagrant assumes that this means the command failed!
+[ERROR] powershell -ExecutionPolicy Bypass -OutputFormat Text -file c:\tmp\vagrant-shell.ps1
+[ERROR] Stdout from the command:
+[ERROR] Stderr from the command:

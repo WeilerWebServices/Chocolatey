@@ -1,0 +1,157 @@
+﻿@using NuGetGallery;
+@model CourseViewModel
+@{
+    ViewBag.Title = "What is Chocolatey?";
+}
+
+@section LeftSideColumn {
+    @Html.Partial("~/Views/Courses/_LeftSideColumn.cshtml", new CourseLeftViewModel() { CourseNameType = Model.CourseNameType, CourseModules = Model.CourseModules, UserCourseAchievements = Model.UserCourseAchievements })
+}
+
+@section RightSideColumn {
+    <li><a href="#chocolatey-overview">Overview</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#common-thoughts">Common Thoughts</a></li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#other-package-managers">Other Package Managers</a></li>
+}
+<div id="chocolatey-overview" class="row mb-5">
+    <div class="col-xl-10 mx-auto">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Z8olEnt65bk" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+<p>
+    Chocolatey is a software management solution unlike any you've ever experienced on Windows. Think of it like this - you create a software deployment package using a little PowerShell,
+    then you can deploy it anywhere you have Windows with everything (like Puppet, SCCM, Altiris, Connectwise Automate, etc).
+</p>
+<p>Write your deployment once for any software, then deploy it with any solution everywhere you have Windows.</p>
+<p>
+    You know those massively complicated, complex, and expensive software management solutions where you typically need to buy more machines and hire consultants to help you configure/maintain them?
+    Yeah, that's not us. We believe in simple solutions to complex problems. Software on Windows is already complex enough, we've designed our tools to be able to be simple to use, extremely powerful,
+    flexible to fit nearly any situation, to work with your existing infrastructure, and for scale. And the best part is you can take advantage of Chocolatey without any cost (yes, even internally for an organization)!
+</p>
+
+<h2 id="features" class="mt-5 mb-3">Features</h2>
+<ul>
+    <li><strong>Deploy Anywhere You Have Windows</strong>/<strong>Cloud Ready</strong> (except Nano, sorry little buddy!). Yes, that includes Server.Core and <a href="https://github.com/Microsoft/vsts-agent-docker/blob/f870fbf259a803c6a6d902e1c01f631936069d66/windows/servercore/10.0.14393/standard/VS2017/Dockerfile">Windows Docker Containers</a>. Windows 7+/Windows 2003+ (although, we have been scaling down on 2003. I mean, 2003 is a bit long in the tooth, but some customers are still using it). Requires PowerShell v2+ (not PowerShell 6 yet - you&#39;re doing amazing if you are already on this, but give us some time) and Microsoft .NET Framework 4.x. You can deploy on prem, to Azure, AWS, or any cloud provider you might be looking at.</li>
+    <li><strong>Deploy with Everything.</strong> Anything that can manage endpoints or do remote deployments can either direct Chocolatey through commands, batches, or scripts. Full configuration management solutions like Ansible, Chef, PowerShell DSC, Puppet or Salt typically have providers/modules that allow you to work within their languages to manage both Chocolatey installation/configuration and software.</li>
+    <li><strong>All Software Is a First Class Citizen.</strong> You know how for most things, they only manage/report on the things installed in Add/Remove Programs (Programs and Features)? We count it all, because Windows software is more than just installers, and they all have security findings. So deploy your installers, your scripts, zips, runtime binaries, and yes, internal software all with one simple solution. Then lean on the reporting and inventory to be aware of all aspects of software you are managing.</li>
+    <li><strong>Packages are Independent and Portable.</strong> When you deploy through multiple systems or want to migrate from one to another, you can take the work you've done with Chocolatey with you. How is that for some major time-savings?</li>
+    <li><strong>Test Your Deployments.</strong> When's the last time you tested that deployment script you wrote for SCCM? Write it as a Chocolatey package instead and then you can test your infrastructure to be more comfortable when you push that change out to your constituents.</li>
+    <li><strong>Completely Offline and Secure.</strong> Chocolatey has zero call home, requires no network access to use (although we recommend for ease of management, you at least have internal network access!). Chocolatey does come with a default source that is the community repository. Turn that off and set up your own sources (FOR FREE). See our <a href="https://chocolatey.org/docs/how-to-setup-offline-installation">guide on organizatonal use</a> to get started (it even has scripts!).</li>
+    <li><strong>Create Your Own Deployment Packages</strong> (FOR FREE) and, get this, <strong>use them internally</strong> (FOR FREE). Get started as simply as <code>choco new &lt;name&gt;</code> and then check out the "just in time" documentation interweaved right into the output!</li>
+    <li><strong>PowerShell Automation.</strong> You know those little scripts you've been writing for software deployments for years? Welcome to a breath of fresh air, you are going to love Chocolatey!</li>
+    <li><strong>Manage Dependencies With Ease.</strong> You ever have a very complex, specific installation order? It becomes suddenly very easy when you are using a package manager like Chocolatey. Then you can concentrate on harder problems, like what flavor to add to your coffee today.</li>
+    <li><strong>Open Source Licensing Is Ready for Business.</strong> We have <a href="https://github.com/chocolatey/choco/blob/master/LICENSE">Apache v2 licensing</a>, no special restrictions need apply. Our commercial options come with a more business friendly <a href="https://chocolatey.org/support#business-legal">Software License agreement</a> (and yes, we do have a redline format).</li>
+    <li><strong>Commercial Options Add Support + AMAZING Features.</strong> Our top of the line <a href="@Url.RouteUrl(RouteName.Compare)">Chocolatey for Business (C4B) edition</a> includes over 20+ features that take Chocolatey to the next level and make it a full software management solution and not just a package manager. Go ahead, right click on an installer and create a fully unattended software deployment in 5 seconds! If you have any issues, our support team is ready and waiting to help you move forward.</li>
+    <li><strong>Customers Help Define Our Work.</strong> We determine and prioritize our work based on where customers want things to go. We are building a platform, and we are working with you to make it better.</li>
+    <li><strong>Security Is Our Focus.</strong> Take a stroll through our <a href="https://chocolatey.org/security">security page</a>. With everything we design, we focus on simplicity, scalability, and security.</li>
+    <li><strong>Bridge the Gap.</strong> Have you started to look at moving from those legacy automation systems to something more modern like Ansible, Puppet, or Chef and didn't know where to start? Start shifting the software management over to Chocolatey and taking those existing infrastructure/end point management tools back to just the remote deployment. Then when you are ready, you shift over to those modern automation solutions without needing to rewrite everything! Those Chocolatey packages work with all systems!</li>
+    <li><strong>Scale With Ease.</strong> There are massive deployments of Chocolatey, even the open source edition, in large enterprises. Chocolatey is deployed in everything from small startups all the way up to those fortune 500 companies.</li>
+</ul>
+
+<h2 id="common-thoughts" class="mt-5 mb-3">Common Thoughts</h2>
+<q class="h4">Some of the software I manage is extremely complex and difficult to install.</q>
+<p>
+    You mean like <a href="https://chocolatey.org/packages/Office365ProPlus">Office</a>, <a href="https://github.com/DarwinJS/ChocolateyDesignPatterns/tree/af7896893de95bdd5c3c430a8cf7a1b6aa8f0983/mssqlserver-standard">SQL Server</a>, or Oracle?
+    How about MatLab? AutoCAD? All can be more easily managed with Chocolatey. Stop torturing yourself, give Chocolatey a shot. Trust us, you'll never go back to those earlier methods. Come into modern software management and automation. It's available, and it's for Windows!!
+</p>
+<q class="h4 mt-4">I deal with software installers that don't install silently.</q>
+<p>
+    There are solutions for those badly behaved installers. If your team doesn't have the skillset for something like MSI repackaging, you can lean on our packaging support team that can whip those badly behaved installers
+    into shape for a low cost (provided you are using a commerical edition of Chocolatey).
+</p>
+<q class="h4 mt-4">But I'm not a developer, why should I learn PowerShell?</q>
+<p>
+    Okay, time for some serious talk. If you are not learning better automation now, your peers are. They are going to move into this modern automation (DevOps as some might call it) and you might end up asking folks if they "want fries with that?".
+    We are professionals that typically can call for higher salaries - that means we need to continue to provide value for the organizations that employ us. If we are not already familiar, we should learn to work with automation (PowerShell) and some basic
+    foundational concepts of development (like source control). It's not hard, you might find it addictive.
+</p>
+<q class="h4 mt-4">I like GUIs or my coworkers like GUIs.</q>
+<p>
+    We understand that aspect, that's why <a href="@Url.RouteUrl(RouteName.Compare)">our business edition offering</a> employs many more visual interfaces.
+</p>
+
+<h2 id="summary" class="mt-5 mb-3">Summary</h2>
+<p>
+    All we're saying is, it's time to step out of the dark ages and stop either doing things manually or stop killing yourself trying to work directly with those complex systems.
+    Rub a little Chocolatey on them, stop powering through extra work at night, and go home to see your family in the evening because you use modern software automation and tools.
+    Have confidence in your deployments and get the right information back to fix quickly when things go wrong. Chocolatey has been around for nearly ten years, thousands of companies and hundreds of thousands of people use it.
+    Lean on a solution that has been proven to work over and over again. It will change your life, it may even get you a raise! You will get more done in the same amount of time, and your employer will take notice. Windows deserves better automation and so do you.
+</p>
+
+<h2 id="other-package-managers" class="mt-5 mb-3">Already Familiar with Other Package Managers?</h2>
+<p>
+    Chocolatey is like dpkg (Apt-Get)/RPM, but built with Windows in mind (there are differences and limitations). It can also do configuration tasks and anything that you can do with PowerShell. Another notable difference,
+    it is really easy to create and maintain packages compared to those older, existing solutions for POSIX.
+</p>
+<p>Chocolatey manages packages (strictly nupkg files) and those packages manage software (could be installers, could be runtime binaries, could be zips or scripts).</p>
+<p>
+    Chocolatey is a software management tool that is also a package manager. It functions fantastically well when the runtime software is all included in the package and it doesn't make use of native installers.
+    However to approach the Windows ecosystem a package manager also needs to know how to manage actual software installations, thus why Chocolatey does that as well. For publicly available packages, copyright
+    keeps from having binaries embedded in packages, so Chocolatey is able to download from distribution points and checksum those binaries.
+</p>
+
+@*Quiz*@
+<div>
+    <h2 class="mt-5">Test Your Skills!</h2>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Courses/_QuizCTA.cshtml")
+    }
+    else
+    {
+        @Html.ValidationSummary(true)
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="form @if (Model.UserCourseAchievements != null)
+                                  {
+                                    var courseAchievement = Model.UserCourseAchievements.FirstOrDefault(c => c.CourseKey == Model.CourseKey);
+                                    if (courseAchievement != null)
+                                      {
+                                        CourseModuleAchievementViewModel moduleAchievement = courseAchievement.CourseModuleAchievements.FirstOrDefault(m => m.CourseModuleKey == Model.CourseModuleKey);
+                                          if (moduleAchievement != null)
+                                          {
+                                              <text>mod-completed</text>
+                                          }
+                                      }
+                                  }">
+                <legend class="d-none">Quiz</legend>
+                @Html.HiddenFor(m => m.CourseName)
+                @Html.HiddenFor(m => m.CourseKey)
+                @Html.HiddenFor(m => m.CourseModuleKey)
+                <div class="form-field mt-3">
+                    <h5>Who is the founder of Chocolatey?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionOne" })
+                    <label for="QuestOneOptionOne">Bill Gates</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "0", new { id = "QuestOneOptionTwo" })
+                    <label for="QuestOneOptionTwo">Steve Jobs</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionOne, "1", new { id = "QuestOneOptionThree" })
+                    <label for="QuestOneOptionThree">Rob Reynolds</label>
+                </div>
+                <div class="form-field mt-3">
+                    <h5>What type of software can be deployed in a Chocolatey package?</h5>
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionOne" })
+                    <label for="QuestTwoOptionOne">Installers</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionTwo" })
+                    <label for="QuestTwoOptionTwo">Scripts</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionThree" })
+                    <label for="QuestTwoOptionThree">Zips</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "0", new { id = "QuestTwoOptionFour" })
+                    <label for="QuestTwoOptionFour">Runtime binaries</label><br />
+                    @Html.RadioButtonFor(m => m.QuestionTwo, "1", new { id = "QuestTwoOptionFive" })
+                    <label for="QuestTwoOptionFive">All the above</label>
+                </div>
+                <input class="btn btn-primary mt-3 disabled" data-toggle="modal" data-target="#quiz-modal" type="submit" value="Check Answers" title="Check Answers" />
+            </fieldset>
+        }
+
+        @Html.Partial("~/Views/Courses/_CourseAchievementBadgeDisplay.cshtml", Model)
+
+    }
+</div>
+
+@Html.Partial("~/Views/Courses/_Popup.cshtml", Model)

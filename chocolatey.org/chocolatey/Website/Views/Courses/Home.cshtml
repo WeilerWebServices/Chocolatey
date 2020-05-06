@@ -1,0 +1,44 @@
+﻿@model CourseViewModel
+@{
+    Layout = "~/Views/Shared/NewsletterLayout.cshtml";
+    ViewBag.Title = "Courses";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Scripts");
+}
+
+<section id="secondaryNav">
+    @Html.Partial("~/Views/Shared/_AuthenticationSubNavigation.cshtml")
+</section>
+<div id="header" class="course-header bg-primary">
+  <section class="py-3 py-lg-5">
+    <div class="container text-center">
+        <h1 class="display-3">Chocolatey Courses</h1>
+        <h1>Step-by-Step Guides for All Things Chocolatey!</h1>
+        <a class="btn btn-outline-light" href="#additional-courses">View More Courses</a>
+        <a class="btn btn-light" href="#getting-started">Get Started</a>
+    </div>
+  </section>
+  <div class="shape-border shape-border-bottom shape-border-white"></div>
+</div>
+<section id="getting-started" class="pb-3 pb-lg-5 bg-white">
+  @Html.Partial("~/Views/Courses/GettingStarted/_CourseDescription.cshtml", new CourseViewModel()
+  {
+      CourseKey = CourseConstants.GetCourseKey(CourseNameType.GettingStartedWithChocolatey),
+      CourseName = CourseConstants.GetCourseName(CourseNameType.GettingStartedWithChocolatey),
+      CourseNameType = CourseNameType.GettingStartedWithChocolatey,
+      CourseModules = Model.CourseModules.OrEmptyListIfNull().ToList(),
+      UserCourseAchievements = Model.UserCourseAchievements.OrEmptyListIfNull().ToList()
+  })
+
+
+</section>
+@Html.Partial("~/Views/Courses/_AllCourses.cshtml", Model)
+
+@section BottomScripts {
+    <script language="javascript" type="text/javascript">
+        ((window.gitter = {}).chat = {}).options = {
+            room: 'chocolatey/chocolatey.org'
+        };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+}

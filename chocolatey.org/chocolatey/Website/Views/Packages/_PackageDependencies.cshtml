@@ -1,0 +1,47 @@
+﻿@model DependencySetsViewModel
+@if (Model.DependencySets.Any())
+{
+    <ul id="dependencySets" class="list-unstyled">
+        @foreach (var dependencySet in Model.DependencySets)
+        {
+            <li>
+                @if (!Model.OnlyHasAllFrameworks)
+                {
+                    <h4>@dependencySet.Key</h4>
+                }
+                <ul class="dependencySet list-unstyled">
+                    @foreach (var dependency in dependencySet.Value)
+                    {
+                        <li>
+                        @if (dependency == null)
+                        {
+                            @:No dependencies.
+                        }
+                        else
+                        {
+                          var dependencyTitleText = string.Format("<dependency id=\"{0}\" {1}/>",dependency.Id,string.IsNullOrWhiteSpace(dependency.RawVersionSpec) ? string.Empty : "version=\"" + dependency.RawVersionSpec + "\" ");
+                          var versionDependency = !string.IsNullOrWhiteSpace(dependency.RawVersionSpec) ? dependency.RawVersionSpec.Replace("[", string.Empty).Replace("]", string.Empty) : string.Empty;
+                            
+                            <span title='Nuspec reference: @dependencyTitleText'>
+                            @if (!versionDependency.Contains(",") && !string.IsNullOrWhiteSpace(dependency.RawVersionSpec)  && dependency.RawVersionSpec.Contains("[") && dependency.RawVersionSpec.Contains("]"))
+                            {
+                                <a href="@Url.Package(dependency.Id, versionDependency)">@dependency.Id</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Package(dependency.Id)">@dependency.Id</a>
+                            }
+                            <span>@dependency.VersionSpec</span>
+                            </span>
+                        }
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>This package has no dependencies.</p>
+}

@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en-US"> <!--<![endif]-->
+<head>
+<title>Rate Limited | chocolatey.org | Cloudflare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<link rel="stylesheet" id="cf_styles-css" href="/cdn-cgi/styles/cf.errors.css" type="text/css" media="screen,projection" />
+<!--[if lt IE 9]><link rel="stylesheet" id='cf_styles-ie-css' href="/cdn-cgi/styles/cf.errors.ie.css" type="text/css" media="screen,projection" /><![endif]-->
+<style type="text/css">body{margin:0;padding:0}</style>
+<!--[if lte IE 9]><script type="text/javascript" src="/cdn-cgi/scripts/jquery.min.js"></script><![endif]-->
+<!--[if gte IE 10]><!--><script type="text/javascript" src="/cdn-cgi/scripts/zepto.min.js"></script><!--<![endif]-->
+<script type="text/javascript" src="/cdn-cgi/scripts/cf.common.js"></script>
+
+</head>
+<body>
+  <div id="cf-wrapper">
+    <div id="cf-error-details" class="cf-error-details-wrapper">
+      <div class="cf-wrapper cf-header cf-error-overview">
+        <h1>
+          <span class="cf-error-type" data-translate="error">Error</span>
+          <span class="cf-error-code">1015</span>
+          <small class="heading-ray-id">Ray ID: ::RAY_ID::</small>
+        </h1>
+        <h2 class="cf-subheadline" data-translate="error_desc">You are Being Rate Limited (Automatic, Expires After One Hour)</h2>
+      </div><!-- /.header -->
+
+      <section></section><!-- spacer -->
+
+      <div class="cf-section cf-wrapper">
+        <div class="cf-columns two">
+          <div class="cf-column">
+            <h2 data-translate="what_happened">What happened?</h2>
+            <p>Your IP address (::CLIENT_IP::) has triggered a rate limit rule and has been temporarily banned from the request type for an hour. Please see <a href="https://chocolatey.org/docs/community-packages-disclaimer#rate-limiting">Rate Limiting</a> (<a href="https://github.com/chocolatey/choco/wiki/CommunityPackagesDisclaimer#rate-limiting">GitHub Wiki</a>) for details and remediation steps.</p>
+            <div>
+              <ul>
+                <li><a href="https://chocolatey.org/docs/community-packages-disclaimer#rate-limiting">Rate Limiting</a></li>
+                <li><a href="https://chocolatey.org/docs/community-packages-disclaimer#what-to-do-when-you-are-rate-limited">What to do when you are rate limited</a></li>
+                <li><a href="https://chocolatey.org/docs/community-packages-disclaimer#special-requests-on-rate-limiting">Special requests when rate limited</a></li>
+                <li><a href="https://chocolatey.org/docs/community-packages-disclaimer#how-to-avoid-excessive-use">How to avoid rate limiting</a> (includes information on how to setup a solution in 15-30 minutes <a href="https://chocolatey.org/docs/community-packages-disclaimer#how-to-avoid-excessive-use">for automatic caching from community repository</a>!)</li>
+              </ul>
+              <p>Rate Limit Rules (subject to change with or without notice):</p>
+              <ul>
+                <li>Installations/downloads of Chocolatey itself are rate limited at about 5 per minute per IP address - temporary ban expires after 1 hour.</li>
+                <li>All other packages are rate limited at about 20 per minute per IP address - temporary ban expires after 1 hour.</li>
+              </ul>
+              <p>How Do I Avoid Being Rate Limited?</p>
+              <ul>
+                <li>Individual? please <a href="https://chocolatey.org/docs/community-packages-disclaimer#special-requests-on-rate-limiting">reach out</a> and give us a heads up - we are constantly adjusting limits to get to a happy medium. In addition to providing the requested information, be sure to also mention "individual use" and provide details on what you were doing that caused the rate limiting. We may ask you to provide logs for further inspection.</li>
+                <li>
+                  Organizational Use? Implement <a href="https://chocolatey.org/docs/how-to-setup-offline-installation">Chocolatey organizational deployment best practices</a>. 
+                  Installation of Chocolatey itself and everything else should be from your internal repository and not directly from the community package repository. 
+                  With 15-30 minutes you can implement a "proxy" repository which automatically caches (but does not internalize) packages from the community repository (https://chocolatey.org/api/v2).
+                  This provides the same experience you get in using the community repository now but with more availability and no rate limiting!
+                  </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.section -->
+
+      <div class="cf-error-footer cf-wrapper">
+        <p>
+          <span class="cf-footer-item">Cloudflare Ray ID: <strong>::RAY_ID::</strong></span>
+          <span class="cf-footer-separator">&bull;</span>
+          <span class="cf-footer-item"><span data-translate="your_ip">Your IP:</span> ::CLIENT_IP::</span>
+          <span class="cf-footer-separator">&bull;</span>
+          <span class="cf-footer-item"><span data-translate="performance_security_by">Performance &amp; security by</span> <a data-orig-proto="https" data-orig-ref="www.cloudflare.com/5xx-error-landing?utm_source=error_footer" id="brand_link" target="_blank">Cloudflare</a></span>
+    
+        </p>
+      </div><!-- /.error-footer -->
+
+    </div><!-- /#cf-error-details -->
+  </div><!-- /#cf-wrapper -->
+
+  <script type="text/javascript">
+    window._cf_translation = {};
+  </script>
+</body>
+</html>

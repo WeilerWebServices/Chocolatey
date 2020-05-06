@@ -1,0 +1,108 @@
+﻿@using NuGetGallery;
+
+@{
+    Layout = "~/Views/Shared/NewsletterLayout.cshtml";
+    ViewBag.Title = "COVID-19";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Scripts");
+
+    var openingTagline = "In response to the current pandemic, Chocolatey Software is actively responding in a number of ways, such as enabling organizations to implement modern infrastructure that better supports a remote workforce, and  ensuring our community continues to flourish.";
+}
+@section ExtraHeaders {
+    <meta property="og:description" content="@openingTagline" />
+    <meta property="description" content="@openingTagline" />
+}
+
+<div id="header" class="bg-medium-dark">
+    <section class="py-3 py-lg-5">
+        <div class="container py-3">
+            <h3>Responding to COVID-19</h3>
+            <h1 class="mb-0">Supporting Our Customers and Community</h1>
+        </div>
+    </section>
+</div>
+<div class="bg-medium-dark d-none d-lg-block">
+    <section>
+        <div class="container py-3">
+            <h4 class="mb-0">@openingTagline</h4>
+        </div>
+    </section>
+    <div class="shape-border shape-border-bottom"></div>
+</div>
+<section class="py-3 pt-lg-0 pb-lg-5">
+    <div class="container">
+        <p class="d-lg-none">@openingTagline</p>
+        <p>
+            Since the outset, Chocolatey Software has been a global company with customers, users, and employees all over the world.
+            All of us are affected by the Coronavirus (COVID-19) pandemic in different ways. We understand how concerning this situation has been, and recognize that many of you are working through the challenges of keeping organizations running during this difficult time.
+        </p>
+        <div class="row align-items-center">
+            <div class="col-lg-6 d-none d-lg-flex justify-content-center">
+                <img class="lazy img-fluid" width="350" src="@Links.Content.Images.blankImage" data-src="@Url.Content("~/content/images/covid-response.png")" alt="COVID-19 Response" title="COVID-19 Response" />
+            </div>
+            <div class="col-lg-6">
+                <p>At Chocolatey, we have resources that can help enable our community. We can all get through this together.</p>
+                <p>Here's what we are doing:</p>
+                <ol class="list-circle list-circle-counter list-circle-success-fade">
+                    <li><strong>Ready To Go Environments</strong> - We recognize you and your teams are under a lot of pressure during this time with limited resources and compressed timelines. We've actively worked to provide a <a href="@Url.RouteUrl(RouteName.Docs, new { docName = "quick-deployment-environment" })">Quick Deployment Environment (QDE)</a> to help you stand up recommended instructure within hours instead of days or weeks. <a href="@Url.RouteUrl(RouteName.BlogArticle, new {articleName = "enable-remote-work-without-compromising-security-quick-deployment-environment"})">(please see this post)</a></li>
+                    <li><strong>Rate Limiting</strong> - We've relaxed the rate limits for packages from 20 per minute to 30 per minute to better enable your remote workforce. We are constantly evaluating if there is more that can be done here.</li>
+                    <li><strong>Special Concessions</strong> - We are providing special allowances for essential organizations on the front lines or those that have been drastically impacted by COVID-19. We understand that you may be operating under new constraints and we are here to help.</li>
+                    <li><strong>Delaying Price Increases</strong> - We've decided to hold back planned price increases for the foreseeable future.</li>
+                    <li><strong>We're working even harder to ensure we can meet the needs of our customers during this unfortunate time.</strong></li>
+                </ol>
+            </div>
+        </div>
+        @*Blog Post*@
+        <div class="card mt-3 mt-lg-4">
+            <div class="card-body h-100">
+                <div class="row h-100">
+                    <div class="d-none d-sm-block col-sm-3 col-xl-2 text-center blog-img">
+                        <img height="100" alt="Chocolatey Software" src="@Url.Content("~/content/images/logo_small.svg")" />
+                    </div>
+                    <div class="col-sm-9 col-xl-10 d-flex flex-column">
+                        <h4 class="mb-0">Enable Remote Work Without Compromising Security / Quick Deployment Environment</h4>
+                        <p class="text-muted mb-2"><small>By Rob Reynolds | Wednesday, April 1, 2020</small></p>
+                        <p>
+                            As part of the current pandemic, Chocolatey Software is responding in a number of ways. One of those ways is to enable organizations like yours to implement more modern infrastructure that better supports a remote workforce.
+                            Another thing we've done in response to this time is prepared a full environment based on our Chocolatey infrastructure architecture recommendations.
+                        </p>
+                        <div class="mt-auto"><a class="btn btn-primary" href="@Url.RouteUrl(RouteName.BlogArticle, new { articleName = "enable-remote-work-without-compromising-security-quick-deployment-environment" })">Read Blog Post<span class="fas fa-angle-right"></span></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-3 py-lg-5 bg-white">
+    <div class="container">
+        @*Folding@home*@
+        <h2 class="text-center mb-3">Join the Chocolatey Team on the Folding@home Project!</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6 justify-content-center">
+                <div class="embed-responsive embed-responsive-16by9 shadow">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nKqLtwMOfg4?loop=1&playlist=nKqLtwMOfg4" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-3 mt-lg-0">
+                <p>
+                    Chocolatey has started their own team for <a href="https://stats.foldingathome.org/team/261550" rel="nofollow" target="_blank">Folding@home</a>! This project is focused on disease research.
+                    The problems they are solving include many challenging computer calculations, and they need our help to find cures. The <a href="@Url.Package("fah")">Folding@home software</a> allows you to share your unused computer
+                    power with them so that even more research can be done. Once the <a href="@Url.Package("fah")">software is installed</a>, everything is performed in the background on your machine and will not slow your computer down at all.
+                </p>
+                <ul>
+                    <li>What is Folding@home? <a href="https://foldingathome.org/" rel="nofollow" target="_blank">Learn more here</a>.</li>
+                    <li><a href="https://stats.foldingathome.org/team/261550" rel="nofollow" target="_blank">View Folding@home Chocolatey team stats and information</a>.</li>
+                </ul>
+                <p>Click the button below to visit the <a href="@Url.Package("fah")">Folding@home Chocolatey package</a>, and help find cures to common diseases today.</p>
+                <div class="mt-auto"><a class="btn btn-primary" href="@Url.Package("fah")">Get Started<span class="fas fa-angle-right"></span></a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-3 py-lg-5">
+    <div class="container">
+        @*Additional Resources*@
+        <h2 class="text-center mb-3 pt-1">Additional Resources in Response to COVID-19</h2>
+        @Html.Partial("~/Views/Pages/_SelfServiceResources.cshtml")
+    </div>
+</section>

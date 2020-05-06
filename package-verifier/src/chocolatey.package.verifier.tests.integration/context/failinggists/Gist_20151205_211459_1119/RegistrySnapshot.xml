@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<registrySnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <user>S-1-5-21-1953236517-242735908-2433092285-500</user>
+  <keys>
+    <key installerType="Msi" displayName="Microsoft Power BI Desktop (x64)" displayVersion="2.29.4217.341">
+      <RegistryView>Registry64</RegistryView>
+      <KeyPath>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{7EE342B3-25CE-40C9-861B-5D0EA6BDD85D}</KeyPath>
+      <DefaultValue />
+      <InstallLocation />
+      <UninstallString>MsiExec.exe /X{7EE342B3-25CE-40C9-861B-5D0EA6BDD85D}</UninstallString>
+      <HasQuietUninstall>false</HasQuietUninstall>
+      <Publisher>Microsoft Corporation</Publisher>
+      <InstallDate>20151206</InstallDate>
+      <InstallSource>C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\PowerBI\2.28.4190.122\</InstallSource>
+      <Language>1033</Language>
+      <Version>35459193</Version>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>29</VersionMinor>
+      <SystemComponent>false</SystemComponent>
+      <WindowsInstaller>true</WindowsInstaller>
+      <NoRemove>false</NoRemove>
+      <NoModify>true</NoModify>
+      <NoRepair>false</NoRepair>
+      <ReleaseType />
+      <ParentKeyName />
+    </key>
+  </keys>
+</registrySnapshot>

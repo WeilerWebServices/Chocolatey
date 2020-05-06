@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "_BaseLayout.cshtml";
+}
+@section css
+{
+    @RenderSection("css", required: false)
+}
+@section ExtraHeaders
+{
+    @RenderSection("ExtraHeaders", required: false)
+}
+@section TopScripts
+{
+    @RenderSection("TopScripts", required: false)
+}
+
+<body>
+    @Html.Partial("~/Views/Shared/_TopNavigation.cshtml")
+    <main class="mb-auto">
+        @Html.Partial("~/Views/Shared/_Modals.cshtml")
+        @RenderBody()
+    </main>
+    <footer>
+        @Html.Partial("~/Views/Shared/_BottomNavigation.cshtml")
+    </footer>
+    @RenderPage("_CookiePolicy.cshtml")
+
+    @Bundles.RenderStylesheets("bottom")
+    @Bundles.RenderScripts()
+
+    @RenderSection("BottomScripts", required: false)
+</body>

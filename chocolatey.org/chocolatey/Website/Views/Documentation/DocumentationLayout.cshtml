@@ -1,0 +1,258 @@
+﻿@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/pages.css");
+    Bundles.Reference("Content/prism/prism.css");
+    Bundles.Reference("Scripts");
+    Bundles.Reference("Scripts/anchorjs");
+    Bundles.Reference("Scripts/prism");
+    Bundles.Reference("Scripts/documentation");
+}
+@section css
+{
+    @RenderSection("css", required: false)
+}
+@section ExtraHeaders
+{
+    @RenderSection("ExtraHeaders", required: false)
+}
+@section TopScripts
+{
+    @RenderSection("TopScripts", required: false)
+}
+
+<body>
+    @Html.Partial("~/Views/Shared/_TopNavigation.cshtml")
+    <main id="docs" class="mb-auto">
+        <section id="secondaryNav">
+            @Html.Partial("~/Views/Shared/_ResourceSubNavigation.cshtml")
+        </section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-3 col-xl-2 p-0 docs-left">
+                    <nav class="navbar navbar-expand-md navbar-dark sticky-top p-0 border-top-0 bg-medium-dark">
+                        <button class="navbar-toggler m-2 my-md-0 w-100 text-white border-0 collapsed" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="navbarlogoff" aria-expanded="false" aria-label="Toggle navigation">
+                            <small>Documentation Table of Contents</small>
+                        </button>
+                        <div class="collapse navbar-collapse bg-light" id="docs-nav">
+                            <div class="navbar-nav d-block w-100 bg-light">
+                                <ul>
+                                    <li class="p-2 bg-primary">
+                                        @Html.Partial("~/Views/Shared/_SearchBox.cshtml")
+                                    </li>
+                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "home" })">Docs Home</a></li>
+                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "why" })">Why Chocolatey?</a></li>
+                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "security" })">Security</a></li>
+                                </ul>
+                                @*Features*@
+                                <a class="collapsed d-block" data-toggle="collapse" href="#features" role="button" aria-expanded="false" aria-controls="features" title="Features">Features</a>
+                                <div class="collapse" id="features">
+                                    <ul>
+                                        <li>
+                                            <a class="collapsed" data-toggle="collapse" href="#features-free" role="button" aria-expanded="false" aria-controls="features-free" title="Free Features">Free</a>
+                                            <div class="collapse" id="features-free">
+                                                <ul>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "create-packages" })">Create your own packages</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-host-feed" })">Host packages internally</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-infrastructure-automation" })">Integrates with everything</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-shim" })">Package Shims</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-create-custom-package-templates" })">Custom Package Templates</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-create-extensions" })">Package Extensions</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a class="collapsed" data-toggle="collapse" href="#features-paid" role="button" aria-expanded="false" aria-controls="features-paid" title="Paid Features">Paid</a>
+                                            <div class="collapse" id="features-paid">
+                                                <ul>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-virus-check" })">Runtime Malware Protection (Pro+)</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-private-cdn" })">Download CDN Cache (Pro+)</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-package-reducer" })">Package Reducer (Pro+)</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-install-directory-override" })">Ubiquitous Install Directory Option (Pro+)</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-package-throttle" })">Package Throttle (Pro+)</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-synchronize" })">Package Synchronizer (Pro+ Auto / C4B Sync Command)</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-agent-service" })">Self-Service / Background Mode (C4B)</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-chocolatey-central-management" })">Chocolatey Central Management (C4B)</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-create-packages-from-installers" })">Package Builder (C4B)</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-automatically-recompile-packages" })">Package Internalizer (C4B)</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-package-audit" })">Package Audit (C4B)</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "features-branding" })">Branding Chocolatey Applications (C4B)</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-reference" })#chocolatey-for-business-functions">Windows Service Management PowerShell Functions (C4B)</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                @*General*@
+                                <a class="collapsed d-block" data-toggle="collapse" href="#general" role="button" aria-expanded="false" aria-controls="general" title="General">General</a>
+                                <div class="collapse" id="general">
+                                    <ul class="nav-test">
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "release-notes" })">Release Notes</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "release-notes-licensed" })">Licensed Release Notes</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "troubleshooting" })">Troubleshooting</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "chocolatey-faqs" })">FAQs</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "moderation" })">Chocolatey.org Moderation</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "community-packages-disclaimer" })">Chocolatey.org Packages Disclaimer</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "package-triage-process" })#are-you-a-software-vendor">Software Vendor?</a></li>
+                                    </ul>
+                                </div>
+                                @*Usage*@
+                                <a class="collapsed d-block" data-toggle="collapse" href="#usage" role="button" aria-expanded="false" aria-controls="usage" title="Usage">Usage</a>
+                                <div class="collapse" id="usage">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "installation" })">How to install</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "installation-licensed" })">How to install licensed edition</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "chocolatey-configuration" })">Configuration / chocolatey.config</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "uninstallation" })">How to uninstall</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "getting-started" })">Getting Started</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "proxy-settings-for-chocolatey" })">Proxy Settings</a></li>
+                                        <li>
+                                            <a class="collapsed d-block" data-toggle="collapse" href="#usage-commands" role="button" aria-expanded="false" aria-controls="usage-commands" title="Usage Commands">Commands</a>
+                                            <div class="collapse" id="usage-commands">
+                                                <ul>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-reference" })#how-to-pass-options-switches">Passing args to choco</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-reference" })">Complete Reference</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-list" })">List / Search</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-info" })">Info</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-install" })">Install</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-pin" })">Pin</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-outdated" })">Outdated</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-upgrade" })">Upgrade</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-uninstall" })">Uninstall</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-config" })">Config</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-sources" })">Source / Sources</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-feature" })">Feature</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-download" })">Download</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                @*Creating Packages*@
+                                <a class="collapsed d-block" data-toggle="collapse" href="#creating-packages" role="button" aria-expanded="false" aria-controls="creating-packages" title="Creating Packages">Creating Packages</a>
+                                <div class="collapse" id="creating-packages">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "create-packages" })">Create Packages</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "create-packages-quick-start" })">Quick Start</a></li>
+                                        <li>
+                                            <a class="collapsed d-block" data-toggle="collapse" href="#creating-packages-commands" role="button" aria-expanded="false" aria-controls="creating-packages-commands" title="Creating Packages Commands">Commands</a>
+                                            <div class="collapse" id="creating-packages-commands">
+                                                <ul>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-new" })">New</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-pack" })">Pack</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-apikey" })">Apikey</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "commands-push" })">Push</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a class="collapsed d-block" data-toggle="collapse" href="#powershell-references" role="button" aria-expanded="false" aria-controls="powershell-references" title="PowerShell References">PowerShell References</a>
+                                            <div class="collapse" id="powershell-references">
+                                                <ul>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-reference" })">Function and Variable Reference</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-install-chocolatey-package" })">Install-ChocolateyPackage</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-install-chocolatey-zip-package" })">Install-ChocolateyZipPackage</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-install-chocolatey-powershell-command" })">Install-ChocolateyPowershellCommand</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-install-chocolatey-vsix-package" })">Install-ChocolateyVsixPackage</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-get-chocolatey-web-file" })">Get-ChocolateyWebFile</a></li>
+                                                    <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "helpers-install-chocolatey-install-package" })">Install-ChocolateyInstallPackage</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "automatic-packages" })">Automatic Packaging</a></li>
+                                    </ul>
+                                </div>
+                                @*How To's*@
+                                <a class="collapsed d-block" data-toggle="collapse" href="#how-to" role="button" aria-expanded="false" aria-controls="how-to" title="How To's">How To's</a>
+                                <div class="collapse" id="how-to">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "proxy-settings-for-chocolatey" })">Use Chocolatey w/Proxy Server</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-change-cache" })">Change Download Cache Location aka Don&#39;t use TEMP for downloads</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-install-upgrade-package-without-scripts" })">Install/Upgrade a Package w/out running install scripts</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "package-triage-process" })">Request Package Fixes/Updates</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-recompile-packages" })">Manually Recompile Packages, Embedding/Internalizing Remote Resources</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "package-triage-process" })">Request Package</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "package-triage-process" })#i-want-to-take-overhelp-with-package-maintenance-for-my-software">Maintain Packages for My Software</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "package-triage-process" })">Become a Maintainer</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "package-maintainer-handover" })">Take Over Package Maintenance Exclusively</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-parse-package-parameters-argument" })">Parse Package Parameters</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-mount-an-iso-in-chocolatey-package" })">Mount Iso</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-create-custom-package-templates" })">Create Custom Package Templates</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-create-extensions" })">Extend Chocolatey With PowerShell Modules (extensions)</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-deprecate-a-chocolatey-package" })">Deprecate a Package</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "installation-licensed" })">Install licensed edition</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-host-feed" })">Host Your Own Package Repository Server</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-set-up-chocolatey-server" })">Set up the Chocolatey.Server</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-setup-offline-installation" })">Set up Chocolatey for internal/organizational use</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "how-to-setup-internal-package-repository" })">Automate Package Internalizer (MSP/C4B)</a></li>
+                                    </ul>
+                                </div>
+                                @*Quick Deployment Environment*@
+                                <a class="collapsed d-block" data-toggle="collapse" href="#quick-deployment-environment" role="button" aria-expanded="false" aria-controls="quick-deployment-environment" title="Quick Deployment Environment (QDE)">Quick Deployment Environment (QDE)</a>
+                                <div class="collapse" id="quick-deployment-environment">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "quick-deployment-environment" })">QDE Overview</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "quick-deployment-setup" })">QDE Setup</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "quick-deployment-desktop-readme" })">QDE Desktop ReadMe Files</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "quick-deployment-ssl-setup" })">QDE SSL/TLS Setup</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "quick-deployment-firewall-changes" })">QDE Firewall Changes</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "quick-deployment-client-setup" })">QDE Client Setup</a></li>
+                                    </ul>
+                                </div>
+                                @*Use Cases*@
+                                <a class="collapsed d-block" data-toggle="collapse" href="#use-cases" role="button" aria-expanded="false" aria-controls="use-cases" title="Use Cases">Use Cases</a>
+                                <div class="collapse" id="use-cases">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "development-environment-setup" })">Development Environment</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "hosting-chocolatey-packages-on-myget" })">Host on MyGet</a></li>
+                                    </ul>
+                                </div>
+                                @*Learning Resources*@
+                                <a class="collapsed d-block" data-toggle="collapse" href="#learning-resources" role="button" aria-expanded="false" aria-controls="learning-resources" title="Learning Resources">Learning Resources</a>
+                                <div class="collapse" id="learning-resources">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "resources" })">Resources</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "videos" })">Videos</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "presentations" })">Presentations</a></li>
+                                    </ul>
+                                </div>
+                                @*Additional Information*@
+                                <a class="collapsed d-block" data-toggle="collapse" href="#additional-information" role="button" aria-expanded="false" aria-controls="additional-information" title="Additional Information">Additional Information</a>
+                                <div class="collapse" id="additional-information">
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "legal" })">Legal</a></li>
+                                        <li><a href="@Url.RouteUrl(RouteName.Docs, new { docName = "history" })">History</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-12 col-md-9 col-xl-8 py-3 py-lg-5 pl-md-5 docs-body">
+                    @RenderBody()
+                </div>
+                <div class="d-none d-xl-block col-xl-2 docs-right">
+                    <div id="RightNavAppend" class="sticky-top"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        @Html.Partial("~/Views/Shared/_BottomNavigation.cshtml")
+    </footer>
+    @RenderPage("~/Views/Shared/_CookiePolicy.cshtml")
+
+    @Bundles.RenderStylesheets("bottom")
+    @Bundles.RenderScripts()
+
+    @RenderSection("BottomScripts", required: false)
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+    <script language="javascript" type="text/javascript">
+        ((window.gitter = {}).chat = {}).options = {
+            room: 'chocolatey/chocolatey.org'
+        };
+    </script>
+
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+</body>

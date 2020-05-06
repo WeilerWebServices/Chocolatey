@@ -1,0 +1,145 @@
+﻿@model ManagePackageOwnersViewModel
+@{
+    ViewBag.Tab = "Packages";
+    var moderator = User != null && User.IsModerator();
+    Bundles.Reference("Content/dist/chocolatey.slim.css");
+    Bundles.Reference("Content/account.css");
+    Bundles.Reference("Scripts");
+    Bundles.Reference("Scripts/manageowners");
+}
+
+<section id="secondaryNav">
+    @Html.Partial("~/Views/Shared/_AuthenticationSubNavigation.cshtml")
+</section>
+<section class="container py-3 py-xl-5" id="account">
+    <div class="row">
+        <div class="col-xl-10 mx-auto">
+            <h2 class="text-center text-xl-left">Manage Maintainers for <a href="@Url.Package(Model.Id,  null)">@Model.Title</a></h2>
+            <hr />
+            <h3>Current Maintainers</h3>
+            <ul class="mb-5" id="package-owner-list" data-bind="foreach: owners">
+                <li>
+                    <span data-bind="text: name"></span> <em data-bind="visible: current">(that&#8217;s you!)</em>
+                    <em data-bind="visible: pending">(pending approval)</em>
+                    @if (moderator)
+                    {
+                        <a class="text-danger" href="#" title="Remove as maintainer of @Model.Title" data-bind="click: remove">Remove</a>
+                    }
+                    else
+                    {
+                        <a class="text-danger" href="#" title="Remove as maintainer of @Model.Title" data-bind="visible: !current, click: remove">Remove</a>
+                    }
+                    <input type="checkbox" data-bind="visible: false, checked: addDirectly" />
+                </li>
+            </ul>
+            <h3 class="mb-3">Add Maintainer</h3>
+            <div class="callout callout-secondary mb-0">
+                <p><strong>Note:</strong> All package maintainers have full control over their packages, including the ability to remove other users as maintainers.</p>
+            </div>
+            <div class="error message callout callout-danger mb-0 mt-3" data-bind="text: message, visible: message"></div>
+            @using (Html.BeginForm())
+            {
+                <fieldset class="form">
+                    <legend class="d-none">Add Maintainer</legend>
+                    <div class="form-field mb-3">
+                        <label for="newOwnerUserName">Enter a maintainer's username to add them as a package maintainer:</label>
+                        <input id="Email" type="text" placeholder="Type username here" name="newOwnerUserName" data-bind="value: newOwner().name" />
+                    </div>
+                    @if (moderator)
+                    {
+                        <div class="form-field mb-3">
+                            <label class="checkbox">
+                                <input class="check-box" type="checkbox" name="newOwnerAddDirectly" data-bind="checked: newOwner().addDirectly" />
+                                Add Without Pending
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    }
+                    <button class="btn btn-primary" type="submit" value="Add" title="Add the user as a maintainer to @Model.Title" data-bind="click: addOwner">Add Maintainer</button>
+                </fieldset>
+            }
+        </div>
+    </div>
+</section>
+
+@section bottomScripts {
+    <script src="@Url.Content("~/json/JsonApi?json")"></script>
+    <script>
+    $(function () {
+        //TODO Move this to its own script file when we set up QUnit tests
+        var failHandler = function () {
+            alert('An unexpected error occurred!');
+        };
+
+        var viewModel = {
+            package: { id: '@Model.Id' },
+            owners: ko.observableArray([]),
+            newOwner: ko.observable(new Owner(null)),
+            message: ko.observable(''),
+
+            addOwner: function () {
+                var ownerInputModel = viewModel.newOwner().toJS();
+                ownerInputModel.id = viewModel.package.id;
+
+                $mvc.JsonApi.AddPackageOwner(ownerInputModel)
+                    .done(function (data) {
+                        if (data.success) {
+                            viewModel.newOwner().name(data.name);
+                            viewModel.newOwner().pending(data.pending);
+                            viewModel.owners.push(viewModel.newOwner());
+                            viewModel.newOwner(new Owner(null));
+                        }
+                        else {
+                            viewModel.message(data.message);
+                        }
+                    })
+                    .fail(failHandler);
+            },
+
+            removeOwner: function (item) {
+                var package = viewModel.package;
+                $mvc.JsonApi.RemovePackageOwner({ id: package.id, username: item.name() })
+                    .done(function (data) {
+                        if (data.success) {
+                            viewModel.owners.remove(item);
+                        }
+                        else {
+                            viewModel.message(data.message);
+                        }
+                    }).fail(failHandler);
+            }
+        };
+        ko.applyBindings(viewModel);
+
+        // Load initial maintainers (owners).
+        $mvc.JsonApi.GetPackageOwners(viewModel.package)
+        .done(function (data) {
+            viewModel.owners($.map(data, function (item) { return new Owner(item); }));
+        })
+        .fail(failHandler);
+
+        function Owner(item) {
+            var $this = this;
+
+            item = item || {};
+
+            this.name = ko.observable(item.name);
+            this.pending = ko.observable(item.pending);
+            this.current = item.current;
+            this.addDirectly = ko.observable(false);
+            this.remove = function () {
+                viewModel.removeOwner(this);
+            };
+            this.toJS = function () {
+                return { username: this.name(), addDirectly: this.addDirectly() };
+            };
+        }
+    });
+    </script>
+    <script language="javascript" type="text/javascript">
+        ((window.gitter = {}).chat = {}).options = {
+            room: 'chocolatey/chocolatey.org'
+        };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+}
